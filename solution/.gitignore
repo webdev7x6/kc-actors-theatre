@@ -3,10 +3,7 @@
 ###################
 *.com
 *.class
-*.dll
 *.exe
-*.pdb
-*.dll.config
 *.cache
 *.suo
 *.user
@@ -23,7 +20,6 @@ _UpgradeReport_Files/
 ###############
 # Directories #
 ###############
-bin/
 obj/
 TestResults/
 Deploy-Debug/
