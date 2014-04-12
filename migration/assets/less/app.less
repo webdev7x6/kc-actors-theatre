@@ -1,0 +1,148 @@
+@import "bootstrap/bootstrap.less";
+@import "typography.less";
+
+//Color Variables
+@red: #ef433b;
+@black: #383739;
+@content-gutter: 32px;
+
+//Base Styling
+html, body {
+  height: 100%; //The html and body elements cannot have any padding or margin for sticky footer.
+  background:white;
+}
+
+footer#footer {
+  background-color: gray;
+  padding-top:20px;
+}
+
+//Class styling (alphabetical)
+.carousel {
+  .item {
+    min-height:800px;
+  }
+  img {
+    position:absolute;
+    top:0;
+    left:0;
+    min-height:800px;
+    //width:auto;
+  }
+}
+
+.header-row {
+  border-bottom:1px solid @red;
+  padding-bottom:20px;
+  margin-bottom:20px;
+}
+
+.homepage-show-img {
+  width:100%;
+}
+
+.homepage-update-text {
+  position:relative;
+  z-index:3;
+  padding-top:20px;
+  padding-bottom:20px;
+  h2, p {
+    color:white;
+  }
+  h2 {
+    margin-top:0;
+  }
+  p {
+    margin-bottom:0;
+    a {
+      color:white;
+      //.brandon-bold;
+    }
+  }
+}
+
+.inner-page-img {
+  img {
+    width:100%;
+  }
+}
+
+.inner-page {
+  margin-top: 150px;
+}
+
+.inner-page-with-image {
+  margin-top: 50px;
+}
+
+.navbar-inverse {
+  background-color: @black;
+  border:none;
+}
+
+.panel-group {
+  .panel {
+    border-radius:0;
+    box-shadow:none;
+    padding-top:@content-gutter;
+    padding-bottom:@content-gutter;
+  }
+  .panel-default {
+    border:none;
+    .panel-heading {
+      color: @black;
+      background-color:transparent;
+      border:none;
+      border-bottom:1px solid @black;
+      text-align:right;
+    }
+  }
+}
+
+.panel-default>.panel-heading+.panel-collapse .panel-body {
+  border:none;
+}
+
+.person {
+  margin-top: @content-gutter;
+  img {
+    width:100%;
+    margin-top:20px;
+  }
+}
+
+//ID Styling (alphabetized)
+#homepage-current-season {
+  padding-top:64px;
+  padding-bottom:64px;
+}
+
+#homepage-update {
+  background: @red;
+  text-align:center;
+}
+
+#navbar-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  margin-top:@content-gutter;
+}
+
+#push, #footer {
+  height: 60px;
+} // #push located in layout file. Setting fixed height of the footer. Change height here and in #wrap.
+
+//Wrapper for page content to push down footer - located in layout file.
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -60px; //Negative indent footer by its height
+  padding-bottom: 60px; //Space between content and footer.
+}
+
+
+@import "queries.less";

@@ -1,0 +1,8 @@
+﻿@model KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.Resources.EditViewModel
+@using Clickfarm.AppFramework.Extensions
+
+<label>Audio File:</label>
+<span style="font-style: italic">Allowed Format(s): @string.Join(", ", @Model.ContentProperties_AudioFile.FileExtensions.ToArray())</span>
+<div class="display-field editable-format editable-file nullable" data-content-file-properties="@Model.ContentProperties_AudioFile.ToJson()" data-property-name="URL">
+<span class="file-icon-16 file-icon-inline file"></span>@Model.Resource.URL
+</div>

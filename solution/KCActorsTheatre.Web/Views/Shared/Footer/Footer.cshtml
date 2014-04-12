@@ -1,0 +1,185 @@
+﻿@using Clickfarm.Cms.Mvc
+@using Clickfarm.Cms.Core
+@using KCActorsTheatre.Cms.AppTypes
+@model KCActorsTheatre.Web.ViewModels.KCActorsTheatreViewModel
+@{
+    //var footerNav = Model.RequestContent.Menus.Where(m => m.Name.Equals("Footer Navigation")).FirstOrDefault();
+    //var app = (KCActorsTheatreApp)Model.RequestContent.App;
+}
+<footer id="footer">
+    <div id="doormat">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>KC Actors Theatre</h5>
+                    <h6>International Headquarters (IHQ)</h6>
+                    <address>
+                        1001 W. Walnut<br />
+                        Independence, MO 64050&ndash;3562<br />
+                        United States of America
+                    </address>
+                    <h6 class="phone">(800) 825&ndash;2806</h6>
+                    <ul class="list-inline footer-social">
+                        <li><a href="#" class="facebook">Facebook</a>
+                        </li>
+                        <li><a href="#" class="twitter">Twitter</a>
+                        </li>
+                        <li><a href="#" class="youtube">YouTube</a>
+                        </li>
+                        <li><a href="#" class="rss">RSS</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-5 hidden-xs">
+                    <div class="row">
+                        <div class="col-sm-12" id="our-faith">
+                            <h5><a href="#">Our Faith</a></h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <ul>
+                                <li><a href="#">Invitation</a>
+                                </li>
+                                <li><a href="#">History</a>
+                                </li>
+                                <li><a href="#">Disciples Generous Response</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6">
+                            <ul>
+                                <li class="footer-subheading"><a href="#">Who We Are</a>
+                                </li>
+                                <li><a href="#">Our Name</a>
+                                </li>
+                                <li><a href="#">Mission Statement</a>
+                                </li>
+                                <li><a href="#">Demographics</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12" id="what-we-believe">
+                            <h5><a href="#">What We Believe</a></h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <ul>
+                                <li class="footer-subheading"><a href="#">Basic Beliefs</a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="footer-subheading"><a href="#">Enduring Principles</a>
+                                </li>
+                                <li><a href="#">Grace and Generosity</a>
+                                </li>
+                                <li><a href="#">Sacredness of Creation</a>
+                                </li>
+                                <li><a href="#">Continuing Revelation</a>
+                                </li>
+                                <li><a href="#">Worth of All Persons</a>
+                                </li>
+                                <li><a href="#">All Are Called</a>
+                                </li>
+                                <li><a href="#">Responsible Choices</a>
+                                </li>
+                                <li><a href="#">Pursuit of Peace (Shalom)</a>
+                                </li>
+                                <li><a href="#">Unity in Diversity</a>
+                                </li>
+                                <li><a href="#">Blessings of Community</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6">
+                            <ul>
+                                <li class="footer-subheading"><a href="#">Sacraments</a>
+                                </li>
+                                <li><a href="#">Baptism</a>
+                                </li>
+                                <li><a href="#">Confirmation</a>
+                                </li>
+                                <li><a href="#">Communion (Lord's Supper)</a>
+                                </li>
+                                <li><a href="#">Laying on of Hands for the Sick</a>
+                                </li>
+                                <li><a href="#">Blessing of Children</a>
+                                </li>
+                                <li><a href="#">Marriage</a>
+                                </li>
+                                <li><a href="#">Ordination</a>
+                                </li>
+                                <li><a href="#">Evangelist Blessing</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 hidden-xs">
+                    <h5><a href="#">Our Mission</a></h5>
+                    <ul>
+                        <li><a href="#">Invite People to Christ</a>
+                        </li>
+                        <li><a href="#">Abolish Poverty, End Suffering</a>
+                        </li>
+                        <li><a href="#">Pursue Peace on Earth</a>
+                        </li>
+                        <li><a href="#">Develop Disciples to Service</a>
+                        </li>
+                        <li><a href="#">Congregations in Mission</a>
+                        </li>
+                        <li><a href="#">Mission Stories</a>
+                        </li>
+                    </ul>
+                    <h5><a href="#">Connect</a></h5>
+                    <ul>
+                        <li><a href="#">Volunteering</a>
+                        </li>
+                        <li><a href="#">Service</a>
+                        </li>
+                        <li><a href="#">Find a Congregation</a>
+                        </li>
+                        <li><a href="#">Visit</a>
+                        </li>
+                        <li><a href="#">Church Directory</a>
+                        </li>
+                        <li><a href="#">Church Leadership</a>
+                        </li>
+                        <li><a href="#">Social Media</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-2 hidden-xs">
+                    <h5><a href="#">Resources</a></h5>
+                    <ul>
+                        <li><a href="#">Worship Resources</a>
+                        </li>
+                        <li><a href="#">Herald Magazine</a>
+                        </li>
+                        <li><a href="#">Reunions and Camps</a>
+                        </li>
+                        <li><a href="#">Disciple Formation</a>
+                        </li>
+                        <li><a href="#">Pastors and Leaders</a>
+                        </li>
+                    </ul>
+                    <h5><a href="#">News</a></h5>
+                    <h5><a href="#">Events</a></h5>
+                    <h5><a href="#">Give</a></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="legal-necessities">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="copyright">Copyright &copy; 2013 &middot; KC Actors Theatre. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

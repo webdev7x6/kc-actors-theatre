@@ -1,0 +1,56 @@
+@model KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.Organizations.EditViewModel
+@using Clickfarm.AppFramework.Extensions
+@using Clickfarm.Cms.Mvc
+@using Clickfarm.Cms.Core;
+@{
+    Layout = null;
+    var entityDescription = "Organization";
+
+    string target = null;
+    if (Model.Organization.LinkTarget != null)
+    {
+        HyperlinkContent.LinkTargets.TryGetPropertyValue<string>(Model.Organization.LinkTarget, out target);
+    }
+}
+@if (Model.HasOrganization)
+{
+    <div class="editable-parent item-index-tab model-display" data-tab-type="edit-item" data-item-id="@Model.Organization.OrganizationID">
+        <div class="ui-toolbar-cms">
+            <a href="#" class="refresh-item-link" data-item-id="@Model.Organization.OrganizationID" title="Refresh @entityDescription">Refresh @entityDescription</a>
+            <a href="#" class="delete-item-link" data-item-id="@Model.Organization.OrganizationID" title="Delete @entityDescription">Delete @entityDescription</a>
+        </div>
+        <div class="ui-widget-content ui-corner-all ui-widget-cms">
+            <label>Name:</label>
+            <div class="display-field editable-format editable" data-property-name="Name">@Model.Organization.Name</div>
+
+            <label>Link Target:</label>
+            <div class="display-field editable-format editable-select editable-select-target"
+                 data-editable-select-model="target"
+                 data-editable-select-data="@Clickfarm.Cms.Core.HyperlinkContent.LinkTargetsJson"
+                 data-property-name="LinkTarget">
+                @target
+            </div>
+
+            <label>Link URL:</label>
+            <div class="display-field editable-format editable-hyperlink nullable"
+                 data-property-name="LinkURL">
+                @Model.Organization.LinkURL
+            </div>
+
+            <label>Is Published?</label>
+            <div class="display-field editable-format editable-yes-no-boolean" data-property-name="IsPublished">@(Model.Organization.IsPublished ? "Yes" : "No")</div>
+
+            <label>Date Created:</label>
+            <div class="display-field">@(Model.DateConverter.Convert(Model.Organization.DateCreated).FromUtc().ForCmsUser().ToString("g"))</div>
+
+            <label>Last Modified:</label>
+            <div class="display-field">@(Model.Organization.DateModified.HasValue ? Model.DateConverter.Convert(Model.Organization.DateModified.Value).FromUtc().ForCmsUser().ToString("g") : "Never")</div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="message">
+        @entityDescription not found.
+    </div>
+}

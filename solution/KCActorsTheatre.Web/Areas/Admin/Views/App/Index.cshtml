@@ -1,0 +1,267 @@
+﻿@using Clickfarm.Cms.Admin.Mvc.Areas.Admin.ViewModels
+@using Clickfarm.Cms.Configuration
+@using Clickfarm.Cms.Mvc
+@model Clickfarm.Cms.Admin.Mvc.Areas.Admin.ViewModels.AppIndexViewModel
+@{
+    ViewBag.HtmlTitle = Model.CurrentApp.Name;
+}
+@section styles {
+    <link href="@Url.CmsVersionedCdnResource("/css/app.index.css")" rel="stylesheet" type="text/css" />
+    <link href="~/Areas/CustomAdmin/common/css/admin.css" rel="stylesheet" />
+}
+@section scripts{
+    <script type="text/javascript" src="@Url.CdnResource("/common/js/knockout-plugins/mapping/2.3.5/knockout.mapping-2.3.5.js")"></script>
+    <script type="text/javascript" src="@Url.CmsVersionedCdnResource("/js/app.new-page.js")"></script>
+    <script type="text/javascript" src="@Url.CmsVersionedCdnResource("/js/app.menuitem-mgr.js")"></script>
+    <script type="text/javascript" src="@Url.CmsVersionedCdnResource("/js/app.contentgroup-mgr.js")"></script>
+    <script type="text/javascript" src="@Url.CmsVersionedCdnResource("/js/apply-changes.js")"></script>
+    <script type="text/javascript" src="@Url.CdnResource("/common/js/jquery-plugins/jstree/1.0-rc3/jquery.jstree.js")"></script>
+    <script type="text/javascript" src="@Url.CdnResource("/common/js/jquery-plugins/stickyfloat/r5/stickyfloat.min.js")"></script>
+    <script type="text/javascript" src="@Url.CmsVersionedCdnResource("/js/app.find-page.js")"></script>
+    <script type="text/javascript" src="@Url.CmsVersionedCdnResource("/js/app.index.js")"></script>
+    <script type="text/javascript" src="~/Areas/Admin/common/js/admin-tags.js"></script>
+    <script type="text/javascript" src="~/Areas/Admin/common/js/admin-staff.js"></script>
+}
+<div id="app" data-app-id="@Model.CurrentApp.AppID">
+    <div id="app-index-tabs">
+        <a href="#" id="close-tabs-link" data-bind="visible: tabMgr.tabs().length > 1, click: tabMgr.closeAllTabs" title="Close all">Close all</a>
+        <ul>
+            <li class="tab-notclosable"><a href="#primary-tab">@Model.CurrentApp.Name</a></li>
+        </ul>
+        <div id="primary-tab">
+            <div class="ui-toolbar-cms">
+                @{
+                    if (Model.AvailablePageTypes.Count == 1)
+                    {
+                        var singlePageType = @Model.AvailablePageTypes[0];
+                        <a class="new-page-button new-page single-page-type" data-page-type="@singlePageType.PageTypeName" href="#">@singlePageType.PageTypeName</a>
+                    }
+                    else
+                    {
+                        <a class="new-page-button" href="#">New</a>
+                        <div id="new-page-menu" class="ui-state-highlight ui-corner-all wrapper" title="Select a Page Type">
+                            <ul>
+                                @foreach (var pageType in @Model.AvailablePageTypes)
+                                {
+                                    <li><a class="new-page" data-page-type="@pageType.PageTypeName" href="#">@pageType.PageTypeName</a></li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="tab-options-wrapper">
+
+                <div id="find-options" class="ui-widget ui-widget-cms ui-widget-content ui-corner-all">
+
+                    <div class="find-option-panel">
+                        <h3 style="margin-top:0;">Pages</h3>
+                        @if (Model.CurrentHomePage != null)
+                        {
+                            <div id="home-page-link">
+                                <a href="#" data-page-id="@Model.CurrentHomePage.PageID" data-page-type="@Model.CurrentHomePage.GetType().Name">
+                                    @Model.CurrentHomePage.Title
+                                </a>
+                            </div>
+                        }
+                        <div style="margin:10px 0">
+                            <label for="find-page-input">Find By Page Title:</label><br />
+                            <input id="find-page-input" type="text" />
+                            <a id="show-all-pages" style="margin-top:10px" href="#">Show All</a>
+                        </div>
+                        @*						<div>
+                                <label>Pages by Template:</label>
+                                <ul>
+                                    @foreach (ManagedControllerConfigData mc in Model.ManagedControllers)
+                                   {
+                                       <li>@mc.DisplayName</li>
+                                   }
+                                   </ul>
+                            </div>*@
+                    </div>
+
+                    <div class="find-option-panel">
+                        <h3>Menus</h3>
+                        <div>
+                            <div class="loader" data-bind="visible: loadingMenuCategories">
+                                <img src="@Url.AjaxLoader()" alt="Loading..." />
+                                Loading...
+                            </div>
+                            <p data-bind="visible: !menuCategoriesFound()">No menu categories are available.</p>
+                            <ul data-bind="visible: menuCategories().length > 0, foreach: menuCategories">
+                                <li>
+                                    <span data-bind="text: name"></span>
+                                    <ul data-bind="foreach: menus">
+                                        <li><a href="#" data-bind="text: name, click: viewMenu"></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="find-option-panel">
+                        <h3>Shared</h3>
+                        <div class="shared-content-list" data-bind="visible: !gettingSharedContentMenu() && sharedContentMenuItems().length > 0">
+                            <span>Content</span>
+                            <ul data-bind="visible: sharedContentMenuItems().length > 0, foreach: sharedContentMenuItems">
+                                <li><span data-bind="attr: { class: 'menu ui-icon ui-widget-content ui-corner-all ' + iconCssClass }"></span> <a href="#" data-bind="click: view, text: contentType"></a> (<span data-bind="text: count"></span>)</li>
+                            </ul>
+                            @Html.AjaxLoader(new Dictionary<string, string>() { { "class", "content-loader" }, { "data-bind", "visible: gettingSharedContentMenu" } }, Url.AjaxLoader())
+                            @*<p data-bind="visible: !gettingSharedContentMenu() && sharedContentMenuItems().length == 0">There is no shared content.</p>*@
+                            @*<a class="refresh-shared-content" href="#" title="Refresh Shared Content">Refresh</a>*@
+                        </div>
+
+                        <div id="shared-schedules" data-bind="visible: !gettingSharedScheduleCount() && sharedSchedulesCount() > 0">
+                            <span>Schedules</span>
+                            <ul>
+                                <li><span class="menu ui-icon ui-widget-content ui-corner-all ui-icon-calendar"></span> <a href="#" data-bind="click: showSharedSchedules">Shared Schedules</a> (<span data-bind="text: sharedSchedulesCount()"></span>)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="find-option-panel bottom-panel">
+                        <h3>URLs</h3>
+                        <div id="find-url">
+                            <label for="find-url-input">URL:</label><br />
+                            <input id="find-url-input" type="text" />
+                        </div>
+                    </div>
+                    <br class="clear" />
+                </div>
+            </div>
+            <div class="tab-display">
+                <div id="find-page-results" data-bind="visible: findResultsVisible" class="tab-display-panel ui-dialog ui-widget ui-widget-cms ui-widget-content ui-corner-all ui-state-highlight">
+                    @Html.TitleBar("Pages Found", true, "close-find-page-results", "click: closeFindResults")
+                    <div class="wrapper">
+                        <ul data-bind="visible: pagesFound().length > 0, foreach: pagesFound">
+                            <li class="jstree-draggable"><a href="#" data-bind="click: editPage, text: title, attr: { 'data-page-id': pageID }" data-menu-item-type="UrlMenuItem"></a> @*(<span data-bind="text: pageType"></span>)*@</li>
+                        </ul>
+                        <div data-bind="visible: findingResults"><img src="@Url.AjaxLoader()" alt="Looking..." /> Looking...</div>
+                        <div data-bind="visible: !anyPagesFound()">No pages were found.</div>
+                    </div>
+                </div>
+                <div id="menu-display" data-bind="visible: selectedMenuVisible" class="tab-display-panel ui-dialog ui-widget ui-widget-cms ui-widget-content ui-corner-all ui-state-highlight">
+                    @Html.TitleBar("Menu", true, "close-menu", "click: closeMenu")
+                    <div class="wrapper ui-helper-clearfix">
+                        <div id="new-menu-item-options">
+                            <span>Add:</span>
+                            <ul>
+                                <li class="jstree-draggable"><a href="#" data-menu-item-type="FolderMenuItem">Folder</a></li>
+                                <li class="jstree-draggable"><a href="#" data-menu-item-type="ExternalLinkMenuItem">External Link</a></li>
+                                @foreach (PageTypeConfigData item in Model.AvailablePageTypes)
+                                {
+                                    <li class="jstree-draggable">
+                                        <a href="#" data-menu-item-type="UrlMenuItem" data-page-id="0" data-page-type="@item.PageTypeName">@item.PageTypeName</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div><br class="clear" />
+                        <div id="selected-node-options" data-bind="visible: anyNodesChecked" class="ui-toolbar-cms">
+                            <a class="delete-checked-nodes" data-delete-entity="false" href="#">Delete Menu Item</a>
+                            <div>
+                                <input id="delete-page-checkbox" name="delete-page-checkbox" checked="checked" type="checkbox" title="Delete Page" />
+                                <label for="delete-page-checkbox">Delete Page</label>
+                            </div>
+                        </div>
+                        <div id="menu-tree" class="ui-widget-content ui-corner-all">
+                            <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
+                                <span class="ui-dialog-title" data-bind="text:selectedMenuName()"></span>
+                            </div>
+                            <div id="menu-tree-target"></div>
+                            <div id="jstree-loader" class="loader" data-bind="visible:treeWorking">
+                                <img src="@Url.AjaxLoader()" alt="Working..." />
+                                Working...
+                            </div>
+                        </div>
+                        <div id="menu-item" data-bind="fadeIn: selectedMenuItem().menuItemID() > 0" class="ui-widget-content ui-corner-all">
+                            <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
+                                <span class="ui-dialog-title">Menu Item</span>
+                            </div>
+                            <div class="menu-item-title" data-bind="text: selectedMenuItem().title()"></div>
+                            <div id="menu-url" data-bind="visible: selectedMenuItem().hasUrl()">
+                                <!-- ko if: selectedMenuItem().hasUrl() -->
+                                <div id="menu-item-links" class="ui-widget-content ui-corner-all ui-widget-cms">
+                                    <h4>URL</h4>
+                                    <div data-bind="text: selectedMenuItem().cmsUrl.path" class="wrapper"></div>
+                                    @if (Model.PrimaryHost != null)
+                                    {
+                                        <a href="#" data-bind="attr: { href: 'http://@Model.PrimaryHost.HostName' + selectedMenuItem().cmsUrl.path }" target="_blank">@Model.PrimaryHost.Label</a>
+                                    }
+                                    @foreach (var host in Model.SecondaryHosts)
+                                    {
+                                        <a href="#" data-bind="attr: { href: 'http://@host.HostName' + selectedMenuItem().cmsUrl.path }" target="_blank">@host.Label</a>
+                                    }
+                                </div>
+                                <div id="menu-url-page" data-bind="visible: selectedMenuItem().cmsUrl.hasPage()" class="ui-widget-content ui-corner-all ui-widget-cms">
+                                    <h4>Page</h4>
+                                    <div class="wrapper">
+                                        <a href="#" data-bind="click: selectedMenuItem().cmsUrl.cmsPage.editPage, text: selectedMenuItem().cmsUrl.cmsPage.title"></a>
+                                    </div>
+                                </div>
+                                <!-- /ko -->
+                            </div>
+                            <div id="menu-item-external-link" class="ui-widget-content ui-corner-all ui-widget-cms" data-bind="visible: selectedMenuItem().hasExternalLink()">
+                                <!-- ko if: selectedMenuItem().hasExternalLink() -->
+                                <h4>URL</h4>
+                                <div class="display-field editable-format editable" data-bind="text: selectedMenuItem().externalLinkUrl" data-property-name="ExternalLinkUrl"></div>
+                                <a href="#" data-bind="attr: { href: selectedMenuItem().externalLinkUrl }" target="_blank">View</a>
+                                <!-- /ko -->
+                            </div>
+                            <div class="ui-widget-content ui-corner-all ui-widget-cms">
+                                <h4>Enabled</h4>
+                                <div class="display-field editable-format editable-yes-no-boolean" data-bind="text: selectedMenuItem().enabled === true ? 'Yes' : 'No'"
+                                     data-property-name="Enabled"></div>
+                            </div>
+                            <div class="ui-widget-content ui-corner-all ui-widget-cms">
+                                <h4>Schedule</h4>
+                                <div class="display-field editable-format manage-schedule-link pointer" data-manage-callback="cms.schedule.refreshScheduleSummary" data-entity-type="MenuItem" data-app-id="@Model.CurrentApp.AppID" data-bind="html:selectedMenuItem().assignedSchedule, attr: { 'data-entity-id': selectedMenuItem().menuItemID }" style="max-width:260px"></div>
+
+                            </div>
+                            <input type="hidden" name="menu-item-id" id="menu-item-id" data-bind="value: selectedMenuItem().menuItemID" />
+                        </div>
+                    </div>
+                </div>
+                <div id="shared-content" data-bind="visible: sharedContentDisplayVisible" class="tab-display-panel ui-dialog ui-widget ui-widget-cms ui-widget-content ui-corner-all ui-state-highlight">
+                    @Html.TitleBar("Shared Content", true, "close-shared-content", "click: closeSharedContentDisplay")
+                    <div class="wrapper">
+                        @Html.AjaxLoader(new Dictionary<string, string>() { { "class", "shared-content-loader" }, { "data-bind", "visible: gettingSelectedSharedContent" } }, Url.AjaxLoader())
+                        <div id="shared-content-list-target"></div>
+                    </div>
+                </div>
+                <div id="shared-schedules-results" data-bind="visible: sharedSchedulesDisplayVisible" class="tab-display-panel ui-dialog ui-widget ui-widget-cms ui-widget-content ui-corner-all ui-state-highlight">
+                    @Html.TitleBar("Shared Schedules", true, "close-shared-schedules", "click: closeSharedSchedulesDisplay")
+                    <div class="wrapper">
+                        @Html.AjaxLoader(new Dictionary<string, string>() { { "class", "shared-schedule-loader" }, { "data-bind", "visible: gettingSharedSchedules" } }, Url.AjaxLoader())
+                        <div id="shared-schedule-list-target"></div>
+                    </div>
+                </div>
+                <div id="find-url-results" data-bind="visible: findUrlResultsVisible" class="tab-display-panel ui-dialog ui-widget ui-widget-cms ui-widget-content ui-corner-all ui-state-highlight">
+                    @Html.TitleBar("URLs Found", true, "close-find-url-results", "click: closeFindUrlResults")
+                    <div class="wrapper">
+                        @Html.Partial("UrlDisplay", Model, new ViewDataDictionary(ViewData) { { "show-url-page", true } })
+                    </div>
+                </div>
+                <div id="recent-pages" data-bind="visible: recentPages().length > 0" class="tab-display-panel ui-dialog ui-widget ui-widget-cms ui-widget-content ui-corner-all ui-state-highlight">
+                    @Html.TitleBar("Recent")
+                    <div class="wrapper">
+                        <ul data-bind="foreach: recentPages">
+                            <li><a href="#" data-bind="click: editPage, text: title"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <br class="clear" />
+        </div>
+    </div>
+    <div id="edit-url-modal"></div>
+    @Html.Partial("ApplyChangesView", Model)
+</div>
+@Html.Partial("CreatePage", new CreatePageViewModel { Page = new Clickfarm.Cms.Core.Page { Title = "New Page" }, AppID = Model.CurrentApp.AppID })
+@Html.Partial("ExternalLinkForm", new ExternalLinkFormViewModel
+{
+    AjaxBeginMethod = "",
+    AjaxSuccessMethod = "cms.app.index.newExternalLinkManager.ajaxSuccess",
+    AjaxFailureMethod = "cms.app.index.newExternalLinkManager.ajaxFailure",
+    AppID = Model.CurrentApp.AppID
+}
+    )

@@ -1,0 +1,30 @@
+﻿@using Clickfarm.Cms.Mvc
+@using KCActorsTheatre
+@using KCActorsTheatre.Cms
+@model KCActorsTheatre.Web.ViewModels.HomeViewModel
+@{
+    Layout = "~/Views/Shared/Layouts/Inner.cshtml";    
+    var req = Model.RequestContent;
+    var page = req.Page as Clickfarm.Cms.Core.WebPage;
+}
+<div class="container inner-container">
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="row-fluid first-block">
+				<div class="span12" id="secondary">
+					<div>
+						<h2>@page.Title</h2>
+	                    @Html.MenuAsList(new MenuSettings {
+		                    RequestContent = req,
+		                    MenuName = "Main Navigation",
+		                    StartDepth = 1,
+                            MaxDepth = int.MaxValue,
+                            RenderChildrenForActiveItemsOnly = false,
+		                    CssClass = "site-map-menu",
+	                    })
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

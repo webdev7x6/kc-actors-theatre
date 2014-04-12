@@ -1,0 +1,32 @@
+﻿@using Clickfarm.Cms.Mvc
+@using KCActorsTheatre.Cms.AppTypes
+@model KCActorsTheatre.Web.ViewModels.KCActorsTheatreViewModel
+@{
+    var app = (KCActorsTheatreApp)Model.RequestContent.App;
+    var rq = Model.RequestContent;
+    var page = (Clickfarm.Cms.Core.WebPage)rq.Page;
+    var pageTitle = (page != null && page.HtmlTitle != string.Empty) ? page.HtmlTitle : "KC Actors Theatre";
+    var keywords = (page != null && page.MetaKeywords != string.Empty) ? page.MetaKeywords : "";
+    var description = (page != null && page.MetaDescription != string.Empty) ? page.MetaDescription : "";
+}
+
+<html lang="en">
+<head>
+        @Html.Partial("~/Views/Shared/Header/HeaderScripts.cshtml", Model)
+        @RenderSection("styles", required:false)
+</head>
+<body ng-app="@ViewBag.NgApp">
+    <div id="full-wrap">
+        <div id="wrap">
+            @Html.Partial("~/Views/Shared/Header/Header.cshtml", Model)
+            <div class="container" id="content-push">
+                @RenderSection("Body")
+            </div>
+            <div id="push"></div>
+        </div>
+        @Html.Partial("~/Views/Shared/Footer/Footer.cshtml", Model)
+    </div>
+    @Html.Partial("~/Views/Shared/Footer/FooterScripts.cshtml", Model)
+    @RenderSection("Scripts", required:false)
+</body>
+</html>

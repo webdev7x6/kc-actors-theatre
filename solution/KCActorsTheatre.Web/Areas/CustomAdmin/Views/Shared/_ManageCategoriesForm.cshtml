@@ -1,0 +1,35 @@
+﻿@using Clickfarm.Cms.Mvc
+<div id="manage-categories-form" title="Manage Categories">
+    <div class="sortable-block ui-widget-content ui-corner-all ui-widget-cms">
+        <div class="ui-dialog-titlebar ui-titlebar-cms ui-widget-header ui-corner-all categories-header">
+            Assigned Categories:
+        </div>
+        <ul id="sortable-assigned-categories" class="sortable" data-bind="foreach: categories">
+            <li class="ui-state-default ui-corner-all" data-bind="attr: { 'data-category-id': categoryID }">
+                <span class="ui-icon ui-icon-carat-2-e-w"></span>
+                <div class="category-name" data-bind="text: name"></div>
+            </li>
+        </ul>
+    </div>
+    <div id="available-categories-container" class="sortable-block ui-widget-content ui-corner-all ui-widget-cms">
+        <div class="ui-dialog-titlebar ui-titlebar-cms ui-widget-header ui-corner-all categories-header">
+            Available Categories:
+        </div>
+        <div>
+            <a id="show-all-categories" href="#" style="float: right;">Show All</a>
+            <label for="find-categories-name">Find By Name:</label><br />
+            <input type="text" id="find-categories-name" style="width: 50%;" />
+        </div>
+        <div data-bind="visible: retrievingCategories()" class="throbber" style="margin-top: 15px;">
+            @* loading animation *@
+        </div>
+        <div data-bind="visible: !initialSearch() && !retrievingCategories() && !anyCategories()" style="padding: 20px 10px 10px;">No categories were found, or they're already assigned.</div>
+        <ul id="sortable-available-categories" class="sortable" data-bind="foreach: categories">
+            <li class="ui-state-default ui-corner-all" data-bind="attr: { 'data-category-id': categoryID }">
+                <span class="ui-icon ui-icon-carat-2-e-w"></span>
+                <div class="category-name" data-bind="text: name"></div>
+            </li>
+        </ul>
+    </div>
+    <br class="clear" />
+</div>

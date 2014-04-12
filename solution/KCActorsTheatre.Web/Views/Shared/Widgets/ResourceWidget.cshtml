@@ -1,0 +1,23 @@
+﻿@using Clickfarm.AppFramework.Extensions
+@model KCActorsTheatre.Web.ViewModels.KCActorsTheatreViewModel
+@if (Model != null && Model.ResourceWidgetResources != null && Model.ResourceWidgetResources.Count() > 0)
+{
+    <div class="sidebar-item">
+        <div class="row heading-row">
+            <div class="col-xs-12 heading">
+                <h3>Resources</h3>
+            </div>
+            <div class="col-xs-12">
+                <ul class="resource-list">
+                    @foreach (var resource in Model.ResourceWidgetResources)
+                    {
+                        <li class="resource">
+                            <h6><a href="#TODO" title="Format: @resource.ResourceType.GetDescription()">@resource.Title</a></h6>
+                        </li>
+                    }
+                </ul>
+                <a href="/resources/search?tags=@string.Join("&", Model.ResourceWidgetTags.ToArray())" class="pull-right widget-more-link">Learn More <span class="glyphicon glyphicon-circle-arrow-right"></span></a>
+            </div>
+        </div>
+    </div>
+}

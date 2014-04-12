@@ -1,0 +1,13 @@
+﻿@model KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.Resources.EditViewModel
+@{
+    var resource = (KCActorsTheatre.Resources.PublicationResource)Model.Resource;
+    var publicationMonth = resource.PublicationMonth.HasValue ? resource.PublicationMonth.Value.ToString("MMMM yyyy") : "Click to edit";
+}
+<label>Publication Month:</label>
+<span style="font-style: italic">Month &amp; Year item was published.</span>
+<div class="display-field editable-format editable-monthpicker nullable" data-property-name="PublicationMonth">
+    @publicationMonth
+</div>
+
+<label>Publication URL:</label>
+<div class="display-field editable-format editable nullable" data-property-name="URL">@resource.URL</div>

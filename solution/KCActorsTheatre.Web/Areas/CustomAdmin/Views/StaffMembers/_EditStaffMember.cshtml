@@ -1,0 +1,95 @@
+﻿@model KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.StaffMembers.EditViewModel
+@using Clickfarm.AppFramework.Extensions
+@using Clickfarm.Cms.Mvc
+@using KCActorsTheatre.Staff
+
+<div class="staff-member-items-tabs">
+    <ul>
+        <li><a href="#tabs-1">General</a></li>
+        <li><a href="#tabs-2">Roles</a></li>
+    </ul>
+    <div id="tabs-1">
+        <div class="ui-widget-content ui-corner-all ui-widget-cms">
+            <label>First Name:</label>
+            <div class="display-field editable-format editable" data-property-name="FirstName">@Model.StaffMember.FirstName</div>
+
+            <label>Last Name:</label>
+            <div class="display-field editable-format editable" data-property-name="LastName">@Model.StaffMember.LastName</div>
+
+            <label>Sort Name:</label>
+            <div class="display-field editable-format editable" data-property-name="SortName">@Model.StaffMember.SortName</div>
+
+            <label>Phone:</label>
+            <div class="display-field editable-format editable" data-property-name="Phone">@Model.StaffMember.Phone</div>
+
+            <label>Email:</label>
+            <div class="display-field editable-format editable" data-property-name="Email">@Model.StaffMember.Email</div>
+
+            <label>Image:</label>
+            <span style="font-style: italic">Image should be 200 <small>x</small> 200</span>
+            <div class="display-field editable-format editable-file nullable" data-content-file-properties="@Model.ContentProperties_ThumbnailImageFile.ToJson()" data-content-image-properties="@Model.ContentProperties_ThumbnailImage.ToJson()" data-property-name="ImageURL">
+                <img src="@(!string.IsNullOrWhiteSpace(Model.StaffMember.ImageURL) ? Model.StaffMember.ImageURL : Url.CmsVersionedCdnResource("/images/no-image.png"))" alt="" />
+            </div>
+
+            <label>Biography:</label>
+            <div class="display-field editable-format editable-textarea" data-property-name="Biography">@Model.StaffMember.Biography</div>
+        </div>
+    </div>
+    <div id="tabs-2">
+        <div class="ui-widget-content ui-corner-all ui-widget-cms">
+            <div class="ui-toolbar-cms">
+                <a class="create-role" href="#" data-member-id="@Model.StaffMember.StaffMemberID" data-role-type="@Role.MissionCenter">Mission Center Role</a>
+            </div>
+            <table class="table-layout" data-role-type="@Role.MissionCenter">
+                <thead>
+                    <tr>
+                        <th width="300">Mission Center</th>
+                        <th width="500">Title</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.StaffMember.RoleDefinitions.Where(p => p.Role == Role.MissionCenter))
+                    {
+                        <tr data-role-definition-id="@item.RoleDefinitionID">
+                            <td>@item.MissionCenter.Name</td>
+                            <td>@item.Title</td>
+                            <td><a href="#" class="delete-role-link" data-role-type="@Role.MissionCenter" data-member-id="@Model.StaffMember.StaffMemberID" data-role-id="@item.RoleDefinitionID">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <br style="clear:both;" />
+
+        </div>
+
+        <div class="ui-widget-content ui-corner-all ui-widget-cms">
+            <div class="ui-toolbar-cms">
+                <a class="create-role" href="#" data-member-id="@Model.StaffMember.StaffMemberID" data-role-type="@Role.MissionField">Mission Field Role</a>
+            </div>
+            <table class="table-layout" data-role-type="@Role.MissionField">
+                <thead>
+                    <tr>
+                        <th width="300">Mission Field</th>
+                        <th width="500">Title</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.StaffMember.RoleDefinitions.Where(p => p.Role == Role.MissionField))
+                    {
+                        <tr data-role-definition-id="@item.RoleDefinitionID">
+                            <td>@item.MissionField.Name</td>
+                            <td>@item.Title</td>
+                            <td><a href="#" class="delete-role-link" data-role-type="@Role.MissionField" data-member-id="@Model.StaffMember.StaffMemberID" data-role-id="@item.RoleDefinitionID">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <br style="clear:both;" />
+
+        </div>
+    </div>
+</div>

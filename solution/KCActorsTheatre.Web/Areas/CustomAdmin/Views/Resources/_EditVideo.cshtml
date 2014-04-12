@@ -1,0 +1,11 @@
+﻿@model KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.Resources.EditViewModel
+@using Clickfarm.AppFramework.Extensions
+@{
+    var resource = (KCActorsTheatre.Resources.VideoResource)Model.Resource;
+}
+<label>Limelight Media ID:</label>
+<div class="display-field editable-format editable nullable" data-property-name="LimelightMediaID">@resource.LimelightMediaID</div>
+
+<label>Video Type:</label>
+<div class="display-field editable-format editable-select editable-select-VideoType" data-editable-select-model="VideoType" data-editable-select-load-url="/CustomAdmin/Resources/GetVideoTypesAjax"
+data-property-name="VideoType">@(Model.Resource.ResourceType != null ? resource.VideoType.GetDescription() : string.Empty)</div>

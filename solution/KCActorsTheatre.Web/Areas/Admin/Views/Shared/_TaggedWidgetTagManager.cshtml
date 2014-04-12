@@ -1,0 +1,55 @@
+﻿@model Clickfarm.Cms.Core.Content
+<script type="text/javascript">
+    $(function () {
+        var $domContainer = $('div.content-editor[data-content-id="@Model.ContentID"]'),
+            $findByName = $domContainer.find('.find-by-name')
+        ;
+        var tagsManager = new admin.tags.TagsManager({
+            domContainer: $domContainer
+        });
+        tagsManager.init();
+        var viewModel = tagsManager.getViewModel();
+
+        viewModel.contentID('@Model.ContentID');
+        viewModel.tagType('@KCActorsTheatre.Tags.TagType.General');
+
+        admin.tags.initFindTagInput($findByName, viewModel, $domContainer, null);
+        admin.tags.initShowAllTagsLink('.show-all-tags', viewModel, $domContainer, null);
+        admin.tags.init($domContainer, viewModel);
+    });
+</script>
+<div>
+    <div class="sortable-block ui-widget-content ui-corner-all ui-widget-cms">
+        <div class="ui-dialog-titlebar ui-titlebar-cms ui-widget-header ui-corner-all tags-header">
+            Assigned Tags:
+        </div>
+        <div data-bind="visible: !retrievingTags() && !anyAssignedTags()" style="padding: 20px 10px 10px;">No tags are currently assigned.</div>
+        <ul class="sortable-assigned-tags sortable" data-bind="foreach: assignedTags">
+            <li class="ui-state-default ui-corner-all" data-bind="attr: { 'data-tag-id': ID }">
+                <span class="ui-icon ui-icon-carat-2-e-w"></span>
+                <div class="tag-name" data-bind="text: Name"></div>
+            </li>
+        </ul>
+    </div>
+    <div id="available-tags-container" class="sortable-block ui-widget-content ui-corner-all ui-widget-cms">
+        <div class="ui-dialog-titlebar ui-titlebar-cms ui-widget-header ui-corner-all tags-header">
+            Available Tags:
+        </div>
+        <div>
+            <a class="show-all-tags" href="#" style="float: right;">Show All</a>
+            <label for="find-by-name">Find By Name:</label><br />
+            <input type="text" id="find-by-name" class="find-by-name" style="width: 50%;" />
+        </div>
+        <div data-bind="visible: !initialSearch() && retrievingTags()" class="throbber" style="margin-top: 15px;">
+            @* loading animation *@
+        </div>
+        <div data-bind="visible: !initialSearch() && !retrievingTags() && !anyUnassignedTags()" style="padding: 20px 10px 10px;">No tags were found, or they're already assigned.</div>
+        <ul class="sortable-unassigned-tags sortable" data-bind="foreach: unassignedTags">
+            <li class="ui-state-default ui-corner-all" data-bind="attr: { 'data-tag-id': ID }">
+                <span class="ui-icon ui-icon-carat-2-e-w"></span>
+                <div class="tag-name" data-bind="text: Name"></div>
+            </li>
+        </ul>
+    </div>
+    <br class="clear" />
+</div>

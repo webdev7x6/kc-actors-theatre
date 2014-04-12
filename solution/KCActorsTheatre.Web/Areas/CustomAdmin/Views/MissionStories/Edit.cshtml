@@ -1,0 +1,75 @@
+@model KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.MissionStories.EditViewModel
+@using Clickfarm.AppFramework.Extensions
+@using Clickfarm.Cms.Mvc
+@{
+    Layout = null;
+    var entityDescription = "Mission Story";
+}
+@if (Model.HasMissionStory)
+{
+    string tagList = Model.GetTagsAsList();
+    if (string.IsNullOrWhiteSpace(tagList))
+    {
+        tagList = "Click to edit";
+    }
+
+    <div class="editable-parent item-index-tab model-display" data-tab-type="edit-item" data-item-id="@Model.MissionStory.MissionStoryID">
+        <div class="ui-toolbar-cms">
+            <a href="#" class="refresh-item-link" data-item-id="@Model.MissionStory.MissionStoryID" title="Refresh @entityDescription">Refresh @entityDescription</a>
+            <a href="#" class="delete-item-link" data-item-id="@Model.MissionStory.MissionStoryID" title="Delete @entityDescription">Delete @entityDescription</a>
+        </div>
+        <div class="ui-widget-content ui-corner-all ui-widget-cms">
+
+            <label>Title:</label>
+            <span style="font-style: italic">250 characters maximum</span>
+            <div class="display-field editable-format editable" data-property-name="Title">@Model.MissionStory.Title</div>
+
+            <label>Thumbnail Image:</label>
+            <span style="font-style: italic">Image should be 300 <small>x</small> 200</span>
+            <div class="display-field editable-format editable-file nullable" data-content-file-properties="@Model.ContentProperties_ThumbnailImageFile.ToJson()" data-content-image-properties="@Model.ContentProperties_ThumbnailImage.ToJson()" data-property-name="ThumbnailImageURL">
+                <img src="@(!string.IsNullOrWhiteSpace(Model.MissionStory.ThumbnailImageURL) ? Model.MissionStory.ThumbnailImageURL : Url.CmsVersionedCdnResource("/images/no-image.png"))" alt="" />
+            </div>
+
+            <label>Header Image:</label>
+            <span style="font-style: italic">Image should be 1200 <small>x</small> 400</span>
+            <div class="display-field editable-format editable-file nullable" data-content-file-properties="@Model.ContentProperties_ImageFile.ToJson()" data-content-image-properties="@Model.ContentProperties_Image.ToJson()" data-property-name="ImageURL">
+                <img src="@(!string.IsNullOrWhiteSpace(Model.MissionStory.ImageURL) ? Model.MissionStory.ImageURL : Url.CmsVersionedCdnResource("/images/no-image.png"))" alt="" />
+            </div>
+
+            <label>Teaser:</label>
+            <span style="font-style: italic"><span class="required">(Required)</span> 150 characters maximum.</span>
+            <div class="display-field editable-format editable" data-property-name="Teaser">@Model.MissionStory.Teaser</div>
+
+            <label>Body:</label>
+            <span style="font-style: italic"><span class="required">(Required)</span> No maximum length.</span>
+            <div class="display-field editable-format editable-html nullable" data-property-name="Body">@Html.Raw(Model.MissionStory.Body)</div>
+
+            <label>Associated Resource:</label>
+            <div class="display-field editable-format editable-select editable-select-resource pointer nullable"
+                 data-editable-select-model="resource"
+                 data-editable-select-load-url="/CustomAdmin/MissionStories/GetResourcesAjax"
+                 data-property-name="ResourceID">
+                @(Model.MissionStory.Resource != null ? string.Format("{0}: {1}", EnumExtensions.GetDescription(Model.MissionStory.Resource.ResourceType), Model.MissionStory.Resource.Title) : "Click to edit")
+            </div>
+
+            <label>Tags:</label>
+            <div class="display-field editable-format edit-associated-tags pointer">@Html.Raw(tagList)</div>
+
+            <label>Publish Date:</label>
+            <span style="font-style: italic">Date to start showing article on the site.</span>
+            <div class="display-field editable-format editable-datepicker nullable" data-property-name="DatePublished">@(Model.MissionStory.DatePublished.HasValue ? Model.DateConverter.Convert(Model.MissionStory.DatePublished.Value).ToUtc().ForCmsUser().ToShortDateString() : string.Empty)</div>
+
+            <label>Date Created:</label>
+            <div class="display-field">@(Model.DateConverter.Convert(Model.MissionStory.DateCreated).FromUtc().ForCmsUser().ToString("g"))</div>
+
+            <label>Last Modified:</label>
+            <div class="display-field">@(Model.MissionStory.DateModified.HasValue ? Model.DateConverter.Convert(Model.MissionStory.DateModified.Value).FromUtc().ForCmsUser().ToString("g") : "Never")</div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="message">
+        @entityDescription not found.
+    </div>
+}

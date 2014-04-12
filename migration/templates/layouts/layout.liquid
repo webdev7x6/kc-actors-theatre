@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}Mixture + Bootstrap{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {{ "app.css" | asset_url | stylesheet_tag }}
+        <script type="text/javascript" src="//use.typekit.net/ynt0rwm.js"></script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    </head>
+    <body>
+      <div id="wrap">
+        {% include "navigation" %}
+        {% block content %}{% endblock %}
+        <div id="push"></div> <!-- Assisting with sticky footer for shorter pages -->
+      </div>
+        {% include "footer" %}
+        <script src="//code.jquery.com/jquery.min.js"></script>
+        {{ "bootstrap.js" | asset_url | script_tag }}
+        {{ "respond.min.js" | asset_url | script_tag }}
+    </body>
+</html>

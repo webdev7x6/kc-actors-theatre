@@ -1,0 +1,86 @@
+﻿@using Clickfarm.AppFramework.Extensions;
+@using Clickfarm.Cms.Configuration
+@using Clickfarm.Cms.Core
+@using Clickfarm.Cms.Mvc
+@using KCActorsTheatre
+@using KCActorsTheatre.Cms
+@using KCActorsTheatre.Cms.ContentTypes
+@model KCActorsTheatre.Web.ViewModels.LandingViewModel
+@{
+    Layout = "~/Views/Shared/Layouts/Inner.cshtml";
+    var req = Model.RequestContent;
+    var page = req.Page as Clickfarm.Cms.Core.WebPage;
+    var bodyContent = Html.Content(page, CmsConfigConstants.ContentType_BodyCopy);
+}
+
+@section Body {
+
+    <div class="row" id="landing-header">
+        <div class="col-lg-12 landing-header-media">
+            <img src="@Model.HeroImageURL" alt="@Model.HeroImageTitle" class="landing-img" />
+            <div class="landing-header-content">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h1>@Model.HeroImageTitle</h1>
+                    </div>
+                    <div class="col-md-8">
+                        <p>@Model.HeroImageCaption</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="page-body">
+        <div class="col-md-8" id="main-content">
+            <div class="row">
+                @if (bodyContent.ToString().Length > 0)
+                {
+                    <div class="col-lg-12 spacer">
+                        <div class="module">
+                            <div class="row heading-row">
+                                <div class="col-xs-12 heading">
+                                    <h3>@page.Title</h3>
+                                </div>
+                                <div class="col-xs-12 module-body">
+                                    @Html.Raw(bodyContent)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="row">
+                @if (Model.ContentWidgets != null && Model.ContentWidgets.Count() > 0)
+                {
+                    foreach (var contentWidget in Model.ContentWidgets)
+                    {
+                        <div class="col-sm-6">
+                            <div class="module">
+                                <div class="row heading-row">
+                                    <div class="col-xs-12 heading">
+                                        <h3>@contentWidget.Title</h3>
+                                    </div>
+                                    <div class="col-xs-12 module-body">
+                                        <img src="@contentWidget.ImageUrl" alt="@contentWidget.Title" class="module-img">
+                                        <p>@contentWidget.Text</p>
+                                        <a href="@contentWidget.LinkUrl" class="pull-right widget-more-link" target=@contentWidget.Target>@contentWidget.LinkText <span class="glyphicon glyphicon-circle-arrow-right"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <div class="col-md-4 sidebar-landing-page" id="sidebar">
+            <div class="sidebar-inner">
+                @Html.Partial("~/Views/Shared/Widgets/ContentWidgets.cshtml")
+                @* TODO - mission stories widget goes here *@
+                @Html.Partial("~/Views/Shared/Widgets/ResourceWidget.cshtml")
+                @* TODO - calendar widget goes here *@
+                @Html.Partial("~/Views/Shared/Widgets/AnnouncementWidget.cshtml")
+                @Html.Partial("~/Views/Shared/Widgets/ConnectWidget.cshtml")
+            </div>
+        </div>
+    </div>
+}

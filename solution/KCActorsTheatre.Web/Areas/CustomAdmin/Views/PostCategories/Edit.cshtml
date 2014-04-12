@@ -1,0 +1,32 @@
+@model KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.PostCategories.EditViewModel
+@using Clickfarm.AppFramework.Extensions
+@using Clickfarm.Cms.Mvc
+@{
+    Layout = null;
+    var entityDescription = "Category";
+}
+@if (Model.HasPostCategory)
+{
+    <div class="editable-parent item-index-tab model-display" data-tab-type="edit-item" data-item-id="@Model.PostCategory.PostCategoryID">
+        <div class="ui-toolbar-cms">
+            <a href="#" class="refresh-item-link" data-item-id="@Model.PostCategory.PostCategoryID" title="Refresh @entityDescription">Refresh @entityDescription</a>
+            <a href="#" class="delete-item-link" data-item-id="@Model.PostCategory.PostCategoryID" title="Delete @entityDescription">Delete @entityDescription</a>
+        </div>
+        <div class="ui-widget-content ui-corner-all ui-widget-cms">
+            <label>Name:</label>
+            <div class="display-field editable-format editable" data-property-name="Name">@Model.PostCategory.Name</div>
+
+            <label>Date Created:</label>
+            <div class="display-field">@(Model.DateConverter.Convert(Model.PostCategory.DateCreated).FromUtc().ForCmsUser().ToString("g"))</div>
+
+            <label>Last Modified:</label>
+            <div class="display-field">@(Model.PostCategory.DateModified.HasValue ? Model.DateConverter.Convert(Model.PostCategory.DateModified.Value).FromUtc().ForCmsUser().ToString("g") : "Never")</div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="message">
+        @entityDescription not found.
+    </div>
+}

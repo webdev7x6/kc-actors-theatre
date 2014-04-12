@@ -1,0 +1,35 @@
+﻿@using Clickfarm.Cms.Mvc
+@using KCActorsTheatre
+@using KCActorsTheatre.Cms
+@model KCActorsTheatre.Web.ViewModels.CalendarEventViewModel
+@{
+    Layout = "~/Views/Shared/Layouts/Layout.cshtml";
+    var req = Model.RequestContent;
+    var page = req.Page as Clickfarm.Cms.Core.WebPage;
+}
+@section scripts {
+
+}
+
+@if (Model.HasEvent)
+{
+    var calendarEvent = Model.Event;
+    <div class="container events-inner">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="row-fluid first-block">
+                    <div class="span12" id="secondary">
+                        <div class="vevent detail">
+                            <span class="summary">@calendarEvent.Title</span>
+                            <p>
+                                <time class="dtstart">@calendarEvent.StartDate.Value.ToShortDateString()</time>
+                                <time class="dtend">@calendarEvent.EndDate.Value.ToShortDateString()</time>
+                                <div class="description">@Html.Raw(Model.Event.Description)</div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

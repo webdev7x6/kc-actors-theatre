@@ -1,0 +1,10 @@
+﻿@using Clickfarm.AppFramework.Extensions;
+@using Clickfarm.Cms.Configuration
+@using Clickfarm.Cms.Core
+@using Clickfarm.Cms.Mvc
+@using KCActorsTheatre.Cms.ContentTypes
+@model Clickfarm.Cms.Admin.Mvc.Areas.Admin.ViewModels.ContentGroupMemberViewModel
+@{ 
+    var content = Model.Content;
+}
+@Html.Partial("_TaggedWidgetTagManager", content)

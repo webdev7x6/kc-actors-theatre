@@ -1,0 +1,11 @@
+###############
+# Directories #
+###############
+common/cdn/
+common/cms/
+
+###############
+# Files #
+###############
+common/css/style.css
+common/sass/*.css

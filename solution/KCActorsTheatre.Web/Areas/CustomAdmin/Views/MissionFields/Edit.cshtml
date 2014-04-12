@@ -1,0 +1,93 @@
+@model KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.MissionFields.EditViewModel
+@using Clickfarm.AppFramework.Extensions
+@using Clickfarm.Cms.Mvc
+@using KCActorsTheatre
+@{
+    Layout = null;
+    var entityDescription = "Mission Field";
+}
+@if (Model.HasMissionField)
+{    
+    <div class="editable-parent item-index-tab model-display" data-tab-type="edit-item" data-item-id="@Model.MissionField.MissionFieldID">
+
+        <div class="ui-toolbar-cms">
+            <a href="#" class="refresh-item-link" data-item-id="@Model.MissionField.MissionFieldID" title="Refresh @entityDescription">Refresh @entityDescription</a>
+            <a href="#" class="delete-item-link" data-item-id="@Model.MissionField.MissionFieldID" title="Delete @entityDescription">Delete @entityDescription</a>
+        </div>
+
+        <div class="mission-field-items-tabs">
+            <ul>
+                <li><a href="#tabs-1">General</a></li>
+                <li><a href="#tabs-2">Contacts</a></li>
+            </ul>
+            <div id="tabs-1">
+
+                <div class="ui-widget-content ui-corner-all ui-widget-cms">
+                    <label>Name:</label>
+                    <div class="display-field editable-format editable" data-property-name="Name">@Model.MissionField.Name</div>
+                    <br />
+                    <label>Associated Mission Centers:</label>
+                    <div class="display-field">
+                        @Html.Raw(Model.GetAssociatedMissionCenters())
+                    </div>
+                </div>
+            </div>
+            <div id="tabs-2">
+                <div class="ui-widget-content ui-corner-all ui-widget-cms">
+                    @if (Model.MissionField.RoleDefinitions.Count > 0)
+                    {
+                        <table class="table-layout contacts-table">
+                            <thead>
+                                <tr>
+                                    <th>&nbsp;</th>
+                                    <th width="300">Name</th>
+                                    <th width="500">Title</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.MissionField.RoleDefinitions.OrderBy(p => p.DisplayOrder))
+                                {
+                                    var editURL = string.Format("/CustomAdmin/StaffMembers/Index/{0}", item.StaffMemberID);
+                                    var name = string.Format("{0}, {1}", item.StaffMember.LastName, item.StaffMember.FirstName);
+                                    
+                                    <tr id="@item.RoleDefinitionID">
+                                        <td><div class="sort-order"><span class="ui-icon ui-icon-carat-2-n-s"></span></div></td>
+                                        <td><a href="@Html.Raw(editURL)" target="_blank">@name</a></td>
+                                        <td>@item.Title</td>
+                                        <td><a href="#" class="delete-role-definition" data-role-definition-id="@item.RoleDefinitionID">Delete</a></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                        <br style="clear:both;" />
+                    }
+                    else
+                    {
+                        <text>
+                            There are no staff members currently assigned to this mission field.<br /><br />
+                            Click <a href="/CustomAdmin/StaffMembers">here</a> to assign staff members as contacts.
+                        </text>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+        <label>Date Created:</label>
+        <div class="display-field">@(Model.DateConverter.Convert(Model.MissionField.DateCreated).FromUtc().ForCmsUser().ToString("g"))</div>
+
+        <label>Last Modified:</label>
+        <div class="display-field">@(Model.MissionField.DateModified.HasValue ? Model.DateConverter.Convert(Model.MissionField.DateModified.Value).FromUtc().ForCmsUser().ToString("g") : "Never")</div>
+
+
+    </div>
+}
+else
+{
+    <div class="message">
+        @entityDescription not found.
+    </div>
+}

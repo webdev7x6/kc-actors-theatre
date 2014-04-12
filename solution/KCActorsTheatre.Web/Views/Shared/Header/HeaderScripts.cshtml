@@ -1,0 +1,20 @@
+﻿@using Clickfarm.Cms.Mvc
+@model KCActorsTheatre.Web.ViewModels.KCActorsTheatreViewModel
+@{
+    var req = Model.RequestContent;
+    var page = (Clickfarm.Cms.Core.WebPage)req.Page;
+    var pageTitle = (page != null && page.HtmlTitle != string.Empty) ? page.HtmlTitle : "Cerner - KC Actors Theatre";
+    var keywords = (page != null && page.MetaKeywords != string.Empty) ? page.MetaKeywords : "";
+    var description = (page != null && page.MetaDescription != string.Empty) ? page.MetaDescription : "";
+}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="@description">
+<meta name="keywords" content="@keywords">
+<title>@pageTitle</title>
+
+<link href="/common/css/app.css" rel="stylesheet" type="text/css" media="all"/>
+<link href="/common/css/libs/jquery/jquery.mmenu.all.min.css" rel="stylesheet" type="text/css" media="all"/>
+<script type="text/javascript" src="//use.typekit.net/cuw5axp.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>    

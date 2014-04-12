@@ -1,0 +1,64 @@
+﻿@using Clickfarm.AppFramework.Extensions;
+@using Clickfarm.Cms.Configuration
+@using Clickfarm.Cms.Core
+@using Clickfarm.Cms.Mvc
+@using KCActorsTheatre.Cms.ContentTypes
+@model Clickfarm.Cms.Admin.Mvc.Areas.Admin.ViewModels.ContentGroupMemberViewModel
+@{ 
+    var content = Model.Content;
+}
+
+<script type="text/javascript">
+    $(function () {
+        var $domContainer = $('div.content-editor[data-content-id="@Model.Content.ContentID"]'),
+            $findByName = $domContainer.find('.find-by-name')
+        ;
+        var staffManager = new admin.staff.StaffManager({
+            domContainer: $domContainer
+        });
+        staffManager.init();
+        var viewModel = staffManager.getViewModel();
+
+        viewModel.contentID('@Model.Content.ContentID');
+        //viewModel.tagType('@KCActorsTheatre.Tags.TagType.General');
+
+        admin.staff.initFindStaffInput($findByName, viewModel, $domContainer, null);
+        admin.staff.initShowAllStaffLink('.show-all-staff', viewModel, $domContainer, null);
+        admin.staff.init($domContainer, viewModel);
+    });
+</script>
+<div>
+    <div class="sortable-block ui-widget-content ui-corner-all ui-widget-cms">
+        <div class="ui-dialog-titlebar ui-titlebar-cms ui-widget-header ui-corner-all staff-header">
+            Assigned Staff Members:
+        </div>
+        <div data-bind="visible: !retrievingStaff() && !anyAssignedStaff()" style="padding: 20px 10px 10px;">No staff members are currently assigned.</div>
+        <ul class="sortable-assigned-staff sortable" data-bind="foreach: assignedStaff">
+            <li class="ui-state-default ui-corner-all" data-bind="attr: { 'data-staff-id': ID, 'id': ID }">
+                <span class="ui-icon ui-icon-carat-2-e-w"></span>
+                <div class="staff-name" data-bind="text: Name"></div>
+            </li>
+        </ul>
+    </div>
+    <div id="available-staff-container" class="sortable-block ui-widget-content ui-corner-all ui-widget-cms">
+        <div class="ui-dialog-titlebar ui-titlebar-cms ui-widget-header ui-corner-all staff-header">
+            Available Staff Members:
+        </div>
+        <div>
+            <a class="show-all-staff" href="#" style="float: right;">Show All</a>
+            <label for="find-by-name">Find By Name:</label><br />
+            <input type="text" id="find-by-name" class="find-by-name" style="width: 50%;" />
+        </div>
+        <div data-bind="visible: !initialSearch() && retrievingStaff()" class="throbber" style="margin-top: 15px;">
+            @* loading animation *@
+        </div>
+        <div data-bind="visible: !initialSearch() && !retrievingStaff() && !anyUnassignedStaff()" style="padding: 20px 10px 10px;">No staff members were found, or they're already assigned.</div>
+        <ul class="sortable-unassigned-staff sortable" data-bind="foreach: unassignedStaff">
+            <li class="ui-state-default ui-corner-all" data-bind="attr: { 'data-staff-id': ID }">
+                <span class="ui-icon ui-icon-carat-2-e-w"></span>
+                <div class="staff-name" data-bind="text: Name"></div>
+            </li>
+        </ul>
+    </div>
+    <br class="clear" />
+</div>

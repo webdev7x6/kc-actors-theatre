@@ -1,0 +1,80 @@
+@model KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.Blogs.EditViewModel
+@using Clickfarm.AppFramework.Extensions
+@using Clickfarm.Cms.Mvc
+@using Clickfarm.Cms.Core;
+@{
+    Layout = null;
+    var entityDescription = "Blog Post";
+}
+@if (Model.HasPost)
+{
+    string categoryList = Model.GetCategoriesAsList();
+    if (string.IsNullOrWhiteSpace(categoryList))
+    {
+        categoryList = "Click to edit";
+    }
+    string tagList = Model.GetTagsAsList();
+    if (string.IsNullOrWhiteSpace(tagList))
+    {
+        tagList = "Click to edit";
+    }
+
+    <div class="editable-parent item-index-tab model-display" data-tab-type="edit-item" data-item-id="@Model.Post.PostID">
+        <div class="ui-toolbar-cms">
+            <a href="#" class="refresh-item-link" data-item-id="@Model.Post.PostID" title="Refresh @entityDescription">Refresh @entityDescription</a>
+            <a href="#" class="delete-item-link" data-item-id="@Model.Post.PostID" title="Delete @entityDescription">Delete @entityDescription</a>
+        </div>
+        <div class="ui-widget-content ui-corner-all ui-widget-cms">
+
+            <label>Title:</label>
+            <span style="font-style: italic"><span class="required">(Required)</span> 150 Character limit.</span>
+            <div class="display-field editable-format editable" data-property-name="Title">@Model.Post.Title</div>
+
+            <label>Author:</label>
+            <span style="font-style: italic"><span class="required">(Required)</span> 100 Character limit.</span>
+            <div class="display-field editable-format editable" data-property-name="Author">@Model.Post.Author</div>
+
+            <label>Teaser:</label>
+            <span style="font-style: italic"><span class="required">(Required)</span> 200 Character limit.</span>
+            <div class="display-field editable-format editable" data-property-name="Teaser">@Model.Post.Teaser</div>
+
+            <label>Body:</label>
+            <span style="font-style: italic"><span class="required">(Required)</span></span>
+            <div class="display-field editable-format editable-html" data-property-name="Body">@Html.Raw(Model.Post.Body)</div>
+
+            <label>Categories:</label>
+            <div class="display-field editable-format edit-associated-categories pointer">@Html.Raw(categoryList)</div>
+
+            <label>Tags:</label>
+            <div class="display-field editable-format edit-associated-tags pointer">@Html.Raw(tagList)</div>
+
+            <label>Publish Date:</label>
+            <span style="font-style: italic"><span class="required">(Required)</span> Date to start showing post on the site.</span>
+            <div class="display-field editable-format editable-datepicker" data-property-name="DateToPost">@(Model.Post.DateToPost.HasValue ? Model.DateConverter.Convert(Model.Post.DateToPost.Value).ToUtc().ForCmsUser().ToShortDateString() : string.Empty)</div>
+
+            <label>Expiration Date:</label>
+            <span style="font-style: italic">Date to remove post from the site.</span>
+            <div class="display-field editable-format editable-datepicker nullable" data-property-name="DateExpires">@(Model.Post.DateExpires.HasValue ? Model.Post.DateExpires.Value.ToShortDateString() : string.Empty)</div>
+
+            <label>Status:</label>
+            <div class="display-field editable-format editable-select editable-select-status pointer"
+                 data-editable-select-model="status"
+                 data-editable-select-load-url="/CustomAdmin/Blogs/GetStatuses"
+                 data-property-name="Status">
+                @(Model.Post.Status != null ? Model.Post.Status.GetDescription() : "Click to edit")
+            </div>
+
+            <label>Date Created:</label>
+            <div class="display-field">@(Model.DateConverter.Convert(Model.Post.DateCreated).FromUtc().ForCmsUser().ToString("g"))</div>
+
+            <label>Last Modified:</label>
+            <div class="display-field">@(Model.Post.DateModified.HasValue ? Model.DateConverter.Convert(Model.Post.DateModified.Value).FromUtc().ForCmsUser().ToString("g") : "Never")</div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="message">
+        @entityDescription not found.
+    </div>
+}

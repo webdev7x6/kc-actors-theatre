@@ -1,0 +1,33 @@
+﻿<section class="row blog-post" ng-repeat="post in posts | categoryFilter:currentCategory.name">
+    <div class="col-lg-12">
+        <h2>{{post.title}}</h2>
+        <h6 class="blog-info">{{post.date}} &ndash; {{post.author}}</h6>
+        <p>{{post.teaser}}</p>
+
+        <div addthis-toolbox class="addthis_toolbox addthis_default_style ">
+            <a class="addthis_button_preferred_1"></a>
+            <a class="addthis_button_preferred_2"></a>
+            <a class="addthis_button_preferred_3"></a>
+            <a class="addthis_button_preferred_4"></a>
+            <a class="addthis_button_compact"></a>
+            <a class="addthis_counter addthis_bubble_style"></a>
+            <script type="text/javascript">var addthis_config = { "data_track_clickback": false, "data_track_addressbar":false };</script>
+        </div>
+
+        <p>
+            <a href="#/{{post.postURL}}" class="widget-more-link">Read More <span class="glyphicon glyphicon-circle-arrow-right"></span></a>
+        </p>
+    </div>
+</section>
+
+<section class="row load-more" ng-show="haveMorePosts()">
+    <div class="col-sm-4 hidden-xs">
+        <hr class="faded right">
+    </div>
+    <div class="col-sm-4">
+        <h6 class="welcome-statement"><em><a ng-click="getMorePosts()" style="cursor:pointer;">Load more posts</a></em></h6>
+    </div>
+    <div class="col-sm-4 hidden-xs">
+        <hr class="faded left">
+    </div>
+</section>

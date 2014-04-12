@@ -1,0 +1,86 @@
+@model KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.Congregations.EditViewModel
+@using Clickfarm.AppFramework.Extensions
+@using Clickfarm.Cms.Mvc
+@{
+    Layout = null;
+    var entityDescription = "Congregation";
+}
+@if (Model.HasCongregation)
+{
+    string memberList = Model.GetCongregationContactsAsList();
+    if (string.IsNullOrWhiteSpace(memberList))
+    {
+        memberList = "Click to edit";
+    }
+    <div class="editable-parent item-index-tab model-display" data-tab-type="edit-item" data-item-id="@Model.Congregation.CongregationID">
+
+        <div class="ui-toolbar-cms">
+            <a href="#" class="refresh-item-link" data-item-id="@Model.Congregation.CongregationID" title="Refresh @entityDescription">Refresh @entityDescription</a>
+            <a href="#" class="delete-item-link" data-item-id="@Model.Congregation.CongregationID" title="Delete @entityDescription">Delete @entityDescription</a>
+        </div>
+
+        <div class="congregation-items-tabs">
+            <ul>
+                <li><a href="#tabs-1">General</a></li>
+                <li><a href="#tabs-2">Location</a></li>
+                <li><a href="#tabs-3">Contacts</a></li>
+            </ul>
+            <div id="tabs-1">
+                <div class="ui-widget-content ui-corner-all ui-widget-cms">
+                    <label>Name:</label>
+                    <div class="display-field editable-format editable" data-property-name="Name">@Model.Congregation.Name</div>
+                    <label>Mission Center:</label>
+                    <div class="display-field editable-format editable-select editable-select-missioncenter" 
+                         data-editable-select-model="missioncenter" 
+                         data-editable-select-load-url="/CustomAdmin/Congregations/GetMissionCentersAjax"
+                         data-property-name="MissionCenterID">@(Model.Congregation.MissionCenter != null ? @Model.Congregation.MissionCenter.Name : string.Empty)
+                    </div>
+                    <label>Phone:</label>
+                    <div class="display-field editable-format editable nullable" data-property-name="Phone">@Model.Congregation.Phone</div>
+                    <label>Email:</label>
+                    <div class="display-field editable-format editable nullable" data-property-name="Email">@Model.Congregation.Email</div>
+                    <label>Website:</label>
+                    <div class="display-field editable-format editable nullable" data-property-name="Website">@Model.Congregation.Website</div>
+                </div>
+            </div>
+            <div id="tabs-2">
+                <div class="ui-widget-content ui-corner-all ui-widget-cms">
+                    <label>Address 1:</label>
+                    <div class="display-field editable-format editable nullable" data-property-name="Address1">@Model.Congregation.Address1</div>
+                    <label>Address 2:</label>
+                    <div class="display-field editable-format editable nullable" data-property-name="Address2">@Model.Congregation.Address2</div>
+                    <label>City:</label>
+                    <div class="display-field editable-format editable nullable" data-property-name="City">@Model.Congregation.City</div>
+                    <label>State/Province:</label>
+                    <div class="display-field editable-format editable nullable" data-property-name="State">@Model.Congregation.State</div>
+                    <label>Zip/Postal Code:</label>
+                    <div class="display-field editable-format editable nullable" data-property-name="PostalCode">@Model.Congregation.PostalCode</div>
+                    <label>Country:</label>
+                    <div class="display-field editable-format editable nullable" data-property-name="Country">@Model.Congregation.Country</div>
+                </div>
+            </div>
+            <div id="tabs-3">
+                <div class="ui-widget-content ui-corner-all ui-widget-cms">
+                    <label>Congregation Contacts:</label>
+                    <div class="display-field editable-format edit-associated-contacts pointer">@Html.Raw(memberList)</div>
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+        <label>Date Created:</label>
+        <div class="display-field">@(Model.DateConverter.Convert(Model.Congregation.DateCreated).FromUtc().ForCmsUser().ToString("g"))</div>
+        <label>Last Modified:</label>
+        <div class="display-field">@(Model.Congregation.DateModified.HasValue ? Model.DateConverter.Convert(Model.Congregation.DateModified.Value).FromUtc().ForCmsUser().ToString("g") : "Never")</div>
+
+    </div>
+
+
+}
+else
+{
+    <div class="message">
+        @entityDescription not found.
+    </div>
+}

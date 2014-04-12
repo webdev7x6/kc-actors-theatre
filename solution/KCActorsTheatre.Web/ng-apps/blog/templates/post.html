@@ -1,0 +1,44 @@
+﻿<script type="text/javascript">
+    var disqus_shortname = DISQUS_ACCOUNT; 
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<div class="col-lg-12">
+    <h2>{{currentPost.title}}</h2>
+    <h6 class="blog-info">{{currentPost.date}} &ndash; {{currentPost.author}}</h6>
+    <p ng-bind-html="currentPost.body | unsafe"></p>
+
+    <p class="blog-tags">
+        <!--@{
+            var counter = 0;
+            foreach (var tag in Model.Post.Tags)
+            {
+                <a href="/TODO/SOMETHING/">@tag.Name</a>
+                if (counter < Model.Post.Tags.Count - 1)
+                {
+                    <text>, </text>
+                    counter++;
+                }
+            }
+        }-->
+    </p>
+
+    <div addthis-toolbox class="addthis_toolbox addthis_default_style ">
+        <a class="addthis_button_preferred_1"></a>
+        <a class="addthis_button_preferred_2"></a>
+        <a class="addthis_button_preferred_3"></a>
+        <a class="addthis_button_preferred_4"></a>
+        <a class="addthis_button_compact"></a>
+        <a class="addthis_counter addthis_bubble_style"></a>
+        <script type="text/javascript">var addthis_config = { "data_track_clickback": false, "data_track_addressbar":false };</script>
+    </div>
+
+    <div class="row spacer"></div>
+
+    <div id="disqus_thread"></div>
+    
+</div>

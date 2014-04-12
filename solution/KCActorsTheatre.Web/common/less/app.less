@@ -1,0 +1,606 @@
+@import "bootstrap/bootstrap.less";
+@import "variables.less";
+@import "typography.less";
+@import "layout.less";
+
+
+//Class styling (alphabetical)
+.addthis_toolbox {
+  margin-bottom:15px;
+}
+
+.badge {
+  background-color: @ltblue;
+ &.top-level {
+   background-color: @blue;
+ } 
+}
+
+.blog-post {
+  margin-bottom:30px;
+  .widget-more-link {
+    padding-left:0;
+    text-transform:none;
+  }
+  .landing-img {
+    width:100%;
+    border: 3px solid white;
+    outline: 1px solid @ltgrey;
+  }
+}
+
+.breadcrumb {
+  background-color:transparent;
+  padding-left: 0;
+  li {
+    &.active {
+      color: @orange;
+    }
+    a {
+      color: @dktaupe;
+    }
+  }  
+}
+
+.breadcrumb>li+li:before {
+  content: "\203A";
+}
+
+.btn-more {
+  background: @green;
+  border:none;
+  border-radius: 5px;
+  text-transform:uppercase;
+  color:white;
+  .adelle-bold;
+  font-size: 1.0em;
+  text-shadow: 1px 1px 0 #57806F;
+  margin-top: 10px;
+  &:hover {
+    color: @blue;
+  }
+}
+
+.carousel {
+  &#homepage-carousel {
+    padding: 20px;
+    .carousel-indicators {
+      display:block;
+      position:absolute;
+      bottom:-33px;
+      //left:-13px;
+      //width: 293px;
+      height: 61px;
+      border-style: solid;
+      border-width: 0px 20px;
+      -moz-border-image: url('/common/img/blue-ribbon.png') 0 12 0 12 repeat stretch;
+      -webkit-border-image: url('/common/img/blue-ribbon.png') 0 12 0 12 repeat stretch;
+      -o-border-image: url('/common/img/blue-ribbon.png') 0 12 0 12 repeat stretch;
+      border-image: url('/common/img/blue-ribbon.png') 0 12 0 12 fill repeat stretch;
+      text-align:center;
+      padding-left:13px;
+      padding-right:13px;
+      padding-top:7px;
+      text-shadow: 0 -1px 0 @dkgrey;
+      left:0;
+      margin-left:0;
+      width:100%;
+      padding-top:26px;
+    }
+    .carousel-inner {
+      //padding:16px;
+      display:block;
+      position:relative;
+      border: 1px solid @ltgrey;
+      background:white;
+      min-height:200px;
+      //padding:20px;
+      .item {
+        img {
+          border: 3px solid white;
+          outline: 1px solid @ltgrey;
+        }
+      }
+    }
+    .carousel-caption {
+      background-color: rgba(0,0,0,.5);
+      position:absolute;
+      bottom: 8px;
+      border-right:3px solid white;
+      border-left: 3px solid white;
+      padding: 20px;
+      left:0;
+      right:0;
+      margin-right:0;
+      margin-left:0;
+      h2, p {
+        color:white;
+        text-align:left;
+        margin-top:0;
+      }
+    }
+  }
+}
+
+.carousel-control {
+  &.right, &.left {
+    background-image:none;
+  }
+}
+
+.category-cloud {
+  line-height:1.8;
+  a {
+    padding-right: 20px;
+  }
+}
+
+.form-group {
+  .form-control {
+    border: 1px solid @dktaupe;
+    &:focus {
+      border-color: @dktaupe;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(17,78,111,.6);
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(17,78,111,.6);
+    }
+  }
+}
+
+.inner-page {
+  .header-row {
+    border-bottom: 1px solid @lttaupe;
+    margin-bottom: 25px;
+    padding-bottom:10px;
+    p {
+      a {
+        .adelle-bold;
+      }
+    }
+  }
+}
+
+.intro-main-widgets {
+  .main-homepage-widget {
+    //padding:16px;
+    display:block;
+    position:relative;
+    border: 1px solid @ltgrey;
+    background:white;
+    padding:20px;
+    h4 {
+      display:block;
+      position:absolute;
+      top: 10px;
+      left:-13px;
+      width:293px;
+      height: 61px;
+      background:url('/common/img/ribbon.png') no-repeat center center;
+      background-size:contain;
+      color:white;
+      text-align:center;
+      padding-left:13px;
+      padding-right:13px;
+      padding-top:7px;
+      text-shadow: 0 -1px 0 @dkgrey;
+    }
+    .widget-image {
+      margin-top: 65px;
+    }
+    .widget-text {
+      border-bottom: 1px solid @ltgrey;
+      margin-bottom: 17px;
+      padding-bottom:17px;
+      margin-top: 15px;
+    }
+    .resource-list, .news-list {
+      list-style:none;
+      padding-left:0;
+      border-bottom: 1px solid @ltgrey;
+      margin-bottom: 17px;
+      padding-bottom:17px;
+      margin-top: 65px;
+      .resource, .news-item, .contact {
+        h6 {
+          .adelle-bold;
+          font-size: 1.0em; //14px
+          a {
+            color: @ltblue;
+            &:hover {
+              color: lighten(@blue, 10%);
+            }
+          }
+        }
+        p.additional-info {
+          color: @dktaupe;
+          margin-top: -8px;
+          font-size: 1.0em;
+          a {
+            color: @dktaupe;
+            &:hover {
+              color:lighten(@dktaupe, 10%);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.intro-stories {
+  .main-homepage-widget {
+    img {
+      width:100%;
+      border: 3px solid white;
+      outline: 1px solid @ltgrey;
+    }
+    h4 {
+      margin-top: 17px;
+    }
+  }
+}
+
+.intro-text {
+  margin-top:55px;
+  border-bottom: 1px solid @ltgrey;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  h3 {
+    margin-top: 0;
+  }
+}
+
+.load-more {
+  margin-top:50px;
+}
+
+.mission-story {
+  margin-bottom: 30px;
+  img {
+    width:100%;
+  }
+  .widget-more-link {
+    padding-left:0;
+    text-transform:none;
+  }
+  h2 {
+    margin-top: 0;
+  }
+}
+
+.module-img {
+  width:100%;
+  border: 3px solid white;
+  outline: 1px solid @ltgrey;
+}
+
+.news-item {
+  margin-bottom: 20px;
+  &.last-item {
+    border-top: 1px solid @lttaupe;
+    margin-top: 25px;
+    padding-top:10px;
+  }
+}
+
+.organization-list {
+  padding-left:0;
+  list-style:none;
+  margin-bottom: 20px;
+  li {
+    .calluna-bold;
+    font-size: 1.125em; //18px
+    color: black;
+    &:first-child {
+      font-size: 1.714em; //24px
+      border-bottom: 1px solid @lttaupe;
+      margin-bottom: 8px;
+    }
+    a {
+      color: black;
+    }
+    &.ministry {
+      a {
+        color: @blue;
+      }
+    }
+    &.affiliate {
+      a {
+        color: @ltblue;
+      }
+    }
+    &.association {
+      a {
+        color: @green;
+      }
+    }
+    &.world-church {
+      a {
+        color: @orange;
+      }
+    }
+  }
+}
+
+.outer {
+  padding:12px;
+}
+
+.sidebar-item, .module {
+  background: white;
+  padding: 20px;
+  margin-bottom: @content-gutters;
+  .heading-row {
+    margin-left:0;
+    margin-right:0;
+  }
+  .heading {
+    border-bottom: 1px solid @ltgrey;
+    margin-bottom: 20px;
+    padding-bottom:5px;
+    h3, p {
+      display:inline;
+    }
+    p.info {
+      float:right;
+      padding-top: 8px;
+    }
+  }
+  .resource-list, .news-list, .connect-list {
+    list-style:none;
+    padding-left:0;
+    border-bottom: 1px solid @ltgrey;
+    margin-bottom: 17px;
+    padding-bottom:17px;
+    .resource, .news-item, .contact {
+      h6 {
+        .adelle;
+        font-size: 1.286em; //16px
+        a {
+          color: @orange;
+          &:hover {
+            color: lighten(@orange, 10%);
+          }
+        }
+      }
+      p.additional-info {
+        color: @dktaupe;
+        margin-top: -8px;
+        font-size: 1.0em;
+        a {
+          color: @dktaupe;
+          &:hover {
+            color:lighten(@dktaupe, 10%);
+          }
+        }
+      }
+    }
+  }
+  .module-body {
+    p {
+      margin-top: 17px;
+    }
+  }
+}
+
+.sidebar-item {
+  .heading {
+    h3 {
+      display:block;
+    }
+  }
+}
+
+.submit-a-story-text {
+  margin-top:15px;
+}
+
+.test-img {
+  width:200px;
+  height:auto;
+  margin-right: 10px;
+}
+
+.text-wrap-left {
+  float: left;
+  padding-right: @content-gutters;
+  padding-bottom: 29px;
+  max-width: 100%;
+}
+
+.text-wrap-right {
+  float: right;
+  padding-left: @content-gutters;
+  padding-bottom: 29px;
+  max-width: 100%;
+}
+
+.widget-more-link {
+  color: @ltblue;
+  .calluna;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+p {
+  .widget-more-link {
+    padding-left: 10px;
+  }
+}
+
+//ID Styling (alphabetized)
+#blog-archives {
+  list-style:none;
+  padding-left:0;
+  margin-bottom:25px;
+  li {
+    .adelle-bold;
+    a {
+      color: @blue;
+    }
+  }
+  ol {
+    list-style:none;
+    padding-left:15px;
+    li {
+      a {
+        color:@ltblue;
+      }
+    }
+    ol {
+      li {
+        .adelle-italic;
+        font-size:1.0em;
+      }
+    }
+  }
+}
+
+#landing-header {
+  border: 3px solid white;
+  outline: 1px solid @ltgrey;
+  .landing-header-media {
+    padding-left:0;
+    padding-right:0;
+  }
+  .landing-header-content {
+    background-color: rgba(0,0,0,.5);
+    position:absolute;
+    bottom: 0;
+    padding: 20px;
+    left:0;
+    right:0;
+    p {
+      color:white;
+    }
+  }
+  .landing-img {
+    width: 100%;
+    position:relative;
+  }
+}
+
+#main-content {
+  h1.page-title {
+    margin-top: -60px;
+    margin-left: 35px;
+    color: #fff;
+  }
+  .header-img {
+    width:100%;
+  }
+  .spacer {
+    margin-top: @content-gutters;
+  }
+}
+
+#push {
+  height: 60px;
+} // #push located in layout file. Setting fixed height of the footer. Change height here and in #wrap.
+
+#footer {
+  min-height:60px;
+}
+
+#sidebar {
+  &.sidebar-landing-page {
+    margin-top: @content-gutters;
+  }
+  &.blog-sidebar {
+    .widget-more-link {
+      //border-top: 1px solid @ltgrey;
+      //margin-top: 17px;
+      //padding-top:17px;
+      //display:block;
+    }
+  }
+}
+
+
+//Wrapper for page content to push down footer - located in layout file.
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -60px; //Negative indent footer by its height
+  padding-bottom: 60px; //Space between content and footer.
+  background: #ffffff;
+  background: -moz-linear-gradient(top,  #ffffff 0%, #e3dfdc 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e3dfdc));
+  background: -webkit-linear-gradient(top,  #ffffff 0%,#e3dfdc 100%);
+  background: -o-linear-gradient(top,  #ffffff 0%,#e3dfdc 100%);
+  background: -ms-linear-gradient(top,  #ffffff 0%,#e3dfdc 100%);
+  background: linear-gradient(to bottom,  #ffffff 0%,#e3dfdc 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e3dfdc',GradientType=0 );
+}
+
+
+@import "queries.less";
+
+
+
+
+
+//MESS
+.scrollspy-sidebar.affix {
+    position: static;
+}
+/* First level of nav */
+ .scrollspy-sidenav {
+    text-shadow: 0 1px 0 #fff;
+}
+/* All levels of nav */
+ .scrollspy-sidebar .nav > li {
+    .calluna;
+    font-size: 1.286em; //16px
+}
+ .scrollspy-sidebar .nav > li > a {
+    display: block;
+    color: @blue;
+    padding: 0 10px;
+}
+.scrollspy-sidebar .nav > .active > a, .scrollspy-sidebar .nav > .active:hover > a, .scrollspy-sidebar .nav > .active:focus > a {
+    .calluna-bold;
+    color: @ltblue;
+    font-size: 1.714em; //24px
+}
+/* Show and affix the side nav when space allows it */
+ @media screen and (min-width: 992px) {
+    .scrollspy-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .scrollspy-sidebar.affix, .scrollspy-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .scrollspy-sidebar.affix {
+        position: fixed;
+        /* Undo the static from mobile first approach */
+        top: 80px;
+    }
+    .scrollspy-sidebar.affix-bottom {
+        position: absolute;
+        /* Undo the static from mobile first approach */
+    }
+    .scrollspy-sidebar.affix-bottom .scrollspy-sidenav, .scrollspy-sidebar.affix .scrollspy-sidenav {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+@media screen and (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .scrollspy-sidebar.affix-bottom, .scrollspy-sidebar.affix {
+        width: 263px;
+    }
+}
+/* Janky fix for preventing navbar from overlapping */
+ h1[id] {
+    padding-top: 80px;
+    margin-top: -45px;
+}
+/* Scrollspy demo on fixed height div */
+ .scrollspy-example {
+    position: relative;
+    height: 200px;
+    margin-top: 10px;
+    overflow: auto;
+}
+

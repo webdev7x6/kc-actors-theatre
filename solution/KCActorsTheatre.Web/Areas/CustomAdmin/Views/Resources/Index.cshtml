@@ -1,0 +1,119 @@
+﻿@using Clickfarm.Cms.Mvc
+@model KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.Resources.IndexViewModel
+@{
+    ViewBag.HtmlTitle = Model.DescriptionPlural;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@section styles
+{
+    <link href="/areas/customadmin/common/css/admin.css" rel="stylesheet" type="text/css" />
+}
+@section scripts
+{
+    <script type="text/javascript" src="@Url.CdnResource("/common/js/knockout-plugins/mapping/2.3.5/knockout.mapping-2.3.5.js")"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/shared/item.js"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/shared/item-create.js"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/shared/item-index.js"></script>
+    <script type="text/javascript">
+        var RESOURCE_TYPE = '@Model.ResourceType';
+    </script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/shared/tag-manager.js"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/resources/index.js"></script>
+}
+<div id="items" class="items-container">
+    <div id="tabs">
+        <a href="#" id="close-tabs-link" data-bind="visible: tabMgr.tabs().length > 1, click: tabMgr.closeAllTabs" title="Close all">Close all</a>
+        <ul>
+            <li class="tab-notclosable"><a href="#primary-tab">@Model.DescriptionPlural</a></li>
+        </ul>
+        <div id="primary-tab">
+            <div class="ui-toolbar-cms">
+                <a id="create-item" href="#">@Model.DescriptionSingular</a>
+            </div>
+            <div class="tab-options-wrapper">
+                <div id="start-options" class="tab-options">
+                    <h3><a>@Model.DescriptionPlural</a></h3>
+                    <div>
+                        <div>
+                            <label for="find-items-name">Find By Title:</label><br />
+                            <input type="text" id="find-items-name" />
+                            <a id="show-all-items" style="margin-top: 10px" href="#">Show All</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-display">
+                <div id="find-items-results" data-bind="visible: findResultsVisible" class="tab-display-panel ui-dialog ui-widget ui-widget-cms ui-widget-content ui-corner-all ui-state-highlight">
+                    @Html.TitleBar(Model.DescriptionPlural + " Found", true, "close-find-items-results", "click: closeFindResults")
+                    <div class="wrapper">
+                        <div data-bind="visible: retrievingItems">
+                            <img src="@Url.AjaxLoader()" alt="Looking..." />
+                            Looking...
+                        </div>
+                        <table class="items-table table-layout" data-bind="visible: !retrievingItems() && anyItems()">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Language</th>
+                                    <th>Last Modified</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: items">
+                                <tr data-bind="attr: { 'data-item-id': ID }">
+                                    <td>
+                                        <a href="#" data-bind="click: function () { $parent.showEditItem($data); }, text: Title, attr: { 'data-item-id': ID }"></a>
+                                    </td>
+                                    <td data-bind="text: Description"></td>
+                                    <td data-bind="text: Language"></td>
+                                    <td data-bind="text: DateModified"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div data-bind="visible: !retrievingItems() && !anyItems()">No @Model.DescriptionPlural were found.</div>
+                    </div>
+                </div>
+                <div id="recent-items" data-bind="visible: recentItems().length > 0" class="tab-display-panel ui-dialog ui-widget ui-widget-cms ui-widget-content ui-corner-all ui-state-highlight">
+                    @Html.TitleBar("Recent " + Model.DescriptionPlural)
+                    <div class="wrapper">
+                        <ul data-bind="foreach: recentItems">
+                            <li><a href="#" data-bind="click: function () { $parent.showEditItem($data); }, text: Title, attr: { 'data-item-id': ID }"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <br class="clear" />
+        </div>
+    </div>
+</div>
+
+@Html.Partial("_ManageTagsForm")
+
+<div id="create-item-form" class="model-display edit-not-in-place hidden" title="New @Model.DescriptionSingular">
+    <div class="ui-widget-content ui-corner-all ui-widget-cms">
+        @using (Ajax.BeginForm("Create", "Resources",
+            new AjaxOptions
+            {
+                HttpMethod = "Post",
+                LoadingElementId = "create-item-loading",
+                OnFailure = "createItemManager.ajaxFailure",
+                OnSuccess = "createItemManager.ajaxSuccess"
+            }
+        ))
+        {
+            @Html.LabelFor(m => m.Resource.Title)
+            <div class="display-field">
+                @Html.TextBoxFor(m => m.Resource.Title, new { @class = "dialog-textbox required", @id = "create-item-name" })<br />
+                @Html.ValidationMessageFor(m => m.Resource.Title)
+            </div>
+
+            <input type="hidden" name="TypeofResource" value="@Model.TypeofResource.AssemblyQualifiedName" />
+        }
+    </div>
+    <div id="create-item-loading">
+        <div class="throbber">
+            @* loading animation*@
+        </div>
+    </div>
+    <div id="create-item-error" class="ajax-error"></div>
+</div>

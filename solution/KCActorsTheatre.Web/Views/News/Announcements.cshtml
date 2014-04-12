@@ -1,0 +1,58 @@
+﻿@using Clickfarm.AppFramework.Extensions;
+@using Clickfarm.Cms.Configuration
+@using Clickfarm.Cms.Core
+@using Clickfarm.Cms.Mvc
+@using KCActorsTheatre
+@using KCActorsTheatre.Announcements
+@using KCActorsTheatre.Cms
+@using KCActorsTheatre.Cms.ContentTypes
+@model KCActorsTheatre.Web.ViewModels.AnnouncementsViewModel
+@{
+    Layout = "~/Views/Shared/Layouts/Layout.cshtml";
+    var req = Model.RequestContent;
+    var page = req.Page as Clickfarm.Cms.Core.WebPage;
+}
+@section Body {
+
+    <div class="row header-row">
+        <div class="col-xs-12">
+            <h1>@page.Title</h1>
+            <p>
+                PLACEHOLDER TEXT ABOUT THIS PAGE. Alternatively, users can check out recent <a href="/mission-stories">Mission Stories</a> or
+                @switch (Model.AnnouncementType)
+                {
+                    case AnnouncementType.Announcement:
+                        <text><a href="/official-announcements">Official Announcements</a>.</text>
+                        break;
+                    case AnnouncementType.Official:
+                    <text><a href="/announcements">Announcements</a>.</text>
+                        break;
+                }
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12" id="main-content">
+            @foreach (var item in Model.Announcements)
+            {
+                <div class="row news-item">
+                    <div class="col-lg-12">
+                        <h2>@item.Title</h2>
+                        <h3>@item.DatePublished.Value.ToShortDateString()</h3>
+                        <p>
+                            @Html.Raw(item.Body)
+                        </p>
+                    </div>
+                </div>
+            }
+            @*
+            <div class="row news-item last-item">
+                <div class="col-lg-12">
+                    <h2>Get Last Month's News</h2>
+                    <p>Download the <a href="#">February News (PDF)</a>.</p>
+                </div>
+            </div>
+            *@
+        </div>
+    </div>
+}

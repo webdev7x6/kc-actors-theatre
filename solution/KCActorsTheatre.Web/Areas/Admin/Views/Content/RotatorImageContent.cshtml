@@ -1,0 +1,51 @@
+﻿@using Clickfarm.AppFramework.Extensions;
+@using Clickfarm.Cms.Configuration
+@using Clickfarm.Cms.Core
+@using Clickfarm.Cms.Mvc
+@using KCActorsTheatre.Cms.ContentTypes
+@model Clickfarm.Cms.Admin.Mvc.Areas.Admin.ViewModels.ContentGroupMemberViewModel
+@{ 
+    RotatorImageContent content = (RotatorImageContent)Model.Content;
+    ContentTypeConfigData config = Model.ContentTypeConfigData;
+    
+    var fileImgProps = ContentProperties.Empty;
+    if (config.Properties.ContainsKey("FileImageContentProperties"))
+    {
+        fileImgProps = config.Properties["FileImageContentProperties"];
+    }
+
+    ImageContentProperties imgProps = null;
+    string imageLabel = "{0} x {1} (Width x Height)";
+    if (config.Properties.ContainsKey("ImageContentProperties"))
+    {
+        imgProps = (ImageContentProperties)config.Properties["ImageContentProperties"];
+        imageLabel = string.Format(imageLabel, imgProps.ExactWidth, imgProps.ExactHeight);
+    }
+
+    string target = null;
+    if (content.Target != null)
+    {
+        HyperlinkContent.LinkTargets.TryGetPropertyValue<string>(content.Target, out target);
+    }
+}
+
+<label>Display Order:</label>
+<span style="font-style: italic">Enter a number for the display order.</span>
+<div class="display-field editable-format editable nullable" data-property-name="RotatorOrder">@content.RotatorOrder</div>
+
+<label>Title:</label>
+<span style="font-style: italic">Maximum length is 50 characters.</span>
+<div class="display-field editable-format editable nullable" data-property-name="RotatorTitle">@content.RotatorTitle</div>
+
+<label>Caption:</label>
+<span style="font-style: italic">Maximum length is 250 characters.</span>
+<div class="display-field editable-format editable-textarea nullable" data-property-name="RotatorCaption">@content.RotatorCaption</div>
+
+<label>Image:</label>
+<span style="font-style: italic">@imageLabel</span>
+<div class="display-field editable-format editable-image nullable" data-content-file-properties="@fileImgProps.ToJson()" data-content-image-properties="@imgProps.ToJson()" data-property-name="ImageUrl">
+    @if (!string.IsNullOrWhiteSpace(content.ImageUrl))
+    {
+        <img src="@content.ImageUrl" alt="" />
+    }
+</div>

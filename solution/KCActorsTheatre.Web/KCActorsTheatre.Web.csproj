@@ -1,0 +1,591 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D3C44BCC-A240-484E-94AB-CF0A0D926FAE}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KCActorsTheatre.Web</RootNamespace>
+    <AssemblyName>KCActorsTheatre.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <IsCompassProject>True</IsCompassProject>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Autofac.3.3.0\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Autofac.Mvc5.3.2.0\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Clickfarm.AppFramework, Version=1.1.95.8, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Clickfarm.AppFramework.1.1.95.8-trunk\lib\net45\Clickfarm.AppFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Clickfarm.Cms, Version=3.2.1087.181, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Clickfarm.Cms.3.2.1087.181-trunk\lib\net45\Clickfarm.Cms.dll</HintPath>
+    </Reference>
+    <Reference Include="Clickfarm.Cms.Admin.Mvc, Version=3.2.1087.181, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Clickfarm.Cms.Admin.Mvc.3.2.1087.181-trunk\lib\net45\Clickfarm.Cms.Admin.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Clickfarm.Cms.Data.EntityFramework, Version=3.2.1087.181, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Clickfarm.Cms.Data.EntityFramework.3.2.1087.181-trunk\lib\net45\Clickfarm.Cms.Data.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Clickfarm.Cms.Init, Version=3.2.1087.181, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Clickfarm.Cms.Init.3.2.1087.181-trunk\lib\net45\Clickfarm.Cms.Init.dll</HintPath>
+    </Reference>
+    <Reference Include="ClosedXML, Version=0.68.1.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ClosedXML.0.68.1\lib\net40-client\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DocumentFormat.OpenXml.1.0\lib\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.1.4.12333\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.0-beta1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0-beta1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis">
+      <HintPath>..\packages\Google.Apis.1.5.0-beta\lib\net40\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Customsearch.v1">
+      <HintPath>..\packages\Google.Apis.Customsearch.v1.1.5.0.25-beta\lib\portable-net4+sl4+wp71+win8\Google.Apis.Customsearch.v1.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.PlatformServices">
+      <HintPath>..\packages\Google.Apis.1.5.0-beta\lib\net40\Google.Apis.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.16\lib\net45\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.16\lib\net45\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.3.1.1\lib\net45\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.1.10\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.1.10\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.1\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.1\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.1.1\lib\net45\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.1.1\lib\net45\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+    <Reference Include="Zlib.Portable">
+      <HintPath>..\packages\Zlib.Portable.1.9.2\lib\portable-net4+sl4+wp71+win8\Zlib.Portable.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\CmsConfig.cs" />
+    <Compile Include="Areas\CustomAdmin\AdminCustomAreaRegistration.cs" />
+    <Compile Include="Areas\CustomAdmin\Controllers\EventCategoriesController.cs" />
+    <Compile Include="Areas\CustomAdmin\Controllers\PostCategoriesController.cs" />
+    <Compile Include="Areas\CustomAdmin\Controllers\CongregationsController.cs" />
+    <Compile Include="Areas\CustomAdmin\Controllers\MissionFieldsController.cs" />
+    <Compile Include="Areas\CustomAdmin\Controllers\EventsController.cs" />
+    <Compile Include="Areas\CustomAdmin\Controllers\MissionStoriesController.cs" />
+    <Compile Include="Areas\CustomAdmin\Controllers\AnnouncementsController.cs" />
+    <Compile Include="Areas\CustomAdmin\Controllers\BlogsController.cs" />
+    <Compile Include="Areas\CustomAdmin\Controllers\ResourcesController.cs" />
+    <Compile Include="Areas\CustomAdmin\Controllers\OrganizationsController.cs" />
+    <Compile Include="Areas\CustomAdmin\Controllers\TagsController.cs" />
+    <Compile Include="Areas\CustomAdmin\Controllers\MissionCentersController.cs" />
+    <Compile Include="Areas\CustomAdmin\Controllers\StaffMembersController.cs" />
+    <Compile Include="Areas\CustomAdmin\HealthyNevadaAdminControllerBase.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Calendar\EditViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Calendar\IndexViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\MissionFields\EditViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\MissionFields\IndexViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\MissionStories\EditViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\MissionStories\IndexViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Congregations\EditViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Congregations\IndexViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\MissionCenters\EditViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\MissionCenters\IndexViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Announcements\EditViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Announcements\IndexViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Blogs\EditViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Blogs\IndexViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Organizations\EditViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Organizations\IndexViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\EventCategories\EditViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\EventCategories\IndexViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\PostCategories\EditViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\PostCategories\IndexViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Tags\EditViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Resources\EditViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Tags\IndexViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Resources\IndexViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\StaffMembers\EditViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\StaffMembers\IndexViewModel.cs" />
+    <Compile Include="Controllers\KCActorsTheatreController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Extensions\ViewHelpers.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="LogIn.aspx.cs">
+      <DependentUpon>LogIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LogIn.aspx.designer.cs">
+      <DependentUpon>LogIn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mvc\HealthyNevadaHandleErrorAttribute.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BlogsViewModel.cs" />
+    <Compile Include="ViewModels\PostViewModel.cs" />
+    <Compile Include="ViewModels\MissionStoryViewModel.cs" />
+    <Compile Include="ViewModels\MissionStoriesViewModel.cs" />
+    <Compile Include="ViewModels\AnnouncementsViewModel.cs" />
+    <Compile Include="ViewModels\LandingViewModel.cs" />
+    <Compile Include="ViewModels\ResourceWidget.cs" />
+    <Compile Include="ViewModels\SearchViewModel.cs" />
+    <Compile Include="ViewModels\InnerViewModel.cs" />
+    <Compile Include="ViewModels\ErrorViewModel.cs" />
+    <Compile Include="ViewModels\KCActorsTheatreViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\JsonContentViewModelBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="app_not_offline.htm" />
+    <Content Include="Areas\Admin\common\js\admin-staff.js" />
+    <Content Include="Areas\Admin\common\js\admin-tags.js" />
+    <Content Include="Areas\CustomAdmin\common\css\admin.css" />
+    <Content Include="Areas\CustomAdmin\common\css\blogs.css" />
+    <Content Include="Areas\CustomAdmin\common\js\blogs\index.js" />
+    <Content Include="Areas\CustomAdmin\common\js\event-categories\index.js" />
+    <Content Include="Areas\CustomAdmin\common\js\post-categories\index.js" />
+    <Content Include="Areas\CustomAdmin\common\js\mission-fields\index.js" />
+    <Content Include="Areas\CustomAdmin\common\js\mission-stories\index.js" />
+    <Content Include="Areas\CustomAdmin\common\js\congregations\congregation-contacts-create.js" />
+    <Content Include="Areas\CustomAdmin\common\js\congregations\congregation-contacts.js" />
+    <Content Include="Areas\CustomAdmin\common\js\congregations\index.js" />
+    <Content Include="Areas\CustomAdmin\common\js\events\index.js" />
+    <Content Include="Areas\CustomAdmin\common\js\shared\item-create.js" />
+    <Content Include="Areas\CustomAdmin\common\js\shared\item-index.js" />
+    <Content Include="Areas\CustomAdmin\common\js\shared\item.js" />
+    <Content Include="Areas\CustomAdmin\common\js\mission-centers\index.js" />
+    <Content Include="Areas\CustomAdmin\common\js\announcements\index.js" />
+    <Content Include="Areas\CustomAdmin\common\js\organizations\index.js" />
+    <Content Include="Areas\CustomAdmin\common\js\shared\category-manager.js" />
+    <Content Include="Areas\CustomAdmin\common\js\tags\index.js" />
+    <Content Include="Areas\CustomAdmin\common\js\shared\tag-manager.js" />
+    <Content Include="Areas\CustomAdmin\common\js\resources\index.js" />
+    <Content Include="Areas\CustomAdmin\common\js\staff-members\staff-roles-create.js" />
+    <Content Include="Areas\CustomAdmin\common\js\staff-members\staff-roles.js" />
+    <Content Include="Areas\CustomAdmin\common\js\staff-members\index.js" />
+    <Content Include="common\css\app.css" />
+    <Content Include="common\css\app.min.css">
+      <DependentUpon>app.css</DependentUpon>
+    </Content>
+    <Content Include="common\css\variables.css" />
+    <Content Include="common\css\variables.min.css">
+      <DependentUpon>variables.css</DependentUpon>
+    </Content>
+    <Content Include="common\css\libs\bootstrap\bootstrap.min.css" />
+    <Content Include="common\css\libs\jquery\jquery.mmenu.all.min.css" />
+    <Content Include="common\css\libs\jquery\theme.min.css" />
+    <Content Include="common\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="common\img\ajax-loader.gif" />
+    <Content Include="common\img\blue-ribbon.png" />
+    <Content Include="common\img\coc-logo%402x.png" />
+    <Content Include="common\img\coc-logo-sm%402x.png" />
+    <Content Include="common\img\coc-logo-sm.png" />
+    <Content Include="common\img\coc-logo.png" />
+    <Content Include="common\img\facebook%402x.png" />
+    <Content Include="common\img\facebook.png" />
+    <Content Include="common\img\inner-single-img.png" />
+    <Content Include="common\img\landing-img.png" />
+    <Content Include="common\img\ribbon-lg.png" />
+    <Content Include="common\img\rss%402x.png" />
+    <Content Include="common\img\rss.png" />
+    <Content Include="common\img\small-half.png" />
+    <Content Include="common\img\style-test.jpg" />
+    <Content Include="common\img\twitter%402x.png" />
+    <Content Include="common\img\twitter.png" />
+    <Content Include="common\img\youtube%402x.png" />
+    <Content Include="common\img\youtube.png" />
+    <Content Include="common\js\app.js" />
+    <Content Include="common\js\app.min.js" />
+    <Content Include="common\js\homepage.js" />
+    <Content Include="common\js\homepage.min.js" />
+    <Content Include="common\js\libs\angular\1.2.14\angular-animate.min.js" />
+    <Content Include="common\js\libs\angular\1.2.14\angular-route.min.js" />
+    <Content Include="common\js\libs\angular\1.2.14\angular.min.js" />
+    <Content Include="common\js\libs\bootstrap\bootstrap.min.js" />
+    <Content Include="common\js\libs\jquery\jquery.mmenu.min.all.min.js" />
+    <Content Include="common\js\libs\respond\respond.min.js" />
+    <Content Include="ng-apps\blog\controllers\DefaultController.js" />
+    <Content Include="ng-apps\blog\controllers\PostController.js" />
+    <Content Include="ng-apps\blog\directives\AddThis.js" />
+    <Content Include="ng-apps\shared\directives\GlobalNotificationDirective.js" />
+    <Content Include="ng-apps\blog\services\DataService.js" />
+    <Content Include="ng-apps\blog\services\PostsService.js" />
+    <Content Include="ng-apps\blog\services\PostService.js" />
+    <Content Include="ng-apps\blog\templates\default.html" />
+    <Content Include="ng-apps\blog\templates\post.html" />
+    <Content Include="ng-apps\blog\blog-app.js" />
+    <Content Include="crossdomain.xml" />
+    <Content Include="Global.asax" />
+    <Content Include="LogIn.aspx" />
+    <Content Include="Areas\Admin\Views\Content\HeroImageContent.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_KCActorsTheatreAppEdit.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Resources\Index.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Resources\Edit.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Tags\Index.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Tags\Edit.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Congregations\Index.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Congregations\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Content\ContentWidgetContent.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\StaffMembers\Edit.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\StaffMembers\Index.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\MissionCenters\Edit.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\MissionCenters\Index.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Announcements\Edit.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Announcements\Index.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Shared\_ManageTagsForm.cshtml" />
+    <Content Include="Areas\Admin\Views\Content\ResourceWidgetContent.cshtml" />
+    <Content Include="Areas\Admin\Views\App\Index.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\MissionStories\Edit.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\MissionStories\Index.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Resources\_EditAudio.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Resources\_EditDocument.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Resources\_EditMedia.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Resources\_EditProduct.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Resources\_EditPublication.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Resources\_EditSlideshow.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Resources\_EditVideo.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\MissionFields\Edit.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\MissionFields\Index.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Organizations\Edit.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Organizations\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Content\HomePageMissionStoryWidgetContent.cshtml" />
+    <Content Include="Areas\Admin\Views\Content\AnnouncementWidgetContent.cshtml" />
+    <Content Include="Areas\Admin\Views\Content\MissionStoryWidgetContent.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_TaggedWidgetTagManager.cshtml" />
+    <Content Include="Areas\Admin\Views\Content\HomePageContentWidgetContent.cshtml" />
+    <Content Include="common\less\app.less" />
+    <Content Include="common\less\bootstrap\alerts.less" />
+    <Content Include="common\less\bootstrap\badges.less" />
+    <Content Include="common\less\bootstrap\bootstrap.less" />
+    <Content Include="common\less\bootstrap\breadcrumbs.less" />
+    <Content Include="common\less\bootstrap\button-groups.less" />
+    <Content Include="common\less\bootstrap\buttons.less" />
+    <Content Include="common\less\bootstrap\carousel.less" />
+    <Content Include="common\less\bootstrap\close.less" />
+    <Content Include="common\less\bootstrap\code.less" />
+    <Content Include="common\less\bootstrap\component-animations.less" />
+    <Content Include="common\less\bootstrap\dropdowns.less" />
+    <Content Include="common\less\bootstrap\forms.less" />
+    <Content Include="common\less\bootstrap\glyphicons.less" />
+    <Content Include="common\less\bootstrap\grid.less" />
+    <Content Include="common\less\bootstrap\input-groups.less" />
+    <Content Include="common\less\bootstrap\jumbotron.less" />
+    <Content Include="common\less\bootstrap\labels.less" />
+    <Content Include="common\less\bootstrap\list-group.less" />
+    <Content Include="common\less\bootstrap\media.less" />
+    <Content Include="common\less\bootstrap\mixins.less" />
+    <Content Include="common\less\bootstrap\modals.less" />
+    <Content Include="common\less\bootstrap\navbar.less" />
+    <Content Include="common\less\bootstrap\navs.less" />
+    <Content Include="common\less\bootstrap\normalize.less" />
+    <Content Include="common\less\bootstrap\pager.less" />
+    <Content Include="common\less\bootstrap\pagination.less" />
+    <Content Include="common\less\bootstrap\panels.less" />
+    <Content Include="common\less\bootstrap\popovers.less" />
+    <Content Include="common\less\bootstrap\print.less" />
+    <Content Include="common\less\bootstrap\progress-bars.less" />
+    <Content Include="common\less\bootstrap\responsive-utilities.less" />
+    <Content Include="common\less\bootstrap\scaffolding.less" />
+    <Content Include="common\less\bootstrap\tables.less" />
+    <Content Include="common\less\bootstrap\theme.less" />
+    <Content Include="common\less\bootstrap\thumbnails.less" />
+    <Content Include="common\less\bootstrap\tooltip.less" />
+    <Content Include="common\less\bootstrap\type.less" />
+    <Content Include="common\less\bootstrap\utilities.less" />
+    <Content Include="common\less\bootstrap\variables.less" />
+    <Content Include="common\less\bootstrap\wells.less" />
+    <Content Include="common\less\layout.less" />
+    <Content Include="common\less\queries.less" />
+    <Content Include="common\less\typography.less" />
+    <Content Include="common\less\variables.less" />
+    <Content Include="common\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="common\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="common\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Admin\Views\Content\RotatorImageContent.cshtml" />
+    <Content Include="Areas\Admin\Views\Content\LandingPageHeroImageContent.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\StaffMembers\_EditStaffMember.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\StaffMembers\_EditConnectWidgetContact.cshtml" />
+    <Content Include="Areas\Admin\Views\Content\ConnectWidgetContent.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Events\Edit.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Events\Index.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Blogs\Edit.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Blogs\Index.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Shared\_ManageCategoriesForm.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\PostCategories\Edit.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\PostCategories\Index.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\EventCategories\Edit.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\EventCategories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Content\AlertContent.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Resources\_EditPresentation.cshtml" />
+    <None Include="Properties\PublishProfiles\Production_Deploy.pubxml" />
+    <Content Include="ng-apps\shared\base-app.js" />
+    <Content Include="ng-apps\shared\services\GlobalNotificationService.js" />
+    <Content Include="ng-apps\shared\services\PromisesService.js" />
+    <Content Include="ng-apps\shared\templates\directives\global-notification.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Calendar\Index.cshtml" />
+    <Content Include="Views\Calendar\Event.cshtml" />
+    <Content Include="Views\Home\Inner.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Shared\Header\HeaderScripts.cshtml" />
+    <Content Include="Views\Shared\Footer\FooterScripts.cshtml" />
+    <Content Include="Views\Home\SiteMap.cshtml" />
+    <Content Include="Views\Shared\Layouts\InnerWithSidebar.cshtml" />
+    <Content Include="Views\News\Announcements.cshtml" />
+    <Content Include="Views\News\MissionStories.cshtml" />
+    <Content Include="Views\News\MissionStory.cshtml" />
+    <Content Include="Views\Home\Landing.cshtml" />
+    <Content Include="Views\Shared\Layouts\Inner.cshtml" />
+    <Content Include="Views\Blog\Blog.cshtml" />
+    <Content Include="Views\Shared\Widgets\ResourceWidget.cshtml" />
+    <Content Include="Views\Shared\Widgets\AnnouncementWidget.cshtml" />
+    <Content Include="Views\Shared\Widgets\ConnectWidget.cshtml" />
+    <Content Include="Views\Shared\Widgets\ContentWidgets.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="common\cms\files\" />
+    <Folder Include="common\cms\images\blog\author\" />
+    <Folder Include="common\cms\images\blog\post\" />
+    <Folder Include="common\cms\images\hero\" />
+    <Folder Include="common\cms\images\rotator\" />
+    <Folder Include="common\keys\" />
+    <Folder Include="common\logs\" />
+    <Folder Include="ng-apps\shared\controllers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KCActorsTheatre.Data\KCActorsTheatre.Data.csproj">
+      <Project>{1176b486-3341-4937-aead-a51a008e0c41}</Project>
+      <Name>KCActorsTheatre.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KCActorsTheatre.Library\KCActorsTheatre.Library.csproj">
+      <Project>{48c0fa29-2a39-4e16-9efc-5e0afbd12272}</Project>
+      <Name>KCActorsTheatre.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KCActorsTheatre.Services\KCActorsTheatre.Services.csproj">
+      <Project>{73edc883-6e18-45ea-abd4-118a126fb74a}</Project>
+      <Name>KCActorsTheatre.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\CustomAdmin\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\DevWeb.pubxml" />
+    <Content Include="Views\Shared\Layouts\Layout.cshtml" />
+    <Content Include="Views\Shared\Header\Header.cshtml" />
+    <Content Include="Views\Shared\Footer\Footer.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49828/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!--Import Project="..\packages\Microsoft.Bcl.Build.1.0.7\tools\Microsoft.Bcl.Build.targets" /-->
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
