@@ -13,7 +13,7 @@
 {
     <script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
     <script type="text/javascript">
-        $('#contact-form').validate();
+        $('.inner-page form').validate();
 
         $('label.required').each(function () {
             $(this).append('<span> *</span>')
@@ -27,7 +27,7 @@
         <h3>@page.Title</h3>
         <p>For more information about The Actors Theatre, including events, volunteer opportunities, or audition schedules, please fill out the form below.</p>
 
-        @using (Html.BeginForm("contact-us", "", FormMethod.Post, new { @id = "contact-form" }))
+        @using (Html.BeginForm())
         {
             <p>
                 @Html.LabelFor(model => model.Name, new { @class = "required" })
