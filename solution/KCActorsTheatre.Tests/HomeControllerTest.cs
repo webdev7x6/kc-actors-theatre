@@ -1,8 +1,8 @@
-﻿using CommunityOfChrist.Web.Controllers;
+﻿using KCActorsTheatre.Web.Controllers;
 using NUnit.Framework;
 using System.Web.Mvc;
 
-namespace CommunityOfChrist.Tests
+namespace KCActorsTheatre.Tests
 {
     //[TestFixture]
     //public class HomeControllerTest : CommunityOfChristController

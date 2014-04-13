@@ -3115,6 +3115,7 @@ input[type="button"].btn-block {
   font-size: 18px;
   line-height: 1.33;
   border-radius: 6px;
+  font-size: 14px;
 }
 .btn-group > .btn + .dropdown-toggle {
   padding-left: 8px;
@@ -5994,10 +5995,11 @@ td.visible-print {
   font-style: italic;
   font-weight: 700;
 }
-h1,
-h3,
-h5 {
-  letter-spacing: 8px;
+body {
+  font-family: "museo-sans", sans-serif;
+  font-style: normal;
+  font-weight: 100;
+  font-size: 18px;
 }
 h2,
 h4 {
@@ -6009,6 +6011,7 @@ h1 {
   font-style: normal;
   font-weight: 300;
   font-size: 42px;
+  letter-spacing: 8px;
 }
 h2 {
   color: #ef433b;
@@ -6024,6 +6027,7 @@ h3 {
   font-size: 30px;
   text-transform: uppercase;
   color: #383739;
+  letter-spacing: 4px;
 }
 h4 {
   font-family: "museo-sans", sans-serif;
@@ -6045,6 +6049,7 @@ h5 {
   margin-bottom: 20px;
   padding-bottom: 20px;
   border-bottom: 1px solid #ef433b;
+  letter-spacing: 4px;
 }
 h6 {
   font-family: "brandon-grotesque", sans-serif;
@@ -6060,6 +6065,15 @@ p {
   color: #383739;
   line-height: 1.7;
 }
+p a {
+  color: #ef433b;
+  font-family: "museo-sans", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+}
+p a:hover {
+  color: #f3706a;
+}
 a:hover {
   text-decoration: none;
 }
@@ -6072,6 +6086,35 @@ footer#footer {
   background-color: gray;
   padding-top: 20px;
 }
+.btn-default {
+  background: #383739;
+  border: none;
+  border-radius: 0;
+  color: white;
+  text-transform: uppercase;
+}
+.btn-default:hover,
+.btn-default:active,
+.btn-default:focus {
+  background: #525053;
+  color: white;
+}
+.btn-primary {
+  background: #ef433b;
+  border: none;
+  border-radius: 0;
+  color: white;
+  text-transform: uppercase;
+}
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+  background: #f3706a;
+  color: white;
+}
+.btn-lg {
+  font-size: 14px;
+}
 .carousel .item {
   min-height: 800px;
 }
@@ -6080,6 +6123,14 @@ footer#footer {
   top: 0;
   left: 0;
   min-height: 800px;
+}
+.date-callout h5 {
+  border-top: none;
+  border-bottom: none;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 20px;
+  text-align: right;
 }
 .header-row {
   border-bottom: 1px solid #ef433b;
@@ -6121,6 +6172,13 @@ footer#footer {
   background-color: #383739;
   border: none;
 }
+.news h6,
+.person h6 {
+  color: #ef433b;
+}
+.news {
+  margin-top: 32px;
+}
 .panel-group .panel {
   border-radius: 0;
   box-shadow: none;
@@ -6145,6 +6203,10 @@ footer#footer {
 }
 .person img {
   width: 100%;
+  max-width: 200px;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
   margin-top: 20px;
 }
 #homepage-current-season {
@@ -6178,5 +6240,8 @@ footer#footer {
   footer#footer {
     padding-left: 20px;
     padding-right: 20px;
+  }
+  .date-callout {
+    display: none;
   }
 }

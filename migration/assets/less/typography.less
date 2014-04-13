@@ -72,8 +72,9 @@
 }
 
 //Styling
-h1, h3, h5 {
-  letter-spacing: 8px;
+body {
+  .museo-sans;
+  font-size: 18px;
 }
 
 h2, h4 {
@@ -84,6 +85,7 @@ h1 {
   text-transform:uppercase;
   .brandon;
   font-size:42px;
+  letter-spacing: 8px;
 }
 
 h2 {
@@ -98,6 +100,7 @@ h3 {
   font-size:30px;
   text-transform:uppercase;
   color: @black;
+  letter-spacing: 4px;
 }
 
 h4 {
@@ -117,6 +120,7 @@ h5 {
   margin-bottom: 20px;
   padding-bottom:20px;
   border-bottom: 1px solid @red;
+  letter-spacing:4px;
 }
 
 h6 {
@@ -129,6 +133,13 @@ p {
   font-size:18px;
   color:@black;
   line-height:1.7;
+  a {
+    color:@red;
+    .museo-sans-bold;
+    &:hover {
+      color:lighten(@red, 10%);
+    }
+  }
 }
 
 a {
