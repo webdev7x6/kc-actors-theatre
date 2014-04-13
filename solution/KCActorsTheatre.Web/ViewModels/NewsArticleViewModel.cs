@@ -1,10 +1,10 @@
-﻿using KCActorsTheatre.Blog;
+﻿using KCActorsTheatre.Contract;
 using System.Collections.Generic;
 
 namespace KCActorsTheatre.Web.ViewModels
 {
     public class NewsArticleViewModel : KCActorsTheatreViewModel
     {
-        public Post NewsArticle { get; set; }
+        public Article NewsArticle { get; set; }
     }
 }

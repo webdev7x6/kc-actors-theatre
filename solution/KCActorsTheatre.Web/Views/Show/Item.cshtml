@@ -17,7 +17,7 @@
 	    <div class="row show-detail-item">
 	      <div class="col-sm-12">
 	        <h2>Synopsis</h2>
-    		  @Model.Show.Body
+    		  @Html.Raw(Model.Show.Body)
 	      </div>
 	    </div>
 	    @*<div class="row show-detail-item">
@@ -55,7 +55,7 @@
 	    <div class="row show-detail-item">
 	      <div class="col-sm-12">
 	        <h2>Reviews</h2>
-    		@Model.Show.Reviews
+    		@Html.Raw(Model.Show.Reviews)
           @*<blockquote>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
             <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
