@@ -11,14 +11,12 @@ namespace KCActorsTheatre.News
     {
         public int ArticleID { get; set; }
         public DateTime DateCreated { get; set; }
-        public string ImageURL { get; set; }
-
         [Required(ErrorMessage = "Title is required.")]
         public string Title { get; set; }
-
+        public DateTime? ArticleDate { get; set; }
+        public string Author { get; set; }
         public string Summary { get; set; }
-        public string Description { get; set; }
-        public DateTime? StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
+        public string Body { get; set; }
+        public bool IsPublished { get; set; }
     }
 }

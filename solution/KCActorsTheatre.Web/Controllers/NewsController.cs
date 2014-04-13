@@ -106,12 +106,12 @@ namespace KCActorsTheatre.Web.Controllers
 
         private object ConvertArticle(Article article)
         {
-            var startDate = article.StartDate.Value;
+            var articleDate = article.ArticleDate.Value;
             return new
             {
                 ID = article.ArticleID,
-                StartDate = startDate.ToString("dd"),
-                StartMonth = startDate.ToString("MMM"),
+                StartDate = articleDate.ToString("dd"),
+                StartMonth = articleDate.ToString("MMM"),
                 Title = Truncate(article.Title, 18),
                 Summary = Truncate(article.Summary, 70),
             };

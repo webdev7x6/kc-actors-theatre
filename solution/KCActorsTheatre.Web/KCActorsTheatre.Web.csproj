@@ -411,6 +411,7 @@
     <Content Include="Areas\Admin\Views\Content\RotatorImageContent.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_KCActorsTheatreAppEdit.cshtml" />
     <Content Include="Areas\Admin\Views\Content\RotatorVideoContent.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\News\EditArticleAjax.cshtml" />
     <None Include="Properties\PublishProfiles\Production_Deploy.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -486,7 +487,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\CustomAdmin\Views\News\Index.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\News\EditNewsArticleAjax.cshtml" />
     <Content Include="common\less\accordion.less" />
     <Content Include="common\less\alerts.less" />
     <Content Include="common\less\bootstrap.less" />
