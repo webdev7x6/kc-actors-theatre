@@ -1,0 +1,41 @@
+@model KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.News.EditArticleViewModel
+@using Clickfarm.AppFramework.Extensions
+@using Clickfarm.Cms.Mvc
+@{
+    Layout = null;
+    var entityDescription = "News Article";
+}
+@if (Model.HasArticle)
+{
+    <div class="editable-parent item-index-tab model-display" data-tab-type="edit-item" data-item-id="@Model.Article.ArticleID">
+        <div class="ui-toolbar-cms">
+            <a href="#" class="refresh-item-link" data-item-id="@Model.Article.ArticleID" title="Refresh @entityDescription">Refresh @entityDescription</a>
+            <a href="#" class="delete-item-link" data-item-id="@Model.Article.ArticleID" title="Delete @entityDescription">Delete @entityDescription</a>
+        </div>
+        <div class="ui-widget-content ui-corner-all ui-widget-cms">
+            <label>Title:</label>
+            <div class="display-field editable-format editable" data-property-name="Title">@Model.Article.Title</div>
+            <label>Image:</label>
+            <span style="font-style: italic">Image should be 320 <small>x</small> 240</span>
+            <div class="display-field editable-format editable-image nullable" data-content-file-properties="@Model.ContentProperties_ImageFile.ToJson()" data-content-image-properties="@Model.ContentProperties_Image.ToJson()" data-property-name="ImageURL">
+                <img src="@(!string.IsNullOrWhiteSpace(Model.Article.ImageURL) ? Model.Article.ImageURL : Url.CmsVersionedCdnResource("/images/no-image.png"))" alt="" />
+            </div>
+            <label>Summary:</label>
+            <div class="display-field editable-format editable" data-property-name="Summary">@Model.Article.Summary</div>
+            <label>Description:</label>
+            <div class="display-field editable-format editable-html" data-property-name="Description">@Html.Raw(Model.Article.Description)</div>
+            <label>Start Date:</label>
+            <div class="display-field editable-format editable-datepicker" data-property-name="StartDate">@(Model.Article.StartDate.HasValue ? Model.DateConverter.Convert(Model.Article.StartDate.Value).ToUtc().ForCmsUser().ToShortDateString() : string.Empty)</div>
+            <label>End Date:</label>
+            <div class="display-field editable-format editable-datepicker" data-property-name="EndDate">@(Model.Article.EndDate.HasValue ? Model.DateConverter.Convert(Model.Article.EndDate.Value).ToUtc().ForCmsUser().ToShortDateString() : string.Empty)</div>
+            <label>Date Created:</label>
+            <div class="display-field">@(Model.DateConverter.Convert(Model.Article.DateCreated).FromUtc().ForCmsUser().ToString("g"))</div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="message">
+        @entityDescription not found.
+    </div>
+}
