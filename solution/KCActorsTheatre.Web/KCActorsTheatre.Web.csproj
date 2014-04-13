@@ -445,14 +445,14 @@
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\Calendar\Event.cshtml" />
     <Content Include="Views\Home\Inner.cshtml" />
-    <Content Include="Views\Shared\_RotatorImages.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Shared\_HeaderScripts.cshtml" />
     <Content Include="Views\Shared\_FooterScripts.cshtml" />
     <Content Include="Views\Home\SiteMap.cshtml" />
     <Content Include="Views\Home\CommunityDashboard.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
-    <Content Include="Views\News\NewsArticle.cshtml" />
+    <Content Include="Views\News\NewsArticleSummary.cshtml" />
+    <Content Include="Views\News\Article.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="common\cms\files\" />
@@ -612,7 +612,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>41631</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49828/</IISUrl>
+          <IISUrl>http://localhost:41631/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

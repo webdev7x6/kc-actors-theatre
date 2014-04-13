@@ -18,5 +18,20 @@ namespace KCActorsTheatre.News
         public string Summary { get; set; }
         public string Body { get; set; }
         public bool IsPublished { get; set; }
+
+        public string ShortDate
+        {
+            get { return ArticleDate.HasValue ? ArticleDate.Value.ToShortDateString() : ""; }
+        }
+
+        public string ExtendedDate
+        {
+            get { return ArticleDate.HasValue ? ArticleDate.Value.ToString("MMMM dd, yyyy") : ""; }
+        }
+
+        public string AuthorOrDefault
+        {
+            get { return string.IsNullOrWhiteSpace(Author) ? "Kansas City Actors Theatre" : Author; }
+        }
     }
 }
