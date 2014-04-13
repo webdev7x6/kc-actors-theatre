@@ -1,2 +1,2 @@
-Community Of Christ Website
+Kansas City Actors Theatre
 =================

@@ -6083,6 +6083,9 @@ a:hover {
 a:hover:hover {
   color: #f47974;
 }
+blockquote {
+  border-left: 5px solid #ef433b;
+}
 blockquote p {
   font-family: "museo-sans", sans-serif;
   font-style: normal;
@@ -6148,13 +6151,14 @@ footer#footer {
   font-size: 14px;
 }
 .carousel .item {
-  min-height: 800px;
+  max-height: 800px;
+  width: 100%;
+  overflow: hidden;
 }
 .carousel img {
-  position: absolute;
   top: 0;
   left: 0;
-  min-height: 800px;
+  width: 100%;
 }
 .date-callout h5 {
   border-top: none;
@@ -6198,7 +6202,7 @@ footer#footer {
   width: 100%;
 }
 .inner-page {
-  margin-top: 150px;
+  margin-top: 220px;
 }
 .inner-page-with-image {
   margin-top: 50px;
@@ -6209,8 +6213,16 @@ footer#footer {
   margin-top: 32px;
   padding-bottom: 32px;
 }
+.navbar {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.navbar .navbar-right {
+  margin-top: 12px;
+}
 .navbar-inverse {
   background-color: #383739;
+  background: #383739 url('../common/img/black-pattern.png') repeat-x left top;
   border: none;
 }
 .navbar-inverse .navbar-nav > .open > a,
@@ -6218,6 +6230,20 @@ footer#footer {
 .navbar-inverse .navbar-nav > .open > a:hover {
   background-color: white;
   color: #383739;
+}
+.navbar-nav > li {
+  text-transform: uppercase;
+  font-size: 16px;
+}
+.navbar-nav > li a {
+  color: white;
+}
+.navbar-nav .dropdown-menu li a {
+  color: #383739;
+  font-size: 16px;
+}
+.navbar-nav .dropdown-menu li a:hover {
+  color: #ef433b;
 }
 .navbar-nav > li > .dropdown-menu {
   margin-top: 0;
@@ -6290,7 +6316,7 @@ footer#footer {
 }
 .show-detail-item blockquote:nth-child(even) {
   text-align: right;
-  border-right: 5px solid #eee;
+  border-right: 5px solid #ef433b;
   border-left: 0;
 }
 .show-detail-item .article-title,
@@ -6315,17 +6341,29 @@ footer#footer {
 .show-detail-item .article-title li {
   margin-bottom: 32px;
 }
+.show-detail-item .article-title li a {
+  color: #ef433b;
+  text-transform: uppercase;
+}
 .show-detail-item .mp3-links li {
   line-height: 2;
 }
 .show-sidebar-item {
   margin-bottom: 20px;
 }
-.show-sidebar-item .show-dates {
+.show-sidebar-item .other-show-list h5 a {
+  color: #383739;
+}
+.show-sidebar-item .other-show-list h5 a:hover {
+  color: #ef433b;
+}
+.show-sidebar-item .show-dates,
+.show-sidebar-item .other-show-list {
   list-style: none;
   padding-left: 0;
 }
-.show-sidebar-item .show-dates h5 {
+.show-sidebar-item .show-dates h5,
+.show-sidebar-item .other-show-list h5 {
   color: #383739;
   padding-top: 0;
   padding-bottom: 0;
@@ -6334,8 +6372,14 @@ footer#footer {
   border-bottom: none;
   border-top: none;
 }
-.show-sidebar-item .show-dates li {
+.show-sidebar-item .show-dates li,
+.show-sidebar-item .other-show-list li {
   margin-bottom: 20px;
+}
+.show-sidebar-item .show-dates li:first-child,
+.show-sidebar-item .other-show-list li:first-child {
+  border-top: 1px solid #ef433b;
+  padding-top: 15px;
 }
 .show-preview {
   margin-top: 90px;
@@ -6386,6 +6430,46 @@ footer#footer {
   height: auto;
   position: relative;
   text-align: center;
+}
+.yamm .nav,
+.yamm .collapse,
+.yamm .dropup,
+.yamm .dropdown {
+  position: static;
+}
+.yamm .container {
+  position: relative;
+}
+.yamm .dropdown-menu {
+  left: auto;
+}
+.yamm .nav.navbar-right .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+.yamm .yamm-content {
+  padding: 20px 30px;
+}
+.yamm .dropdown.yamm-fw .dropdown-menu {
+  left: -80px;
+  right: -80px;
+  padding: 20px 80px;
+  margin-top: -35px;
+}
+.yamm .dropdown.yamm-fw .dropdown-menu#drop-1 {
+  padding-right: 545px;
+}
+.yamm .dropdown.yamm-fw .dropdown-menu#drop-2 {
+  padding-right: 390px;
+}
+.yamm .dropdown.yamm-fw .dropdown-menu#drop-3 {
+  padding-right: 296px;
+}
+.yamm .dropdown.yamm-fw .dropdown-menu#drop-4 {
+  padding-right: 210px;
+}
+.yamm .dropdown.yamm-fw .dropdown-menu#drop-5 {
+  padding-right: 75px;
 }
 #gmap_canvas {
   width: 100%;
@@ -6556,12 +6640,55 @@ footer#footer {
   padding: 0 30px;
 }
 */
+@media (min-width: 1200px) {
+  .navbar {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .navbar .navbar-right {
+    margin-top: 20px;
+  }
+}
 @media (max-width: 767px) {
-  footer#footer {
-    padding-left: 20px;
-    padding-right: 20px;
+  h1 {
+    font-size: 24px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  h4 {
+    font-size: 18px;
+  }
+  h5 {
+    font-size: 16px;
+  }
+  h6 {
+    font-size: 14px;
   }
   .date-callout {
     display: none;
+  }
+  .yamm .dropdown.yamm-fw .dropdown-menu {
+    left: 0;
+    right: 0;
+    padding: 20px 0;
+  }
+  .yamm .dropdown.yamm-fw .dropdown-menu#drop-1 {
+    padding-right: 0;
+  }
+  .yamm .dropdown.yamm-fw .dropdown-menu#drop-2 {
+    padding-right: 0;
+  }
+  .yamm .dropdown.yamm-fw .dropdown-menu#drop-3 {
+    padding-right: 0;
+  }
+  .yamm .dropdown.yamm-fw .dropdown-menu#drop-4 {
+    padding-right: 0;
+  }
+  .yamm .dropdown.yamm-fw .dropdown-menu#drop-5 {
+    padding-right: 0;
   }
 }

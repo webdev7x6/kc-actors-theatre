@@ -265,6 +265,7 @@
     <Content Include="apple-touch-icon-precomposed.png" />
     <Content Include="apple-touch-icon.png" />
     <Content Include="app_not_offline.htm" />
+    <Content Include="Areas\CustomAdmin\common\css\admin.css" />
     <Content Include="Areas\CustomAdmin\common\css\news.css" />
     <Content Include="Areas\CustomAdmin\common\js\news\news.js" />
     <Content Include="Areas\CustomAdmin\common\js\hn-item-create.js" />
@@ -272,6 +273,7 @@
     <Content Include="Areas\CustomAdmin\common\js\hn-item.js" />
     <Content Include="Areas\CustomAdmin\common\js\person\person.js" />
     <Content Include="Areas\CustomAdmin\common\js\show\show.js" />
+    <Content Include="Areas\CustomAdmin\common\js\show\person-manager.js" />
     <Content Include="common\css\add2home.css" />
     <Content Include="common\css\app.css" />
     <Content Include="common\css\bootstrap-responsive.css" />

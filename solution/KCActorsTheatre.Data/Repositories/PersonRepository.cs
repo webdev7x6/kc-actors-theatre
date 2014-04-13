@@ -58,6 +58,27 @@ namespace KCActorsTheatre.Data.Repositories
             });
         }
 
+        public RepositoryResponse<IEnumerable<Person>> Find(IEnumerable<string> terms)
+        {
+            var resp = new RepositoryResponse<IEnumerable<Person>>();
+            try
+            {
+                var people = this.All();
+                resp.Entity = people
+                    .Where(c => terms.Any(t => c.Name.ToLower().IndexOf(t.ToLower()) > -1))
+                    .OrderBy(c => c.Name)
+                    .ToList()
+                ;
+                resp.Succeed(string.Format("{0} {1} found.", resp.Entity.Count(), "People"));
+            }
+            catch (Exception ex)
+            {
+                resp.Fail(string.Format("An exception occurred: {0}", ex.GetInnermostException().Message));
+            }
+            return resp;
+        }
+
+
         public RepositoryResponse<IEnumerable<Person>> FindForWebsite(string searchTerm)
         {
             return CatchError<RepositoryResponse<IEnumerable<Person>>>(() =>

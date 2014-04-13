@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace KCActorsTheatre.Contract
@@ -16,5 +17,8 @@ namespace KCActorsTheatre.Contract
         public string BioDetail { get; set; }
         public string BioSummary { get; set; }
         public DateTime DateCreated { get; set; }
+
+        private HashSet<ShowInfo> _shows = new HashSet<ShowInfo>();
+        public ICollection<ShowInfo> Shows { get { return _shows; } }
     }
 }
