@@ -1,7 +1,7 @@
 ﻿@using Clickfarm.Cms.Mvc
 @using KCActorsTheatre
 @using KCActorsTheatre.Cms
-@model KCActorsTheatre.Web.ViewModels.NewsArticleViewModel
+@model KCActorsTheatre.News.Article
 
 <div class="row news">
     <div class="col-sm-1">
@@ -10,9 +10,9 @@
         </div>
     </div>
     <div class="col-sm-11">
-        <h3>Article Title Lorem Ipsum Dolor Set Amit</h3>
+        <h3>@Model.Title</h3>
         <h6>April 12, 2014 &ndash; Author Name (optional)</h6>
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ric. 200 char teaser...</p>
+        <p>@Model.Summary</p>
         <button class="btn btn-default btn-lg">Read More</button>
     </div>
 </div>

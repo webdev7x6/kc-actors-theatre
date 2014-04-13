@@ -21,33 +21,32 @@ namespace KCActorsTheatre.Web.Controllers
 
         public ActionResult Index()
         {
-            var model = new CalendarViewModel();
-            InitializeViewModel(model);
-
-            model.NewsArticles = repository.NewsArticles.GetForWebsite(9, 0).Entity;
-            model.JsonEvents = ConvertArticles(model.NewsArticles);
-
-            return View(model);
-        }
-
-        public ActionResult Event(int id)
-        {
             var model = new NewsViewModel();
             InitializeViewModel(model);
 
-            try
-            {
-                var repoReponse = repository.NewsArticles.GetSingle(id);
-                if (repoReponse.Succeeded && repoReponse.Entity != null)
-                    model.Article = repoReponse.Entity;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            model.NewsArticles = repository.NewsArticles.GetForWebsite(9, 0).Entity;
 
             return View(model);
         }
+
+        //public ActionResult Event(int id)
+        //{
+        //    var model = new NewsViewModel();
+        //    InitializeViewModel(model);
+
+        //    try
+        //    {
+        //        var repoReponse = repository.NewsArticles.GetSingle(id);
+        //        if (repoReponse.Succeeded && repoReponse.Entity != null)
+        //            model.Article = repoReponse.Entity;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+
+        //    return View(model);
+        //}
 
         [AjaxOnly]
         public JsonResult GetEvents(int howMany, int skip)
