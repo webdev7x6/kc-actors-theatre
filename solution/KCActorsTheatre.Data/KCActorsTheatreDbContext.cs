@@ -35,7 +35,19 @@ namespace KCActorsTheatre.Data
             //custom entities
 
             modelBuilder.Entity<Article>().Map(m => m.ToTable("Article", "KCAT"));
-            modelBuilder.Entity<ShowInfo>().Map(m => m.ToTable("Show", "KCAT"));
+
+            modelBuilder.Entity<ShowInfo>()
+                .Map(m => m.ToTable("Show", "KCAT"))
+                .HasMany(p => p.People)
+                .WithMany(p => p.Shows)
+                .Map(m =>
+                {
+                    m.ToTable("ShowPerson", "KCAT");
+                    m.MapLeftKey("ShowId");
+                    m.MapRightKey("PersonID");
+                })
+                ;
+
             modelBuilder.Entity<Person>().Map(m => m.ToTable("Person", "KCAT"));
 
             //custom content types
