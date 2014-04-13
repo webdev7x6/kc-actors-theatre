@@ -3,6 +3,7 @@
 
 //Color Variables
 @red: #ef433b;
+@grey: #404041;
 @black: #383739;
 @content-gutter: 32px;
 
@@ -13,11 +14,17 @@ html, body {
 }
 
 footer#footer {
-  background-color: gray;
+  background-color: @grey;
   padding-top:20px;
 }
 
 //Class styling (alphabetical)
+.btn-buy {
+  padding:10px;
+  font-size:24px;
+  color:white;
+}
+
 .btn-default {
   background:@black;
   border:none;
@@ -70,6 +77,16 @@ footer#footer {
   }
 }
 
+.dropdown-menu {
+  li {
+    a {
+      &:hover {
+        background-color:white;
+      }
+    }
+  }
+}
+
 
 .header-row {
   border-bottom:1px solid @red;
@@ -115,6 +132,13 @@ footer#footer {
   margin-top: 50px;
 }
 
+.main-footer {
+  border-top: 1px solid white;
+  padding-top:@content-gutter;
+  margin-top:@content-gutter;
+  padding-bottom:@content-gutter;
+}
+
 .navbar-inverse {
   background-color: @black;
   border:none;
@@ -137,16 +161,6 @@ footer#footer {
   -webkit-transition: all.4s ease-in-out;
   -moz-transition: all.4s ease-in-out;
   transition: all.4s ease-in-out;
-}
-
-.dropdown-menu {
-  li {
-    a {
-      &:hover {
-        background-color:white;
-      }
-    }
-  }
 }
 
 .navbar-nav>li>.dropdown-menu li {
@@ -208,6 +222,67 @@ footer#footer {
   }
 }
 
+.show-detail-item {
+  margin-bottom:20px;
+  #cast {
+    list-style:none;
+    padding-left:0;
+  }
+  blockquote {
+    margin-bottom:20px;
+    &:nth-child(even) {
+      text-align:right;
+      border-right: 5px solid #eee;
+      border-left:0;
+    }
+  }
+  .article-title, .mp3-links {
+    list-style:none;
+    padding-left:0;
+    a {
+      color: @black;
+      margin-bottom:20px;
+      &:hover {
+        color: @red;
+      }
+    }
+    .glyphicon {
+      padding-right: 5px;
+      margin-right: 5px;
+    }
+  }
+  .article-title {
+    li {
+      margin-bottom:32px;
+    }
+  }
+  .mp3-links {
+    li {
+      line-height:2;
+    }
+  }
+}
+
+.show-sidebar-item {
+  margin-bottom:20px;
+  .show-dates {
+    list-style:none;
+    padding-left:0;
+    h5 {
+      color:@black;
+      padding-top: 0;
+      padding-bottom:0;
+      margin-top:5px;
+      margin-bottom:5px;
+      border-bottom: none;
+      border-top: none;
+    }
+    li {
+      margin-bottom:20px;
+    }
+  }
+}
+
 .show-preview {
   margin-top: 90px;
   &:first-child {
@@ -252,6 +327,18 @@ footer#footer {
   }
 }
 
+.show-thumbnails {
+  width:90%;
+  height:auto;
+  position:relative;
+  text-align:center;
+}
+
+#gmap_canvas {
+  width:100%;
+  height:200px;
+}
+
 //ID Styling (alphabetized)
 #homepage-current-season {
   padding-top:64px;
@@ -273,7 +360,15 @@ footer#footer {
 }
 
 #push, #footer {
-  height: 60px;
+  min-height: 200px;
+  p {
+    .brandon;
+    text-transform:uppercase;
+    margin-bottom:5px;
+    a {
+      color:white;
+    }
+  }
 } // #push located in layout file. Setting fixed height of the footer. Change height here and in #wrap.
 
 //Wrapper for page content to push down footer - located in layout file.
