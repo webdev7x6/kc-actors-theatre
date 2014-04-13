@@ -53,16 +53,23 @@ footer#footer {
   font-size: 14px;
 }
 
+
 .carousel {
   .item {
-    min-height:800px;
+    //min-height:800px;
+    max-height:800px;
+    width:100%;
+    overflow:hidden;
   }
   img {
-    position:absolute;
+    //position:absolute;
+    //display:block;
     top:0;
     left:0;
-    min-height:800px;
-    //width:auto;
+    //min-height:800px;
+    //min-width:670px;
+    //max-width:100%;
+    width:100%;
   }
 }
 
@@ -125,7 +132,7 @@ footer#footer {
 }
 
 .inner-page {
-  margin-top: 150px;
+  margin-top: 220px;
 }
 
 .inner-page-with-image {
@@ -139,14 +146,44 @@ footer#footer {
   padding-bottom:@content-gutter;
 }
 
+.navbar {
+  padding-top:15px;
+  padding-bottom:15px;
+  .navbar-right {
+    margin-top:12px;
+  }
+}
+
 .navbar-inverse {
   background-color: @black;
+  background: @black url('../common/img/black-pattern.png') repeat-x left top;
   border:none;
 }
 
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
   background-color: white;
   color: @black;
+}
+
+.navbar-nav {
+  >li {
+    text-transform:uppercase;
+    font-size:16px;
+    a {
+      color:white;
+    }
+  }
+  .dropdown-menu {
+    li {
+      a {
+        color: @black;
+        font-size:16px;
+        &:hover {
+          color:@red;
+        }
+      }
+    }
+  }
 }
 
 .navbar-nav>li>.dropdown-menu {
@@ -232,7 +269,7 @@ footer#footer {
     margin-bottom:20px;
     &:nth-child(even) {
       text-align:right;
-      border-right: 5px solid #eee;
+      border-right: 5px solid @red;
       border-left:0;
     }
   }
@@ -254,6 +291,11 @@ footer#footer {
   .article-title {
     li {
       margin-bottom:32px;
+      a {
+        //.brandon-bold;
+        color:@red;
+        text-transform:uppercase;
+      }
     }
   }
   .mp3-links {
@@ -265,7 +307,17 @@ footer#footer {
 
 .show-sidebar-item {
   margin-bottom:20px;
-  .show-dates {
+  .other-show-list {
+    h5 {
+      a {
+        color:@black;
+        &:hover {
+          color: @red;
+        }
+      }
+    }
+  }
+  .show-dates, .other-show-list {
     list-style:none;
     padding-left:0;
     h5 {
@@ -279,6 +331,10 @@ footer#footer {
     }
     li {
       margin-bottom:20px;
+      &:first-child {
+        border-top: 1px solid @red;
+        padding-top:15px;
+      }
     }
   }
 }
@@ -332,6 +388,47 @@ footer#footer {
   height:auto;
   position:relative;
   text-align:center;
+}
+
+.yamm .nav,
+.yamm .collapse,
+.yamm .dropup,
+.yamm .dropdown {
+  position: static;
+}
+.yamm .container {
+  position: relative;
+}
+.yamm .dropdown-menu {
+  left: auto;
+}
+.yamm .nav.navbar-right .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+.yamm .yamm-content {
+  padding: 20px 30px;
+}
+.yamm .dropdown.yamm-fw .dropdown-menu {
+  left: -80px;
+  right: -80px;
+  padding: 20px 80px;
+  margin-top:-35px;
+  &#drop-1 {
+    padding-right:545px;
+  }
+  &#drop-2 {
+    padding-right:390px;
+  }
+  &#drop-3 {
+    padding-right:296px;
+  }
+  &#drop-4 {
+    padding-right:210px;
+  }
+  &#drop-5 {
+    padding-right:75px;
+  }
 }
 
 #gmap_canvas {
