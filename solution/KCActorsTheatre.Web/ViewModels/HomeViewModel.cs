@@ -8,6 +8,6 @@ namespace KCActorsTheatre.Web.ViewModels
 {
     public class HomeViewModel : KCActorsTheatreViewModel
     {
-        //public IEnumerable<Event> Events { get; set; }
+        public IEnumerable<ImageContent> RotatorImages { get; set; }
     }
 }

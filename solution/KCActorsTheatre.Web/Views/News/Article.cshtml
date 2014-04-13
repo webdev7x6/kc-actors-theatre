@@ -9,13 +9,7 @@
 }
 @section scripts
 {
-    <script type="text/javascript">
-        $(function() {
-            $('.read-more').click(function () {
-                location.href = '@Url.Action("Article", "News")' + '/' + $(this).attr('data-article-id');
-            });
-        })
-    </script>
+    
 }
 <div class="container inner-page">
     <div class="row header-row">
@@ -26,10 +20,7 @@
     </div>
     <div class="row">
         <div class="col-sm-12" id="main-content">
-            @foreach (var newsArticle in Model.NewsArticles)
-            {
-                @Html.Partial("NewsArticleSummary", newsArticle)
-            }
+            @Model.Article.ArticleID
         </div> <!-- Close main-content -->
     </div> <!-- Close row -->
 </div> <!-- Close container -->

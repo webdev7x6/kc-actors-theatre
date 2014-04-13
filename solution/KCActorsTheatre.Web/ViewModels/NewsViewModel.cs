@@ -9,5 +9,6 @@ namespace KCActorsTheatre.Web.ViewModels
     public class NewsViewModel : KCActorsTheatreViewModel
     {
         public IEnumerable<Article> NewsArticles { get; set; }
+        public Article Article { get; set; }
     }
 }
