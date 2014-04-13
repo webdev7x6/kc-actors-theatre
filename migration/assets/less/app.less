@@ -18,6 +18,34 @@ footer#footer {
 }
 
 //Class styling (alphabetical)
+.btn-default {
+  background:@black;
+  border:none;
+  border-radius: 0;
+  color:white;
+  text-transform:uppercase;
+  &:hover, &:active, &:focus {
+    background: lighten(@black, 10%);
+    color:white;
+  }
+}
+
+.btn-primary {
+  background:@red;
+  border:none;
+  border-radius: 0;
+  color:white;
+  text-transform:uppercase;
+  &:hover, &:active, &:focus {
+    background: lighten(@red, 10%);
+    color:white;
+  }
+}
+
+.btn-lg {
+  font-size: 14px;
+}
+
 .carousel {
   .item {
     min-height:800px;
@@ -28,6 +56,17 @@ footer#footer {
     left:0;
     min-height:800px;
     //width:auto;
+  }
+}
+
+.date-callout {
+  h5 {
+    border-top: none;
+    border-bottom:none;
+    padding-top:0;
+    padding-bottom:0;
+    margin-top:20px;
+    text-align:right;
   }
 }
 
@@ -80,6 +119,16 @@ footer#footer {
   border:none;
 }
 
+.news, .person {
+  h6 {
+    color: @red;
+  }
+}
+
+.news {
+  margin-top: @content-gutter;
+}
+
 .panel-group {
   .panel {
     border-radius:0;
@@ -107,6 +156,10 @@ footer#footer {
   margin-top: @content-gutter;
   img {
     width:100%;
+    max-width:200px;
+    margin-right:auto;
+    margin-left:auto;
+    display:block;
     margin-top:20px;
   }
 }
