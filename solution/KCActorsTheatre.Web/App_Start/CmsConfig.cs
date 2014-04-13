@@ -80,6 +80,15 @@ namespace KCActorsTheatre.Web
                             Constants.CmsRole_SystemAdministrator,
                             Constants.CmsRole_CalendarManager,
                         }
+                    },
+                     new AdminMenuItem
+                    {
+                        Title = "Shows",
+                        Href = "/CustomAdmin/Show",
+                        RolesWithVisibility = new[]
+                        {
+                            Constants.CmsRole_SystemAdministrator
+                        }
                     }
                 })
             ;
@@ -218,7 +227,7 @@ namespace KCActorsTheatre.Web
                 ;
 
             app.OnMachine(Constants.MachineName_ProdWeb)
-                .HasHost<CachedRequestContentHandler>("www.KCActorsTheatre.net", "Live", isPrimary:true)
+                .HasHost<CachedRequestContentHandler>("www.KCActorsTheatre.net", "Live", isPrimary: true)
                 .HasHost<CachedRequestContentHandler>("67.59.163.21", "IP")
                 ;
 
@@ -245,7 +254,7 @@ namespace KCActorsTheatre.Web
                 .SingleUse()
                 ;
 
-            app.HasController<Controllers.NewsController>("News Detail Page", "Detail")
+            app.HasController<Controllers.NewsController>("News Detail Page", "Article")
                 .ForPageType("Web Page")
                 .SingleUse()
                 ;

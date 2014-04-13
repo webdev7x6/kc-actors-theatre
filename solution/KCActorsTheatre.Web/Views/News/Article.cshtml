@@ -5,22 +5,22 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";    
     var req = Model.RequestContent;
-    var page = req.Page as Clickfarm.Cms.Core.WebPage;
+    //var page = req.Page as Clickfarm.Cms.Core.WebPage;
 }
 @section scripts
 {
     
 }
 <div class="container inner-page">
-    <div class="row header-row">
-        <div class="col-xs-12">
-            <h1>News</h1>
-            <p>Brief descriptor text about news articles.</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12" id="main-content">
-            @Model.Article.ArticleID
-        </div> <!-- Close main-content -->
-    </div> <!-- Close row -->
+  <div class="row header-row">
+	  <div class="col-xs-12">
+	    <h1>@Model.Article.Title</h1>
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="col-sm-12" id="main-content">
+		  <h6>@Model.Article.AuthorOrDefault - @Model.Article.ExtendedDate</h6>
+		  <p>@Model.Article.Body</p>
+  	</div> <!-- Close main-content -->
+	</div> <!-- Close row -->
 </div> <!-- Close container -->
