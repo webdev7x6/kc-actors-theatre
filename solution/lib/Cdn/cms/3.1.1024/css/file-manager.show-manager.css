@@ -1,0 +1,170 @@
+#file-manager-container {
+    height: 500px;
+}
+
+#browse-col-container {
+    width: 350px;
+    float: left;
+}
+
+.browse-col-action-pane {
+    width: 306px;
+    height: 418px;
+    z-index: 1100;
+}
+
+.browse-col-action-pane-content {
+    height: 361px;
+    overflow: auto;
+}
+
+#upload-pane div.k-upload-button input {
+    z-index: 1110;
+}
+
+#upload-pane div.k-dropzone > em {
+    visibility: visible !important;
+}
+
+#upload-pane ul.k-upload-files {
+    max-height: 292px;
+    overflow: auto;
+}
+
+/*
+This basically says (in singular, for simplicity)
+    1. Find the element that matches the selector on the left side of the tilde, giving LEFT.
+    2. Find siblings of LEFT that _follow_ LEFT and that match the right selector, giving RIGHTS.
+    3. Apply styles to RIGHTS.
+
+This specific rule will apply a top border to all <#upload-pane li.k-file> _except the first one_, i.e.
+    1. Find (the first) <#upload-pane li.k-file>, giving LEFT.
+    2. Find <li.k-file> siblings of LEFT that _follow_ LEFT, giving RIGHTS.
+    3. Apply styles to RIGHTS.
+
+Ref. http://stackoverflow.com/a/8539107/344 2012-06-22 BA
+Ref. http://www.w3.org/TR/selectors/#general-sibling-combinators 2012-06-22 BA
+*/
+#upload-pane li.k-file ~ li.k-file {
+    border-top: 1px solid #C5C5C5;
+}
+
+#upload-pane li.k-file div.error {
+    color: #B32320;
+}
+
+#upload-pane li.k-file span.k-progress-status {
+    background-color: #20B34F;
+}
+
+#upload-pane li.k-file span.k-progress-status.error {
+    background-color: #B32320;
+}
+
+/*span.upload-file-no-highlight {
+    background-color: #EBEBEB;
+}
+
+span.upload-file-success-highlight {
+    background-color: #20B34F;
+}
+
+span.upload-file-error-highlight {
+    background-color: #B32320;
+}
+*/
+#file-list {
+    height: 440px;
+    overflow: auto;
+}
+
+#preview-col-container {
+    margin-left: 360px;
+    min-width: 540px;
+}
+
+#preview-col-tabs {
+    height: 471px;
+}
+
+#preview-col-tabs-list {
+    height: 29px;
+}
+
+.preview-tab {
+    height: 414px;
+    overflow: auto;
+}
+
+#file-type-icon-container {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+#file-properties-container {
+    float: left;
+}
+
+#image-preview {
+    max-width: 450px;
+    max-height: 400px;
+}
+
+#browse-col-wait .file-man-wait-overlay {
+    width: 350px;
+    height: 500px;
+    left: 19px;
+    top: 49px;
+}
+
+.ui-dialog #browse-col-wait .file-man-wait-overlay {
+    left: 12px;
+    top: 6px;
+}
+
+#browse-col-wait .file-man-wait-dialog {
+    left: 40px;
+    top: 212px;
+}
+
+.ui-dialog #browse-col-wait .file-man-wait-dialog {
+    left: 33px;
+    top: 169px;
+}
+
+#preview-col-wait .file-man-wait-overlay {
+    width: 540px;
+    height: 500px;
+    left: 379px;
+    top: 49px;
+}
+
+.ui-dialog #preview-col-wait .file-man-wait-overlay {
+    left: 372px;
+    top: 6px;
+}
+
+#preview-col-wait .file-man-wait-dialog {
+    left: 495px;
+    top: 212px;
+}
+
+.ui-dialog #preview-col-wait .file-man-wait-dialog {
+    left: 488px;
+    top: 169px;
+}
+
+.file-man-wait-overlay {
+    z-index: 1000;
+}
+
+.file-man-wait-dialog {
+    width: 301px;
+    height: 70px;
+    z-index: 1001;
+}
+
+.file-man-wait-dialog .loader {
+    display: block;
+}
