@@ -150,7 +150,6 @@
     <Compile Include="Cms\ContentTypes\ConnectWidgetContent.cs" />
     <Compile Include="Cms\ContentTypes\TaggedWidgetContent.cs" />
     <Compile Include="Cms\ContentTypes\HeroImageContent.cs" />
-    <Compile Include="Cms\Core\CustomCachedRequestContentHandler.cs" />
     <Compile Include="Locations\Congregation.cs" />
     <Compile Include="Locations\CongregationContact.cs" />
     <Compile Include="Cms\Constants.cs" />
@@ -181,7 +180,9 @@
   <ItemGroup>
     <Content Include="crossdomain.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Cms\Core\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!--Import Project="..\packages\Microsoft.Bcl.Build.1.0.7\tools\Microsoft.Bcl.Build.targets" /-->

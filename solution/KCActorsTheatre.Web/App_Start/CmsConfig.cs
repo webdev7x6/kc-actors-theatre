@@ -10,7 +10,6 @@ using Clickfarm.Cms.Membership;
 using Clickfarm.Cms.Mvc;
 using KCActorsTheatre.Cms;
 using KCActorsTheatre.Cms.ContentTypes;
-using KCActorsTheatre.Cms.Core;
 using KCActorsTheatre.Data;
 using KCActorsTheatre.Services.Mapping;
 using System.Reflection;
@@ -67,7 +66,7 @@ namespace KCActorsTheatre.Web
                 })
             ;
 
-            builder.RegisterType<CustomCachedRequestContentHandler>().AsSelf().UsingConstructor(typeof(IScheduleService)).SingleInstance();
+            builder.RegisterType<CachedRequestContentHandler>().AsSelf().UsingConstructor(typeof(IScheduleService)).SingleInstance();
 
             DependencyResolver.SetResolver(new AutofacDependencyResolver(builder.Build()));
 
@@ -683,14 +682,14 @@ namespace KCActorsTheatre.Web
                 .UsesEditView("_KCActorsTheatreAppEdit")
             ;
             app.OnDefaultMachine()
-                .HasHost<CustomCachedRequestContentHandler>("localhost", "Live")
+                .HasHost<CachedRequestContentHandler>("localhost", "Live")
             ;
             app.OnMachine(Constants.MachineName_DevWeb)
-                .HasHost<CustomCachedRequestContentHandler>("cofchrist.clickfarminteractive.com", "Live")
+                .HasHost<CachedRequestContentHandler>("cofchrist.clickfarminteractive.com", "Live")
             ;
             app.OnMachine(Constants.MachineName_ProdWeb)
-                .HasHost<CustomCachedRequestContentHandler>("www.cofchrist.org", "Live", isPrimary: true)
-                .HasHost<CustomCachedRequestContentHandler>("67.59.163.21", "IP")
+                .HasHost<CachedRequestContentHandler>("www.cofchrist.org", "Live", isPrimary: true)
+                .HasHost<CachedRequestContentHandler>("67.59.163.21", "IP")
             ;
 
             app.HasController<Controllers.HomeController>("Home Page", "Index")

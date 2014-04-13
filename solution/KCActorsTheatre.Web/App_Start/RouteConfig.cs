@@ -9,20 +9,7 @@ namespace KCActorsTheatre.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            routes.Add(DependencyResolver.Current.GetService<CmsRoute>());
-
-            routes.MapRoute(
-                "NewComment",
-                "NewComment",
-                new { controller = "Blog", action = "NewComment" }
-            );
-
-            routes.MapRoute(
-                "NewSignUp",
-                "NewSignUp",
-                new { controller = "Home", action = "NewSignUp" },
-                new[] { "KCActorsTheatre.Web.Controllers" }
-            );
+            routes.Add(DependencyResolver.Current.GetService<CmsRoute>()); 
 
             routes.MapRoute("ControllerActions",
                 "{controller}/{action}",
