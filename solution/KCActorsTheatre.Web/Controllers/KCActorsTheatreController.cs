@@ -8,7 +8,6 @@ using Clickfarm.Cms.Mvc;
 using KCActorsTheatre.Data;
 using KCActorsTheatre.Web.ViewModels;
 using System.Collections.Generic;
-using KCActorsTheatre.Blog;
 using System.Linq;
 using System.Web;
 
@@ -27,8 +26,8 @@ namespace KCActorsTheatre.Web.Controllers
             this.session = httpContext.Session;
 
             // set session objects
-            if (RecentPosts == null)
-                RecentPosts = repository.Posts.GetPostedAndPublished(3, 0).Entity.ToList();
+            //if (RecentPosts == null)
+            //    RecentPosts = repository.Posts.GetPostedAndPublished(3, 0).Entity.ToList();
         }
 
         protected void InitializeViewModel(KCActorsTheatreViewModel model)
@@ -38,14 +37,14 @@ namespace KCActorsTheatre.Web.Controllers
             //model.RecentPosts = this.RecentPosts;
         }
 
-        public IEnumerable<Post> RecentPosts
-        {
-            get { return (IEnumerable<Post>)session["RecentPosts"]; }
-            private set
-            {
-                session["RecentPosts"] = value;
-            }
-        }
+        //public IEnumerable<Post> RecentPosts
+        //{
+        //    get { return (IEnumerable<Post>)session["RecentPosts"]; }
+        //    private set
+        //    {
+        //        session["RecentPosts"] = value;
+        //    }
+        //}
 
         private JsonResult CatchError(Func<JsonResult> action)
         {

@@ -5,42 +5,42 @@ using System.Data.Entity;
 using System.Linq;
 using Clickfarm.AppFramework.Extensions;
 using Clickfarm.AppFramework.Responses;
-using KCActorsTheatre.Calendar;
+using KCActorsTheatre.News;
 
 namespace KCActorsTheatre.Data.Repositories
 {
-    public class EventRepository : KCActorsTheatreRepositoryBase<Event>
+    public class NewsArticleRepository : KCActorsTheatreRepositoryBase<Article>
     {
         private IKCActorsTheatreRepository _repository;
         private IKCActorsTheatreDbContext _context;
-        public EventRepository(IKCActorsTheatreDbContext context, IKCActorsTheatreRepository repository)
+        public NewsArticleRepository(IKCActorsTheatreDbContext context, IKCActorsTheatreRepository repository)
             : base(context, repository)
         {
             _context = context;
             _repository = repository;
         }
 
-        protected override DbSet<Event> DbSet
+        protected override DbSet<Article> DbSet
         {
-            get { return dbContext.Events; }
+            get { return dbContext.NewsArticles; }
         }
 
-        public RepositoryResponse<Event> New(Event item)
+        public RepositoryResponse<Article> New(Article item)
         {
-            return CatchError<RepositoryResponse<Event>>(() =>
+            return CatchError<RepositoryResponse<Article>>(() =>
             {
                 DbSet.Add(item);
                 CmsDbContext.Save();
-                var response = new RepositoryResponse<Event>();
+                var response = new RepositoryResponse<Article>();
                 response.Succeed("The new item was created successfully.");
                 response.Entity = item;
                 return response;
             });
         }
 
-        public RepositoryResponse<IEnumerable<Event>> FindForDisplay(IEnumerable<string> terms)
+        public RepositoryResponse<IEnumerable<Article>> FindForDisplay(IEnumerable<string> terms)
         {
-            return CatchError<RepositoryResponse<IEnumerable<Event>>>(() =>
+            return CatchError<RepositoryResponse<IEnumerable<Article>>>(() =>
             {
                 var items = All(null, enableTracking: false);
                 if (terms != null && terms.Count() > 0)
@@ -51,16 +51,16 @@ namespace KCActorsTheatre.Data.Repositories
                         )
                     );
                 }
-                var response = new RepositoryResponse<IEnumerable<Event>>();
+                var response = new RepositoryResponse<IEnumerable<Article>>();
                 response.Succeed(string.Format("{0} items(s) found.", items.Count()));
                 response.Entity = items.OrderBy(a => a.DateCreated);
                 return response;
             });
         }
 
-        public RepositoryResponse<IEnumerable<Event>> FindForWebsite(string searchTerm)
+        public RepositoryResponse<IEnumerable<Article>> FindForWebsite(string searchTerm)
         {
-            return CatchError<RepositoryResponse<IEnumerable<Event>>>(() =>
+            return CatchError<RepositoryResponse<IEnumerable<Article>>>(() =>
             {
                 var items = All(null, enableTracking: false)
                     .Where(p => p.StartDate >= DateTime.UtcNow)
@@ -69,18 +69,18 @@ namespace KCActorsTheatre.Data.Repositories
                 {
                     items = items.Where(p => p.Title.IndexOf(searchTerm, StringComparison.CurrentCultureIgnoreCase) >= 0);
                 }
-                var response = new RepositoryResponse<IEnumerable<Event>>();
-                response.Succeed(string.Format("{0} calendar event(s) found.", items.Count()));
+                var response = new RepositoryResponse<IEnumerable<Article>>();
+                response.Succeed(string.Format("{0} item(s) found.", items.Count()));
                 response.Entity = items.OrderBy(a => a.StartDate.Value).ThenBy(a => a.DateCreated);
                 return response;
             });
         }
 
-        public RepositoryResponse<IEnumerable<Event>> GetAll()
+        public RepositoryResponse<IEnumerable<Article>> GetAll()
         {
-            return CatchError<RepositoryResponse<IEnumerable<Event>>>(() =>
+            return CatchError<RepositoryResponse<IEnumerable<Article>>>(() =>
             {
-                var response = new RepositoryResponse<IEnumerable<Event>>();
+                var response = new RepositoryResponse<IEnumerable<Article>>();
                 var items = All(null, enableTracking: false);
                 response.Succeed(string.Format("{0} item(s) found.", items.Count()));
                 response.Entity = items.OrderByDescending(a => a.DateCreated);
@@ -88,9 +88,9 @@ namespace KCActorsTheatre.Data.Repositories
             });
         }
 
-        public RepositoryResponse<IEnumerable<Event>> GetForWebsite(int? howMany = null, int? skip = null)
+        public RepositoryResponse<IEnumerable<Article>> GetForWebsite(int? howMany = null, int? skip = null)
         {
-            return CatchError<RepositoryResponse<IEnumerable<Event>>>(() =>
+            return CatchError<RepositoryResponse<IEnumerable<Article>>>(() =>
             {
                 var events = All()
                     .Where(p => p.StartDate.HasValue && p.EndDate.HasValue && p.StartDate.Value >= DateTime.UtcNow)
@@ -102,23 +102,23 @@ namespace KCActorsTheatre.Data.Repositories
                     events = events.Skip(skip.Value).ToList();
                 if (howMany.HasValue)
                     events = events.Take(howMany.Value).ToList();
-                var response = new RepositoryResponse<IEnumerable<Event>>();
-                response.Succeed(string.Format("{0} calendar event(s) found.", events.Count()));
+                var response = new RepositoryResponse<IEnumerable<Article>>();
+                response.Succeed(string.Format("{0} item(s) found.", events.Count()));
                 response.Entity = events;
                 return response;
             });
         }
 
 
-        public RepositoryResponse<Event> GetSingle(int id)
+        public RepositoryResponse<Article> GetSingle(int id)
         {
-            return CatchError<RepositoryResponse<Event>>(() =>
+            return CatchError<RepositoryResponse<Article>>(() =>
             {
-                var item = Single(a => a.EventID == id, null, enableTracking:true);
-                var response = new RepositoryResponse<Event>();
+                var item = Single(a => a.ArticleID == id, null, enableTracking:true);
+                var response = new RepositoryResponse<Article>();
                 if (item != null)
                 {
-                    response.Succeed(string.Format("Item with ID {0} found.", item.EventID));
+                    response.Succeed(string.Format("Item with ID {0} found.", item.ArticleID));
                     response.Entity = item;
                 }
                 else
@@ -137,13 +137,13 @@ namespace KCActorsTheatre.Data.Repositories
                 var response = new RepositoryResponse();
                 if (item != null)
                 {
-                    CmsDbContext.ChangeState<Event>(EntityState.Deleted, item);
+                    CmsDbContext.ChangeState<Article>(EntityState.Deleted, item);
                     CmsDbContext.Save();
-                    response.Succeed(string.Format("Event with ID {0} deleted.", id));
+                    response.Succeed(string.Format("Article with ID {0} deleted.", id));
                 }
                 else
                 {
-                    response.Fail(string.Format("Event with ID {0} not found.", id));
+                    response.Fail(string.Format("Article with ID {0} not found.", id));
                 }
                 return response;
             });

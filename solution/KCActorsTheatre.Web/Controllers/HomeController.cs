@@ -17,7 +17,6 @@ namespace KCActorsTheatre.Web.Controllers
         {
             var model = new HomeViewModel();
             InitializeViewModel(model);
-            model.Events = repository.Events.GetForWebsite(5, 0).Entity;
             return View(model);
         }
 
@@ -42,35 +41,35 @@ namespace KCActorsTheatre.Web.Controllers
             return View(model);
         }
 
-        [AjaxOnly]
-        public JsonResult NewSignUp(NewsletterSignUp newsletterSignUp)
-        {
-            JsonResponse jsonResponse = new JsonResponse();
-            newsletterSignUp.DateCreated = DateTime.UtcNow;
+        //[AjaxOnly]
+        //public JsonResult NewSignUp(NewsletterSignUp newsletterSignUp)
+        //{
+        //    JsonResponse jsonResponse = new JsonResponse();
+        //    newsletterSignUp.DateCreated = DateTime.UtcNow;
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var repoReponse = repository.NewsletterSignUps.New(newsletterSignUp);
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            var repoReponse = repository.NewsletterSignUps.New(newsletterSignUp);
 
-                    if (repoReponse.Succeeded)
-                        jsonResponse.Succeeded = true;
-                    else
-                        jsonResponse.Fail(repoReponse.Message);
-                }
-                catch (Exception ex)
-                {
-                    jsonResponse.Succeeded = false;
-                    jsonResponse.Message = ex.GetInnermostException().Message;
-                }
+        //            if (repoReponse.Succeeded)
+        //                jsonResponse.Succeeded = true;
+        //            else
+        //                jsonResponse.Fail(repoReponse.Message);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            jsonResponse.Succeeded = false;
+        //            jsonResponse.Message = ex.GetInnermostException().Message;
+        //        }
 
-            }
-            else
-            {
-                jsonResponse.Fail("Validation failed.");
-            }
-            return Json(jsonResponse);
-        }
+        //    }
+        //    else
+        //    {
+        //        jsonResponse.Fail("Validation failed.");
+        //    }
+        //    return Json(jsonResponse);
+        //}
     }
 }

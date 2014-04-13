@@ -1,16 +1,11 @@
 ﻿using System.Data.Entity;
 using Clickfarm.Cms.Data;
-using KCActorsTheatre.Blog;
-using KCActorsTheatre.Calendar;
+using KCActorsTheatre.News;
 
 namespace KCActorsTheatre.Data
 {
     public interface IKCActorsTheatreDbContext : ICmsDbContext
     {
-        DbSet<Event> Events { get; }
-        DbSet<Author> Authors { get; }
-        DbSet<Post> Posts { get; }
-        DbSet<Comment> Comments { get; }
-        DbSet<NewsletterSignUp> NewsletterSignUps { get; }
+        DbSet<Article> NewsArticles { get; }
     }
 }
