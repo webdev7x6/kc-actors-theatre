@@ -190,7 +190,6 @@
                     this.findResultsVisible(false);
                 },
                 showEditItem = function (item) {
-                    console.log(item);
                     addRecentItem.call(this, item);
                     item.viewModel.tabMgr.addTab(new TabInfo(
                         hn.editItemURL + '/' + item.ID(),

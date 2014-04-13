@@ -148,5 +148,63 @@ namespace KCActorsTheatre.Data.Repositories
                 return response;
             });
         }
+
+        public RepositoryResponse<Person> AddPerson(int id, int personID)
+        {
+            var resp = new RepositoryResponse<Person>();
+            try
+            {
+                var person = _context.People
+                    .Single(p => p.PersonID == personID);
+
+                var item = this.Single(p => p.ShowId == id, new string[] { "People" }, true);
+
+                if (person != null && item != null)
+                {
+                    item.People.Add(person);
+                    _context.Save();
+                    resp.Entity = person;
+                    resp.Succeed(string.Format("person {0} added to show {1}.", person.Name, item.Title));
+                }
+                else
+                {
+                    resp.Fail(string.Format("show {0} not found.", id));
+                }
+            }
+            catch (Exception ex)
+            {
+                resp.Fail(string.Format("An exception occurred: {0}", ex.GetInnermostException().Message));
+            }
+            return resp;
+        }
+
+        public RepositoryResponse RemovePerson(int id, int personID)
+        {
+            var resp = new RepositoryResponse();
+            try
+            {
+                var person = _context.People
+                    .Single(p => p.PersonID == personID);
+
+                var item = this.Single(p => p.ShowId == id, new string[] { "People" }, true);
+
+                if (person != null && item != null)
+                {
+                    item.People.Remove(person);
+                    _context.Save();
+                    resp.Succeed(string.Format("person {0} removed from show {1}.", person.Name, item.Title));
+                }
+                else
+                {
+                    resp.Fail(string.Format("person with id {0} not found.", id));
+                }
+            }
+            catch (Exception ex)
+            {
+                resp.Fail(string.Format("An exception occurred: {0}", ex.GetInnermostException().Message));
+            }
+            return resp;
+        }
+
     }
 }

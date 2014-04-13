@@ -89,6 +89,15 @@ namespace KCActorsTheatre.Web
                         {
                             Constants.CmsRole_SystemAdministrator
                         }
+                    },
+                    new AdminMenuItem
+                    {
+                        Title = "People",
+                        Href = "/CustomAdmin/Person",
+                        RolesWithVisibility = new[]
+                        {
+                            Constants.CmsRole_SystemAdministrator
+                        }
                     }
                 })
             ;

@@ -8,7 +8,7 @@
 }
 @section styles
 {
-    <link href="/common/css/KCActorsTheatre.css" rel="stylesheet" type="text/css" />
+    <link href="/areas/customadmin/common/css/admin.css" rel="stylesheet" type="text/css" />
 }
 @section scripts
 {
@@ -16,6 +16,7 @@
     <script type="text/javascript" src="/areas/customadmin/common/js/hn-item.js"></script>
     <script type="text/javascript" src="/areas/customadmin/common/js/hn-item-create.js"></script>
     <script type="text/javascript" src="/areas/customadmin/common/js/hn-item-index.js"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/show/person-manager.js"></script>
     <script type="text/javascript" src="/areas/customadmin/common/js/show/show.js"></script>
 }
 <div id="items" class="items-container">
@@ -81,6 +82,41 @@
             <br class="clear" />
         </div>
     </div>
+</div>
+
+<div id="manage-people-form" title="Manage People">
+    <div class="sortable-block ui-widget-content ui-corner-all ui-widget-cms">
+        <div class="ui-dialog-titlebar ui-titlebar-cms ui-widget-header ui-corner-all people-header">
+            Assigned People:
+        </div>
+        <ul id="sortable-assigned-people" class="sortable" data-bind="foreach: people">
+            <li class="ui-state-default ui-corner-all" data-bind="attr: { 'data-person-id': personID }">
+                <span class="ui-icon ui-icon-carat-2-e-w"></span>
+                <div class="person-name" data-bind="text: name"></div>
+            </li>
+        </ul>
+    </div>
+    <div id="available-people-container" class="sortable-block ui-widget-content ui-corner-all ui-widget-cms">
+        <div class="ui-dialog-titlebar ui-titlebar-cms ui-widget-header ui-corner-all people-header">
+            Available People:
+        </div>
+        <div>
+            <a id="show-all-people" href="#" style="float: right;">Show All</a>
+            <label for="find-people-name">Find By Name:</label><br />
+            <input type="text" id="find-people-name" style="width: 50%;" />
+        </div>
+        <div data-bind="visible: retrievingPeople()" class="throbber" style="margin-top: 15px;">
+            @* loading animation *@
+        </div>
+        <div data-bind="visible: !initialSearch() && !retrievingPeople() && !anyPeople()" style="padding: 20px 10px 10px;">No people were found, or they're already assigned.</div>
+        <ul id="sortable-available-people" class="sortable" data-bind="foreach: people">
+            <li class="ui-state-default ui-corner-all" data-bind="attr: { 'data-person-id': personID }">
+                <span class="ui-icon ui-icon-carat-2-e-w"></span>
+                <div class="person-name" data-bind="text: name"></div>
+            </li>
+        </ul>
+    </div>
+    <br class="clear" />
 </div>
 
 <div id="create-item-form" class="modal-display edit-not-in-place hidden" title="New @entityDescriptionSingular">

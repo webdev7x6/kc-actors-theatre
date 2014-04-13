@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+	<style type="text/css">
+		#header { background: #000; padding: 0px 0px; color: #fff; top: 32px; left: 0; right: 0; }
+		#header ul { margin: 0px; padding: 0px; }
+		#header li { display: inline-block; padding: 10px 10px; }
+		#header li a { padding-bottom: 5px; }
+		#header li:hover { background: red; }
+		#header ul li ul { background: red; margin-top: 10px; position: absolute; left: 0; right: 0; display: none; z-index: 0; }
+		#header li ul li { display: block; position: relative; }
+	</style>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+		
+			$('.dropdown').each(function() {
+				var left = $(this).offset().left;
+				$(this).find('li').css('left', left + 'px');
+			});
+		
+		
+			$('.dropdown').mouseenter(function(e) {
+				$(this).children('.dropdown-menu').slideDown(500);
+				evt.stopPropagation();
+				return false;
+			});
+			
+			$('.dropdown').mouseleave(function(e) {
+				$(this).children('.dropdown-menu').slideUp(500);
+				evt.stopPropagation();
+				return false;
+			});
+		});
+	</script>
+</head>
+<body>
+	<div id="header">
+		<ul>
+			<li>Item 1</li>
+			<li>Item 2</li>
+			<li class="dropdown">
+				<a href="#">Item 3</a>
+				<ul class="dropdown-menu">
+					<li>Child 1</li>
+					<li>Child 2</li>
+				</ul>
+			</li>
+		</ul>
+		<div id="menu-expander">
+		</div>
+	</div>
+</body>
+</html>

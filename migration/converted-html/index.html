@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>Mixture + Bootstrap</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="assets/css/slick.min.css" rel="stylesheet" type="text/css" media="all"/>
         <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" media="all"/>
         <script type="text/javascript" src="//use.typekit.net/ynt0rwm.js"></script>
         <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
@@ -11,7 +12,7 @@
     <body>
       <div id="wrap">
         <div id="navbar-wrapper">
-  <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <nav class="navbar yamm navbar-inverse navbar-static-top" role="navigation">
     <div class="container">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -21,24 +22,50 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">KC Actor's Theatre</a>
+        <a class="navbar-brand visible-lg" href="index.html"><img src="../common/img/KCAT-Web-Logo.png" alt="Kansas City Actors Theatre"></a>
+        <a class="navbar-brand hidden-lg" href="index.html"><img src="../common/img/KCAT-Web-Logo-Small.png" alt="Kansas City Actors Theatre"></a>
       </div>
-    
+      
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-            <ul class="dropdown-menu">
+          <li class="dropdown yamm-fw">
+          <a href="content.html" class="dropdown-toggle" data-hover="dropdown">Mission</a>
+            <ul class="dropdown-menu" id="drop-1">
               <li><a href="people.html">People</a></li>
               <li><a href="content.html">Content</a></li>
               <li><a href="content-w-image.html">Content w/ Image</a></li>
               <li><a href="news.html">News</a></li>
               <li><a href="season-landing.html">Season Landing</a></li>
+              <li><a href="show.html">Current Show</a></li>
+            </ul>
+          </li>
+          <li class="dropdown yamm-fw">
+          <a href="season-landing.html" class="dropdown-toggle" data-hover="dropdown">Current Season</a>
+            <ul class="dropdown-menu" id="drop-2">
+              <li><a href="#">Item</a></li>
+            </ul>
+          </li>
+          <li class="dropdown yamm-fw">
+          <a href="content.html" class="dropdown-toggle" data-hover="dropdown">Support</a>
+            <ul class="dropdown-menu" id="drop-3">
+              <li><a href="#">Item</a></li>
+            </ul>
+          </li>
+          <li class="dropdown yamm-fw">
+          <a href="people.html" class="dropdown-toggle" data-hover="dropdown">People</a>
+            <ul class="dropdown-menu" id="drop-4">
+              <li><a href="#">Item</a></li>
+            </ul>
+          </li>
+          <li class="dropdown yamm-fw">
+          <a href="season-landing.html" class="dropdown-toggle" data-hover="dropdown">Past Seasons</a>
+            <ul class="dropdown-menu" id="drop-5">
+              <li><a href="#">Item</a></li>
             </ul>
           </li>
         </ul>
-      </div><!-- /.navbar-collapse -->
+      </div>
     </div>
   </nav>
 </div>
@@ -53,10 +80,13 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
-      <img src="../common/img/carousel-test-1.jpg" alt="...">
+      <img src="../common/img/KCAT1.jpg" alt="...">
     </div>
     <div class="item">
-      <img src="../common/img/carousel-test-2.jpg" alt="...">
+      <img src="../common/img/KCAT12.jpg" alt="...">
+    </div>
+    <div class="item">
+      <img src="../common/img/KCAT14.jpg" alt="...">
     </div>
   </div>
 </div>
@@ -223,13 +253,23 @@
         <footer id="footer">
   <div class="container">
     <div class="row main-footer">
-      <p>This is the footer.</p>
+      <div class="col-xs-6">
+        <p><a href="#">Facebook</a></p>
+        <p><a href="#">Twitter</a></p>
+      </div>
+      <div class="col-xs-6">
+        <p class="text-right"><a href="#">Contact</a></p>
+        <p class="text-right"><a href="#">Press</a></p>
+        <p class="text-right"><a href="#">Affiliations</a></p>
+      </div>
     </div>
   </div>
 </footer>
-        <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/bootstrap-hover-dropdown.min.js"></script>
         <script src="assets/js/respond.min.js"></script>
+        <script src="assets/js/slick.min.js"></script>
         <script src="assets/js/app.min.js"></script>
     </body>
 </html>
