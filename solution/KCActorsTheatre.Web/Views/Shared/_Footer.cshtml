@@ -5,61 +5,11 @@
     var footerNav = Model.RequestContent.Menus.Where(m => m.Name.Equals("Footer Navigation")).FirstOrDefault();
     var app = (KCActorsTheatre.Library.AppTypes.KCActorsTheatreApp)Model.RequestContent.App;
 }
-<footer id="home-footer">
-	<div class="container">
-		<div class="row-fluid doormat">
-			<div class="span4 doormat-content-blocks">
-				<img src="/common/img/lg-logo.png" alt="Healthy Nevada - A Cerner Health Community" class="footer-logo" />
-				<ul class="social-icons">
-					<li><a href="@app.FacebookURL" target="_blank"><img src="/common/img/fb-icon-blue.png" alt="Healthy Nevada Facebook Page"></a></li>
-					<li><a href="@app.YouTubeURL" target="_blank"><img src="/common/img/yt-icon-blue.png" alt="Healthy Nevada Youtube Channel"></a></li>
-					<li><a href="@app.PinterestURL" target="_blank"><img src="/common/img/pin-icon-blue.png" alt="Healthy Nevada Pinterest Board"></a></li>
-				</ul>
-			</div>
-			<div class="span4 doormat-content-blocks">
-                @{
-                    var model = new KCActorsTheatre.Web.ViewModels.NewsletterSignUpViewModel();
-                    model.FormCopy = app.NewsletterSignUpForm;
-                }
-				@Html.Partial("_NewsletterSignUp", model)
-			</div>
-			<div class="span4 doormat-content-blocks hidden-phone">
-			    <h3>Latest Blog Posts</h3>
-                @foreach (var post in Model.RecentPosts)
-                {
-				    <div>
-					    <h4><a href="/blog/post/@post.PostID">@post.Title</a></h4>
-					    <p class="date">@post.PublishDate.Value.ToShortDateString()</p>
-					    <p class="author">By @post.Author.Name</p>
-				    </div>
-                }
-			</div>
-		</div>
-	</div>
+
+<footer id="footer">
+    <div class="container">
+        <div class="row main-footer">
+            <p>This is the footer.</p>
+        </div>
+    </div>
 </footer>
-<div id="privacy">
-	<div class="container">
-		<div class="row-fluid footer-nav">
-		<div class="span12">
-	        @Html.MegaMenu(new MegaMenuSettings {
-		        RequestContent = Model.RequestContent,
-		        Page = Model.RequestContent.Page,
-		        MenuName = "Footer Navigation",
-		        CssID = "footer-nav",
-		        CssClass = "",
-		        SkinName = "",
-		        SelectedClass = "",
-		        ProcessingItemCallback = (args) =>
-		        {
-                    if (args.Title == "Copyright Placeholder")
-                    {
-                        args.Title = "Copyright &copy; " + DateTime.UtcNow.Year + " Cerner Corporation. All Rights Reserved.";
-                        args.Href = "javascript:void(0);";
-                    }
-			        return args;
-		        }
-	        })
-		</div>
-	</div>
-	</div>
-</div>
