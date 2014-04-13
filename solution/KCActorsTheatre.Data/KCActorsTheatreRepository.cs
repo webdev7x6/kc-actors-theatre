@@ -8,6 +8,8 @@ namespace KCActorsTheatre.Data
     {
         private KCActorsTheatreDbContext context;
         private NewsArticleRepository newsArticleRepository = null;
+        private ShowRepository showRepository = null;
+        
 
         public KCActorsTheatreRepository(KCActorsTheatreDbContext entityFrameworkCmsDbContext)
             : base(entityFrameworkCmsDbContext)
@@ -27,10 +29,23 @@ namespace KCActorsTheatre.Data
             }
         }
 
+        public ShowRepository Shows
+        {
+            get
+            {
+                if (showRepository == null)
+                {
+                    showRepository = new ShowRepository(context, this);
+                }
+                return showRepository;
+            }
+        }
+
         public override void RefreshAll()
         {
             base.RefreshAll();
             context.Refresh(RefreshMode.StoreWins, context.NewsArticles);
+            context.Refresh(RefreshMode.StoreWins, context.Shows);
         }
     }
 }
