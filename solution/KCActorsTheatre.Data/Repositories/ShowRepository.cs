@@ -63,7 +63,7 @@ namespace KCActorsTheatre.Data.Repositories
             return CatchError<RepositoryResponse<IEnumerable<ShowInfo>>>(() =>
             {
                 var items = All(null, enableTracking: false)
-                    .Where(p => p.StartDate >= DateTime.UtcNow)
+                    .Where(p => p.ShowDate >= DateTime.UtcNow)
                 ;
                 if (searchTerm.Length > 0)
                 {
@@ -71,7 +71,7 @@ namespace KCActorsTheatre.Data.Repositories
                 }
                 var response = new RepositoryResponse<IEnumerable<ShowInfo>>();
                 response.Succeed(string.Format("{0} item(s) found.", items.Count()));
-                response.Entity = items.OrderBy(a => a.StartDate.Value).ThenBy(a => a.DateCreated);
+                response.Entity = items.OrderBy(a => a.ShowDate.Value).ThenBy(a => a.DateCreated);
                 return response;
             });
         }
@@ -93,8 +93,8 @@ namespace KCActorsTheatre.Data.Repositories
             return CatchError<RepositoryResponse<IEnumerable<ShowInfo>>>(() =>
             {
                 var events = All()
-                    .Where(p => p.StartDate.HasValue && p.EndDate.HasValue && p.StartDate.Value >= DateTime.UtcNow)
-                    .OrderBy(p => p.StartDate.Value)
+                    .Where(p => p.ShowDate.HasValue && p.ShowDate.Value >= DateTime.UtcNow)
+                    .OrderBy(p => p.ShowDate.Value)
                     .ThenBy(p => p.DateCreated)
                     .ToList()
                 ;
