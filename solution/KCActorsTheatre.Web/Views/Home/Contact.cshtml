@@ -1,14 +1,64 @@
 ﻿@using Clickfarm.Cms.Mvc
 @using KCActorsTheatre
 @using KCActorsTheatre.Cms
-@model KCActorsTheatre.Web.ViewModels.InnerViewModel
+@model KCActorsTheatre.Web.ViewModels.ContactViewModel
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var app = (KCActorsTheatre.Library.AppTypes.KCActorsTheatreApp)Model.RequestContent.App;
     var req = Model.RequestContent;
     var page = req.Page as Clickfarm.Cms.Core.WebPage;
 }
-<div class="container inner-container">
+
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+        $('.inner-page form').validate();
+
+        $('label.required').each(function () {
+            $(this).append('<span> *</span>')
+        })
+    </script>
+}
+
+<div class="container inner-page">
 	<div class="row-fluid">
-		contact form goes here
+
+        <h3>@page.Title</h3>
+        <p>For more information about The Actors Theatre, including events, volunteer opportunities, or audition schedules, please fill out the form below.</p>
+
+        @using (Html.BeginForm())
+        {
+            <p>
+                @Html.LabelFor(model => model.Name, new { @class = "required" })
+                @Html.TextBoxFor(model => model.Name, new { @minlength = "2", @required = "" })
+            </p>
+
+            <p>
+                @Html.LabelFor(model => model.Email, new { @class = "required" })
+                @Html.TextBoxFor(model => model.Email, new { @type = "email", @required = "" })
+            </p>
+
+            <p>
+                @Html.LabelFor(model => model.PhoneNumber, "Phone Number", new { @class = "required" })
+                @Html.TextBoxFor(model => model.PhoneNumber, new { @required = "" })
+            </p>
+
+            <p>
+                @Html.LabelFor(model => model.MailingAddress, "Mailing Address")
+                @Html.TextBoxFor(model => model.MailingAddress)
+            </p>
+		    
+            <p>
+                @Html.LabelFor(model => model.Comments, new { @class = "required" })
+                @Html.TextAreaFor(model => model.Comments, new { @required = "" })
+            </p>
+
+            <p>
+                <input type="submit" />
+            </p>
+        }
 	</div>
 </div>
+
+

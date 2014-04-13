@@ -94,7 +94,6 @@ namespace KCActorsTheatre.Data.Repositories
             {
                 var events = All()
                     .Where(p => p.IsPublished == true)
-                    //.Where(p => p.StartDate.HasValue && p.EndDate.HasValue && p.StartDate.Value >= DateTime.UtcNow)
                     .OrderBy(p => p.ArticleDate.Value)
                     .ThenBy(p => p.DateCreated)
                     .ToList()
