@@ -1,7 +1,14 @@
 //Media Queries
 //Large Query
 @media (min-width: @screen-lg) {
+  .navbar {
+    padding-top:20px;
+    padding-bottom:20px;
+    .navbar-right {
+      margin-top:20px;
+    }
   }
+}
 
 //Small Query
 @media (max-width: @screen-md) {
@@ -10,11 +17,49 @@
 
 //X-Small Query
 @media (max-width: 767px) {
+  h1 {
+    font-size:24px;
+  }
+  h2 {
+    font-size:20px;
+  }
+  h3 {
+    font-size:20px;
+  }
+  h4 {
+    font-size: 18px;
+  } 
+  h5 {
+    font-size:16px;
+  }
+  h6 {
+    font-size:14px;
+  }
   footer#footer {
-    padding-left: 20px;
-    padding-right: 20px;
+    //padding-left: 20px;
+    //padding-right: 20px;
   } // Sticky footer settings.
   .date-callout {
     display:none;
+  }
+  .yamm .dropdown.yamm-fw .dropdown-menu {
+    left: 0;
+    right: 0;
+    padding: 20px 0;
+    &#drop-1 {
+      padding-right:0;
+    }
+    &#drop-2 {
+      padding-right:0;
+    }
+    &#drop-3 {
+      padding-right:0;
+    }
+    &#drop-4 {
+      padding-right:0;
+    }
+    &#drop-5 {
+      padding-right:0;
+    }
   }
 }
