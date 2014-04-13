@@ -53,8 +53,7 @@
                                 <tr>
                                     <th>Title</th>
                                     <th>Date Created</th>
-                                    <th>Start Date</th>
-                                    <th>End Date</th>
+                                    <th>Article Date</th>
                                 </tr>
                             </thead>
                             <tbody data-bind="foreach: items">
@@ -63,8 +62,7 @@
                                         <a href="#" data-bind="click: function () { $parent.showEditItem($data); }, text: Title, attr: { 'data-item-id': ID }"></a>
                                     </td>
                                     <td data-bind="text: DateCreated"></td>
-                                    <td data-bind="text: StartDate"></td>
-                                    <td data-bind="text: EndDate"></td>
+                                    <td data-bind="text: ArticleDate"></td>
                                 </tr>
                             </tbody>
                         </table>
