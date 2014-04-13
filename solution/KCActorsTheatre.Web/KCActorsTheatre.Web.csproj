@@ -15,7 +15,7 @@
     <AssemblyName>KCActorsTheatre.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -451,7 +451,8 @@
     <Content Include="Views\Home\SiteMap.cshtml" />
     <Content Include="Views\Home\CommunityDashboard.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
-    <Content Include="Views\News\NewsArticle.cshtml" />
+    <Content Include="Views\News\NewsArticleSummary.cshtml" />
+    <Content Include="Views\News\Artical.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="common\cms\files\" />
@@ -611,7 +612,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>41631</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/</IISUrl>
+          <IISUrl>http://localhost:49828/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
