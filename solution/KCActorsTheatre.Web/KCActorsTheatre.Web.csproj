@@ -42,72 +42,72 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=3.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+    <Reference Include="Autofac, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Autofac.3.3.1\lib\net40\Autofac.dll</HintPath>
+      <HintPath>..\packages\Autofac.3.0.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Autofac.3.0.2\lib\net40\Autofac.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Autofac.Integration.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Autofac.Mvc5.3.2.0\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+      <HintPath>..\packages\Autofac.Mvc4.3.0.0\lib\net40\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="Clickfarm.AppFramework, Version=1.1.95.8, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Clickfarm.AppFramework, Version=3.1.1024.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Clickfarm.AppFramework.1.1.95.8-trunk\lib\net45\Clickfarm.AppFramework.dll</HintPath>
+      <HintPath>..\packages\Clickfarm.AppFramework.3.1.1024.1\lib\net45\Clickfarm.AppFramework.dll</HintPath>
     </Reference>
-    <Reference Include="Clickfarm.Cms, Version=3.2.1087.181, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Clickfarm.Cms, Version=3.1.1024.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Clickfarm.Cms.3.2.1087.181-trunk\lib\net45\Clickfarm.Cms.dll</HintPath>
+      <HintPath>..\packages\Clickfarm.Cms.3.1.1024.1\lib\net45\Clickfarm.Cms.dll</HintPath>
     </Reference>
-    <Reference Include="Clickfarm.Cms.Admin.Mvc, Version=3.2.1087.181, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Clickfarm.Cms.Admin.Mvc, Version=3.1.1024.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Clickfarm.Cms.Admin.Mvc.3.2.1087.181-trunk\lib\net45\Clickfarm.Cms.Admin.Mvc.dll</HintPath>
+      <HintPath>..\packages\Clickfarm.Cms.Admin.Mvc.3.1.1024.1\lib\net45\Clickfarm.Cms.Admin.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="Clickfarm.Cms.Data.EntityFramework, Version=3.2.1087.181, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Clickfarm.Cms.Data.EntityFramework, Version=3.1.1024.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Clickfarm.Cms.Data.EntityFramework.3.2.1087.181-trunk\lib\net45\Clickfarm.Cms.Data.EntityFramework.dll</HintPath>
+      <HintPath>..\packages\Clickfarm.Cms.Data.EntityFramework.3.1.1024.1\lib\net45\Clickfarm.Cms.Data.EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="Clickfarm.Cms.Init, Version=3.2.1087.181, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Clickfarm.Cms.Init, Version=3.1.1024.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Clickfarm.Cms.Init.3.2.1087.181-trunk\lib\net45\Clickfarm.Cms.Init.dll</HintPath>
+      <HintPath>..\packages\Clickfarm.Cms.Init.3.1.1024.1\lib\net45\Clickfarm.Cms.Init.dll</HintPath>
     </Reference>
-    <Reference Include="ClosedXML, Version=0.68.1.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="ClosedXML">
       <HintPath>..\packages\ClosedXML.0.68.1\lib\net40-client\ClosedXML.dll</HintPath>
     </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
       <HintPath>..\packages\DocumentFormat.OpenXml.1.0\lib\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.AspNet, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.1.4.12333\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.3.0.13117\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.Core, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+    <Reference Include="DotNetOpenAuth.Core, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DotNetOpenAuth.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.3.0.13117\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.OAuth, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OAuth.dll</HintPath>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.3.0.13117\lib\net45-full\DotNetOpenAuth.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.3.0.13117\lib\net45-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.OpenId, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OpenId.dll</HintPath>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.3.0.13117\lib\net45-full\DotNetOpenAuth.OpenId.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.3.0.13117\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.0-beta1\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.0-beta1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis">
       <HintPath>..\packages\Google.Apis.1.5.0-beta\lib\net40\Google.Apis.dll</HintPath>
@@ -118,9 +118,8 @@
     <Reference Include="Google.Apis.PlatformServices">
       <HintPath>..\packages\Google.Apis.1.5.0-beta\lib\net40\Google.Apis.PlatformServices.dll</HintPath>
     </Reference>
-    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Threading.Tasks">
@@ -129,17 +128,16 @@
     <Reference Include="Microsoft.Threading.Tasks.Extensions">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.16\lib\net45\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.3.1.1\lib\net45\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.2.0.30506.0\lib\net40\Microsoft.Web.WebPages.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http.Extensions">
       <HintPath>..\packages\Microsoft.Net.Http.2.1.10\lib\net45\System.Net.Http.Extensions.dll</HintPath>
@@ -157,34 +155,14 @@
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.Helpers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.1\lib\net45\System.Web.Mvc.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.1\lib\net45\System.Web.Razor.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Routing" />
-    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -197,19 +175,39 @@
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
     </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
-    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.1.1\lib\net45\WebMatrix.Data.dll</HintPath>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.1.1\lib\net45\WebMatrix.WebData.dll</HintPath>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.20710.0\lib\net40\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.30506.0\lib\net40\WebMatrix.WebData.dll</HintPath>
     </Reference>
     <Reference Include="Zlib.Portable">
       <HintPath>..\packages\Zlib.Portable.1.9.2\lib\portable-net4+sl4+wp71+win8\Zlib.Portable.dll</HintPath>
@@ -217,53 +215,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\CmsConfig.cs" />
+    <Compile Include="Areas\CustomAdmin\Controllers\BlogController.cs" />
     <Compile Include="Areas\CustomAdmin\AdminCustomAreaRegistration.cs" />
-    <Compile Include="Areas\CustomAdmin\Controllers\EventCategoriesController.cs" />
-    <Compile Include="Areas\CustomAdmin\Controllers\PostCategoriesController.cs" />
-    <Compile Include="Areas\CustomAdmin\Controllers\CongregationsController.cs" />
-    <Compile Include="Areas\CustomAdmin\Controllers\MissionFieldsController.cs" />
-    <Compile Include="Areas\CustomAdmin\Controllers\EventsController.cs" />
-    <Compile Include="Areas\CustomAdmin\Controllers\MissionStoriesController.cs" />
-    <Compile Include="Areas\CustomAdmin\Controllers\AnnouncementsController.cs" />
-    <Compile Include="Areas\CustomAdmin\Controllers\BlogsController.cs" />
-    <Compile Include="Areas\CustomAdmin\Controllers\ResourcesController.cs" />
-    <Compile Include="Areas\CustomAdmin\Controllers\OrganizationsController.cs" />
-    <Compile Include="Areas\CustomAdmin\Controllers\TagsController.cs" />
-    <Compile Include="Areas\CustomAdmin\Controllers\MissionCentersController.cs" />
-    <Compile Include="Areas\CustomAdmin\Controllers\StaffMembersController.cs" />
+    <Compile Include="Areas\CustomAdmin\Controllers\CalendarController.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Blog\AuthorsViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Blog\CommentsViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Blog\EditCommentViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Blog\EditAuthorViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Blog\EditPostViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Blog\PostsViewModel.cs" />
     <Compile Include="Areas\CustomAdmin\HealthyNevadaAdminControllerBase.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\Calendar\EditViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\Calendar\IndexViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\MissionFields\EditViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\MissionFields\IndexViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\MissionStories\EditViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\MissionStories\IndexViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\Congregations\EditViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\Congregations\IndexViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\MissionCenters\EditViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\MissionCenters\IndexViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\Announcements\EditViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\Announcements\IndexViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\Blogs\EditViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\Blogs\IndexViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\Organizations\EditViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\Organizations\IndexViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\EventCategories\EditViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\EventCategories\IndexViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\PostCategories\EditViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\PostCategories\IndexViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\Tags\EditViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\Resources\EditViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\Tags\IndexViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\Resources\IndexViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\StaffMembers\EditViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\StaffMembers\IndexViewModel.cs" />
-    <Compile Include="Controllers\KCActorsTheatreController.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Calendar\EditEventViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Calendar\EventsViewModel.cs" />
     <Compile Include="Controllers\BlogController.cs" />
-    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\CalendarController.cs" />
+    <Compile Include="Controllers\KCActorsTheatreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
-    <Compile Include="Extensions\ViewHelpers.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -276,13 +244,11 @@
     </Compile>
     <Compile Include="Mvc\HealthyNevadaHandleErrorAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\BlogsViewModel.cs" />
-    <Compile Include="ViewModels\PostViewModel.cs" />
-    <Compile Include="ViewModels\MissionStoryViewModel.cs" />
-    <Compile Include="ViewModels\MissionStoriesViewModel.cs" />
-    <Compile Include="ViewModels\AnnouncementsViewModel.cs" />
-    <Compile Include="ViewModels\LandingViewModel.cs" />
-    <Compile Include="ViewModels\ResourceWidget.cs" />
+    <Compile Include="ViewModels\BlogViewModel.cs" />
+    <Compile Include="ViewModels\BlogPostViewModel.cs" />
+    <Compile Include="ViewModels\CalendarViewModel.cs" />
+    <Compile Include="ViewModels\CalendarEventViewModel.cs" />
+    <Compile Include="ViewModels\NewsletterSignUpViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\InnerViewModel.cs" />
     <Compile Include="ViewModels\ErrorViewModel.cs" />
@@ -294,192 +260,182 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="apple-touch-icon-114x114-precomposed.png" />
+    <Content Include="apple-touch-icon-144x144-precomposed.png" />
+    <Content Include="apple-touch-icon-57x57-precomposed.png" />
+    <Content Include="apple-touch-icon-72x72-precomposed.png" />
+    <Content Include="apple-touch-icon-precomposed.png" />
+    <Content Include="apple-touch-icon.png" />
     <Content Include="app_not_offline.htm" />
-    <Content Include="Areas\Admin\common\js\admin-staff.js" />
-    <Content Include="Areas\Admin\common\js\admin-tags.js" />
-    <Content Include="Areas\CustomAdmin\common\css\admin.css" />
-    <Content Include="Areas\CustomAdmin\common\css\blogs.css" />
-    <Content Include="Areas\CustomAdmin\common\js\blogs\index.js" />
-    <Content Include="Areas\CustomAdmin\common\js\event-categories\index.js" />
-    <Content Include="Areas\CustomAdmin\common\js\post-categories\index.js" />
-    <Content Include="Areas\CustomAdmin\common\js\mission-fields\index.js" />
-    <Content Include="Areas\CustomAdmin\common\js\mission-stories\index.js" />
-    <Content Include="Areas\CustomAdmin\common\js\congregations\congregation-contacts-create.js" />
-    <Content Include="Areas\CustomAdmin\common\js\congregations\congregation-contacts.js" />
-    <Content Include="Areas\CustomAdmin\common\js\congregations\index.js" />
-    <Content Include="Areas\CustomAdmin\common\js\events\index.js" />
-    <Content Include="Areas\CustomAdmin\common\js\shared\item-create.js" />
-    <Content Include="Areas\CustomAdmin\common\js\shared\item-index.js" />
-    <Content Include="Areas\CustomAdmin\common\js\shared\item.js" />
-    <Content Include="Areas\CustomAdmin\common\js\mission-centers\index.js" />
-    <Content Include="Areas\CustomAdmin\common\js\announcements\index.js" />
-    <Content Include="Areas\CustomAdmin\common\js\organizations\index.js" />
-    <Content Include="Areas\CustomAdmin\common\js\shared\category-manager.js" />
-    <Content Include="Areas\CustomAdmin\common\js\tags\index.js" />
-    <Content Include="Areas\CustomAdmin\common\js\shared\tag-manager.js" />
-    <Content Include="Areas\CustomAdmin\common\js\resources\index.js" />
-    <Content Include="Areas\CustomAdmin\common\js\staff-members\staff-roles-create.js" />
-    <Content Include="Areas\CustomAdmin\common\js\staff-members\staff-roles.js" />
-    <Content Include="Areas\CustomAdmin\common\js\staff-members\index.js" />
-    <Content Include="common\css\app.css" />
-    <Content Include="common\css\app.min.css">
-      <DependentUpon>app.css</DependentUpon>
+    <Content Include="Areas\CustomAdmin\common\css\news.css" />
+    <Content Include="Areas\CustomAdmin\common\js\blog\blog-author.js" />
+    <Content Include="Areas\CustomAdmin\common\js\blog\blog-comment.js" />
+    <Content Include="Areas\CustomAdmin\common\js\calendar\calendar-event.js" />
+    <Content Include="Areas\CustomAdmin\common\js\hn-item-create.js" />
+    <Content Include="Areas\CustomAdmin\common\js\blog\blog-post.js" />
+    <Content Include="Areas\CustomAdmin\common\js\hn-item-index.js" />
+    <Content Include="Areas\CustomAdmin\common\js\hn-item.js" />
+    <Content Include="common\css\add2home.css" />
+    <Content Include="common\css\bootstrap-responsive.css" />
+    <Content Include="common\css\bootstrap-responsive.min.css" />
+    <Content Include="common\css\bootstrap.css" />
+    <Content Include="common\css\bootstrap.min.css" />
+    <Content Include="common\css\flexslider.css" />
+    <Content Include="common\css\icons\icons.css" />
+    <Content Include="common\css\icons\nav-icons-black.css" />
+    <Content Include="common\css\icons\nav-icons.css" />
+    <Content Include="common\css\jquery.mobile.1.0.1.min.css" />
+    <Content Include="common\css\jquery.mobile.structure-1.0.1.min.css" />
+    <Content Include="common\css\main.css" />
+    <Content Include="common\css\normalize.css" />
+    <Content Include="common\css\photoswipe.css" />
+    <Content Include="common\css\reset.css" />
+    <Content Include="common\css\style-mobile.css" />
+    <Content Include="common\css\style.css" />
+    <Content Include="common\img\add-to-calendar-icon-2.png" />
+    <Content Include="common\img\apple-touch-icon-114-precomposed.png" />
+    <Content Include="common\img\apple-touch-icon-144-precomposed.png" />
+    <Content Include="common\img\apple-touch-icon-57-precomposed.png" />
+    <Content Include="common\img\apple-touch-icon-72-precomposed.png" />
+    <Content Include="common\img\badge.png" />
+    <Content Include="common\img\blog.png" />
+    <Content Include="common\img\cal-icon%402x.png" />
+    <Content Include="common\img\cal-icon.png" />
+    <Content Include="common\img\clouds-background-small.png" />
+    <Content Include="common\img\clouds-background.png" />
+    <Content Include="common\img\clouds.png" />
+    <Content Include="common\img\dropdown.png" />
+    <Content Include="common\img\events.png" />
+    <Content Include="common\img\favicon.png" />
+    <Content Include="common\img\fb-icon-blue%402x.png" />
+    <Content Include="common\img\fb-icon-blue.png" />
+    <Content Include="common\img\fb-icon-white%402x.png" />
+    <Content Include="common\img\fb-icon-white.png" />
+    <Content Include="common\img\glyphicons-halflings-white.png" />
+    <Content Include="common\img\glyphicons-halflings.png" />
+    <Content Include="common\img\header-logo%402x.png" />
+    <Content Include="common\img\header-logo.png" />
+    <Content Include="common\img\homepage.png" />
+    <Content Include="common\img\lg-logo.png" />
+    <Content Include="common\img\menu-icon.png" />
+    <Content Include="common\img\ph-1.png" />
+    <Content Include="common\img\ph-2.png" />
+    <Content Include="common\img\ph-3.png" />
+    <Content Include="common\img\ph-4.png" />
+    <Content Include="common\img\pin-icon-blue%402x.png" />
+    <Content Include="common\img\pin-icon-blue.png" />
+    <Content Include="common\img\pin-icon-white%402x.png" />
+    <Content Include="common\img\pin-icon-white.png" />
+    <Content Include="common\img\rss-icon-blue.png" />
+    <Content Include="common\img\shadow-1.png" />
+    <Content Include="common\img\shadow-2.png" />
+    <Content Include="common\img\sm-clouds.png" />
+    <Content Include="common\img\yt-icon-blue%402x.png" />
+    <Content Include="common\img\yt-icon-blue.png" />
+    <Content Include="common\img\yt-icon-white%402x.png" />
+    <Content Include="common\img\yt-icon-white.png" />
+    <Content Include="common\js\blog\blog-index.js" />
+    <Content Include="common\js\home\home-index.js" />
+    <Content Include="common\js\knockout-vm.js" />
+    <Content Include="common\js\calendar\calendar-index.js" />
+    <Content Include="common\js\lib\html5shiv.js" />
+    <Content Include="common\js\lib\jquery.stellar.min.js" />
+    <Content Include="common\js\lib\less-1.3.3.min.js" />
+    <Content Include="common\js\scripts-ck.js" />
+    <Content Include="common\js\scripts.js" />
+    <Content Include="common\sass\css\style.css">
+      <DependentUpon>style.scss</DependentUpon>
     </Content>
-    <Content Include="common\css\variables.css" />
-    <Content Include="common\css\variables.min.css">
-      <DependentUpon>variables.css</DependentUpon>
-    </Content>
-    <Content Include="common\css\libs\bootstrap\bootstrap.min.css" />
-    <Content Include="common\css\libs\jquery\jquery.mmenu.all.min.css" />
-    <Content Include="common\css\libs\jquery\theme.min.css" />
-    <Content Include="common\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="common\img\ajax-loader.gif" />
-    <Content Include="common\img\blue-ribbon.png" />
-    <Content Include="common\img\coc-logo%402x.png" />
-    <Content Include="common\img\coc-logo-sm%402x.png" />
-    <Content Include="common\img\coc-logo-sm.png" />
-    <Content Include="common\img\coc-logo.png" />
-    <Content Include="common\img\facebook%402x.png" />
-    <Content Include="common\img\facebook.png" />
-    <Content Include="common\img\inner-single-img.png" />
-    <Content Include="common\img\landing-img.png" />
-    <Content Include="common\img\ribbon-lg.png" />
-    <Content Include="common\img\rss%402x.png" />
-    <Content Include="common\img\rss.png" />
-    <Content Include="common\img\small-half.png" />
-    <Content Include="common\img\style-test.jpg" />
-    <Content Include="common\img\twitter%402x.png" />
-    <Content Include="common\img\twitter.png" />
-    <Content Include="common\img\youtube%402x.png" />
-    <Content Include="common\img\youtube.png" />
-    <Content Include="common\js\app.js" />
-    <Content Include="common\js\app.min.js" />
-    <Content Include="common\js\homepage.js" />
-    <Content Include="common\js\homepage.min.js" />
-    <Content Include="common\js\libs\angular\1.2.14\angular-animate.min.js" />
-    <Content Include="common\js\libs\angular\1.2.14\angular-route.min.js" />
-    <Content Include="common\js\libs\angular\1.2.14\angular.min.js" />
-    <Content Include="common\js\libs\bootstrap\bootstrap.min.js" />
-    <Content Include="common\js\libs\jquery\jquery.mmenu.min.all.min.js" />
-    <Content Include="common\js\libs\respond\respond.min.js" />
-    <Content Include="ng-apps\blog\controllers\DefaultController.js" />
-    <Content Include="ng-apps\blog\controllers\PostController.js" />
-    <Content Include="ng-apps\blog\directives\AddThis.js" />
-    <Content Include="ng-apps\shared\directives\GlobalNotificationDirective.js" />
-    <Content Include="ng-apps\blog\services\DataService.js" />
-    <Content Include="ng-apps\blog\services\PostsService.js" />
-    <Content Include="ng-apps\blog\services\PostService.js" />
-    <Content Include="ng-apps\blog\templates\default.html" />
-    <Content Include="ng-apps\blog\templates\post.html" />
-    <Content Include="ng-apps\blog\blog-app.js" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\themes\base\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.menu.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.spinner.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\jquery.ui.tooltip.css" />
+    <Content Include="Content\themes\base\minified\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.menu.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.spinner.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="crossdomain.xml" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="LogIn.aspx" />
-    <Content Include="Areas\Admin\Views\Content\HeroImageContent.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_KCActorsTheatreAppEdit.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Resources\Index.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Resources\Edit.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Tags\Index.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Tags\Edit.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Congregations\Index.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Congregations\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Content\ContentWidgetContent.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\StaffMembers\Edit.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\StaffMembers\Index.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\MissionCenters\Edit.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\MissionCenters\Index.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Announcements\Edit.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Announcements\Index.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Shared\_ManageTagsForm.cshtml" />
-    <Content Include="Areas\Admin\Views\Content\ResourceWidgetContent.cshtml" />
-    <Content Include="Areas\Admin\Views\App\Index.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\MissionStories\Edit.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\MissionStories\Index.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Resources\_EditAudio.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Resources\_EditDocument.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Resources\_EditMedia.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Resources\_EditProduct.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Resources\_EditPublication.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Resources\_EditSlideshow.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Resources\_EditVideo.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\MissionFields\Edit.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\MissionFields\Index.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Organizations\Edit.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Organizations\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Content\HomePageMissionStoryWidgetContent.cshtml" />
-    <Content Include="Areas\Admin\Views\Content\AnnouncementWidgetContent.cshtml" />
-    <Content Include="Areas\Admin\Views\Content\MissionStoryWidgetContent.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_TaggedWidgetTagManager.cshtml" />
-    <Content Include="Areas\Admin\Views\Content\HomePageContentWidgetContent.cshtml" />
-    <Content Include="common\less\app.less" />
-    <Content Include="common\less\bootstrap\alerts.less" />
-    <Content Include="common\less\bootstrap\badges.less" />
-    <Content Include="common\less\bootstrap\bootstrap.less" />
-    <Content Include="common\less\bootstrap\breadcrumbs.less" />
-    <Content Include="common\less\bootstrap\button-groups.less" />
-    <Content Include="common\less\bootstrap\buttons.less" />
-    <Content Include="common\less\bootstrap\carousel.less" />
-    <Content Include="common\less\bootstrap\close.less" />
-    <Content Include="common\less\bootstrap\code.less" />
-    <Content Include="common\less\bootstrap\component-animations.less" />
-    <Content Include="common\less\bootstrap\dropdowns.less" />
-    <Content Include="common\less\bootstrap\forms.less" />
-    <Content Include="common\less\bootstrap\glyphicons.less" />
-    <Content Include="common\less\bootstrap\grid.less" />
-    <Content Include="common\less\bootstrap\input-groups.less" />
-    <Content Include="common\less\bootstrap\jumbotron.less" />
-    <Content Include="common\less\bootstrap\labels.less" />
-    <Content Include="common\less\bootstrap\list-group.less" />
-    <Content Include="common\less\bootstrap\media.less" />
-    <Content Include="common\less\bootstrap\mixins.less" />
-    <Content Include="common\less\bootstrap\modals.less" />
-    <Content Include="common\less\bootstrap\navbar.less" />
-    <Content Include="common\less\bootstrap\navs.less" />
-    <Content Include="common\less\bootstrap\normalize.less" />
-    <Content Include="common\less\bootstrap\pager.less" />
-    <Content Include="common\less\bootstrap\pagination.less" />
-    <Content Include="common\less\bootstrap\panels.less" />
-    <Content Include="common\less\bootstrap\popovers.less" />
-    <Content Include="common\less\bootstrap\print.less" />
-    <Content Include="common\less\bootstrap\progress-bars.less" />
-    <Content Include="common\less\bootstrap\responsive-utilities.less" />
-    <Content Include="common\less\bootstrap\scaffolding.less" />
-    <Content Include="common\less\bootstrap\tables.less" />
-    <Content Include="common\less\bootstrap\theme.less" />
-    <Content Include="common\less\bootstrap\thumbnails.less" />
-    <Content Include="common\less\bootstrap\tooltip.less" />
-    <Content Include="common\less\bootstrap\type.less" />
-    <Content Include="common\less\bootstrap\utilities.less" />
-    <Content Include="common\less\bootstrap\variables.less" />
-    <Content Include="common\less\bootstrap\wells.less" />
-    <Content Include="common\less\layout.less" />
-    <Content Include="common\less\queries.less" />
-    <Content Include="common\less\typography.less" />
-    <Content Include="common\less\variables.less" />
-    <Content Include="common\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="common\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="common\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Areas\Admin\Views\Content\RotatorImageContent.cshtml" />
-    <Content Include="Areas\Admin\Views\Content\LandingPageHeroImageContent.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\StaffMembers\_EditStaffMember.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\StaffMembers\_EditConnectWidgetContact.cshtml" />
-    <Content Include="Areas\Admin\Views\Content\ConnectWidgetContent.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Events\Edit.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Events\Index.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Blogs\Edit.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Blogs\Index.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Shared\_ManageCategoriesForm.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\PostCategories\Edit.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\PostCategories\Index.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\EventCategories\Edit.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\EventCategories\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Content\AlertContent.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Resources\_EditPresentation.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_HealthyNevadaAppEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Content\RotatorVideoContent.cshtml" />
     <None Include="Properties\PublishProfiles\Production_Deploy.pubxml" />
-    <Content Include="ng-apps\shared\base-app.js" />
-    <Content Include="ng-apps\shared\services\GlobalNotificationService.js" />
-    <Content Include="ng-apps\shared\services\PromisesService.js" />
-    <Content Include="ng-apps\shared\templates\directives\global-notification.html" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-ui-1.10.3.js" />
+    <Content Include="Scripts\jquery-ui-1.10.3.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.cookie.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -493,21 +449,14 @@
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\Calendar\Event.cshtml" />
     <Content Include="Views\Home\Inner.cshtml" />
+    <Content Include="Views\Shared\_NewsletterSignUp.cshtml" />
+    <Content Include="Views\Shared\_RotatorCaptions.cshtml" />
+    <Content Include="Views\Shared\_RotatorSlides.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
-    <Content Include="Views\Shared\Header\HeaderScripts.cshtml" />
-    <Content Include="Views\Shared\Footer\FooterScripts.cshtml" />
+    <Content Include="Views\Shared\_HeaderScripts.cshtml" />
+    <Content Include="Views\Shared\_FooterScripts.cshtml" />
     <Content Include="Views\Home\SiteMap.cshtml" />
-    <Content Include="Views\Shared\Layouts\InnerWithSidebar.cshtml" />
-    <Content Include="Views\News\Announcements.cshtml" />
-    <Content Include="Views\News\MissionStories.cshtml" />
-    <Content Include="Views\News\MissionStory.cshtml" />
-    <Content Include="Views\Home\Landing.cshtml" />
-    <Content Include="Views\Shared\Layouts\Inner.cshtml" />
-    <Content Include="Views\Blog\Blog.cshtml" />
-    <Content Include="Views\Shared\Widgets\ResourceWidget.cshtml" />
-    <Content Include="Views\Shared\Widgets\AnnouncementWidget.cshtml" />
-    <Content Include="Views\Shared\Widgets\ConnectWidget.cshtml" />
-    <Content Include="Views\Shared\Widgets\ContentWidgets.cshtml" />
+    <Content Include="Views\Home\CommunityDashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="common\cms\files\" />
@@ -517,7 +466,6 @@
     <Folder Include="common\cms\images\rotator\" />
     <Folder Include="common\keys\" />
     <Folder Include="common\logs\" />
-    <Folder Include="ng-apps\shared\controllers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -531,26 +479,133 @@
       <Project>{48c0fa29-2a39-4e16-9efc-5e0afbd12272}</Project>
       <Name>KCActorsTheatre.Library</Name>
     </ProjectReference>
-    <ProjectReference Include="..\KCActorsTheatre.Services\KCActorsTheatre.Services.csproj">
-      <Project>{73edc883-6e18-45ea-abd4-118a126fb74a}</Project>
-      <Name>KCActorsTheatre.Services</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\CustomAdmin\Views\Blog\EditPostAjax.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Areas\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="config.rb" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\CustomAdmin\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\CustomAdmin\Views\Blog\Posts.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Blog\Comments.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Blog\Authors.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Blog\EditAuthorAjax.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Blog\EditCommentAjax.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Calendar\Events.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Calendar\EditEventAjax.cshtml" />
+    <Content Include="common\less\accordion.less" />
+    <Content Include="common\less\alerts.less" />
+    <Content Include="common\less\bootstrap.less" />
+    <Content Include="common\less\breadcrumbs.less" />
+    <Content Include="common\less\button-groups.less" />
+    <Content Include="common\less\buttons.less" />
+    <Content Include="common\less\carousel.less" />
+    <Content Include="common\less\close.less" />
+    <Content Include="common\less\code.less" />
+    <Content Include="common\less\component-animations.less" />
+    <Content Include="common\less\dropdowns.less" />
+    <Content Include="common\less\forms.less" />
+    <Content Include="common\less\grid.less" />
+    <Content Include="common\less\hero-unit.less" />
+    <Content Include="common\less\labels-badges.less" />
+    <Content Include="common\less\layouts.less" />
+    <Content Include="common\less\media.less" />
+    <Content Include="common\less\mixins.less" />
+    <Content Include="common\less\modals.less" />
+    <Content Include="common\less\navbar.less" />
+    <Content Include="common\less\navs.less" />
+    <Content Include="common\less\pager.less" />
+    <Content Include="common\less\pagination.less" />
+    <Content Include="common\less\popovers.less" />
+    <Content Include="common\less\progress-bars.less" />
+    <Content Include="common\less\reset.less" />
+    <Content Include="common\less\responsive-1200px-min.less" />
+    <Content Include="common\less\responsive-767px-max.less" />
+    <Content Include="common\less\responsive-768px-979px.less" />
+    <Content Include="common\less\responsive-navbar.less" />
+    <Content Include="common\less\responsive-utilities.less" />
+    <Content Include="common\less\responsive.less" />
+    <Content Include="common\less\scaffolding.less" />
+    <Content Include="common\less\sprites.less" />
+    <Content Include="common\less\tables.less" />
+    <Content Include="common\less\thumbnails.less" />
+    <Content Include="common\less\tooltip.less" />
+    <Content Include="common\less\type.less" />
+    <Content Include="common\less\utilities.less" />
+    <Content Include="common\less\variables.less" />
+    <Content Include="common\less\wells.less" />
+    <Content Include="common\sass\bourbon\addons\_button.scss" />
+    <Content Include="common\sass\bourbon\addons\_clearfix.scss" />
+    <Content Include="common\sass\bourbon\addons\_font-family.scss" />
+    <Content Include="common\sass\bourbon\addons\_hide-text.scss" />
+    <Content Include="common\sass\bourbon\addons\_html5-input-types.scss" />
+    <Content Include="common\sass\bourbon\addons\_position.scss" />
+    <Content Include="common\sass\bourbon\addons\_prefixer.scss" />
+    <Content Include="common\sass\bourbon\addons\_retina-image.scss" />
+    <Content Include="common\sass\bourbon\addons\_size.scss" />
+    <Content Include="common\sass\bourbon\addons\_timing-functions.scss" />
+    <Content Include="common\sass\bourbon\addons\_triangle.scss" />
+    <Content Include="common\sass\bourbon\css3\_animation.scss" />
+    <Content Include="common\sass\bourbon\css3\_appearance.scss" />
+    <Content Include="common\sass\bourbon\css3\_backface-visibility.scss" />
+    <Content Include="common\sass\bourbon\css3\_background-image.scss" />
+    <Content Include="common\sass\bourbon\css3\_background.scss" />
+    <Content Include="common\sass\bourbon\css3\_border-image.scss" />
+    <Content Include="common\sass\bourbon\css3\_border-radius.scss" />
+    <Content Include="common\sass\bourbon\css3\_box-sizing.scss" />
+    <Content Include="common\sass\bourbon\css3\_columns.scss" />
+    <Content Include="common\sass\bourbon\css3\_flex-box.scss" />
+    <Content Include="common\sass\bourbon\css3\_font-face.scss" />
+    <Content Include="common\sass\bourbon\css3\_hidpi-media-query.scss" />
+    <Content Include="common\sass\bourbon\css3\_hyphens.scss" />
+    <Content Include="common\sass\bourbon\css3\_image-rendering.scss" />
+    <Content Include="common\sass\bourbon\css3\_inline-block.scss" />
+    <Content Include="common\sass\bourbon\css3\_keyframes.scss" />
+    <Content Include="common\sass\bourbon\css3\_linear-gradient.scss" />
+    <Content Include="common\sass\bourbon\css3\_perspective.scss" />
+    <Content Include="common\sass\bourbon\css3\_placeholder.scss" />
+    <Content Include="common\sass\bourbon\css3\_radial-gradient.scss" />
+    <Content Include="common\sass\bourbon\css3\_transform.scss" />
+    <Content Include="common\sass\bourbon\css3\_transition.scss" />
+    <Content Include="common\sass\bourbon\css3\_user-select.scss" />
+    <Content Include="common\sass\bourbon\functions\_flex-grid.scss" />
+    <Content Include="common\sass\bourbon\functions\_golden-ratio.scss" />
+    <Content Include="common\sass\bourbon\functions\_grid-width.scss" />
+    <Content Include="common\sass\bourbon\functions\_linear-gradient.scss" />
+    <Content Include="common\sass\bourbon\functions\_modular-scale.scss" />
+    <Content Include="common\sass\bourbon\functions\_px-to-em.scss" />
+    <Content Include="common\sass\bourbon\functions\_radial-gradient.scss" />
+    <Content Include="common\sass\bourbon\functions\_strip-units.scss" />
+    <Content Include="common\sass\bourbon\functions\_tint-shade.scss" />
+    <Content Include="common\sass\bourbon\functions\_transition-property-name.scss" />
+    <Content Include="common\sass\bourbon\helpers\_gradient-positions-parser.scss" />
+    <Content Include="common\sass\bourbon\helpers\_linear-positions-parser.scss" />
+    <Content Include="common\sass\bourbon\helpers\_radial-arg-parser.scss" />
+    <Content Include="common\sass\bourbon\helpers\_radial-positions-parser.scss" />
+    <Content Include="common\sass\bourbon\helpers\_render-gradients.scss" />
+    <Content Include="common\sass\bourbon\helpers\_shape-size-stripper.scss" />
+    <Content Include="common\sass\bourbon\settings\_prefixer.scss" />
+    <Content Include="common\sass\bourbon\settings\_px-to-em.scss" />
+    <Content Include="common\sass\bourbon\_bourbon-deprecated-upcoming.scss" />
+    <Content Include="common\sass\bourbon\_bourbon.scss" />
+    <Content Include="common\sass\style.scss" />
     <None Include="Properties\PublishProfiles\DevWeb.pubxml" />
-    <Content Include="Views\Shared\Layouts\Layout.cshtml" />
-    <Content Include="Views\Shared\Header\Header.cshtml" />
-    <Content Include="Views\Shared\Footer\Footer.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Blog\Post.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -568,7 +623,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>41631</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

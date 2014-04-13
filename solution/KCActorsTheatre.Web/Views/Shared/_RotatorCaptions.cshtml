@@ -1,0 +1,21 @@
+﻿@model Clickfarm.Cms.Core.ContentGroupMember
+@using KCActorsTheatre.Cms.ContentTypes
+ @{  
+    if (Model.Content is RotatorImageContent)
+    {
+        RotatorImageContent imageContent = (RotatorImageContent)Model.Content;   
+        <div class="slide-caption-container hero-text" data-slide-index="@Model.DisplayOrder">
+	        <h2><a class="slide-title" data-slide-index="@Model.DisplayOrder" href="#">@imageContent.SlideTitle</a></h2>
+	        <p>@imageContent.SlideCaption</p>
+        </div>    
+    }
+    else if (Model.Content is RotatorVideoContent)
+    {
+        RotatorVideoContent videoContent = (RotatorVideoContent)Model.Content;
+        <div class="slide-caption-container hero-text" data-slide-index="@Model.DisplayOrder">
+	        <h2><a class="slide-title" data-slide-index="@Model.DisplayOrder" href="#">@videoContent.Title</a></h2>
+	        <p>@videoContent.Caption</p>
+        </div>    
+    }
+
+}

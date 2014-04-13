@@ -1,0 +1,104 @@
+﻿@using Clickfarm.Cms.Mvc
+@model KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.Blog.CommentsViewModel
+@{
+    var entityDescriptionSingular = "Blog Comment";
+    var entityDescriptionPlural = "Blog Comments";
+    ViewBag.HtmlTitle = @entityDescriptionPlural;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@section styles
+{
+    <link href="/common/css/KCActorsTheatre.css" rel="stylesheet" type="text/css" />
+}
+@section scripts
+{
+    <script type="text/javascript" src="@Url.CdnResource("/common/js/knockout-plugins/mapping/2.3.5/knockout.mapping-2.3.5.js")"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/hn-item.js"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/hn-item-create.js"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/hn-item-index.js"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/blog/blog-comment.js"></script>
+    <style type="text/css">
+        .checkbox-cell {
+            padding-top: 7px !important;
+            padding-left:10px !important;
+        }
+    </style>
+}
+<div id="items" class="items-container">
+    <div id="tabs">
+        <a href="#" id="close-tabs-link" data-bind="visible: tabMgr.tabs().length > 1, click: tabMgr.closeAllTabs" title="Close all">Close all</a>
+        <ul>
+            <li class="tab-notclosable"><a href="#primary-tab">@entityDescriptionPlural</a></li>
+        </ul>
+        <div id="primary-tab">
+            <div class="ui-toolbar-cms">
+                <a id="approve-items" href="#">Approve Selected</a>
+                <a id="unapprove-items" href="#">Unapprove Selected</a>
+                <a id="delete-items" href="#">Delete Selected</a>
+            </div>
+            <div class="tab-options-wrapper">
+                <div id="start-options" class="tab-options">
+                    <h3><a>@entityDescriptionPlural</a></h3>
+                    <div>
+                        <div>
+                            <label for="find-items-name">Find By Text:</label><br />
+                            <input type="text" id="find-items-name" />
+                            <a id="show-all-items" style="margin-top: 10px" href="#">Show All</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-display">
+                <div id="find-items-results" data-bind="visible: findResultsVisible" class="tab-display-panel ui-dialog ui-widget ui-widget-cms ui-widget-content ui-corner-all ui-state-highlight">
+                    @Html.TitleBar(entityDescriptionPlural + " Found", true, "close-find-items-results", "click: closeFindResults")
+                    <div class="wrapper">
+                        <div data-bind="visible: retrievingItems">
+                            <img src="@Url.AjaxLoader()" alt="Looking..." />
+                            Looking...
+                        </div>
+                        <table class="items-table table-layout" data-bind="visible: !retrievingItems() && anyItems()">
+                            <thead>
+                                <tr>
+                                    <th class="checkbox-cell"><input type="checkbox" id="toggle-checked-list" /></th>
+                                    <th>Name</th>
+                                    <th>Text</th>
+                                    <th>Related to Post</th>
+                                    <th>Date Created</th>
+                                    <th>Is Approved?</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: items">
+                                <tr data-bind="attr: { 'data-item-id': ID }">
+                                    <td class="checkbox-cell"><input type="checkbox" class="item-checkbox" data-bind="attr: { 'data-item-id': ID }" /></td>
+                                    <td>
+                                        <a href="#" data-bind="click: function () { $parent.showEditItem($data); }, text: Name, attr: { 'data-item-id': ID }"></a>
+                                    </td>
+                                    <td data-bind="text: Text"></td>
+                                    <td data-bind="text: Post.Title"></td>
+                                    <td data-bind="text: DateCreated"></td>
+                                    <td data-bind="text: ApprovalText"></td>
+                                    <td>
+                                        <a href="#" class="approve-item-link" data-bind="jEnable: !IsApproved(), click: function () { $parent.modifyComment($data, 'Approve') }">Approve</a>
+                                        <a href="#" class="unapprove-item-link" data-bind="jEnable: IsApproved(), click: function () { $parent.modifyComment($data, 'Unapprove') }">Unapprove</a>
+                                        <a href="#" class="delete-item-link" data-bind="click: function () { $parent.modifyComment($data, 'Delete') }">Delete</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div data-bind="visible: !retrievingItems() && !anyItems()">No @entityDescriptionPlural were found.</div>
+                    </div>
+                </div>
+                <div id="recent-items" data-bind="visible: recentItems().length > 0" class="tab-display-panel ui-dialog ui-widget ui-widget-cms ui-widget-content ui-corner-all ui-state-highlight">
+                    @Html.TitleBar("Recent " + entityDescriptionPlural)
+                    <div class="wrapper">
+                        <ul data-bind="foreach: recentItems">
+                            <li><a href="#" data-bind="click: function () { $parent.showEditItem($data); }, text: Name, attr: { 'data-item-id': ID }"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <br class="clear" />
+        </div>
+    </div>
+</div>

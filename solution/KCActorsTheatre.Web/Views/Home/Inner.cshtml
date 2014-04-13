@@ -1,39 +1,23 @@
-﻿@using Clickfarm.AppFramework.Extensions;
-@using Clickfarm.Cms.Configuration
-@using Clickfarm.Cms.Core
-@using Clickfarm.Cms.Mvc
+﻿@using Clickfarm.Cms.Mvc
 @using KCActorsTheatre
 @using KCActorsTheatre.Cms
-@using KCActorsTheatre.Cms.ContentTypes
 @model KCActorsTheatre.Web.ViewModels.InnerViewModel
 @{
-    Layout = "~/Views/Shared/Layouts/InnerWithSidebar.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";    
     var req = Model.RequestContent;
     var page = req.Page as Clickfarm.Cms.Core.WebPage;
 }
-
-@section Body {
-    <div class="row">
-        @if (!string.IsNullOrWhiteSpace(Model.HeroImageURL))
-        {
-            <div class="col-lg-12">
-                <img src="@Model.HeroImageURL" alt="@page.Title" class="header-img" />
-                <h1 class="page-title">@page.Title</h1>
-            </div>
-        }
-    </div>
-    <div class="row spacer">
-        <div class="col-lg-12">
-            @Html.Content(page, CmsConfigConstants.ContentType_BodyCopy)
-        </div>
-    </div>
-}
-
-@section Sidebar {
-    @Html.Partial("~/Views/Shared/Widgets/ContentWidgets.cshtml")
-    @* TODO - mission stories widget goes here *@
-    @Html.Partial("~/Views/Shared/Widgets/ResourceWidget.cshtml")
-    @* TODO - calendar widget goes here *@
-    @Html.Partial("~/Views/Shared/Widgets/AnnouncementWidget.cshtml")
-    @Html.Partial("~/Views/Shared/Widgets/ConnectWidget.cshtml")
-}
+<div class="container inner-container">
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="row-fluid first-block">
+				<div class="span12" id="secondary">
+					<div>
+						<h2>@page.Title</h2>
+						<p>@Html.Content(page, "Body Copy")</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

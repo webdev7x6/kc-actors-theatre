@@ -34,29 +34,23 @@
   <ItemGroup>
     <Reference Include="Autofac, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Autofac.3.3.0\lib\net40\Autofac.dll</HintPath>
+      <HintPath>..\packages\Autofac.3.0.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Autofac.3.0.2\lib\net40\Autofac.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Autofac.Integration.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Autofac.Mvc4.3.1.0\lib\net40\Autofac.Integration.Mvc.dll</HintPath>
+      <HintPath>..\packages\Autofac.Mvc4.3.0.0\lib\net40\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="Clickfarm.AppFramework, Version=1.1.95.8, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Clickfarm.AppFramework, Version=3.1.1024.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Clickfarm.AppFramework.1.1.95.8-trunk\lib\net45\Clickfarm.AppFramework.dll</HintPath>
+      <HintPath>..\packages\Clickfarm.AppFramework.3.1.1024.1\lib\net45\Clickfarm.AppFramework.dll</HintPath>
     </Reference>
-    <Reference Include="Clickfarm.Cms, Version=3.2.1087.181, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Clickfarm.Cms, Version=3.1.1024.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Clickfarm.Cms.3.2.1087.181-trunk\lib\net45\Clickfarm.Cms.dll</HintPath>
-    </Reference>
-    <Reference Include="Clickfarm.Cms.Admin.Mvc">
-      <HintPath>..\packages\Clickfarm.Cms.Admin.Mvc.3.2.1087.181-trunk\lib\net45\Clickfarm.Cms.Admin.Mvc.dll</HintPath>
-    </Reference>
-    <Reference Include="ClosedXML">
-      <HintPath>..\packages\ClosedXML.0.68.1\lib\net40-client\ClosedXML.dll</HintPath>
-    </Reference>
-    <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DocumentFormat.OpenXml.1.0\lib\DocumentFormat.OpenXml.dll</HintPath>
+      <HintPath>..\packages\Clickfarm.Cms.3.1.1024.1\lib\net45\Clickfarm.Cms.dll</HintPath>
     </Reference>
     <Reference Include="DotNetOpenAuth.AspNet, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -82,28 +76,25 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.3.0.13117\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.0-beta1\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.0-beta1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.3.1.1\lib\net45\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.2.0.30506.0\lib\net40\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
@@ -122,67 +113,31 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.20710.0\lib\net40\WebMatrix.Data.dll</HintPath>
     </Reference>
-    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.1.1\lib\net45\WebMatrix.WebData.dll</HintPath>
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.30506.0\lib\net40\WebMatrix.WebData.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Blogs\BlogType.cs" />
-    <Compile Include="Blogs\PostCategory.cs" />
-    <Compile Include="Blogs\Post.cs" />
-    <Compile Include="Blogs\PostStatus.cs" />
-    <Compile Include="Calendar\CalendarEvent.cs" />
-    <Compile Include="Calendar\EventCategory.cs" />
-    <Compile Include="Cms\AppTypes\KCActorsTheatreApp.cs" />
+    <Compile Include="AppTypes\KCActorsTheatreApp.cs" />
+    <Compile Include="Blog\PostDTO.cs" />
+    <Compile Include="Blog\Author.cs" />
+    <Compile Include="Blog\Comment.cs" />
+    <Compile Include="Blog\Post.cs" />
     <Compile Include="Cms\CalloutTextContent.cs" />
-    <Compile Include="Cms\CmsConfigConstants.cs" />
     <Compile Include="Cms\ContentHelper.cs" />
-    <Compile Include="Cms\ContentTypes\AlertContent.cs" />
-    <Compile Include="Cms\ContentTypes\LandingPageHeroImageContent.cs" />
-    <Compile Include="Cms\ContentTypes\RotatorImageContent.cs" />
-    <Compile Include="Cms\ContentTypes\HomePageContentWidgetContent.cs" />
-    <Compile Include="Cms\ContentTypes\MissionStoryWidgetContent.cs" />
-    <Compile Include="Cms\ContentTypes\ContentWidgetContent.cs" />
-    <Compile Include="Cms\ContentTypes\AnnouncementWidgetContent.cs" />
-    <Compile Include="Cms\ContentTypes\ResourceWidgetContent.cs" />
-    <Compile Include="Cms\ContentTypes\HomePageMissionStoryWidgetContent.cs" />
-    <Compile Include="Cms\ContentTypes\ConnectWidgetContent.cs" />
-    <Compile Include="Cms\ContentTypes\TaggedWidgetContent.cs" />
     <Compile Include="Cms\ContentTypes\HeroImageContent.cs" />
-    <Compile Include="Locations\Congregation.cs" />
-    <Compile Include="Locations\CongregationContact.cs" />
-    <Compile Include="Cms\Constants.cs" />
-    <Compile Include="Announcements\Announcement.cs" />
-    <Compile Include="Locations\MissionField.cs" />
-    <Compile Include="Locations\MissionCenter.cs" />
-    <Compile Include="Announcements\AnnouncementType.cs" />
-    <Compile Include="MissionStories\MissionStory.cs" />
-    <Compile Include="Organizations\Organization.cs" />
-    <Compile Include="Organizations\OrganizationType.cs" />
-    <Compile Include="Resources\Language.cs" />
+    <Compile Include="Cms\ContentTypes\RotatorContent.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Calendar\Event.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\Resource.cs" />
-    <Compile Include="Resources\VideoType.cs" />
-    <Compile Include="Resources\ResourceType.cs" />
-    <Compile Include="Staff\StaffType.cs" />
-    <Compile Include="Tags\TagType.cs" />
-    <Compile Include="Tags\Tag.cs" />
-    <Compile Include="Search\SearchResult.cs" />
-    <Compile Include="Staff\Role.cs" />
-    <Compile Include="Staff\RoleDefinition.cs" />
-    <Compile Include="Staff\StaffMember.cs" />
+    <Compile Include="NewsletterSignUp.cs" />
+    <Compile Include="SearchResult.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="crossdomain.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Cms\Core\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!--Import Project="..\packages\Microsoft.Bcl.Build.1.0.7\tools\Microsoft.Bcl.Build.targets" /-->

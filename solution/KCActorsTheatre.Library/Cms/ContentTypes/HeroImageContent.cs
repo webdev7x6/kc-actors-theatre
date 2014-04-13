@@ -1,13 +1,16 @@
-﻿using Clickfarm.Cms.Core;
-using System.ComponentModel.DataAnnotations;
+﻿using System.Text;
+using System.Web;
+using Clickfarm.Cms.Core;
 
 namespace KCActorsTheatre.Cms.ContentTypes
 {
-    public class HeroImageContent : HyperlinkContent
+    public class HeroImageContent : ImageContent
     {
         public override string ToHtmlString()
         {
-            return base.ToHtmlString();
+			var sb = new StringBuilder();
+			sb.AppendFormat("<img src=\"{0}\" alt=\"{1}\" title=\"{1}\" />", HttpUtility.HtmlAttributeEncode(ImageUrl), HttpUtility.HtmlAttributeEncode(Title));
+			return sb.ToString();
         }
     }
 }

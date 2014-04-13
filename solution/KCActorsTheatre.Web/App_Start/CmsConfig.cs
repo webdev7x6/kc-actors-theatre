@@ -1,4 +1,7 @@
-﻿using Autofac;
+﻿using System.Reflection;
+using System.Web;
+using System.Web.Mvc;
+using Autofac;
 using Autofac.Integration.Mvc;
 using Clickfarm.AppFramework.Logging;
 using Clickfarm.Cms.Configuration;
@@ -9,12 +12,8 @@ using Clickfarm.Cms.Init.Autofac.Modules;
 using Clickfarm.Cms.Membership;
 using Clickfarm.Cms.Mvc;
 using KCActorsTheatre.Cms;
-using KCActorsTheatre.Cms.ContentTypes;
 using KCActorsTheatre.Data;
-using KCActorsTheatre.Services.Mapping;
-using System.Reflection;
-using System.Web;
-using System.Web.Mvc;
+using KCActorsTheatre.Cms.ContentTypes;
 
 namespace KCActorsTheatre.Web
 {
@@ -25,7 +24,6 @@ namespace KCActorsTheatre.Web
             ModelMetadataProviders.Current = new CmsModelMetadataProvider();
 
             #region Autofac registration
-
             var builder = new ContainerBuilder();
             builder.RegisterModule(new AutofacWebTypesModule());
             builder.RegisterFilterProvider();
@@ -36,10 +34,6 @@ namespace KCActorsTheatre.Web
                 TemplateAssemblyFiles = new string[] { HttpContext.Current.Server.MapPath("~/Bin/KCActorsTheatre.Web.dll") }
             });
             builder.RegisterModule(new EntityFrameworkModule());
-
-            builder.RegisterType<AutoMapperService>().As<IMappingService>();
-            builder.RegisterType<JsonMapper>().As<IJsonMapper>();
-
             builder.RegisterType<KCActorsTheatreRepository>().As<ICmsRepository>();
             builder.RegisterType<KCActorsTheatreDbContext>()
                 .AsSelf()
@@ -66,398 +60,57 @@ namespace KCActorsTheatre.Web
                 })
             ;
 
-            builder.RegisterType<CachedRequestContentHandler>().AsSelf().UsingConstructor(typeof(IScheduleService)).SingleInstance();
-
             DependencyResolver.SetResolver(new AutofacDependencyResolver(builder.Build()));
-
             #endregion
 
             var configBuilder = DependencyResolver.Current.GetService<CmsConfigBuilder>();
 
-            #region Admin Menus
-
+            #region Global
+            //global
             configBuilder.Global()
-                .HasProjectName("KC Actors Theatre CMS")
+                .HasProjectName("Healthy Nevada CMS")
                 .HasMenuItems(new AdminMenuItem[]
                 {
-                    new AdminMenuItem 
-                    { 
-                        Title = "Blogs", 
-                        Href = "#", 
-                        RolesWithVisibility = new[] 
-                        {
-                            Clickfarm.Cms.Constants.CmsRole_SystemAdministrator 
-                        },
-                        Children = new AdminMenuItem[]
-                        {
-                            new AdminMenuItem 
-                            { 
-                                Title = "Manage Blog Categories", 
-                                Href = "/CustomAdmin/PostCategories", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator 
-                                } 
-                            },
-                            new AdminMenuItem 
-                            { 
-                                Title = "Manage Blog Tags", 
-                                Href = "/CustomAdmin/Tags/Blog", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator 
-                                } 
-                            },
-                            new AdminMenuItem 
-                            { 
-                                Title = "Blog: Daily Bread", 
-                                Href = "/CustomAdmin/Blogs/DailyBread", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator 
-                                } 
-                            },
-                            new AdminMenuItem 
-                            { 
-                                Title = "Blog: Evangelist", 
-                                Href = "/CustomAdmin/Blogs/Evangelist", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator 
-                                } 
-                            },
-                        } 
-                    },
-                    new AdminMenuItem 
-                    { 
-                        Title = "Events", 
-                        Href = "#", 
-                        RolesWithVisibility = new[] 
-                        {
-                            Clickfarm.Cms.Constants.CmsRole_SystemAdministrator 
-                        },
-                        Children = new AdminMenuItem[]
-                        {
-                            new AdminMenuItem 
-                            { 
-                                Title = "Manage Event Categories", 
-                                Href = "/CustomAdmin/EventCategories", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator 
-                                } 
-                            },
-                            new AdminMenuItem 
-                            { 
-                                Title = "Events", 
-                                Href = "/CustomAdmin/Events", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator 
-                                } 
-                            },
-                        } 
-                    },
-                    new AdminMenuItem 
-                    { 
-                        Title = "Tags", 
-                        Href = "#", 
-                        RolesWithVisibility = new[] 
-                        {
-                            Clickfarm.Cms.Constants.CmsRole_SystemAdministrator 
-                        },
-                        Children = new AdminMenuItem[]
-                        {
-                            new AdminMenuItem 
-                            { 
-                                Title = "General Tags", 
-                                Href = "/CustomAdmin/Tags/General", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator 
-                                } 
-                            },
-                            new AdminMenuItem 
-                            { 
-                                Title = "Blog Tags", 
-                                Href = "/CustomAdmin/Tags/Blog", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator 
-                                } 
-                            },
-                            new AdminMenuItem 
-                            { 
-                                Title = "Mission Story Tags", 
-                                Href = "/CustomAdmin/Tags/MissionStory", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator 
-                                } 
-                            },
-                        } 
-                    },
-                    new AdminMenuItem 
-                    { 
-                        Title = "Mission Stories", 
-                        Href = "/CustomAdmin/MissionStories", 
-                        RolesWithVisibility = new[] 
-                        {
-                            Clickfarm.Cms.Constants.CmsRole_SystemAdministrator 
-                        } 
-                    },
                     new AdminMenuItem
                     {
-                        Title = "News",
-                        Href = "#",
-                        RolesWithVisibility = new[]
-                        {
-                            Constants.CmsRole_SystemAdministrator
-                        },
-                        Children = new AdminMenuItem[]
-                        {
-                            new AdminMenuItem 
-                            { 
-                                Title = "Announcements", 
-                                Href = "/CustomAdmin/Announcements", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator 
-                                } 
-                            },
-                            new AdminMenuItem 
-                            { 
-                                Title = "Official Notifications", 
-                                Href = "/CustomAdmin/Announcements/Official", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator 
-                                } 
-                            },
-                        }
-                    },
-                    new AdminMenuItem
-                    {
-                        Title = "Resources",
-                        Href = "#",
-                        RolesWithVisibility = new[]
-                        {
-                            Constants.CmsRole_SystemAdministrator
-                        },
-                        Children = new AdminMenuItem[]
-                        {
-                            new AdminMenuItem 
-                            { 
-                                Title = "Audio", 
-                                Href = "/CustomAdmin/Resources/Audio", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator 
-                                } 
-                            },
-                            new AdminMenuItem 
-                            { 
-                                Title = "Document", 
-                                Href = "/CustomAdmin/Resources/Document", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator 
-                                } 
-                            },
-                            new AdminMenuItem 
-                            { 
-                                Title = "CD/DVD", 
-                                Href = "/CustomAdmin/Resources/Media", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator 
-                                } 
-                            },
-                            new AdminMenuItem 
-                            { 
-                                Title = "Presentation", 
-                                Href = "/CustomAdmin/Resources/Presentation", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator 
-                                } 
-                            },
-                            new AdminMenuItem 
-                            { 
-                                Title = "Product", 
-                                Href = "/CustomAdmin/Resources/Product", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator 
-                                } 
-                            },
-                            new AdminMenuItem 
-                            { 
-                                Title = "Publication", 
-                                Href = "/CustomAdmin/Resources/Publication", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator 
-                                } 
-                            },
-                            new AdminMenuItem 
-                            { 
-                                Title = "Slideshow", 
-                                Href = "/CustomAdmin/Resources/Slideshow", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator 
-                                } 
-                            },
-                            new AdminMenuItem 
-                            { 
-                                Title = "Video", 
-                                Href = "/CustomAdmin/Resources/Video", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator 
-                                } 
-                            },
-                        }
-                    },
-                    new AdminMenuItem
-                    {
-                        Title = "Staff Members",
+                        Title = "Blog",
                         Href = "#",
                         RolesWithVisibility = new[]
                         {
                             Constants.CmsRole_SystemAdministrator,
+                            Constants.CmsRole_BlogManager,
                         },
-                        Children = new AdminMenuItem[]
+					    Children = new AdminMenuItem[]
+					    {
+						    new AdminMenuItem { Title = "Blog Posts", Href = "/CustomAdmin/Blog/Posts", RolesWithVisibility = new[] {Clickfarm.Cms.Constants.CmsRole_SystemAdministrator } },
+						    new AdminMenuItem { Title = "Blog Comments", Href = "/CustomAdmin/Blog/Comments", RolesWithVisibility = new[] {Clickfarm.Cms.Constants.CmsRole_SystemAdministrator } },
+						    new AdminMenuItem { Title = "Blog Authors", Href = "/CustomAdmin/Blog/Authors", RolesWithVisibility = new[] {Clickfarm.Cms.Constants.CmsRole_SystemAdministrator } }
+					    }
+                    },
+
+                    new AdminMenuItem
+                    {
+                        Title = "Events",
+                        Href = "/CustomAdmin/Calendar/Events",
+                        RolesWithVisibility = new[]
                         {
-                            new AdminMenuItem 
-                            { 
-                                Title = "Staff", 
-                                Href = "/CustomAdmin/StaffMembers/Staff", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator,
-                                },
-                            },
-                            new AdminMenuItem 
-                            { 
-                                Title = "Connect Widget Contacts", 
-                                Href = "/CustomAdmin/StaffMembers/Connect", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator,
-                                },
-                            },
+                            Constants.CmsRole_SystemAdministrator,
+                            Constants.CmsRole_CalendarManager,
                         }
-                    },
-                    new AdminMenuItem
-                    {
-                        Title = "Locations",
-                        Href = "#",
-                        RolesWithVisibility = new[]
-                        {
-                            Constants.CmsRole_SystemAdministrator,
-                        },
-                        Children = new AdminMenuItem[]
-                        {
-                            new AdminMenuItem 
-                            { 
-                                Title = "Mission Fields", 
-                                Href = "/CustomAdmin/MissionFields", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator,
-                                },
-                            },
-                            new AdminMenuItem 
-                            { 
-                                Title = "Mission Centers", 
-                                Href = "/CustomAdmin/MissionCenters", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator,
-                                },
-                            },
-                            new AdminMenuItem 
-                            { 
-                                Title = "Congregations", 
-                                Href = "/CustomAdmin/Congregations", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator,
-                                },
-                            },                        
-                        },
-                    },
-                    new AdminMenuItem
-                    {
-                        Title = "Organizations",
-                        Href = "#",
-                        RolesWithVisibility = new[]
-                        {
-                            Constants.CmsRole_SystemAdministrator,
-                        },
-                        Children = new AdminMenuItem[]
-                        {
-                            new AdminMenuItem 
-                            { 
-                                Title = "Affiliates", 
-                                Href = "/CustomAdmin/Organizations/Affiliates", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator,
-                                },
-                            },                        
-                            new AdminMenuItem 
-                            { 
-                                Title = "Associations", 
-                                Href = "/CustomAdmin/Organizations/Associations", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator,
-                                },
-                            },                        
-                            new AdminMenuItem 
-                            { 
-                                Title = "Ministries", 
-                                Href = "/CustomAdmin/Organizations/Ministries", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator,
-                                },
-                            },
-                            new AdminMenuItem 
-                            { 
-                                Title = "Services", 
-                                Href = "/CustomAdmin/Organizations/Services", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator,
-                                },
-                            },
-                            new AdminMenuItem 
-                            { 
-                                Title = "World Church Teams", 
-                                Href = "/CustomAdmin/Organizations/WorldChurchTeams", 
-                                RolesWithVisibility = new[] 
-                                {
-                                    Clickfarm.Cms.Constants.CmsRole_SystemAdministrator,
-                                },
-                            },                        
-                        },
-                    },
+                    }
                 })
             ;
 
-            #endregion
-
             //page types
             configBuilder.PageType<WebPage>("Web Page");
+
+            #endregion
 
             #region Machines
 
             configBuilder.DefaultMachine()
                 .UsesCdnHost("clickfarmcdn.localhost")
+                //.UsesConnectionString("Development")
                 .UsesConnectionString("Workstation")
             ;
             configBuilder.Machine(Constants.MachineName_DevWeb)
@@ -495,46 +148,33 @@ namespace KCActorsTheatre.Web
                 })
             ;
 
-            configBuilder.Content<TextContent>(CmsConfigConstants.ContentType_Text)
-                .HasIconCssClass("ui-icon-comment")
-                ;
-
-            configBuilder.Content<HeroImageContent>(CmsConfigConstants.ContentType_HeroImage)
-                .UsesView(CmsConfigConstants.EditView_HeroImage)
+            configBuilder.Content<HeroImageContent>("Hero Image")
+                .UsesView("ImageContent")
                 .HasIconCssClass("ui-icon-image")
+                .HasDataEntryHint("Hero images are 870px wide with a max height of 400px.")
                 .WithProperties(new FileContentProperties
                 {
-                    RootFolder = "/common/cms/images/inner/hero",
+
+                    RootFolder = "/common/cms/images/hero",
                     DefaultSubfolder = "",
                     MediaTypes = new[] { "image/" }
                 })
                 .WithProperties(new ImageContentProperties
                 {
-                    ExactWidth = 770,
-                    ExactHeight = 300
+                    ExactWidth = 870,
+                    MaxHeight = 400
                 })
             ;
 
-            configBuilder.Content<LandingPageHeroImageContent>(CmsConfigConstants.ContentType_HeroImage)
-                .UsesView(CmsConfigConstants.EditView_LandingPageHeroImage)
+            configBuilder.Content<RotatorImageContent>("Rotator Image")
                 .HasIconCssClass("ui-icon-image")
-                .WithProperties(new FileContentProperties
+                .HasDataEntryHint("Rotator images are 770 x 540.")
+                .WithProperties("FileDocumentContentProperties", new FileContentProperties
                 {
-                    RootFolder = "/common/cms/images/landing/hero",
-                    DefaultSubfolder = "",
-                    MediaTypes = new[] {  "image/" }
+                    RootFolder = "/common/cms/files",
+                    DefaultSubfolder = ""
                 })
-                .WithProperties(new ImageContentProperties
-                {
-                    ExactWidth = 1200,
-                    ExactHeight = 500
-                })
-            ;
-
-            configBuilder.Content<RotatorImageContent>(CmsConfigConstants.ContentType_RotatorImage)
-                .UsesView(CmsConfigConstants.EditView_RotatorImage)
-                .HasIconCssClass("ui-icon-image")
-                .WithProperties(new FileContentProperties
+                .WithProperties("FileImageContentProperties", new FileContentProperties
                 {
                     RootFolder = "/common/cms/images/rotator",
                     DefaultSubfolder = "",
@@ -542,291 +182,117 @@ namespace KCActorsTheatre.Web
                 })
                 .WithProperties(new ImageContentProperties
                 {
-                    ExactWidth = 1200,
-                    ExactHeight = 500
+                    ExactWidth = 770,
+                    ExactHeight = 540
                 })
             ;
 
-            configBuilder.Content<ContentWidgetContent>(CmsConfigConstants.ContentType_ContentWidget)
-                .UsesView(CmsConfigConstants.EditView_ContentWidget)
-                .HasIconCssClass("ui-icon-image")
-                .WithProperties(new FileContentProperties
-                {
-                    RootFolder = "/common/cms/images/content-widget",
-                    DefaultSubfolder = "",
-                    MediaTypes = new[] { "image/" }
-                })
-                .WithProperties(new ImageContentProperties
-                {
-                    ExactWidth = 350,
-                    ExactHeight = 200
-                })
-            ;
+            configBuilder.Content<RotatorVideoContent>("Rotator Video").HasIconCssClass("ui-icon-video");
 
-            configBuilder.Content<ConnectWidgetContent>(CmsConfigConstants.ContentType_ConnectWidget)
-                .UsesView(CmsConfigConstants.EditView_ConnectWidget)
-                .HasIconCssClass("ui-icon-image")
-            ;
+            configBuilder.Content<TextContent>("Get Involved").HasIconCssClass("ui-icon-script");
+            configBuilder.Content<TextContent>("Upcoming Events").HasIconCssClass("ui-icon-script");
+            configBuilder.Content<TextContent>("About Healthy Nevada").HasIconCssClass("ui-icon-script");
 
-            configBuilder.Content<ResourceWidgetContent>(CmsConfigConstants.ContentType_ResourcesWidget)
-                .UsesView(CmsConfigConstants.EditView_ResourceWidget)
-                .HasIconCssClass("ui-icon-image")
-            ;
-
-            configBuilder.Content<AnnouncementWidgetContent>(CmsConfigConstants.ContentType_AnnouncementsWidget)
-                .UsesView(CmsConfigConstants.EditView_AnnouncementWidget)
-                .HasIconCssClass("ui-icon-image")
-            ;
-
-            configBuilder.Content<MissionStoryWidgetContent>(CmsConfigConstants.ContentType_MissionStoriesWidget)
-                .UsesView(CmsConfigConstants.EditView_MissionStoryWidget)
-                .HasIconCssClass("ui-icon-image")
-            ;
-
-            // home page content types
-            configBuilder.Content<AlertContent>(CmsConfigConstants.ContentType_AlertContent)
-                .UsesView(CmsConfigConstants.EditView_AlertContent)
-                .HasIconCssClass("ui-icon-image")
-            ;
-
-            configBuilder.Content<HomePageMissionStoryWidgetContent>(CmsConfigConstants.ContentType_MissionStoriesWidget)
-                .UsesView(CmsConfigConstants.EditView_HomePageMissionStoryWidget)
-                .HasIconCssClass("ui-icon-image")
-            ;
-            configBuilder.Content<HomePageContentWidgetContent>(CmsConfigConstants.ContentType_ContentWidget)
-                .UsesView(CmsConfigConstants.EditView_HomePageContentWidget)
-                .HasIconCssClass("ui-icon-image")
-                .WithProperties(new FileContentProperties
-                {
-                    RootFolder = "/common/cms/images/content-widget",
-                    DefaultSubfolder = "",
-                    MediaTypes = new[] { "image/" }
-                })
-                .WithProperties(new ImageContentProperties
-                {
-                    ExactWidth = 350,
-                    ExactHeight = 200
-                })
-            ;
 
             #endregion
 
             #region Content groups
 
-            configBuilder.ContentGroup(CmsConfigConstants.ContentGroup_BannerText)
+            configBuilder.ContentGroup("Body Copy").AsFixed().HasContentType<HtmlContent>("Copy");
+            configBuilder.ContentGroup("Home Callouts")
                 .AsFixed()
-                .HasContentType<TextContent>(CmsConfigConstants.ContentType_Text)
-                ;
-
-            configBuilder.ContentGroup(CmsConfigConstants.ContentGroup_BodyCopy)
-                .AsFixed()
-                .HasContentType<HtmlContent>(CmsConfigConstants.ContentType_BodyCopy)
+                .HasContentType<TextContent>("Get Involved")
+                .HasContentType<TextContent>("Upcoming Events")
+                .HasContentType<TextContent>("About Healthy Nevada")
             ;
 
-            configBuilder.ContentGroup(CmsConfigConstants.ContentGroup_ResourcesWidget)
+            configBuilder.ContentGroup("Hero")
                 .AsFixed()
-                .HasContentType<ResourceWidgetContent>(CmsConfigConstants.ContentType_ResourcesWidget)
+                .HasContentType<HeroImageContent>("Hero Image")
             ;
 
-            configBuilder.ContentGroup(CmsConfigConstants.ContentGroup_AnnouncementsWidget)
-                .AsFixed()
-                .HasContentType<AnnouncementWidgetContent>(CmsConfigConstants.ContentType_AnnouncementsWidget)
-            ;
-
-            configBuilder.ContentGroup(CmsConfigConstants.ContentGroup_ConnectWidget)
-                .AsFixed()
-                .HasContentType<ConnectWidgetContent>(CmsConfigConstants.ContentType_ConnectWidget)
-            ;
-
-            configBuilder.ContentGroup(CmsConfigConstants.ContentGroup_MissionStoriesWidget)
-                .AsFixed()
-                .HasContentType<MissionStoryWidgetContent>(CmsConfigConstants.ContentType_MissionStoriesWidget)
-            ;
-
-            configBuilder.ContentGroup(CmsConfigConstants.ContentGroup_ContentWidgets)
-                .HasContentType<ContentWidgetContent>(CmsConfigConstants.ContentType_ContentWidget)
-            ;
-
-            configBuilder.ContentGroup(CmsConfigConstants.ContentGroup_LandingPageHeroImage)
-                .AsFixed()
-                .HasContentType<LandingPageHeroImageContent>(CmsConfigConstants.ContentType_HeroImage)
-            ;
-
-            configBuilder.ContentGroup(CmsConfigConstants.ContentGroup_HeroImage)
-                .AsFixed()
-                .HasContentType<HeroImageContent>(CmsConfigConstants.ContentType_HeroImage)
-            ;
-
-            // home page content groups
-            configBuilder.ContentGroup(CmsConfigConstants.ContentGroup_Alerts)
-                .HasContentType<AlertContent>(CmsConfigConstants.ContentType_AlertContent)
-            ;
-            configBuilder.ContentGroup(CmsConfigConstants.ContentGroup_RotatorImages)
-                .HasContentType<RotatorImageContent>(CmsConfigConstants.ContentType_RotatorImage)
-            ;
-            configBuilder.ContentGroup(CmsConfigConstants.ContentGroup_HomePageMissionStoriesWidget)
-                .AsFixed()
-                .HasContentType<HomePageMissionStoryWidgetContent>(CmsConfigConstants.ContentType_MissionStoriesWidget)
-            ;
-            configBuilder.ContentGroup(CmsConfigConstants.ContentGroup_HomePageContentWidget)
-                .AsFixed()
-                .HasContentType<HomePageContentWidgetContent>(CmsConfigConstants.ContentType_ContentWidget)
+            configBuilder.ContentGroup("Rotator Slides")
+                .HasContentType<RotatorImageContent>("Rotator Image")
+                .HasContentType<RotatorVideoContent>("Rotator Video")
             ;
 
             #endregion
 
-            #region English Website
+            #region Apps
 
-            AppConfiguration app = configBuilder.App("English Website")
-                .HasPageType(CmsConfigConstants.PageType_WebPage)
+            #region KCActorsTheatre Website
+
+            AppConfiguration app = configBuilder.App("Healthy Nevada Website")
+                .HasPageType("Web Page")
                 .UsesEditView("_KCActorsTheatreAppEdit")
-            ;
+                ;
+
             app.OnDefaultMachine()
-                .HasHost<CachedRequestContentHandler>("localhost", "Live")
-            ;
+                .HasHost<PreviewRequestContentHandler>("localhost", "Live")
+                ;
+
             app.OnMachine(Constants.MachineName_DevWeb)
-                .HasHost<CachedRequestContentHandler>("cofchrist.clickfarminteractive.com", "Live")
-            ;
+                .HasHost<PreviewRequestContentHandler>("KCActorsTheatre.clickfarminteractive.com", "Live")
+                ;
+
             app.OnMachine(Constants.MachineName_ProdWeb)
-                .HasHost<CachedRequestContentHandler>("www.cofchrist.org", "Live", isPrimary: true)
+                .HasHost<CachedRequestContentHandler>("www.KCActorsTheatre.net", "Live", isPrimary:true)
                 .HasHost<CachedRequestContentHandler>("67.59.163.21", "IP")
-            ;
-
-            app.HasController<Controllers.HomeController>("Home Page", "Index")
-                .ForPageType(CmsConfigConstants.PageType_WebPage)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_Alerts)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_BannerText)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_RotatorImages)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_HomePageMissionStoriesWidget)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_ResourcesWidget)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_AnnouncementsWidget)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_HomePageContentWidget)
-                .SingleUse()
-            ;
-
-            app.HasController<Controllers.HomeController>("Landing Page", "Landing")
-                .ForPageType(CmsConfigConstants.PageType_WebPage)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_LandingPageHeroImage)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_BodyCopy)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_ContentWidgets)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_ConnectWidget)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_ResourcesWidget)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_AnnouncementsWidget)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_MissionStoriesWidget)
-            ;
-
-            app.HasController<Controllers.HomeController>("Inner Page", "Inner")
-                .IsDefault()
-                .ForPageType(CmsConfigConstants.PageType_WebPage)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_HeroImage)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_BodyCopy)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_ResourcesWidget)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_AnnouncementsWidget)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_MissionStoriesWidget)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_ContentWidgets)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_ConnectWidget)
-            ;
-
-            app.HasController<Controllers.NewsController>("Announcements", "Announcements")
-                .ForPageType(CmsConfigConstants.PageType_WebPage)
-                .SingleUse()
-                ;
-
-            app.HasController<Controllers.NewsController>("Official Announcements", "OfficialAnnouncements")
-                .ForPageType(CmsConfigConstants.PageType_WebPage)
-                .SingleUse()
-                ;
-
-            app.HasController<Controllers.NewsController>("Mission Stories", "MissionStories")
-                .ForPageType(CmsConfigConstants.PageType_WebPage)
-                .SingleUse()
-                ;
-
-            app.HasController<Controllers.NewsController>("Mission Story Detail Page", "MissionStory")
-                .ForPageType(CmsConfigConstants.PageType_WebPage)
-                .SingleUse()
-                ;
-
-            app.HasController<Controllers.BlogController>("Blog - Daily Bread", "DailyBread")
-                .ForPageType(CmsConfigConstants.PageType_WebPage)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_ContentWidgets)
-                .SingleUse()
-                ;
-
-            app.HasController<Controllers.BlogController>("Blog - Evangelist", "Evangelist")
-                .ForPageType(CmsConfigConstants.PageType_WebPage)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_ContentWidgets)
-                .SingleUse()
                 ;
 
             app.HasController<Controllers.HomeController>("Site Map", "SiteMap")
-                .ForPageType(CmsConfigConstants.PageType_WebPage)
+                .ForPageType("Web Page")
                 .SingleUse()
-            ;
+                ;
+
+            app.HasController<Controllers.HomeController>("Commmunity Dashboard", "CommunityDashboard")
+                .ForPageType("Web Page")
+                .HasContentGroup("Body Copy")
+                .SingleUse()
+                ;
+
+            app.HasController<Controllers.HomeController>("Home Page", "Index")
+                .ForPageType("Web Page")
+                .HasContentGroup("Home Callouts")
+                .HasContentGroup("Rotator Slides")
+                .SingleUse()
+                ;
+
+            app.HasController<Controllers.CalendarController>("Calendar Landing Page", "Index")
+                .ForPageType("Web Page")
+                .SingleUse()
+                ;
+
+            app.HasController<Controllers.CalendarController>("Calendar Event Detail Page", "Event")
+                .ForPageType("Web Page")
+                .SingleUse()
+                ;
+
+            app.HasController<Controllers.BlogController>("Blog Landing Page", "Index")
+                .ForPageType("Web Page")
+                .HasContentGroup("Hero")
+                .SingleUse()
+                ;
+
+            app.HasController<Controllers.BlogController>("Blog Detail Page", "Post")
+                .ForPageType("Web Page")
+                .SingleUse()
+                ;
+
+            app.HasController<Controllers.HomeController>("Inner Page", "Inner")
+                .IsDefault()
+                .ForPageType("Web Page")
+                .HasContentGroup("Body Copy")
+                ;
 
             app.HasController<Controllers.SearchController>("Search", "Index")
-                .ForPageType(CmsConfigConstants.PageType_WebPage)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_BodyCopy)
+                .ForPageType("Web Page")
+                .HasContentGroup("Body Copy")
                 .SingleUse()
-            ;
+                ;
+
 
             #endregion
-
-            #region Spanish Website
-
-            AppConfiguration spanishApp = configBuilder.App("Spanish Website")
-                .HasPageType(CmsConfigConstants.PageType_WebPage)
-                .UsesEditView("_KCActorsTheatreAppEdit")
-            ;
-            spanishApp.OnDefaultMachine()
-                .HasHost<PreviewRequestContentHandler>("es.localhost", "Live")
-            ;
-            spanishApp.OnMachine(Constants.MachineName_DevWeb)
-                .HasHost<PreviewRequestContentHandler>("espanol.cofchrist.clickfarminteractive.com", "Live")
-            ;
-            spanishApp.OnMachine(Constants.MachineName_ProdWeb)
-                .HasHost<CachedRequestContentHandler>("espanol.cofchrist.org", "Live", isPrimary: true)
-                .HasHost<CachedRequestContentHandler>("67.59.163.21", "IP")
-            ;
-
-            spanishApp.HasController<Controllers.HomeController>("Home Page", "Index")
-                .ForPageType(CmsConfigConstants.PageType_WebPage)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_RotatorImages)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_HomePageMissionStoriesWidget)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_ResourcesWidget)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_AnnouncementsWidget)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_HomePageContentWidget)
-                .SingleUse()
-            ;
-
-            #endregion
-
-            #region French Website
-
-            AppConfiguration frenchApp = configBuilder.App("French Website")
-                .HasPageType(CmsConfigConstants.PageType_WebPage)
-                .UsesEditView("_KCActorsTheatreAppEdit")
-            ;
-            frenchApp.OnDefaultMachine()
-                .HasHost<PreviewRequestContentHandler>("fr.localhost", "Live")
-            ;
-            frenchApp.OnMachine(Constants.MachineName_DevWeb)
-                .HasHost<PreviewRequestContentHandler>("francais.cofchrist.clickfarminteractive.com", "Live")
-            ;
-            frenchApp.OnMachine(Constants.MachineName_ProdWeb)
-                .HasHost<CachedRequestContentHandler>("francais.cofchrist.org", "Live", isPrimary: true)
-                .HasHost<CachedRequestContentHandler>("67.59.163.21", "IP")
-            ;
-
-            frenchApp.HasController<Controllers.HomeController>("Home Page", "Index")
-                .ForPageType(CmsConfigConstants.PageType_WebPage)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_RotatorImages)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_HomePageMissionStoriesWidget)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_ResourcesWidget)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_AnnouncementsWidget)
-                .HasContentGroup(CmsConfigConstants.ContentGroup_HomePageContentWidget)
-                .SingleUse()
-            ;
 
             #endregion
         }

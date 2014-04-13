@@ -1,0 +1,36 @@
+@model KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.Blog.EditAuthorViewModel
+@using Clickfarm.AppFramework.Extensions
+@using Clickfarm.Cms.Mvc
+@{
+    Layout = null;
+    var entityDescription = "Blog Author";
+}
+@if (Model.HasAuthor)
+{
+    <div class="editable-parent item-index-tab model-display" data-tab-type="edit-item" data-item-id="@Model.Author.AuthorID">
+        <div class="ui-toolbar-cms">
+            <a href="#" class="refresh-item-link" data-item-id="@Model.Author.AuthorID" title="Refresh @entityDescription">Refresh @entityDescription</a>
+            <a href="#" class="delete-item-link" data-item-id="@Model.Author.AuthorID" title="Delete @entityDescription">Delete @entityDescription</a>
+        </div>
+        <div class="ui-widget-content ui-corner-all ui-widget-cms">
+            <label>Name:</label>
+            <div class="display-field editable-format editable" data-property-name="Name">@Model.Author.Name</div>
+            <label>Description:</label>
+            <div class="display-field editable-format editable" data-property-name="Description">@Model.Author.Description</div>
+            <label>Image:</label>
+            <span style="font-style: italic">Image should be 200 <small>x</small> 200</span>
+            <div class="display-field editable-format editable-image nullable" data-content-file-properties="@Model.ContentProperties_ImageFile.ToJson()" data-content-image-properties="@Model.ContentProperties_Image.ToJson()" data-property-name="ImageURL">
+                <img src="@(!string.IsNullOrWhiteSpace(Model.Author.ImageURL) ? Model.Author.ImageURL : Url.CmsVersionedCdnResource("/images/no-image.png"))" alt="" />
+            </div>
+
+            <label>Date Created:</label>
+            <div class="display-field">@(Model.DateConverter.Convert(Model.Author.DateCreated).FromUtc().ForCmsUser().ToString("g"))</div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="message">
+        @entityDescription not found.
+    </div>
+}

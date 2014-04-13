@@ -8,10 +8,9 @@ using Clickfarm.Cms.Mvc;
 using KCActorsTheatre.Data;
 using KCActorsTheatre.Web.ViewModels;
 using System.Collections.Generic;
+using KCActorsTheatre.Blog;
 using System.Linq;
 using System.Web;
-using KCActorsTheatre.Cms.ContentTypes;
-using KCActorsTheatre.Cms;
 
 namespace KCActorsTheatre.Web.Controllers
 {
@@ -26,45 +25,25 @@ namespace KCActorsTheatre.Web.Controllers
             this.context = this.context;
             this.repository = context.Repository as IKCActorsTheatreRepository;
             this.session = httpContext.Session;
+
+            // set session objects
+            if (RecentPosts == null)
+                RecentPosts = repository.Posts.GetPostedAndPublished(3, 0).Entity.ToList();
         }
 
         protected void InitializeViewModel(KCActorsTheatreViewModel model)
         {
+            // initialize common viewmodel objects
             model.RequestContent = this.CmsRequestContent;
+            model.RecentPosts = this.RecentPosts;
         }
 
-        protected void SetContentWidgets(KCActorsTheatreViewModel vm)
+        public IEnumerable<Post> RecentPosts
         {
-            Page page = vm.RequestContent.Page;
-            ContentGroup cg = null;
-            IEnumerable<ContentGroupMember> cgMembers = null;
-
-            cg = page != null ? page.ContentGroups.FirstOrDefault(p => p.Name == CmsConfigConstants.ContentGroup_ContentWidgets) : null;
-
-            if (cg != null)
-                cgMembers = cg.Members
-                    .Where(p => p.ContentGroupMemberConfigName == CmsConfigConstants.ContentType_ContentWidget)
-                    ;
-
-            var contentWidgets = new List<ContentWidgetContent>();
-
-            if (cgMembers != null && cgMembers.Count() > 0)
+            get { return (IEnumerable<Post>)session["RecentPosts"]; }
+            private set
             {
-                foreach (var cgMember in cgMembers)
-                {
-                    if (cgMember.Content != null)
-                    {
-                        var connectWidgetContent = (ContentWidgetContent)cgMember.Content;
-                        if (connectWidgetContent != null)
-                            contentWidgets.Add(connectWidgetContent);
-                    }
-                }
-
-                if (contentWidgets.Count > 0)
-                    vm.ContentWidgets = contentWidgets
-                        .OrderBy(p => p.DisplayOrder)
-                        .ThenBy(p => p.Title)
-                        ;
+                session["RecentPosts"] = value;
             }
         }
 

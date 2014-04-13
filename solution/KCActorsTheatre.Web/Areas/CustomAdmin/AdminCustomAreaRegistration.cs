@@ -12,7 +12,7 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                "CustomAdmin",
+                "CustomAdmin_default",
                 "CustomAdmin/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional },
                 new string[] { "KCActorsTheatre.Web.Areas.CustomAdmin.Controllers" }

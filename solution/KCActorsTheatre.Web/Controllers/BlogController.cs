@@ -1,115 +1,205 @@
-﻿using Clickfarm.AppFramework.Logging;
-using Clickfarm.AppFramework.Responses;
+﻿using Clickfarm.AppFramework.Responses;
+using Clickfarm.AppFramework.Web;
 using Clickfarm.Cms.Core;
-using KCActorsTheatre.Blogs;
-using KCActorsTheatre.Services.Mapping;
+using Clickfarm.AppFramework.Extensions;
+using KCActorsTheatre.Blog;
 using KCActorsTheatre.Web.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Text;
+using Clickfarm.AppFramework.Mail;
+using KCActorsTheatre.Library.AppTypes;
 
 namespace KCActorsTheatre.Web.Controllers
 {
     public class BlogController : KCActorsTheatreController
     {
-        readonly IMappingService _mapper;
-        private IJsonMapper JsonMapper { get; set; }
-
-        public BlogController(ICmsContext context, HttpContextBase httpContext, IMappingService mapper, IJsonMapper jsonMapper) : base(context, httpContext) 
+        KCActorsTheatreApp app;
+        HttpContextBase httpContext;
+        public BlogController(ICmsContext context, HttpContextBase httpContext) : base(context, httpContext) 
         {
-            _mapper = mapper;
-            JsonMapper = jsonMapper;
+            this.app = (KCActorsTheatreApp)repository.Apps.Find(1);
+            this.httpContext = httpContext;
         }
 
-        public ActionResult DailyBread()
+        public ActionResult Index()
         {
-            var vm = new BlogsViewModel();
-            vm.BlogType = BlogType.DailyBread;
-            vm.Categories = repository.PostCategories.All();
-            vm.ArchiveData = GetArchiveData(vm.BlogType);
-            vm.DisqusAccount = "daily-bread";
-            InitializeViewModel(vm);
-            SetContentWidgets(vm);
-            return View("Blog", vm);
+            var model = new BlogViewModel();
+            InitializeViewModel(model);
+            model.Posts = repository.Posts
+                .GetPostedAndPublished(5, 0)
+                .Entity;
+            model.JsonPosts = ConvertPosts(model.Posts);
+
+            return View(model);
         }
 
-        public ActionResult Evangelist()
+        public ActionResult Post(int id)
         {
-            var vm = new BlogsViewModel();
-            vm.BlogType = BlogType.Evangelist;
-            vm.Categories = repository.PostCategories.All();
-            vm.ArchiveData = GetArchiveData(vm.BlogType);
-            vm.DisqusAccount = "evangelist";
-            InitializeViewModel(vm);
-            SetContentWidgets(vm);
-            return View("Blog", vm);
-        }
+            var model = new BlogPostViewModel();
+            InitializeViewModel(model);
 
-        [HttpPost]
-        public JsonResult GetPost(int? postID)
-        {
-            if (!postID.HasValue || postID.Value <= 0)
-                return Json(JsonMapper.Failed("The post id was invalid."));
-
-            var repoResponse = repository.Posts.GetPostForSite(postID.Value);
-
-            if (repoResponse.Succeeded)
-                return Json(JsonMapper.Post(repoResponse.Entity));
-
-            return Json(JsonMapper.Failed(repoResponse.Message));
-        }
-
-        [HttpPost]
-        public JsonResult GetPosts(BlogType? blogType, int skip, int categoryID, int? month = null, int? year = null)
-        {
-            if (!blogType.HasValue)
-                return Json(JsonMapper.Failed("The blog type was invalid."));
-
-            var repoResponse = repository.Posts.GetPostsForSite(blogType.Value, categoryID, month, year);
-
-            if (repoResponse.Succeeded)
+            try
             {
-                var posts = repoResponse.Entity;
+                var repoReponse = repository.Posts.GetSinglePostedAndPublished(id, DateTime.UtcNow);
 
-                var returnObj = new
+                if (repoReponse.Succeeded && repoReponse.Entity != null)
                 {
-                    posts = JsonMapper.Posts(repoResponse.Entity.Skip(skip).Take(5)),
-                    totalCount = repoResponse.Entity.Count(),
-                };
-                return Json(returnObj);
+                    model.Post = repoReponse.Entity;
+                    model.Comment.PostID = model.Post.PostID;
+
+                    // get previous and next posts' id's
+                    var previousPostResponse = repository.Posts.GetPreviousOrNext(model.Post.PublishDate.Value, "previous");
+                    var nextPostResponse = repository.Posts.GetPreviousOrNext(model.Post.PublishDate.Value, "next");
+
+                    if (previousPostResponse.Succeeded && previousPostResponse.Entity != null)
+                        model.PreviousPostID = previousPostResponse.Entity.PostID;
+                    if (nextPostResponse.Succeeded && nextPostResponse.Entity != null)
+                        model.NextPostID = nextPostResponse.Entity.PostID;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
 
-            return Json(JsonMapper.Failed(repoResponse.Message));
+            return View(model);
         }
 
-        private Dictionary<int, Dictionary<int, int>> GetArchiveData(BlogType blogType)
+        [AjaxOnly]
+        public JsonResult NewComment(Comment comment)
         {
-            var dict = new Dictionary<int, Dictionary<int, int>>();
+            JsonResponse jsonResponse = new JsonResponse();
 
-            var repoResponse = repository.Posts.GetPostsForSite(blogType, categoryID: 0);
+            comment.DateCreated = DateTime.UtcNow;
+            comment.IsApproved = false;
 
-            if (repoResponse.Succeeded)
+            if (ModelState.IsValid)
             {
-                repoResponse.Entity
-                    .GroupBy(p => p.DateToPost.Value.Year)
-                    .ToList()
-                    .ForEach((year) =>
-                    {
-                        var months = new Dictionary<int, int>();
-                        year
-                            .GroupBy(p => p.DateToPost.Value.Month)
-                            .ToList()
-                            .ForEach((month) =>
-                            {
-                                months.Add(month.Key, month.Count());
-                            });
+                try
+                {
+                    var repoReponse = repository.Comments.New(comment);
 
-                        dict.Add(year.Key, months);
-                    });
+                    if (repoReponse.Succeeded)
+                    {
+                        jsonResponse.Succeeded = true;
+
+                        comment.Post = repository.Posts.Single(p => p.PostID == comment.PostID, null, enableTracking: false);
+
+                        // succeeded, send email notification
+                        var title = "New comment requires moderation on KCActorsTheatre.net";
+                        StringBuilder sb = new StringBuilder("<html>");
+                        sb.AppendFormat("<head><title>{0}</title></head><body>", title);
+                        sb.AppendFormat("<p>{0}</p>", title);
+                        sb.AppendFormat("<p>Blog Post: {0}</p>", comment.Post.Title);
+                        sb.AppendFormat("<p>Name: {0}</p>", comment.Name);
+                        sb.AppendFormat("<p>Comment: {0}</p>", comment.Text);
+                        sb.Append("</body></html>");
+
+                        MailUtil mail = new MailUtil();
+                        MailProperties props = new MailProperties()
+                        {
+                            From = "noreply@KCActorsTheatre.net",
+                            IsBodyHtml = true,
+                            Body = sb.ToString(),
+                            Subject = title
+                        };
+
+                        props.To.Add(app.BlogCommmentEmailNotifications);
+                        props.HttpContext = httpContext;
+                        mail.SendEmail(props);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    jsonResponse.Succeeded = false;
+                    jsonResponse.Message = ex.GetInnermostException().Message;
+                }
+
+            }
+            else
+            {
+                jsonResponse.Fail("Validation failed.");
             }
 
-            return dict;
+
+            return Json(jsonResponse);
+        }
+
+        [AjaxOnly]
+        public JsonResult GetPosts(int howMany, int skip)
+        {
+            JsonResponse jsonResponse = new JsonResponse();
+            try
+            {
+                var repoReponse = repository.Posts
+                    .GetPostedAndPublished(howMany, skip)
+                ;
+
+                if (repoReponse.Succeeded && repoReponse.Entity != null)
+                {
+                    jsonResponse.Properties.Add("Items", ConvertPosts(repoReponse.Entity));
+                    jsonResponse.Succeeded = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                jsonResponse.Succeeded = false;
+                jsonResponse.Message = ex.GetInnermostException().Message;
+            }
+
+            return Json(jsonResponse);
+        }
+
+        [AjaxOnly]
+        public JsonResult Search(string searchTerm)
+        {
+            JsonResponse jsonResponse = new JsonResponse();
+            try
+            {
+                var repoReponse = repository.Posts.FindPostsForWebsite(searchTerm);
+
+                if (repoReponse.Succeeded && repoReponse.Entity != null)
+                {
+                    jsonResponse.Properties.Add("Items", ConvertPosts(repoReponse.Entity));
+                    jsonResponse.Succeeded = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                jsonResponse.Succeeded = false;
+                jsonResponse.Message = ex.GetInnermostException().Message;
+            }
+
+            return Json(jsonResponse);
+        }
+
+        private IEnumerable<object> ConvertPosts(IEnumerable<Post> posts)
+        {
+            return posts.Select(a =>
+            {
+                return ConvertPost(a);
+            });
+        }
+
+        private object ConvertPost(Post post)
+        {
+            return new
+            {
+                ID = post.PostID,
+                Title = post.Title,
+                //ImageUrl = post.ImageURL,
+                PublishDate = post.PublishDate.Value.ToShortDateString(),
+                Author = new
+                {
+                    Name = post.Author != null ? post.Author.Name : string.Empty,
+                },
+                Summary = post.Summary,
+                CommentCount = post.Comments.Count,
+            };
         }
     }
 }

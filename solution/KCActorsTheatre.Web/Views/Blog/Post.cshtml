@@ -1,904 +1,159 @@
-﻿@using CommunityOfChrist.Web.Extensions
-@using System.Globalization
-@model CommunityOfChrist.Web.ViewModels.PostViewModel
-
+﻿@using Clickfarm.Cms.Mvc
+@using KCActorsTheatre
+@using KCActorsTheatre.Cms
+@model KCActorsTheatre.Web.ViewModels.BlogPostViewModel
 @{
-    Layout = "~/Views/Shared/_Inner.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";    
     var req = Model.RequestContent;
     var page = req.Page as Clickfarm.Cms.Core.WebPage;
 }
+@section scripts {
 
-@section Scripts {
-
-    <script type="text/javascript">
-        var addthis_share = {
-            url: 'Link to the post goes here'
-        };
-        var addthis_config = {
-            "data_track_addressbar": true
-        };
-        addthis_config.data_track_addressbar = false;
-    </script>
-
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53287d185c34e685"></script>
-
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = '@Model.DisqusAccount'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
 }
 
-@section Body {
-    @if (Model.Post != null)
-    {
-        <div class="col-md-8" id="main-content">
-            <div class="row blog-post">
-                <div class="col-lg-12">
-                    <h2>@Model.Post.Title</h2>
-                    <h6 class="blog-info">@Model.Post.DateToPost.Value.ToString(@"dddd, MMMM dd", CultureInfo.CurrentCulture) &ndash; @Model.Post.Author</h6>
-                    <p>@Html.Raw(Model.Post.Body)</p>
-                    <p class="blog-tags">
-                        @{
-                            var counter = 0;
-                            foreach (var tag in Model.Post.Tags)
-                            {
-                                <a href="/TODO/SOMETHING/">@tag.Name</a>
-                                if (counter < Model.Post.Tags.Count - 1)
-                                {
-                                    <text>, </text>
-                                    counter++;
-                                }
-                            }
-                        }
-                    </p>
-                    <div class="addthis_toolbox addthis_default_style ">
-                        <a class="addthis_button_preferred_1"></a>
-                        <a class="addthis_button_preferred_2"></a>
-                        <a class="addthis_button_preferred_3"></a>
-                        <a class="addthis_button_preferred_4"></a>
-                        <a class="addthis_button_compact"></a>
-                        <a class="addthis_counter addthis_bubble_style"></a>
-                    </div>
-
-                    <div class="row spacer"></div>
-
-                    <div id="disqus_thread"></div>
+@if (Model.HasPost && Model.Post.IsViewable)
+{
+    var post = Model.Post;
     
-                </div>
+    <div class="row-fluid">
+	    <div class="span12">
+		    <div class="row-fluid">
+			    @*<div class="span12" id="most-recent-blog-pic">
+				    <img src="@post.ImageURL" alt="@post.Title" />
+			    </div>*@
+		    </div>
+            <div class="row-fluid">
+                <br /><br /><br />
             </div>
-            <div class="row load-more">
-                <div class="col-sm-12">
-                    <ul class="pager">
-                        @if (Model.PreviousPost != null)
+		    <div class="row-fluid">
+			    <div class="span12" id="blog-intro">
+				    <div>
+					    <h2>@post.Title</h2>
+					    <ul class="preview-info">
+						    <li>@post.PublishDate.Value.ToShortDateString()</li>
+					    </ul>
+					    @Html.Raw(post.Body)
+				    </div>
+			    </div>
+		    </div>
+		    <div class="row-fluid">
+			    <div class="span12 internal-blog-nav">
+				    <ol>
+                        @if (Model.PreviousPostID.HasValue)
                         {
-                            <li class="previous">
-                                <a href="@Url.BlogPostUrl(Model.PreviousPost)">&larr; Older</a>
-                            </li>
+					        <li><a href="/blog/post/@Model.PreviousPostID">&lt; &lt; Previous</a></li>
                         }
-                        else
+                        @if (Model.NextPostID.HasValue)
                         {
-                            <li class="previous disabled">
-                                <a href="javascript:void(0)">&larr; Older</a>
-                            </li>
+					        <li><a href="/blog/post/@Model.NextPostID">Next &gt; &gt; </a></li>
                         }
-
-                        @if (Model.NextPost != null)
+				    </ol>
+			    </div>
+		    </div>
+			
+		    <div class="row-fluid">
+			    <div class="span12 after-blog-content">
+				    <h4>Meet the Author</h4>
+				    <div class="row-fluid">
+					    <div class="span3">
+						    <img src="@post.Author.ImageURL" alt="@post.Author.Name" class="img-rounded">
+					    </div>
+					    <div class="span9">
+						    <h5>@post.Author.Name</h5>
+						    <p>@post.Author.Description</p>
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+			
+		    <div class="row-fluid hidden-phone">
+			    <div class="span12 after-blog-content">
+				    <h4>Recent Posts</h4>
+				    <div class="row-fluid">
+                        @if (post.Author.Posts.Count == 1)
                         {
-                            <li class="next">
-                                <a href="@Url.BlogPostUrl(Model.NextPost)">Newer &rarr;</a>
-                            </li>
-                        }
-                        else
+                            <text><p>This author does not have any other recent blog posts.</p></text>
+                        } 
+                        else 
                         {
-                            <li class="next disabled">
-                                <a href="javascript:void(0)">Newer &rarr;</a>
-                            </li>
+                            <ul>
+                                @foreach (var recentPost in post.Author.Posts.Take(3))
+                                {
+                                    @* don't display current post in this list *@
+                                    if (recentPost.PostID != Model.Post.PostID && recentPost.IsViewable)
+                                    {
+					                    <li><a href="/blog/post/@recentPost.PostID">@recentPost.Title</a> - Published @recentPost.PublishDate.Value.ToShortDateString()</li>
+                                    }
+                                }
+                            </ul>
                         }
-                    </ul>
-
-
-
-                </div>
-            </div>
-        </div>
-
-        @* TODO - all of sidebar *@
-        <div class="col-md-4 blog-sidebar" id="sidebar">
-            <div class="sidebar-inner">
-                <div class="sidebar-item">
-                    <div class="row heading-row">
-                        <div class="col-xs-12 heading">
-                            <h3>Categories</h3>
-                        </div>
-                        <div class="col-xs-12">
-                            <form class="form-horizontal">
-                                <select class="form-control">
-                                    <option>Category 1</option>
-                                    <option>Category 2</option>
-                                    <option>Category 3</option>
-                                    <option>Category 4</option>
-                                    <option>Category 5</option>
-                                </select>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="sidebar-item">
-                    <div class="row heading-row">
-                        <div class="col-xs-12 heading">
-                            <h3>Submit a Story</h3>
-                        </div>
-                        <div class="col-xs-12">
-                            <img src="../assets/img/small-half.png" alt="Photo description" class="module-img widget-image">
-                            <p class="submit-a-story-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt felis dui. Quisque lorem libero. Donec consectetur adipiscing laoreet. Nulla facilisi.</p>
-                            <a href="#" class="pull-right widget-more-link">More <span class="glyphicon glyphicon-circle-arrow-right"></span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="sidebar-item">
-                    <div class="row heading-row">
-                        <div class="col-xs-12 heading">
-                            <h3>Subscribe</h3>
-                        </div>
-                        <div class="col-xs-12">
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                            <a href="#" class="pull-right widget-more-link">Sign Up Now <span class="glyphicon glyphicon-circle-arrow-right"></span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="sidebar-item">
-                    <div class="row heading-row">
-                        <div class="col-xs-12 heading">
-                            <h3>In the Archives</h3>
-                        </div>
-                        <div class="col-xs-12">
-                            <ol id="blog-archives">
-                                <li class="active">
-                                    <a class="archive-year" our-toggle="collapsing" data-parent="#blog-archives" href="#collapseOne">
-                                        <span class="badge pull-right top-level">49</span>
-                                        2014
-                                    </a>
-                                    <ol id="collapseOne" class="collapse in">
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseOne" href="#collapseOne-One">
-                                                <span class="badge pull-right">4</span>
-                                                January
-                                            </a>
-                                            <ol id="collapseOne-One" class="collapse">
-                                                <li>
-                                                    <a href="#">January 1, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">January 7, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">January 21, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">January 28, 2014</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseOne" href="#collapseOne-Two">
-                                                <span class="badge pull-right">5</span>
-                                                February
-                                            </a>
-                                            <ol id="collapseOne-Two" class="collapse">
-                                                <li>
-                                                    <a href="#">February 1, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">February 4, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">February 8, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">February 19, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">February 26, 2014</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseOne" href="#collapseOne-Three">
-                                                <span class="badge pull-right">4</span>
-                                                March
-                                            </a>
-                                            <ol id="collapseOne-Three" class="collapse">
-                                                <li>
-                                                    <a href="#">March 1, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">March 7, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">March 21, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">March 28, 2014</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseOne" href="#collapseOne-Four">
-                                                <span class="badge pull-right">3</span>
-                                                April
-                                            </a>
-                                            <ol id="collapseOne-Four" class="collapse">
-                                                <li>
-                                                    <a href="#">April 1, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">April 4, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">April 8, 2014</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseOne" href="#collapseOne-Five">
-                                                <span class="badge pull-right">4</span>
-                                                May
-                                            </a>
-                                            <ol id="collapseOne-Five" class="collapse">
-                                                <li>
-                                                    <a href="#">May 1, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">May 7, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">May 21, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">May 28, 2014</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseOne" href="#collapseOne-Six">
-                                                <span class="badge pull-right">10</span>
-                                                June
-                                            </a>
-                                            <ol id="collapseOne-Six" class="collapse">
-                                                <li>
-                                                    <a href="#">June 1, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 4, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 6, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 8, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 10, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 15, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 19, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 20, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 22, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 26, 2014</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseOne" href="#collapseOne-Seven">
-                                                <span class="badge pull-right">2</span>
-                                                July
-                                            </a>
-                                            <ol id="collapseOne-Seven" class="collapse">
-                                                <li>
-                                                    <a href="#">July 1, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">July 7, 2014</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseOne" href="#collapseOne-Eight">
-                                                <span class="badge pull-right">5</span>
-                                                August
-                                            </a>
-                                            <ol id="collapseOne-Eight" class="collapse">
-                                                <li>
-                                                    <a href="#">August 1, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">August 4, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">August 8, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">August 19, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">August 26, 2014</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseOne" href="#collapseOne-Nine">
-                                                <span class="badge pull-right">1</span>
-                                                September
-                                            </a>
-                                            <ol id="collapseOne-Nine" class="collapse">
-                                                <li>
-                                                    <a href="#">September 15, 2014</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseOne" href="#collapseOne-Ten">
-                                                <span class="badge pull-right">5</span>
-                                                October
-                                            </a>
-                                            <ol id="collapseOne-Ten" class="collapse">
-                                                <li>
-                                                    <a href="#">October 1, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">October 4, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">October 8, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">October 19, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">October 26, 2014</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseOne" href="#collapseOne-Eleven">
-                                                <span class="badge pull-right">4</span>
-                                                November
-                                            </a>
-                                            <ol id="collapseOne-Eleven" class="collapse">
-                                                <li>
-                                                    <a href="#">November 1, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">November 7, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">November 21, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">November 28, 2014</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseOne" href="#collapseOne-Twelve">
-                                                <span class="badge pull-right">2</span>
-                                                December
-                                            </a>
-                                            <ol id="collapseOne-Twelve" class="collapse">
-                                                <li>
-                                                    <a href="#">December 3, 2014</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">December 24, 2014</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                    </ol>
-                                </li>
-                                <li>
-                                    <a class="archive-year" our-toggle="collapsing" data-parent="#blog-archives" href="#collapseTwo">
-                                        <span class="badge pull-right top-level">48</span>
-                                        2013
-                                    </a>
-                                    <ol id="collapseTwo" class="collapse">
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseTwo" href="#collapseTwo-One">
-                                                <span class="badge pull-right">3</span>
-                                                January
-                                            </a>
-                                            <ol id="collapseTwo-One" class="collapse">
-                                                <li>
-                                                    <a href="#">January 1, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">January 7, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">January 21, 2013</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseTwo" href="#collapseTwo-Two">
-                                                <span class="badge pull-right">5</span>
-                                                February
-                                            </a>
-                                            <ol id="collapseTwo-Two" class="collapse">
-                                                <li>
-                                                    <a href="#">February 1, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">February 4, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">February 8, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">February 19, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">February 26, 2013</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseTwo" href="#collapseTwo-Three">
-                                                <span class="badge pull-right">4</span>
-                                                March
-                                            </a>
-                                            <ol id="collapseTwo-Three" class="collapse">
-                                                <li>
-                                                    <a href="#">March 1, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">March 7, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">March 21, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">March 28, 2013</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseTwo" href="#collapseTwo-Four">
-                                                <span class="badge pull-right">3</span>
-                                                April
-                                            </a>
-                                            <ol id="collapseTwo-Four" class="collapse">
-                                                <li>
-                                                    <a href="#">April 1, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">April 4, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">April 8, 2013</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseTwo" href="#collapseTwo-Five">
-                                                <span class="badge pull-right">4</span>
-                                                May
-                                            </a>
-                                            <ol id="collapseTwo-Five" class="collapse">
-                                                <li>
-                                                    <a href="#">May 1, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">May 7, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">May 21, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">May 28, 2013</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseTwo" href="#collapseTwo-Six">
-                                                <span class="badge pull-right">10</span>
-                                                June
-                                            </a>
-                                            <ol id="collapseTwo-Six" class="collapse">
-                                                <li>
-                                                    <a href="#">June 1, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 4, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 6, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 8, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 10, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 15, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 19, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 20, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 22, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 26, 2013</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseTwo" href="#collapseTwo-Seven">
-                                                <span class="badge pull-right">2</span>
-                                                July
-                                            </a>
-                                            <ol id="collapseTwo-Seven" class="collapse">
-                                                <li>
-                                                    <a href="#">July 1, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">July 7, 2013</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseTwo" href="#collapseTwo-Eight">
-                                                <span class="badge pull-right">5</span>
-                                                August
-                                            </a>
-                                            <ol id="collapseTwo-Eight" class="collapse">
-                                                <li>
-                                                    <a href="#">August 1, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">August 4, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">August 8, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">August 19, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">August 26, 2013</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseTwo" href="#collapseTwo-Nine">
-                                                <span class="badge pull-right">1</span>
-                                                September
-                                            </a>
-                                            <ol id="collapseTwo-Nine" class="collapse">
-                                                <li>
-                                                    <a href="#">September 15, 2013</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseTwo" href="#collapseTwo-Ten">
-                                                <span class="badge pull-right">5</span>
-                                                October
-                                            </a>
-                                            <ol id="collapseTwo-Ten" class="collapse">
-                                                <li>
-                                                    <a href="#">October 1, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">October 4, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">October 8, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">October 19, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">October 26, 2013</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseTwo" href="#collapseTwo-Eleven">
-                                                <span class="badge pull-right">4</span>
-                                                November
-                                            </a>
-                                            <ol id="collapseTwo-Eleven" class="collapse">
-                                                <li>
-                                                    <a href="#">November 1, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">November 7, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">November 21, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">November 28, 2013</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseTwo" href="#collapseTwo-Twelve">
-                                                <span class="badge pull-right">2</span>
-                                                December
-                                            </a>
-                                            <ol id="collapseTwo-Twelve" class="collapse">
-                                                <li>
-                                                    <a href="#">December 3, 2013</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">December 24, 2013</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                    </ol>
-                                </li>
-                                <li>
-                                    <a class="archive-year" our-toggle="collapsing" data-parent="#blog-archives" href="#collapseThree">
-                                        <span class="badge pull-right top-level">42</span>
-                                        2012
-                                    </a>
-                                    <ol id="collapseThree" class="collapse">
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseThree" href="#collapseThree-One">
-                                                <span class="badge pull-right">3</span>
-                                                January
-                                            </a>
-                                            <ol id="collapseThree-One" class="collapse">
-                                                <li>
-                                                    <a href="#">January 1, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">January 7, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">January 21, 2012</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseThree" href="#collapseThree-Two">
-                                                <span class="badge pull-right">3</span>
-                                                February
-                                            </a>
-                                            <ol id="collapseThree-Two" class="collapse">
-                                                <li>
-                                                    <a href="#">February 1, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">February 4, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">February 8, 2012</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseThree" href="#collapseThree-Three">
-                                                <span class="badge pull-right">2</span>
-                                                March
-                                            </a>
-                                            <ol id="collapseThree-Three" class="collapse">
-                                                <li>
-                                                    <a href="#">March 1, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">March 7, 2012</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseThree" href="#collapseThree-Four">
-                                                <span class="badge pull-right">3</span>
-                                                April
-                                            </a>
-                                            <ol id="collapseThree-Four" class="collapse">
-                                                <li>
-                                                    <a href="#">April 1, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">April 4, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">April 8, 2012</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseThree" href="#collapseThree-Five">
-                                                <span class="badge pull-right">4</span>
-                                                May
-                                            </a>
-                                            <ol id="collapseThree-Five" class="collapse">
-                                                <li>
-                                                    <a href="#">May 1, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">May 7, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">May 21, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">May 28, 2012</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseThree" href="#collapseThree-Six">
-                                                <span class="badge pull-right">8</span>
-                                                June
-                                            </a>
-                                            <ol id="collapseThree-Six" class="collapse">
-                                                <li>
-                                                    <a href="#">June 1, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 4, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 6, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 8, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 10, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 15, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 19, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">June 20, 2012</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseThree" href="#collapseThree-Seven">
-                                                <span class="badge pull-right">2</span>
-                                                July
-                                            </a>
-                                            <ol id="collapseThree-Seven" class="collapse">
-                                                <li>
-                                                    <a href="#">July 1, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">July 7, 2012</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseThree" href="#collapseThree-Eight">
-                                                <span class="badge pull-right">5</span>
-                                                August
-                                            </a>
-                                            <ol id="collapseThree-Eight" class="collapse">
-                                                <li>
-                                                    <a href="#">August 1, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">August 4, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">August 8, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">August 19, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">August 26, 2012</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseThree" href="#collapseThree-Nine">
-                                                <span class="badge pull-right">1</span>
-                                                September
-                                            </a>
-                                            <ol id="collapseThree-Nine" class="collapse">
-                                                <li>
-                                                    <a href="#">September 15, 2012</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseThree" href="#collapseThree-Ten">
-                                                <span class="badge pull-right">5</span>
-                                                October
-                                            </a>
-                                            <ol id="collapseThree-Ten" class="collapse">
-                                                <li>
-                                                    <a href="#">October 1, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">October 4, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">October 8, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">October 19, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">October 26, 2012</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseThree" href="#collapseThree-Eleven">
-                                                <span class="badge pull-right">4</span>
-                                                November
-                                            </a>
-                                            <ol id="collapseThree-Eleven" class="collapse">
-                                                <li>
-                                                    <a href="#">November 1, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">November 7, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">November 21, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">November 28, 2012</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="archive-month">
-                                            <a our-toggle="collapsing" data-parent="#collapseThree" href="#collapseThree-Twelve">
-                                                <span class="badge pull-right">2</span>
-                                                December
-                                            </a>
-                                            <ol id="collapseThree-Twelve" class="collapse">
-                                                <li>
-                                                    <a href="#">December 3, 2012</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">December 24, 2012</a>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                    </ol>
-                                </li>
-                            </ol>
-                            @*<a href="#" class="pull-right widget-more-link">View the Archives <span class="glyphicon glyphicon-circle-arrow-right"></span></a>*@
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-    else
-    {
-        <text>Blog post not found.</text>
-    }
+				    </div>
+			    </div>
+		    </div>
+		    <div class="row-fluid">
+			    <div class="span12 after-blog-content">
+				    <h4>@Model.Post.Comments.Count Comment(s)</h4>
+				    <div class="row-fluid">
+					    <div class="span9" id="leave-comment-box">
+                            @{ 
+                                var ajaxOptions = new AjaxOptions
+                                {
+                                    HttpMethod = "Post",
+                                    LoadingElementId = "create-item-loading",
+                                    OnFailure = "createItemManager.ajaxFailure",
+                                    OnSuccess = "createItemManager.ajaxSuccess"
+                                };
+                            }
+                            @using (Ajax.BeginForm("NewComment", "Blog", null, ajaxOptions))
+                            {
+                                @Html.HiddenFor(m => m.Comment.PostID)
+					            <div class="control-group">
+                                    <div class="controls">
+                                        @Html.TextBoxFor(m => m.Comment.Name, new { @placeholder = "Name" })
+                                        @Html.ValidationMessageFor(m => m.Comment.Name)
+                                        <br />
+                                        @Html.TextAreaFor(m => m.Comment.Text, new { @rows = "7", @placeholder = "Leave your comment..." })
+                                        @Html.ValidationMessageFor(m => m.Comment.Text)
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+								        <input type="submit" class="btn comment-btn" value="Submit" />
+                                    </div>
+                                </div>
+                            }
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+            @if (Model.Post.Comments.Count == 0)
+            {
+                <p>There are no comments.</p>
+            }
+            else
+            {
+                foreach (var comment in Model.Post.Comments.Where(p => p.IsApproved).OrderByDescending(p => p.DateCreated))
+                {
+		            <div class="row-fluid">
+			            <div class="span12 comment-post">
+				            <div class="row-fluid">
+					            <div class="span9">
+						            <h5>@comment.Name</h5>
+						            <p>@comment.Text</p>
+						            <p class="comment-info">Posted on @comment.DateCreated.ToString("g")</p>
+					            </div>
+				            </div>
+			            </div>
+		            </div>
+                }
+            }
+	    </div>
+		@*<div class="span3 search-filter">
+			<h4>Search posts by keyword</h4>
+			<div class="input-append">
+				<input class="text-search-filter" type="text" placeholder="Keyword" />
+				<button class="btn btn-search-filter">Search</button>
+			</div>
+		</div>*@
+    </div>
 }
