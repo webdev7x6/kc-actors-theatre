@@ -435,6 +435,7 @@
     <Content Include="Scripts\jquery-ui-1.10.3.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.cookie.min.js" />
+    <Content Include="Scripts\jquery.jscroll.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -464,6 +465,7 @@
     <Content Include="Views\News\NewsArticleSummary.cshtml" />
     <Content Include="Views\News\Article.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\News\NextSet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="common\cms\files\" />
