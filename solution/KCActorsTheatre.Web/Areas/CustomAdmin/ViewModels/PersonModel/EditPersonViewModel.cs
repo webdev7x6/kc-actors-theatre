@@ -1,15 +1,16 @@
 ﻿using Clickfarm.Cms.Core;
 using KCActorsTheatre.Contract;
 
-namespace KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.News
-{
-    public class EditArticleViewModel
-    {
-        public Article Article { get; set; }
 
-        public bool HasArticle
+namespace KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.PersonModel
+{
+    public class EditPersonViewModel
+    {
+        public Person Person { get; set; }
+
+        public bool HasPerson
         {
-            get { return Article != null; }
+            get { return Person != null; }
         }
 
         public IUtcDateConverter DateConverter { get; set; }

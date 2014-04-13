@@ -7,5 +7,6 @@ namespace KCActorsTheatre.Data
     {
         NewsArticleRepository NewsArticles { get; }
         ShowRepository Shows { get; }
+        PersonRepository People { get; }
     }
 }

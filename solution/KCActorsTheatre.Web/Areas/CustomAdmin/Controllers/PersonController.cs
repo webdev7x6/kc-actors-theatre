@@ -9,39 +9,39 @@ using Clickfarm.Cms.Admin.Mvc.Areas.Admin.ViewModels;
 using Clickfarm.Cms.Core;
 using Clickfarm.Cms.Mvc;
 using KCActorsTheatre.Contract;
-using KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.News;
+using KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.PersonModel;
+using KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.Show;
 
 namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
 {
-    [RequiresCmsUserAuthorization(Constants.CmsRole_CalendarManager)]
-    public class NewsController : KCActorsTheatreAdminControllerBase
+    public class PersonController : KCActorsTheatreAdminControllerBase
     {
-        public NewsController(ICmsContext context) : base(context) { }
+        public PersonController(ICmsContext context) : base(context) { }
 
         public ViewResult Index()
         {
-            var model = new NewsViewModel();
+            var model = new PersonViewModel();
             model.Init(CmsContext);
             return View(model);
         }
 
         [HttpPost]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public JsonResult CreateArticleAjax(Article article)
+        public JsonResult CreatePersonAjax(Person person)
         {
             JsonResponse jsonResponse = new JsonResponse();
 
-            article.DateCreated = DateTime.UtcNow;
+            person.DateCreated = DateTime.UtcNow;
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var repoResponse = Repository.NewsArticles.New(article);
+                    var repoResponse = Repository.People.New(person);
 
                     if (repoResponse.Succeeded && repoResponse.Entity != null)
                     {
-                        jsonResponse.Properties.Add("Item", ConvertArticle(repoResponse.Entity));
+                        jsonResponse.Properties.Add("Item", ConvertPerson(repoResponse.Entity));
                         jsonResponse.Succeeded = true;
                     }
                         
@@ -62,16 +62,16 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
         }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public ViewResult EditArticleAjax(int id)
+        public ViewResult EditShowAjax(int id)
         {
-            EditArticleViewModel vm = new EditArticleViewModel
+            var vm = new EditPersonViewModel
             {
                 DateConverter = CmsContext.DateConverter,
                 ContentProperties_Body_Html = new HtmlContentProperties(),
                 ContentProperties_Body_ImageFile = new FileContentProperties
                 {
                     RootFolder = "/Common/Cms/Images",
-                    DefaultSubfolder = "ArticleImages",
+                    DefaultSubfolder = "PersonImages",
                     MediaTypes = new string[] { "image/" }
                 },
                 ContentProperties_Body_DocumentFile = new FileContentProperties
@@ -86,28 +86,28 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
                 ContentProperties_ImageFile = new FileContentProperties
                 {
                     RootFolder = "/Common/Cms/Images",
-                    DefaultSubfolder = "ArticleImages",
+                    DefaultSubfolder = "PersonImages",
                     MediaTypes = new string[] { "image/" }
                 }
             };
-            var repoResponse = Repository.NewsArticles.GetSingle(id);
+            var repoResponse = Repository.People.GetSingle(id);
             if (repoResponse.Succeeded)
             {
-                vm.Article = repoResponse.Entity;
+                vm.Person = repoResponse.Entity;
             }
             return View(vm);
         }
 
         [HttpPost]
         [ValidateInput(false)]
-        public JsonResult EditArticleAjax(string id, string property, string newValue)
+        public JsonResult EditPersonAjax(string id, string property, string newValue)
         {
             int ID = 0;
             if (int.TryParse(id, out ID))
             {
                 try
                 {
-                    var entity = Repository.NewsArticles.GetSingle(ID).Entity;
+                    var entity = Repository.Shows.GetSingle(ID).Entity;
                     EditInPlaceJsonResponse response = EditProperty(editID => entity, id, property, newValue, null, null, null);
                     return Json(response);
                 }
@@ -124,9 +124,9 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
 
         [HttpPost]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public JsonResult DeleteArticleAjax(int id)
+        public JsonResult DeletePersonAjax(int id)
         {
-            RepositoryResponse repoResponse = Repository.NewsArticles.Delete(id);
+            RepositoryResponse repoResponse = Repository.People.Delete(id);
             JsonResponse response = new JsonResponse();
             if (repoResponse.Succeeded)
             {
@@ -140,13 +140,13 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
         }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public JsonResult FindArticlesAjax(string term)
+        public JsonResult FindPeopleAjax(string term)
         {
             JsonResponse response = new JsonResponse();
-            var repoResponse = Repository.NewsArticles.FindForDisplay(term.Split(new char[0], StringSplitOptions.RemoveEmptyEntries));
+            var repoResponse = Repository.People.FindForDisplay(term.Split(new char[0], StringSplitOptions.RemoveEmptyEntries));
             if (repoResponse.Succeeded)
             {
-                var items = ConvertArticles(repoResponse.Entity);
+                var items = ConvertPeople(repoResponse.Entity);
                 response.Properties.Add("Items", items);
                 response.Succeed(string.Format("{0} item(s) found.", items.Count()));
             }
@@ -158,13 +158,13 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
         }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public JsonResult AllArticlesAjax()
+        public JsonResult AllPeopleAjax()
         {
             JsonResponse response = new JsonResponse();
-            var repoResponse = Repository.NewsArticles.GetAll();
+            var repoResponse = Repository.People.GetAll();
             if (repoResponse.Succeeded)
             {
-                var items = ConvertArticles(repoResponse.Entity);
+                var items = ConvertPeople(repoResponse.Entity);
                 response.Properties.Add("Items", items);
                 response.Succeed(string.Format("{0} items(s) found.", items.Count()));
             }
@@ -175,27 +175,24 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
             return Json(response);
         }
 
-        private IEnumerable<object> ConvertArticles(IEnumerable<Article> items)
+        private IEnumerable<object> ConvertPeople(IEnumerable<Person> items)
         {
-            return items.Select(a =>
-            {
-                return ConvertArticle(a);
-            });
+            return items.Select(ConvertPerson);
         }
 
-        private object ConvertArticle(Article item)
+        private object ConvertPerson(Person item)
         {
             return new
             {
                 // generic and required by reusable JavaScript
-                ID = item.ArticleID,
+                ID = item.PersonID,
                 TabTitleString = item.Title,
                 DateCreated = CmsContext.DateConverter.Convert(item.DateCreated).FromUtc().ForCmsUser().ToString("g"),
 
                 // specific to this object
                 Title = item.Title,
-                Body = item.Body,
-                ArticleDate = item.ArticleDate.HasValue ? CmsContext.DateConverter.Convert(item.ArticleDate.Value).FromUtc().ForCmsUser().ToShortDateString() : string.Empty,
+                Name = item.Name,
+                Body = item.BioDetail
             };
         }
     }

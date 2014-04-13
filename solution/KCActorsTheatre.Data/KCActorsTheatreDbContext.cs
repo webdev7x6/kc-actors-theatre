@@ -1,10 +1,9 @@
 ﻿using System.Data.Entity;
 using Clickfarm.Cms.Data.EntityFramework;
 using KCActorsTheatre.Cms;
+using KCActorsTheatre.Contract;
 using KCActorsTheatre.Library.AppTypes;
-using KCActorsTheatre.News;
 using KCActorsTheatre.Cms.ContentTypes;
-using KCActorsTheatre.Show;
 
 namespace KCActorsTheatre.Data
 {
@@ -22,6 +21,11 @@ namespace KCActorsTheatre.Data
             get { return Set<ShowInfo>(); }
         }
 
+        public DbSet<Person> People
+        {
+            get { return Set<Person>(); }
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -32,6 +36,7 @@ namespace KCActorsTheatre.Data
 
             modelBuilder.Entity<Article>().Map(m => m.ToTable("Article", "KCAT"));
             modelBuilder.Entity<ShowInfo>().Map(m => m.ToTable("Show", "KCAT"));
+            modelBuilder.Entity<Person>().Map(m => m.ToTable("Person", "KCAT"));
 
             //custom content types
             modelBuilder.Entity<CalloutTextContent>().Map(m => m.Requires("ContentType").HasValue("CalloutText"));

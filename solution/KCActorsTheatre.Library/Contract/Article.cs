@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KCActorsTheatre.News
+namespace KCActorsTheatre.Contract
 {
     public class Article
     {

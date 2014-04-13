@@ -9,78 +9,76 @@ using KCActorsTheatre.Contract;
 
 namespace KCActorsTheatre.Data.Repositories
 {
-    public class ShowRepository : KCActorsTheatreRepositoryBase<ShowInfo>
+    public class PersonRepository : KCActorsTheatreRepositoryBase<Person>
     {
         private IKCActorsTheatreRepository _repository;
         private IKCActorsTheatreDbContext _context;
-        public ShowRepository(IKCActorsTheatreDbContext context, IKCActorsTheatreRepository repository)
+        public PersonRepository(IKCActorsTheatreDbContext context, IKCActorsTheatreRepository repository)
             : base(context, repository)
         {
             _context = context;
             _repository = repository;
         }
 
-        protected override DbSet<ShowInfo> DbSet
+        protected override DbSet<Person> DbSet
         {
-            get { return dbContext.Shows; }
+            get { return dbContext.People; }
         }
 
-        public RepositoryResponse<ShowInfo> New(ShowInfo item)
+        public RepositoryResponse<Person> New(Person item)
         {
-            return CatchError<RepositoryResponse<ShowInfo>>(() =>
+            return CatchError<RepositoryResponse<Person>>(() =>
             {
                 DbSet.Add(item);
                 CmsDbContext.Save();
-                var response = new RepositoryResponse<ShowInfo>();
+                var response = new RepositoryResponse<Person>();
                 response.Succeed("The new item was created successfully.");
                 response.Entity = item;
                 return response;
             });
         }
 
-        public RepositoryResponse<IEnumerable<ShowInfo>> FindForDisplay(IEnumerable<string> terms)
+        public RepositoryResponse<IEnumerable<Person>> FindForDisplay(IEnumerable<string> terms)
         {
-            return CatchError<RepositoryResponse<IEnumerable<ShowInfo>>>(() =>
+            return CatchError<RepositoryResponse<IEnumerable<Person>>>(() =>
             {
                 var items = All(null, enableTracking: false);
                 if (terms != null && terms.Count() > 0)
                 {
                     items = items.Where(a =>
                         terms.Any(t =>
-                            a.Title != null && a.Title.IndexOf(t, StringComparison.CurrentCultureIgnoreCase) >= 0
+                            a.Name != null && a.Name.IndexOf(t, StringComparison.CurrentCultureIgnoreCase) >= 0
                         )
                     );
                 }
-                var response = new RepositoryResponse<IEnumerable<ShowInfo>>();
+                var response = new RepositoryResponse<IEnumerable<Person>>();
                 response.Succeed(string.Format("{0} items(s) found.", items.Count()));
                 response.Entity = items.OrderBy(a => a.DateCreated);
                 return response;
             });
         }
 
-        public RepositoryResponse<IEnumerable<ShowInfo>> FindForWebsite(string searchTerm)
+        public RepositoryResponse<IEnumerable<Person>> FindForWebsite(string searchTerm)
         {
-            return CatchError<RepositoryResponse<IEnumerable<ShowInfo>>>(() =>
+            return CatchError<RepositoryResponse<IEnumerable<Person>>>(() =>
             {
-                var items = All(null, enableTracking: false)
-                    .Where(p => p.StartDate >= DateTime.UtcNow)
-                ;
+                var items = All(null, enableTracking: false);
                 if (searchTerm.Length > 0)
                 {
                     items = items.Where(p => p.Title.IndexOf(searchTerm, StringComparison.CurrentCultureIgnoreCase) >= 0);
                 }
-                var response = new RepositoryResponse<IEnumerable<ShowInfo>>();
+                var response = new RepositoryResponse<IEnumerable<Person>>();
                 response.Succeed(string.Format("{0} item(s) found.", items.Count()));
-                response.Entity = items.OrderBy(a => a.StartDate.Value).ThenBy(a => a.DateCreated);
+                response.Entity = items.OrderBy(a => a.Name).ThenBy(a => a.DateCreated);
                 return response;
             });
         }
 
-        public RepositoryResponse<IEnumerable<ShowInfo>> GetAll()
+        public RepositoryResponse<IEnumerable<Person>> GetAll()
         {
-            return CatchError<RepositoryResponse<IEnumerable<ShowInfo>>>(() =>
+            return CatchError<RepositoryResponse<IEnumerable<Person>>>(() =>
             {
-                var response = new RepositoryResponse<IEnumerable<ShowInfo>>();
+                var response = new RepositoryResponse<IEnumerable<Person>>();
                 var items = All(null, enableTracking: false);
                 response.Succeed(string.Format("{0} item(s) found.", items.Count()));
                 response.Entity = items.OrderByDescending(a => a.DateCreated);
@@ -88,37 +86,36 @@ namespace KCActorsTheatre.Data.Repositories
             });
         }
 
-        public RepositoryResponse<IEnumerable<ShowInfo>> GetForWebsite(int? howMany = null, int? skip = null)
+        public RepositoryResponse<IEnumerable<Person>> GetForWebsite(int? howMany = null, int? skip = null)
         {
-            return CatchError<RepositoryResponse<IEnumerable<ShowInfo>>>(() =>
+            return CatchError<RepositoryResponse<IEnumerable<Person>>>(() =>
             {
-                var events = All()
-                    .Where(p => p.StartDate.HasValue && p.StartDate.Value >= DateTime.UtcNow)
-                    .OrderBy(p => p.StartDate.Value)
+                var people = All()
+                    .OrderBy(p => p.Name)
                     .ThenBy(p => p.DateCreated)
                     .ToList()
                 ;
                 if (skip.HasValue)
-                    events = events.Skip(skip.Value).ToList();
+                    people = people.Skip(skip.Value).ToList();
                 if (howMany.HasValue)
-                    events = events.Take(howMany.Value).ToList();
-                var response = new RepositoryResponse<IEnumerable<ShowInfo>>();
-                response.Succeed(string.Format("{0} item(s) found.", events.Count()));
-                response.Entity = events;
+                    people = people.Take(howMany.Value).ToList();
+                var response = new RepositoryResponse<IEnumerable<Person>>();
+                response.Succeed(string.Format("{0} item(s) found.", people.Count()));
+                response.Entity = people;
                 return response;
             });
         }
 
 
-        public RepositoryResponse<ShowInfo> GetSingle(int id)
+        public RepositoryResponse<Person> GetSingle(int id)
         {
-            return CatchError<RepositoryResponse<ShowInfo>>(() =>
+            return CatchError<RepositoryResponse<Person>>(() =>
             {
-                var item = Single(a => a.ShowId == id, null, enableTracking:true);
-                var response = new RepositoryResponse<ShowInfo>();
+                var item = Single(a => a.PersonID == id, null, enableTracking:true);
+                var response = new RepositoryResponse<Person>();
                 if (item != null)
                 {
-                    response.Succeed(string.Format("Item with ID {0} found.", item.ShowId));
+                    response.Succeed(string.Format("Item with ID {0} found.", item.PersonID));
                     response.Entity = item;
                 }
                 else
@@ -137,13 +134,13 @@ namespace KCActorsTheatre.Data.Repositories
                 var response = new RepositoryResponse();
                 if (item != null)
                 {
-                    CmsDbContext.ChangeState<ShowInfo>(EntityState.Deleted, item);
+                    CmsDbContext.ChangeState<Person>(EntityState.Deleted, item);
                     CmsDbContext.Save();
-                    response.Succeed(string.Format("Show with ID {0} deleted.", id));
+                    response.Succeed(string.Format("Person with ID {0} deleted.", id));
                 }
                 else
                 {
-                    response.Fail(string.Format("Show with ID {0} not found.", id));
+                    response.Fail(string.Format("Person with ID {0} not found.", id));
                 }
                 return response;
             });
