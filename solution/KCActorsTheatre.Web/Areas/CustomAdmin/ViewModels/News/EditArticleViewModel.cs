@@ -1,15 +1,15 @@
 ﻿using Clickfarm.Cms.Core;
-using KCActorsTheatre.Calendar;
+using KCActorsTheatre.News;
 
-namespace KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.Calendar
+namespace KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.News
 {
-    public class EditEventViewModel
+    public class EditArticleViewModel
     {
-        public Event Event { get; set; }
+        public Article Article { get; set; }
 
-        public bool HasEvent
+        public bool HasArticle
         {
-            get { return Event != null; }
+            get { return Article != null; }
         }
 
         public IUtcDateConverter DateConverter { get; set; }

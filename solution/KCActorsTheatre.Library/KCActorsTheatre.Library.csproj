@@ -120,16 +120,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppTypes\KCActorsTheatreApp.cs" />
-    <Compile Include="Blog\PostDTO.cs" />
-    <Compile Include="Blog\Author.cs" />
-    <Compile Include="Blog\Comment.cs" />
-    <Compile Include="Blog\Post.cs" />
     <Compile Include="Cms\CalloutTextContent.cs" />
     <Compile Include="Cms\ContentHelper.cs" />
     <Compile Include="Cms\ContentTypes\HeroImageContent.cs" />
     <Compile Include="Cms\ContentTypes\RotatorContent.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Calendar\Event.cs" />
+    <Compile Include="News\Article.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NewsletterSignUp.cs" />
     <Compile Include="SearchResult.cs" />

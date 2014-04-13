@@ -15,7 +15,7 @@
     <AssemblyName>KCActorsTheatre.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -215,20 +215,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\CmsConfig.cs" />
-    <Compile Include="Areas\CustomAdmin\Controllers\BlogController.cs" />
     <Compile Include="Areas\CustomAdmin\AdminCustomAreaRegistration.cs" />
-    <Compile Include="Areas\CustomAdmin\Controllers\CalendarController.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\Blog\AuthorsViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\Blog\CommentsViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\Blog\EditCommentViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\Blog\EditAuthorViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\Blog\EditPostViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\Blog\PostsViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\Controllers\NewsController.cs" />
     <Compile Include="Areas\CustomAdmin\HealthyNevadaAdminControllerBase.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\Calendar\EditEventViewModel.cs" />
-    <Compile Include="Areas\CustomAdmin\ViewModels\Calendar\EventsViewModel.cs" />
-    <Compile Include="Controllers\BlogController.cs" />
-    <Compile Include="Controllers\CalendarController.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\News\EditArticleViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\News\NewsViewModel.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\KCActorsTheatreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -244,10 +236,8 @@
     </Compile>
     <Compile Include="Mvc\HealthyNevadaHandleErrorAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\BlogViewModel.cs" />
-    <Compile Include="ViewModels\BlogPostViewModel.cs" />
     <Compile Include="ViewModels\CalendarViewModel.cs" />
-    <Compile Include="ViewModels\CalendarEventViewModel.cs" />
+    <Compile Include="ViewModels\NewsViewModel.cs" />
     <Compile Include="ViewModels\NewsletterSignUpViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\InnerViewModel.cs" />
@@ -268,11 +258,8 @@
     <Content Include="apple-touch-icon.png" />
     <Content Include="app_not_offline.htm" />
     <Content Include="Areas\CustomAdmin\common\css\news.css" />
-    <Content Include="Areas\CustomAdmin\common\js\blog\blog-author.js" />
-    <Content Include="Areas\CustomAdmin\common\js\blog\blog-comment.js" />
-    <Content Include="Areas\CustomAdmin\common\js\calendar\calendar-event.js" />
+    <Content Include="Areas\CustomAdmin\common\js\news\news.js" />
     <Content Include="Areas\CustomAdmin\common\js\hn-item-create.js" />
-    <Content Include="Areas\CustomAdmin\common\js\blog\blog-post.js" />
     <Content Include="Areas\CustomAdmin\common\js\hn-item-index.js" />
     <Content Include="Areas\CustomAdmin\common\js\hn-item.js" />
     <Content Include="common\css\add2home.css" />
@@ -485,9 +472,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\CustomAdmin\Views\Blog\EditPostAjax.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Areas\Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -497,13 +481,8 @@
     <Content Include="Areas\CustomAdmin\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\CustomAdmin\Views\Blog\Posts.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Blog\Comments.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Blog\Authors.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Blog\EditAuthorAjax.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Blog\EditCommentAjax.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Calendar\Events.cshtml" />
-    <Content Include="Areas\CustomAdmin\Views\Calendar\EditEventAjax.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\News\Index.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\News\EditNewsArticleAjax.cshtml" />
     <Content Include="common\less\accordion.less" />
     <Content Include="common\less\alerts.less" />
     <Content Include="common\less\bootstrap.less" />
@@ -625,7 +604,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>41631</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/</IISUrl>
+          <IISUrl>http://localhost:41631/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KCActorsTheatre.Calendar
+namespace KCActorsTheatre.News
 {
-    public class Event
+    public class Article
     {
-        public int EventID { get; set; }
+        public int ArticleID { get; set; }
         public DateTime DateCreated { get; set; }
         public string ImageURL { get; set; }
 

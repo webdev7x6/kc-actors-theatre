@@ -5,10 +5,6 @@ namespace KCActorsTheatre.Data
 {
     public interface IKCActorsTheatreRepository : ICmsRepository
     {
-        EventRepository Events { get; }
-        PostRepository Posts { get; }
-        AuthorRepository Authors { get; }
-        CommentRepository Comments { get; }
-        NewsletterSignUpRepository NewsletterSignUps { get; }
+        NewsArticleRepository NewsArticles { get; }
     }
 }

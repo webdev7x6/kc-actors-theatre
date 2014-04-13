@@ -73,25 +73,8 @@ namespace KCActorsTheatre.Web
                 {
                     new AdminMenuItem
                     {
-                        Title = "Blog",
-                        Href = "#",
-                        RolesWithVisibility = new[]
-                        {
-                            Constants.CmsRole_SystemAdministrator,
-                            Constants.CmsRole_BlogManager,
-                        },
-					    Children = new AdminMenuItem[]
-					    {
-						    new AdminMenuItem { Title = "Blog Posts", Href = "/CustomAdmin/Blog/Posts", RolesWithVisibility = new[] {Clickfarm.Cms.Constants.CmsRole_SystemAdministrator } },
-						    new AdminMenuItem { Title = "Blog Comments", Href = "/CustomAdmin/Blog/Comments", RolesWithVisibility = new[] {Clickfarm.Cms.Constants.CmsRole_SystemAdministrator } },
-						    new AdminMenuItem { Title = "Blog Authors", Href = "/CustomAdmin/Blog/Authors", RolesWithVisibility = new[] {Clickfarm.Cms.Constants.CmsRole_SystemAdministrator } }
-					    }
-                    },
-
-                    new AdminMenuItem
-                    {
-                        Title = "Events",
-                        Href = "/CustomAdmin/Calendar/Events",
+                        Title = "News",
+                        Href = "/CustomAdmin/News",
                         RolesWithVisibility = new[]
                         {
                             Constants.CmsRole_SystemAdministrator,
@@ -258,23 +241,12 @@ namespace KCActorsTheatre.Web
                 .SingleUse()
                 ;
 
-            app.HasController<Controllers.CalendarController>("Calendar Landing Page", "Index")
+            app.HasController<Controllers.NewsController>("News Landing Page", "Index")
                 .ForPageType("Web Page")
                 .SingleUse()
                 ;
 
-            app.HasController<Controllers.CalendarController>("Calendar Event Detail Page", "Event")
-                .ForPageType("Web Page")
-                .SingleUse()
-                ;
-
-            app.HasController<Controllers.BlogController>("Blog Landing Page", "Index")
-                .ForPageType("Web Page")
-                .HasContentGroup("Hero")
-                .SingleUse()
-                ;
-
-            app.HasController<Controllers.BlogController>("Blog Detail Page", "Post")
+            app.HasController<Controllers.NewsController>("News Detail Page", "Detail")
                 .ForPageType("Web Page")
                 .SingleUse()
                 ;
