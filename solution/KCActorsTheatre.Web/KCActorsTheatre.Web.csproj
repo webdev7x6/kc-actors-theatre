@@ -446,6 +446,8 @@
     <Content Include="Views\Shared\_FooterScripts.cshtml" />
     <Content Include="Views\Home\SiteMap.cshtml" />
     <Content Include="Views\Home\CommunityDashboard.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\NewsArticle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="common\cms\files\" />
