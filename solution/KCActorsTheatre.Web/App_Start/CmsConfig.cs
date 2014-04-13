@@ -92,7 +92,8 @@ namespace KCActorsTheatre.Web
             #region Machines
 
             configBuilder.DefaultMachine()
-                .UsesCdnHost("clickfarmcdn.localhost")
+                //.UsesCdnHost("clickfarmcdn.localhost")
+                .UsesLocalCdnPath("common/Cdn")
                 //.UsesConnectionString("Development")
                 .UsesConnectionString("Workstation")
             ;
