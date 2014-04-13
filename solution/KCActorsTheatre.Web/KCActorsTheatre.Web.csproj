@@ -461,6 +461,7 @@
     <Content Include="Views\News\NewsArticleSummary.cshtml" />
     <Content Include="Views\News\Article.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\News\NextSet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="common\cms\files\" />

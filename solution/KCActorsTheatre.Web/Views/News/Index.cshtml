@@ -11,12 +11,11 @@
 {
     <script src="~/Scripts/jquery.jscroll.min.js"></script>
     <script type="text/javascript">
-        $(function() {
-            $('.read-more').click(function () {
+        $(function () {
+            $('#main-content').on('click', '.read-more', function () {
                 location.href = '@Url.Action("Article", "News")' + '/' + $(this).attr('data-article-id');
             });
             $('#main-content').jscroll();
-            $('a:last').click('alert');
         })
     </script>
 }
@@ -33,7 +32,7 @@
             {
                 @Html.Partial("NewsArticleSummary", newsArticle)
             }
-            <a href="#"></a>
+            <a style="display: none;" href="@Url.Action("Index", "News")?id=1"></a>
         </div> <!-- Close main-content -->
     </div> <!-- Close row -->
 </div> <!-- Close container -->
