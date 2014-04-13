@@ -6,5 +6,6 @@ namespace KCActorsTheatre.Data
     public interface IKCActorsTheatreRepository : ICmsRepository
     {
         NewsArticleRepository NewsArticles { get; }
+        ShowRepository Shows { get; }
     }
 }

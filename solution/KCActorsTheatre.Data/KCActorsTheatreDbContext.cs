@@ -4,6 +4,7 @@ using KCActorsTheatre.Cms;
 using KCActorsTheatre.Library.AppTypes;
 using KCActorsTheatre.News;
 using KCActorsTheatre.Cms.ContentTypes;
+using KCActorsTheatre.Show;
 
 namespace KCActorsTheatre.Data
 {
@@ -16,6 +17,11 @@ namespace KCActorsTheatre.Data
             get { return Set<Article>(); }
         }
 
+        public DbSet<ShowInfo> Shows
+        {
+            get { return Set<ShowInfo>(); }
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -25,6 +31,7 @@ namespace KCActorsTheatre.Data
             //custom entities
 
             modelBuilder.Entity<Article>().Map(m => m.ToTable("Article", "KCAT"));
+            modelBuilder.Entity<ShowInfo>().Map(m => m.ToTable("Show", "KCAT"));
 
             //custom content types
             modelBuilder.Entity<CalloutTextContent>().Map(m => m.Requires("ContentType").HasValue("CalloutText"));
