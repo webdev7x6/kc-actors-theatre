@@ -8,40 +8,40 @@ using Clickfarm.Cms.Admin.Mvc.Areas.Admin;
 using Clickfarm.Cms.Admin.Mvc.Areas.Admin.ViewModels;
 using Clickfarm.Cms.Core;
 using Clickfarm.Cms.Mvc;
-using KCActorsTheatre.Calendar;
-using KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.Calendar;
+using KCActorsTheatre.News;
+using KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.News;
 
 namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
 {
     [RequiresCmsUserAuthorization(Constants.CmsRole_CalendarManager)]
-    public class CalendarController : KCActorsTheatreAdminControllerBase
+    public class NewsController : KCActorsTheatreAdminControllerBase
     {
-        public CalendarController(ICmsContext context) : base(context) { }
+        public NewsController(ICmsContext context) : base(context) { }
 
-        public ViewResult Events()
+        public ViewResult Index()
         {
-            var model = new EventsViewModel();
+            var model = new NewsViewModel();
             model.Init(CmsContext);
             return View(model);
         }
 
         [HttpPost]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public JsonResult CreateEventAjax(Event @event)
+        public JsonResult CreateArticleAjax(Article article)
         {
             JsonResponse jsonResponse = new JsonResponse();
 
-            @event.DateCreated = DateTime.UtcNow;
+            article.DateCreated = DateTime.UtcNow;
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var repoResponse = Repository.Events.New(@event);
+                    var repoResponse = Repository.NewsArticles.New(article);
 
                     if (repoResponse.Succeeded && repoResponse.Entity != null)
                     {
-                        jsonResponse.Properties.Add("Item", ConvertEvent(repoResponse.Entity));
+                        jsonResponse.Properties.Add("Item", ConvertArticle(repoResponse.Entity));
                         jsonResponse.Succeeded = true;
                     }
                         
@@ -62,16 +62,16 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
         }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public ViewResult EditEventAjax(int id)
+        public ViewResult EditArticleAjax(int id)
         {
-            EditEventViewModel vm = new EditEventViewModel
+            EditArticleViewModel vm = new EditArticleViewModel
             {
                 DateConverter = CmsContext.DateConverter,
                 ContentProperties_Body_Html = new HtmlContentProperties(),
                 ContentProperties_Body_ImageFile = new FileContentProperties
                 {
                     RootFolder = "/Common/Cms/Images",
-                    DefaultSubfolder = "EventImages",
+                    DefaultSubfolder = "ArticleImages",
                     MediaTypes = new string[] { "image/" }
                 },
                 ContentProperties_Body_DocumentFile = new FileContentProperties
@@ -86,14 +86,14 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
                 ContentProperties_ImageFile = new FileContentProperties
                 {
                     RootFolder = "/Common/Cms/Images",
-                    DefaultSubfolder = "EventImages",
+                    DefaultSubfolder = "ArticleImages",
                     MediaTypes = new string[] { "image/" }
                 }
             };
-            var repoResponse = Repository.Events.GetSingle(id);
+            var repoResponse = Repository.NewsArticles.GetSingle(id);
             if (repoResponse.Succeeded)
             {
-                vm.Event = repoResponse.Entity;
+                vm.Article = repoResponse.Entity;
             }
             return View(vm);
         }
@@ -107,7 +107,7 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
             {
                 try
                 {
-                    var entity = Repository.Events.GetSingle(ID).Entity;
+                    var entity = Repository.NewsArticles.GetSingle(ID).Entity;
                     EditInPlaceJsonResponse response = EditProperty(editID => entity, id, property, newValue, null, null, null);
                     return Json(response);
                 }
@@ -118,7 +118,7 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
             }
             else
             {
-                return Json(new JsonResponse { Succeeded = false, Message = string.Format("Event ID {0} was not regognized.", id) });
+                return Json(new JsonResponse { Succeeded = false, Message = string.Format("item ID {0} was not regognized.", id) });
             }
         }
 
@@ -126,11 +126,11 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public JsonResult DeleteEventAjax(int id)
         {
-            RepositoryResponse repoResponse = Repository.Events.Delete(id);
+            RepositoryResponse repoResponse = Repository.NewsArticles.Delete(id);
             JsonResponse response = new JsonResponse();
             if (repoResponse.Succeeded)
             {
-                response.Succeed(string.Format("Event with ID {0} deleted.", id));
+                response.Succeed(string.Format("item with ID {0} deleted.", id));
             }
             else
             {
@@ -143,12 +143,12 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
         public JsonResult FindEventsAjax(string term)
         {
             JsonResponse response = new JsonResponse();
-            var repoResponse = Repository.Events.FindForDisplay(term.Split(new char[0], StringSplitOptions.RemoveEmptyEntries));
+            var repoResponse = Repository.NewsArticles.FindForDisplay(term.Split(new char[0], StringSplitOptions.RemoveEmptyEntries));
             if (repoResponse.Succeeded)
             {
-                var items = ConvertEvents(repoResponse.Entity);
+                var items = ConvertArticles(repoResponse.Entity);
                 response.Properties.Add("Items", items);
-                response.Succeed(string.Format("{0} calendar event(s) found.", items.Count()));
+                response.Succeed(string.Format("{0} item(s) found.", items.Count()));
             }
             else
             {
@@ -158,15 +158,15 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
         }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public JsonResult AllEventsAjax()
+        public JsonResult AllArticlesAjax()
         {
             JsonResponse response = new JsonResponse();
-            var repoResponse = Repository.Events.GetAll();
+            var repoResponse = Repository.NewsArticles.GetAll();
             if (repoResponse.Succeeded)
             {
-                var items = ConvertEvents(repoResponse.Entity);
+                var items = ConvertArticles(repoResponse.Entity);
                 response.Properties.Add("Items", items);
-                response.Succeed(string.Format("{0} calendar event(s) found.", items.Count()));
+                response.Succeed(string.Format("{0} items(s) found.", items.Count()));
             }
             else
             {
@@ -175,20 +175,20 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
             return Json(response);
         }
 
-        private IEnumerable<object> ConvertEvents(IEnumerable<Event> items)
+        private IEnumerable<object> ConvertArticles(IEnumerable<Article> items)
         {
             return items.Select(a =>
             {
-                return ConvertEvent(a);
+                return ConvertArticle(a);
             });
         }
 
-        private object ConvertEvent(Event item)
+        private object ConvertArticle(Article item)
         {
             return new
             {
                 // generic and required by reusable JavaScript
-                ID = item.EventID,
+                ID = item.ArticleID,
                 TabTitleString = item.Title,
                 DateCreated = CmsContext.DateConverter.Convert(item.DateCreated).FromUtc().ForCmsUser().ToString("g"),
 

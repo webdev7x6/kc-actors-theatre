@@ -8,13 +8,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using KCActorsTheatre.Calendar;
+using KCActorsTheatre.News;
 
 namespace KCActorsTheatre.Web.Controllers
 {
-    public class CalendarController : KCActorsTheatreController
+    public class NewsController : KCActorsTheatreController
     {
-        public CalendarController(ICmsContext context, HttpContextBase httpContext)
+        public NewsController(ICmsContext context, HttpContextBase httpContext)
             : base(context, httpContext) 
         {
         }
@@ -24,22 +24,22 @@ namespace KCActorsTheatre.Web.Controllers
             var model = new CalendarViewModel();
             InitializeViewModel(model);
 
-            model.Events = repository.Events.GetForWebsite(9, 0).Entity;
-            model.JsonEvents = ConvertEvents(model.Events);
+            model.NewsArticles = repository.NewsArticles.GetForWebsite(9, 0).Entity;
+            model.JsonEvents = ConvertArticles(model.NewsArticles);
 
             return View(model);
         }
 
         public ActionResult Event(int id)
         {
-            var model = new CalendarEventViewModel();
+            var model = new NewsViewModel();
             InitializeViewModel(model);
 
             try
             {
-                var repoReponse = repository.Events.GetSingle(id);
+                var repoReponse = repository.NewsArticles.GetSingle(id);
                 if (repoReponse.Succeeded && repoReponse.Entity != null)
-                    model.Event = repoReponse.Entity;
+                    model.Article = repoReponse.Entity;
             }
             catch (Exception ex)
             {
@@ -55,13 +55,13 @@ namespace KCActorsTheatre.Web.Controllers
             JsonResponse jsonResponse = new JsonResponse();
             try
             {
-                var repoReponse = repository.Events
+                var repoReponse = repository.NewsArticles
                     .GetForWebsite(howMany, skip)
                 ;
 
                 if (repoReponse.Succeeded && repoReponse.Entity != null)
                 {
-                    jsonResponse.Properties.Add("Items", ConvertEvents(repoReponse.Entity));
+                    jsonResponse.Properties.Add("Items", ConvertArticles(repoReponse.Entity));
                     jsonResponse.Succeeded = true;
                 }
             }
@@ -80,11 +80,11 @@ namespace KCActorsTheatre.Web.Controllers
             JsonResponse jsonResponse = new JsonResponse();
             try
             {
-                var repoReponse = repository.Events.FindForWebsite(searchTerm);
+                var repoReponse = repository.NewsArticles.FindForWebsite(searchTerm);
 
                 if (repoReponse.Succeeded && repoReponse.Entity != null)
                 {
-                    jsonResponse.Properties.Add("Items", ConvertEvents(repoReponse.Entity));
+                    jsonResponse.Properties.Add("Items", ConvertArticles(repoReponse.Entity));
                     jsonResponse.Succeeded = true;
                 }
             }
@@ -97,24 +97,24 @@ namespace KCActorsTheatre.Web.Controllers
             return Json(jsonResponse);
         }
 
-        private IEnumerable<object> ConvertEvents(IEnumerable<Event> events)
+        private IEnumerable<object> ConvertArticles(IEnumerable<Article> articles)
         {
-            return events.Select(a =>
+            return articles.Select(a =>
             {
-                return ConvertEvent(a);
+                return ConvertArticle(a);
             });
         }
 
-        private object ConvertEvent(Event @event)
+        private object ConvertArticle(Article article)
         {
-            var startDate = @event.StartDate.Value;
+            var startDate = article.StartDate.Value;
             return new
             {
-                ID = @event.EventID,
+                ID = article.ArticleID,
                 StartDate = startDate.ToString("dd"),
                 StartMonth = startDate.ToString("MMM"),
-                Title = Truncate(@event.Title, 18),
-                Summary = Truncate(@event.Summary, 70),
+                Title = Truncate(article.Title, 18),
+                Summary = Truncate(article.Summary, 70),
             };
         }
 

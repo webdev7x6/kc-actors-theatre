@@ -6,9 +6,8 @@ using System.Collections.Generic;
 
 namespace KCActorsTheatre.Web.ViewModels
 {
-    public class BlogViewModel : KCActorsTheatreViewModel
+    public class NewsViewModel : KCActorsTheatreViewModel
     {
-        public IEnumerable<Post> Posts { get; set; }
-        public object JsonPosts { get; set; }
+        public IEnumerable<Post> NewsArticles { get; set; }
     }
 }
