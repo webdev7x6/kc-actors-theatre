@@ -8,6 +8,8 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
+using KCActorsTheatre.Web.Helpers;
+using System.Text;
 
 namespace KCActorsTheatre.Web.Controllers
 {
@@ -37,11 +39,38 @@ namespace KCActorsTheatre.Web.Controllers
             return View(model);
         }
 
+        [HttpGet]
         public ActionResult Contact()
         {
-            var model = new InnerViewModel();
+            var model = new ContactViewModel();
             InitializeViewModel(model);
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Contact(ContactViewModel model)
+        {
+            //var app = (KCActorsTheatre.Library.AppTypes.KCActorsTheatreApp)model.RequestContent.App;
+
+            var message = new StringBuilder("The following was submitted on the Contact Us page of tht KCAT website.<br /><br />");
+            message.AppendFormat("Name: {0}<br />", model.Name);
+            message.AppendFormat("Email: {0}<br />", model.Email);
+            message.AppendFormat("Phone Number: {0}<br />", model.PhoneNumber);
+
+            if (!string.IsNullOrEmpty(model.MailingAddress))
+                message.AppendFormat("Mailing Address: {0}<br />", model.MailingAddress);
+
+            message.AppendFormat("Comments: {0}", model.Comments);
+
+
+            var email = new Emailer();
+            email.To = "pete.aaron.davis@gmail.com"; // app.ContactUsEmail; ;
+            email.Subject = "KCAT Website Contact Us Submission";
+            email.Message = message.ToString();
+            email.Send();
+            
+
+            return Contact();
         }
 
         public ActionResult CommunityDashboard()

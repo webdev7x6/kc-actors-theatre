@@ -1,14 +1,8 @@
-﻿using Clickfarm.AppFramework.Responses;
-using Clickfarm.AppFramework.Web;
-using Clickfarm.Cms.Core;
-using Clickfarm.AppFramework.Extensions;
-using KCActorsTheatre.Contract;
-using KCActorsTheatre.Web.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Web;
 using System.Web.Mvc;
+using Clickfarm.Cms.Core;
+using KCActorsTheatre.Web.ViewModels;
 
 namespace KCActorsTheatre.Web.Controllers
 {
