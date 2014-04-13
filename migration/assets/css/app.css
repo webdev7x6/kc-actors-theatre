@@ -6083,6 +6083,9 @@ a:hover {
 a:hover:hover {
   color: #f47974;
 }
+blockquote {
+  border-left: 5px solid #ef433b;
+}
 blockquote p {
   font-family: "museo-sans", sans-serif;
   font-style: normal;
@@ -6313,7 +6316,7 @@ footer#footer {
 }
 .show-detail-item blockquote:nth-child(even) {
   text-align: right;
-  border-right: 5px solid #eee;
+  border-right: 5px solid #ef433b;
   border-left: 0;
 }
 .show-detail-item .article-title,
@@ -6338,17 +6341,29 @@ footer#footer {
 .show-detail-item .article-title li {
   margin-bottom: 32px;
 }
+.show-detail-item .article-title li a {
+  color: #ef433b;
+  text-transform: uppercase;
+}
 .show-detail-item .mp3-links li {
   line-height: 2;
 }
 .show-sidebar-item {
   margin-bottom: 20px;
 }
-.show-sidebar-item .show-dates {
+.show-sidebar-item .other-show-list h5 a {
+  color: #383739;
+}
+.show-sidebar-item .other-show-list h5 a:hover {
+  color: #ef433b;
+}
+.show-sidebar-item .show-dates,
+.show-sidebar-item .other-show-list {
   list-style: none;
   padding-left: 0;
 }
-.show-sidebar-item .show-dates h5 {
+.show-sidebar-item .show-dates h5,
+.show-sidebar-item .other-show-list h5 {
   color: #383739;
   padding-top: 0;
   padding-bottom: 0;
@@ -6357,8 +6372,14 @@ footer#footer {
   border-bottom: none;
   border-top: none;
 }
-.show-sidebar-item .show-dates li {
+.show-sidebar-item .show-dates li,
+.show-sidebar-item .other-show-list li {
   margin-bottom: 20px;
+}
+.show-sidebar-item .show-dates li:first-child,
+.show-sidebar-item .other-show-list li:first-child {
+  border-top: 1px solid #ef433b;
+  padding-top: 15px;
 }
 .show-preview {
   margin-top: 90px;
