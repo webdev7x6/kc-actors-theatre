@@ -421,7 +421,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Areas\Admin\Views\Content\RotatorImageContent.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_HealthyNevadaAppEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_KCActorsTheatreAppEdit.cshtml" />
     <Content Include="Areas\Admin\Views\Content\RotatorVideoContent.cshtml" />
     <None Include="Properties\PublishProfiles\Production_Deploy.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
