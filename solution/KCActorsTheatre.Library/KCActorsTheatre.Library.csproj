@@ -125,11 +125,12 @@
     <Compile Include="Cms\ContentTypes\HeroImageContent.cs" />
     <Compile Include="Cms\ContentTypes\RotatorContent.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="News\Article.cs" />
+    <Compile Include="Contract\Article.cs" />
+    <Compile Include="Contract\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NewsletterSignUp.cs" />
     <Compile Include="SearchResult.cs" />
-    <Compile Include="Show\ShowInfo.cs" />
+    <Compile Include="Contract\ShowInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,7 +1,6 @@
 ﻿using System.Data.Entity;
 using Clickfarm.Cms.Data;
-using KCActorsTheatre.News;
-using KCActorsTheatre.Show;
+using KCActorsTheatre.Contract;
 
 namespace KCActorsTheatre.Data
 {
@@ -9,5 +8,6 @@ namespace KCActorsTheatre.Data
     {
         DbSet<Article> NewsArticles { get; }
         DbSet<ShowInfo> Shows { get; }
+        DbSet<Person> People { get; }
     }
 }

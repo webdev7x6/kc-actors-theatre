@@ -2,13 +2,13 @@
 using Clickfarm.AppFramework.Web;
 using Clickfarm.Cms.Core;
 using Clickfarm.AppFramework.Extensions;
+using KCActorsTheatre.Contract;
 using KCActorsTheatre.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using KCActorsTheatre.News;
 
 namespace KCActorsTheatre.Web.Controllers
 {
