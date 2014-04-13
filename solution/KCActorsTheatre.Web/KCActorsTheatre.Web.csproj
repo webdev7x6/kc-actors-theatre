@@ -448,7 +448,8 @@
     <Content Include="Views\Home\SiteMap.cshtml" />
     <Content Include="Views\Home\CommunityDashboard.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
-    <Content Include="Views\News\NewsArticle.cshtml" />
+    <Content Include="Views\News\NewsArticleSummary.cshtml" />
+    <Content Include="Views\News\Artical.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="common\cms\files\" />
