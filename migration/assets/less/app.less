@@ -23,6 +23,7 @@ footer#footer {
   padding:10px;
   font-size:24px;
   color:white;
+  margin-top:20px;
 }
 
 .btn-default {
@@ -70,6 +71,24 @@ footer#footer {
     //min-width:670px;
     //max-width:100%;
     width:100%;
+  }
+}
+
+.carousel-indicators {
+  li {
+    width:auto;
+    height:auto;
+    text-indent:0;
+    border:none;
+    background-color:transparent;
+    border-radius:0;
+    span {
+      color:white;
+      font-size:24px;
+    }
+  }
+  &.active {
+    background-color:transparent;
   }
 }
 
@@ -172,10 +191,23 @@ footer#footer {
   }
 }
 
+.nav {
+  li {
+    font-size:14px;
+    a {
+      padding-left:8px;
+      padding-right:8px;
+    }
+  }
+}
+
 .navbar-inverse {
   background-color: @black;
   background: @black url('../common/img/black-pattern.png') repeat-x left top;
   border:none;
+  .navbar-nav>li>a {
+    color:white;
+  }
 }
 
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
@@ -352,6 +384,13 @@ footer#footer {
       &:first-child {
         border-top: 1px solid @red;
         padding-top:15px;
+      }
+    }
+  }
+  .show-dates {
+    li {
+      h5 {
+        font-size:15px;
       }
     }
   }

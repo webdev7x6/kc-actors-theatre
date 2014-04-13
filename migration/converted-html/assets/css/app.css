@@ -6120,6 +6120,7 @@ footer#footer {
   padding: 10px;
   font-size: 24px;
   color: white;
+  margin-top: 20px;
 }
 .btn-default {
   background: #383739;
@@ -6159,6 +6160,21 @@ footer#footer {
   top: 0;
   left: 0;
   width: 100%;
+}
+.carousel-indicators li {
+  width: auto;
+  height: auto;
+  text-indent: 0;
+  border: none;
+  background-color: transparent;
+  border-radius: 0;
+}
+.carousel-indicators li span {
+  color: white;
+  font-size: 24px;
+}
+.carousel-indicators.active {
+  background-color: transparent;
 }
 .date-callout h5 {
   border-top: none;
@@ -6239,10 +6255,20 @@ footer#footer {
 .navbar .navbar-right {
   margin-top: 12px;
 }
+.nav li {
+  font-size: 14px;
+}
+.nav li a {
+  padding-left: 8px;
+  padding-right: 8px;
+}
 .navbar-inverse {
   background-color: #383739;
   background: #383739 url('../common/img/black-pattern.png') repeat-x left top;
   border: none;
+}
+.navbar-inverse .navbar-nav > li > a {
+  color: white;
 }
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:focus,
@@ -6399,6 +6425,9 @@ footer#footer {
 .show-sidebar-item .other-show-list li:first-child {
   border-top: 1px solid #ef433b;
   padding-top: 15px;
+}
+.show-sidebar-item .show-dates li h5 {
+  font-size: 15px;
 }
 .show-preview {
   margin-top: 90px;
