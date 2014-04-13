@@ -5,7 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using Clickfarm.AppFramework.Extensions;
 using Clickfarm.AppFramework.Responses;
-using KCActorsTheatre.Show;
+using KCActorsTheatre.Contract;
 
 namespace KCActorsTheatre.Data.Repositories
 {

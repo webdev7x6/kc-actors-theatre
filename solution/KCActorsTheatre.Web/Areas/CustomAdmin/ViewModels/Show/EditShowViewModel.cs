@@ -1,5 +1,5 @@
 ﻿using Clickfarm.Cms.Core;
-using KCActorsTheatre.Show;
+using KCActorsTheatre.Contract;
 
 namespace KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.Show
 {

@@ -28,9 +28,12 @@
 		<label>Time Zone:</label>
 		<div class="display-field editable-format editable-select editable-select-timezone" data-editable-select-model="timezone"
 			data-editable-select-load-url="/Admin/Utility/GetTimeZonesAjax" data-property-name="TimeZone">@Model.AppHosts.App.TimeZoneInfo.DisplayName</div>
-        <label>Blog Comment Notification Email:</label>
+        <label>Contact Us Email:</label>
         <div class="display-field editable-format editable" title="Click to edit"
-            data-property-name="BlogCommmentEmailNotifications">@app.BlogCommmentEmailNotifications</div>
+             data-property-name="ContactUsEmail">@app.ContactUsEmail</div>
+        <label>Volunteer Email:</label>
+        <div class="display-field editable-format editable" title="Click to edit"
+             data-property-name="VolunteerEmail">@app.VolunteerEmail</div>
         <label>Facebook URL:</label>
         <div class="display-field editable-format editable" title="Click to edit"
             data-property-name="FacebookURL">@app.FacebookURL</div>
@@ -40,8 +43,5 @@
         <label>YouTube URL:</label>
         <div class="display-field editable-format editable" title="Click to edit"
             data-property-name="YouTubeURL">@app.YouTubeURL</div>
-        <label>Newsletter Sign Up Form Copy:</label>
-        <div class="display-field editable-format editable" title="Click to edit"
-            data-property-name="NewsletterSignUpForm">@app.NewsletterSignUpForm</div>
 	</div>
 </div>
