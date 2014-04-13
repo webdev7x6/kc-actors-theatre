@@ -263,6 +263,7 @@
     <Content Include="Areas\CustomAdmin\common\js\hn-item-index.js" />
     <Content Include="Areas\CustomAdmin\common\js\hn-item.js" />
     <Content Include="common\css\add2home.css" />
+    <Content Include="common\css\app.css" />
     <Content Include="common\css\bootstrap-responsive.css" />
     <Content Include="common\css\bootstrap-responsive.min.css" />
     <Content Include="common\css\bootstrap.css" />
@@ -423,6 +424,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\respond.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

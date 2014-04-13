@@ -6,135 +6,41 @@
     var utilityNav = Model.RequestContent.Menus.Where(m => m.Name.Equals("Utility Navigation")).FirstOrDefault();
     var app = (KCActorsTheatre.Library.AppTypes.KCActorsTheatreApp)Model.RequestContent.App;
 }
-<header class="visible-desktop">
-	<div class="row-fluid social-search-bar">
-		<div class="span6">
-			<ul class="social-icons-header">
-				<li><a href="@app.FacebookURL" target="_blank"><img src="/common/img/fb-icon-white.png" alt="Healthy Nevada Facebook Page"></a></li>
-				<li><a href="@app.YouTubeURL" target="_blank"><img src="/common/img/yt-icon-white.png" alt="Healthy Nevada Youtube Channel"></a></li>
-				<li><a href="@app.PinterestURL" target="_blank"><img src="/common/img/pin-icon-white.png" alt="Healthy Nevada Pinterest Board"></a></li>
-			</ul>
-		</div>
-		<div class="search-bar">
-			<div class="input-append">
-        <form id="search-form" action="@Url.GetCmsUrlPathByKey(req, "SiteSearchURL")" method="get">
-            <input class="search-bar-input" type="text" id="search-value" name="q" />
-            <input type="submit" class="btn search-btn" value="Search" />
-        </form>                
-			</div>
-		</div>
-	</div>
-	<div class="row-fluid secondary-nav">
-		<div class="span12">
-	        @Html.MegaMenu(new MegaMenuSettings {
-		        RequestContent = Model.RequestContent,
-		        Page = Model.RequestContent.Page,
-		        MenuName = "Utility Navigation",
-		        CssID = "utility-nav",
-		        CssClass = "",
-		        SkinName = "",
-		        SelectedClass = "",
-		        ProcessingItemCallback = (args) =>
-		        {
-                    if (args.Title == "E-newsletter Signup")
-                    {
-                        args.Title = string.Format("<span id=\"newsletter-modal-toggle\">{0}</span>", args.Title);
-                    }
-			        return args;
-		        }
-	        })
-		</div>
-	</div>
-</header>
-<div class="row-fluid visible-desktop">
-    <nav id="main-nav" class="span12">
-        <ul>
-            @foreach (var topLevelItem in req.Menus.First(p => p.Name == "Main Navigation").TopLevelItems.Where(p => p.IsEnabled).OrderBy(p => p.DisplayOrder))
-            {
-                @* top level item, with children *@
-                if (topLevelItem.HasChildren)
-                {
-                    <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">@topLevelItem.Title<strong class="caret"></strong></a>
-                        <ul class="dropdown-menu">
-                            @foreach (var secondLevelItem in topLevelItem.Children.Where(p => p.IsEnabled).OrderBy(p => p.DisplayOrder))
-                            {
-                                @* second level item, has children *@
-                                if(secondLevelItem.HasChildren)
-                                {
-                                    <li class="dropdown-submenu @(topLevelItem.DisplayOrder > 3 ? "pull-left" : "")">
-                                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">@secondLevelItem.Title</a>
-                                        <ul class="dropdown-menu">
-                                            @foreach (var thirdLevelItem in secondLevelItem.Children.Where(p => p.IsEnabled).OrderBy(p => p.DisplayOrder))
-                                            {
-                                                <li><a href="@thirdLevelItem.Url.Page.Alias">@thirdLevelItem.Title</a></li>
-                                            }
-                                        </ul>
-                                    </li>
-                                }
-                                @* second level item, no children *@   
-                                else
-                                {
-                                    <li><a href="@secondLevelItem.Url.Page.Alias">@secondLevelItem.Title</a></li>
-                                }
 
-                            }
+
+<div id="navbar-wrapper">
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">KC Actor's Theatre</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="people.html">People</a></li>
+                    <li><a href="content.html">Content</a></li>
+                    <li><a href="content-w-image.html">Content w/ Image</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
                         </ul>
                     </li>
-                }
-                @* top level item, no children *@
-                else
-                {
-                    if (@topLevelItem.MenuItemID == 62)
-                    {
-                        <li><a href="/"><img class="logo-resize" alt="Cerner Healthy Nevada" src="/common/img/header-logo.png" /></a></li>
-                    }
-                    else 
-                    {
-                        <li><a href="@topLevelItem.Url.Page.Alias">@topLevelItem.Title</a></li>                      
-                    }
-                }            
-            }
-        </ul>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div>
     </nav>
-</div>
-<div class="hidden-desktop" id="mobile-header">
-	<h1>Healthy Nevada</h1>
-</div>
-<div class="hidden-desktop" id="mobile-nav">
-	<button class="btn" id="mobile-menu-btn" type="button"><img src="/common/img/menu-icon.png" alt="Menu"></button>
-	<ul class="social-icons-mobile">
-		<li><a href="@app.FacebookURL" target="_blank"><img src="/common/img/fb-icon-white.png" alt="Healthy Nevada Facebook Page"></a></li>
-		<li><a href="@app.YouTubeURL" target="_blank"><img src="/common/img/yt-icon-white.png" alt="Healthy Nevada Youtube Channel"></a></li>
-		<li><a href="@app.PinterestURL" target="_blank"><img src="/common/img/pin-icon-white.png" alt="Healthy Nevada Pinterest Board"></a></li>
-	</ul>
-
-    <ul id="mobile-nav-main" class="nav-menu">
-        <li><a href="/">Home</a></li>
-        @foreach (var topLevelItem in req.Menus.First(p => p.Name == "Main Navigation").TopLevelItems.Where(p => p.IsEnabled).OrderBy(p => p.DisplayOrder))
-        {
-            @* top level item, with children *@
-            if (topLevelItem.HasChildren)
-            {
-                <li>
-                    <a class="expandable">@topLevelItem.Title</a>
-                    <ul>
-                        @foreach (var secondLevelItem in topLevelItem.Children.Where(p => p.IsEnabled).OrderBy(p => p.DisplayOrder))
-                        {
-                            <li><a href="@secondLevelItem.Url.Page.Alias">@secondLevelItem.Title</a></li>
-                        }
-                    </ul>
-                </li>
-            }
-            @* top level item, no children *@
-            else
-            {
-                @* skip home page *@
-                if (@topLevelItem.MenuItemID != 62)
-                {
-                    <li><a href="@topLevelItem.Url.Page.Alias">@topLevelItem.Title</a></li>                      
-                }
-            }            
-        }
-    </ul>
 </div>

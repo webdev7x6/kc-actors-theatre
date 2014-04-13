@@ -7,7 +7,7 @@
     var keywords = (page != null && page.MetaKeywords != string.Empty) ? page.MetaKeywords : "";
     var description = (page != null && page.MetaDescription != string.Empty) ? page.MetaDescription : "";
 }
-    <meta charset="utf-8">
+    @*<meta charset="utf-8">
     <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" name="viewport" />
     <meta name="description" content="@description">
     <meta name="keywords" content="@keywords">
@@ -27,4 +27,11 @@
     <link rel="apple-touch-icon-precomposed" href="/common/img/apple-touch-icon-57-precomposed.png">
     <link rel="shortcut icon" href="/common/img/favicon.png">
     <script type="text/javascript" src="//use.typekit.net/xhh1fme.js"></script>
-    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>*@
+
+<meta charset="utf-8">
+<title>@pageTitle</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="common/css/app.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="//use.typekit.net/ynt0rwm.js"></script>
+<script type="text/javascript">try { Typekit.load(); } catch (e) { }</script>
