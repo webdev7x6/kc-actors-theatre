@@ -133,7 +133,7 @@ namespace KCActorsTheatre.Web
             ;
 
             configBuilder.Content<HeroImageContent>("Hero Image")
-                .UsesView("ImageContent")
+                //.UsesView("ImageContent")
                 .HasIconCssClass("ui-icon-image")
                 .HasDataEntryHint("Hero images are 870px wide with a max height of 400px.")
                 .WithProperties(new FileContentProperties
@@ -150,9 +150,10 @@ namespace KCActorsTheatre.Web
                 })
             ;
 
-            configBuilder.Content<RotatorImageContent>("Rotator Image")
+            configBuilder.Content<ImageContent>("Rotator Image")
+                .UsesView("ImageContent")
                 .HasIconCssClass("ui-icon-image")
-                .HasDataEntryHint("Rotator images are 770 x 540.")
+                .HasDataEntryHint("Rotator images are 1200 x 1000.")
                 .WithProperties("FileDocumentContentProperties", new FileContentProperties
                 {
                     RootFolder = "/common/cms/files",
@@ -166,12 +167,10 @@ namespace KCActorsTheatre.Web
                 })
                 .WithProperties(new ImageContentProperties
                 {
-                    ExactWidth = 770,
-                    ExactHeight = 540
+                    ExactWidth = 1200,
+                    ExactHeight = 1000
                 })
             ;
-
-            configBuilder.Content<RotatorVideoContent>("Rotator Video").HasIconCssClass("ui-icon-video");
 
             configBuilder.Content<TextContent>("Get Involved").HasIconCssClass("ui-icon-script");
             configBuilder.Content<TextContent>("Upcoming Events").HasIconCssClass("ui-icon-script");
@@ -183,11 +182,11 @@ namespace KCActorsTheatre.Web
             #region Content groups
 
             configBuilder.ContentGroup("Body Copy").AsFixed().HasContentType<HtmlContent>("Copy");
-            configBuilder.ContentGroup("Home Callouts")
+
+            configBuilder.ContentGroup("Home Callout")
                 .AsFixed()
-                .HasContentType<TextContent>("Get Involved")
-                .HasContentType<TextContent>("Upcoming Events")
-                .HasContentType<TextContent>("About Healthy Nevada")
+                .HasContentType<TextContent>("Title")
+                .HasContentType<TextContent>("Text")
             ;
 
             configBuilder.ContentGroup("Hero")
@@ -195,9 +194,8 @@ namespace KCActorsTheatre.Web
                 .HasContentType<HeroImageContent>("Hero Image")
             ;
 
-            configBuilder.ContentGroup("Rotator Slides")
-                .HasContentType<RotatorImageContent>("Rotator Image")
-                .HasContentType<RotatorVideoContent>("Rotator Video")
+            configBuilder.ContentGroup("Rotator Images")
+                .HasContentType<ImageContent>("Rotator Image")
             ;
 
             #endregion
@@ -237,8 +235,8 @@ namespace KCActorsTheatre.Web
 
             app.HasController<Controllers.HomeController>("Home Page", "Index")
                 .ForPageType("Web Page")
-                .HasContentGroup("Home Callouts")
-                .HasContentGroup("Rotator Slides")
+                .HasContentGroup("Home Callout")
+                .HasContentGroup("Rotator Images")
                 .SingleUse()
                 ;
 
