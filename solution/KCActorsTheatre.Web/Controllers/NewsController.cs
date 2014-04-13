@@ -30,24 +30,24 @@ namespace KCActorsTheatre.Web.Controllers
             return View(model);
         }
 
-        public ActionResult Event(int id)
-        {
-            var model = new NewsViewModel();
-            InitializeViewModel(model);
+        //public ActionResult Event(int id)
+        //{
+        //    var model = new NewsViewModel();
+        //    InitializeViewModel(model);
 
-            try
-            {
-                var repoReponse = repository.NewsArticles.GetSingle(id);
-                if (repoReponse.Succeeded && repoReponse.Entity != null)
-                    model.Article = repoReponse.Entity;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+        //    try
+        //    {
+        //        var repoReponse = repository.NewsArticles.GetSingle(id);
+        //        if (repoReponse.Succeeded && repoReponse.Entity != null)
+        //            model.Article = repoReponse.Entity;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
         [AjaxOnly]
         public JsonResult GetEvents(int howMany, int skip)

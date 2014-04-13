@@ -1,15 +1,13 @@
-﻿using KCActorsTheatre.News;
+﻿using Clickfarm.Cms.Core;
+using Clickfarm.Cms.Mvc;
+using KCActorsTheatre.News;
+using KCActorsTheatre.Data;
 using System.Collections.Generic;
 
 namespace KCActorsTheatre.Web.ViewModels
 {
     public class NewsViewModel : KCActorsTheatreViewModel
     {
-        public Article Article { get; set; }
-
-        public bool HasArticle
-        {
-            get { return Article != null; }
-        }
+        public IEnumerable<Article> NewsArticles { get; set; }
     }
 }
