@@ -90,10 +90,10 @@ namespace KCActorsTheatre.Data.Repositories
 
         public RepositoryResponse<IEnumerable<Article>> GetForWebsite(int? howMany = null, int? skip = null)
         {
-            return CatchError<RepositoryResponse<IEnumerable<Article>>>(() =>
-            {
+            //return CatchError<RepositoryResponse<IEnumerable<Article>>>(() =>
+            //{
                 var events = All()
-                    .Where(p => p.StartDate.HasValue && p.EndDate.HasValue && p.StartDate.Value >= DateTime.UtcNow)
+                    //.Where(p => p.StartDate.HasValue && p.EndDate.HasValue && p.StartDate.Value >= DateTime.UtcNow)
                     .OrderBy(p => p.StartDate.Value)
                     .ThenBy(p => p.DateCreated)
                     .ToList()
@@ -106,7 +106,7 @@ namespace KCActorsTheatre.Data.Repositories
                 response.Succeed(string.Format("{0} item(s) found.", events.Count()));
                 response.Entity = events;
                 return response;
-            });
+            //});
         }
 
 
