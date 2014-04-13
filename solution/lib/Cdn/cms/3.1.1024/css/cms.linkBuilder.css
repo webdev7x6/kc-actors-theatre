@@ -1,0 +1,17 @@
+#link-builder-cms-url-search-results {
+    width: 100%;
+    margin-top: -10px;
+    float: none;
+}
+
+.link-builder-cms-url-disabled {
+    color: #999999;
+}
+
+.link-builder-cms-url-select {
+    cursor: default;
+}
+
+.link-builder-cms-url-select:hover {
+    background-color: #F0F8FF;
+}

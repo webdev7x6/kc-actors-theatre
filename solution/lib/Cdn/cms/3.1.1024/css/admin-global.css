@@ -1,0 +1,155 @@
+body, html, div, blockquote, img, label, p, pre, dl, dt, dd, form, a, fieldset, input, th, td { margin: 0; padding: 0; font-family: "Open Sans", Arial, sans-serif; }
+body, html, td, th, blockquote, label, div, p, li, a, input { font-size: 12px; color: #403916; }
+h1, h2, h3, h4, h5 { color: #403916; }
+img { border: none; }
+h1 { font-size: 16px; }
+h2 { font-size: 14px; }
+p { margin-bottom: 12px; }
+ul { margin: 12px 0; }
+li { margin-top: 4px; }
+noscript { display: block; margin: 10px; color: #FF0000; font-weight: bold; }
+#main { display: none; margin: 10px 15px; }
+#admin-wrapper { margin: 0; }
+#admin-header { padding: 0; position: relative; z-index: 1000; }
+#admin-footer { border-top: 1px solid #E0E0E0; text-align: right; padding: 20px; }
+#admin-header #content-wrapper { margin: 3px 10px 0 10px; height: 20px; }
+#admin-menu-wrapper { display: none; }
+.field-validation-error { color: #FF0000; }
+div.loader { display: none; }
+div.ajax-error { display: none; color: #FF0000; padding: 10px; }
+.hidden { display: none; }
+div.model-display label { font-weight: bold; display: block; margin: 5px; }
+div.model-display div.yes-no-buttons label { width: auto; clear: none; margin-bottom: 0; }
+/*div.model-display h2 { border-bottom: 1px solid #6A5E32; width: 100%; float: left; clear: left; margin: 10px 0; }*/
+div.model-display div.in-place-editor { float: left; clear: left; width: 100%; }
+.editable-format { background-color: #F8FDF9; border: 1px dashed #20B34F; padding: 4px 10px; min-height: 20px; border-radius: 3px; font-weight: normal; } /*the min-height here is critical to operation of edit in place*/
+.edit-not-in-place .editable-format { background-color: transparent; border-width: 0; padding: 0; min-height: 0; border-radius: 0; }
+.editable-format ul { margin: 0; padding: 0 0 0 20px; }
+div.editable-format input[type="text"], div.editable-format input[type="password"], div.editable-format input[type="email"], div.editable-format textarea, div.editable-format select { background-image: url("../images/background-gradient-03.png"); background-position: center top; background-repeat: repeat-x; border: 1px solid #CCCCCC; border-radius: 0 4px 4px 0; width: 100%; }
+td .editable-format { margin-bottom: 0; }
+div.editable-textarea { min-height: 100px; white-space: pre-line; }
+div.editable-format textarea { max-width: 100%; min-width: 100%; width: 100%; min-height:150px;}
+div.editable-buttons { margin-top: 6px; }
+div.editable-buttons button, .editable-buttons .button-separator { display: block; float: left; }
+.nullable-wrapper{margin-right:45px;position:relative;}
+.nullify-content-link{position:absolute;top:0;right:-39px;}
+div.display-field { margin: 5px 5px 10px 5px; }
+table.editable-field-with-supplement { width: 100%; }
+td.editable-field-main { width: 100%; }
+td.editable-field-supplement { padding-left: 4px; }
+td div.display-field { margin-bottom: 0; }
+div.editable-format.editable-file { line-height: 24px; }
+div.editable-format.editable-file span.file-icon-inline { float: left; margin-right: 3px; }
+div.editable-format.editable-image img { max-width: 100%; cursor: pointer; }
+form.editable-form label { font-weight: normal; display: inline; margin: auto; }
+button.jeditable-cancel, .editable-buttons .button-separator { background: transparent; border: 0; color: #403916; margin: 5px 0 0 5px; padding: 0; }
+button.jeditable-cancel { cursor: pointer; }
+.content-properties{width:auto;margin:0 6px;}
+#apply-changes { bottom: 0; height: 30px; left: 0; right: 0; padding: 10px; position: fixed; display: none; }
+.clear { clear: both; }
+#admin-page-title { float: left; font-weight: bold; }
+#current-cms-user-nav { float: right; }
+tr.webgrid-row { background-color: #FFFFFF; }
+tr.webgrid-alt-row { background-color: #E0E0E0; }
+div.yes-no-bool span { float: left; }
+div.yes-no-bool span.ui-icon { margin: 4px -6px 4px 4px; }
+/*div.editable-format form.editable-form input { line-height: 20px; }*/
+.maxlengtherr span.textlimit-counter .innercnt { color: #FF0000; font-weight: bold; }
+.maxlengtherr span.textlimit-counter .maxcnt { /**/ }
+/* tabs */
+#close-tabs-link { float: right; height: 28px; margin: 2px 2px 0 0; }
+/* file type icons */
+.file-icon-16 { width: 16px; height: 16px; background: transparent url(../images/file-type-icons-16.png) 0 0 no-repeat; }
+.file-icon-16.unknown                                                           { background-position: 0 0 }
+.file-icon-16.clear                                                             { background-position: 0 -16px; }
+.file-icon-16.folder                                                            { background-position: 0 -32px; }
+.file-icon-16.bmp, .file-icon-16.gif, .file-icon-16.jpe, .file-icon-16.jpeg,
+.file-icon-16.jpg, .file-icon-16.png, .file-icon-16.tif, .file-icon-16.tiff     { background-position: 0 -48px; }
+.file-icon-16.gz, .file-icon-16.zip                                             { background-position: 0 -64px; }
+.file-icon-16.pdf                                                               { background-position: 0 -80px; }
+.file-icon-16.aac, .file-icon-16.aif, .file-icon-16.aiff, .file-icon-16.m4a,
+.file-icon-16.mid, .file-icon-16.mp3, .file-icon-16.wav, .file-icon-16.wma      { background-position: 0 -96px; }
+.file-icon-16.m4v, .file-icon-16.mov, .file-icon-16.mp4, .file-icon-16.mpeg,
+.file-icon-16.mpg, .file-icon-16.wmv                                            { background-position: 0 -112px; }
+.file-icon-16.doc, .file-icon-16.docx, .file-icon-16.rtf                        { background-position: 0 -128px; }
+.file-icon-16.csv, .file-icon-16.tab, .file-icon-16.tsv, .file-icon-16.xls,
+.file-icon-16.xlsx                                                              { background-position: 0 -144px; }
+.file-icon-16.ppt, .file-icon-16.pptx                                           { background-position: 0 -160px; }
+.file-icon-16.fla, .file-icon-16.flv, .file-icon-16.swf                         { background-position: 0 -176px; }
+.file-icon-16.txt                                                               { background-position: 0 -192px; }
+.file-icon-16.htm, .file-icon-16.html                                           { background-position: 0 -208px; }
+.file-icon-16.xml                                                               { background-position: 0 -224px; }
+.file-icon-32 { width: 32px; height: 32px; background: transparent url(../images/file-type-icons-32.png) 0 0 no-repeat; }
+.file-icon-32.unknown                                                           { background-position: 0 0 }
+.file-icon-32.clear                                                             { background-position: 0 -32px; }
+.file-icon-32.folder                                                            { background-position: 0 -64px; }
+.file-icon-32.bmp, .file-icon-32.gif, .file-icon-32.jpe, .file-icon-32.jpeg,
+.file-icon-32.jpg, .file-icon-32.png, .file-icon-32.tif, .file-icon-32.tiff     { background-position: 0 -96px; }
+.file-icon-32.gz, .file-icon-32.zip                                             { background-position: 0 -128px; }
+.file-icon-32.pdf                                                               { background-position: 0 -160px; }
+.file-icon-32.aac, .file-icon-32.aif, .file-icon-32.aiff, .file-icon-32.m4a,
+.file-icon-32.mid, .file-icon-32.mp3, .file-icon-32.wav, .file-icon-32.wma      { background-position: 0 -192px; }
+.file-icon-32.m4v, .file-icon-32.mov, .file-icon-32.mp4, .file-icon-32.mpeg,
+.file-icon-32.mpg, .file-icon-32.wmv                                            { background-position: 0 -224px; }
+.file-icon-32.doc, .file-icon-32.docx, .file-icon-32.rtf                        { background-position: 0 -256px; }
+.file-icon-32.csv, .file-icon-32.tab, .file-icon-32.tsv, .file-icon-32.xls,
+.file-icon-32.xlsx                                                              { background-position: 0 -288px; }
+.file-icon-32.ppt, .file-icon-32.pptx                                           { background-position: 0 -320px; }
+.file-icon-32.fla, .file-icon-32.flv, .file-icon-32.swf                         { background-position: 0 -352px; }
+.file-icon-32.txt                                                               { background-position: 0 -384px; }
+.file-icon-32.htm, .file-icon-32.html                                           { background-position: 0 -416px; }
+.file-icon-32.xml                                                               { background-position: 0 -448px; }
+.file-icon-48 { width: 48px; height: 48px; background: transparent url(../images/file-type-icons-48.png) 0 0 no-repeat; }
+.file-icon-48.unknown                                                           { background-position: 0 0 }
+.file-icon-48.clear                                                             { background-position: 0 -48px; }
+.file-icon-48.folder                                                            { background-position: 0 -96px; }
+.file-icon-48.bmp, .file-icon-48.gif, .file-icon-48.jpe, .file-icon-48.jpeg,
+.file-icon-48.jpg, .file-icon-48.png, .file-icon-48.tif, .file-icon-48.tiff     { background-position: 0 -144px; }
+.file-icon-48.gz, .file-icon-48.zip                                             { background-position: 0 -192px; }
+.file-icon-48.pdf                                                               { background-position: 0 -240px; }
+.file-icon-48.aac, .file-icon-48.aif, .file-icon-48.aiff, .file-icon-48.m4a,
+.file-icon-48.mid, .file-icon-48.mp3, .file-icon-48.wav, .file-icon-48.wma      { background-position: 0 -288px; }
+.file-icon-48.m4v, .file-icon-48.mov, .file-icon-48.mp4, .file-icon-48.mpeg,
+.file-icon-48.mpg, .file-icon-48.wmv                                            { background-position: 0 -336px; }
+.file-icon-48.doc, .file-icon-48.docx, .file-icon-48.rtf                        { background-position: 0 -384px; }
+.file-icon-48.csv, .file-icon-48.tab, .file-icon-48.tsv, .file-icon-48.xls,
+.file-icon-48.xlsx                                                              { background-position: 0 -432px; }
+.file-icon-48.ppt, .file-icon-48.pptx                                           { background-position: 0 -480px; }
+.file-icon-48.fla, .file-icon-48.flv, .file-icon-48.swf                         { background-position: 0 -528px; }
+.file-icon-48.txt                                                               { background-position: 0 -576px; }
+.file-icon-48.htm, .file-icon-48.html                                           { background-position: 0 -624px; }
+.file-icon-48.xml                                                               { background-position: 0 -672px; }
+.ui-icon-blank { background-position: -96px -224px; }
+.ui-icon-dollar { background-position: -241px -191px; }
+.table-layout { border-collapse: collapse; float: left; clear: left; }
+.table-layout tr { margin: 0; border-collapse: collapse; }
+.table-layout td { border: 1px solid #ECEADF; border-bottom: 1px solid #D4D1BF; border-collapse: collapse; padding: 3px 12px 3px 3px; margin: 0; }
+.table-layout thead { background-color: #ECEADF; }
+.table-layout th { border-bottom: 1px solid #D4D1BF; border-top: 1px solid #D4D1BF; padding: 3px 12px 3px 3px; text-align: left; }
+.table-layout tbody tr:nth-child(odd) { background-color: #F7F5EA; }
+.table-layout tbody tr:nth-child(even) { background-color: #ECEADF; }
+.wrapper { padding: 10px; }
+.wrapper.ui-dialog-titlebar { padding: 6px 12px; }
+.ui-tabs-panel { min-height: 200px; }
+.ui-widget-cms { padding: 10px; background: none repeat scroll 0 0 #FFFFFF; margin-bottom: 10px; }
+.ui-titlebar-cms { padding: 6px 24px 6px 6px; }
+.ui-dialog-titlebar { margin-bottom: 6px; }
+/*.ui-state-focus, .ui-state-hover { color: #FFFFFF !important; }*/
+div.ui-toolbar-cms > a { display: block; }
+div.ui-toolbar-cms > a, div.ui-toolbar-cms > div { float: left; margin: 0 5px 0 0; }
+div.ui-toolbar-cms:before, div.ui-toolbar-cms:after { content: ""; display: table; }
+div.ui-toolbar-cms:after { clear: both; }
+div.ui-toolbar-cms { zoom: 1; margin-bottom: 10px; }
+div.tab-options-wrapper { width: 200px; float: left; height: 400px; }
+div.tab-options > div > div { margin-bottom: 16px; }
+div.tab-options input[type="text"], div.tab-options select { width: 100%; }
+div.tab-display { margin-left: 210px; }
+div.tab-display-panel { margin-bottom: 10px; width: auto; position: static; }
+div.tab-display-panel ul { padding-left: 2em; }
+div.tab-display-panel td ul { padding-left: 1.2em; margin: 0; }
+div.tab-display-panel td ul li { margin-top: 0; }
+.titlebar-close-button { display: block; height: 20px; position: absolute; right: 2px; top: 3px; width: 20px; }
+table.k-editor.ui-resizable div.ui-resizable-handle.ui-resizable-s { bottom: 1px; }
+.ui-button.ui-button-text-only.small .ui-button-text { padding: 0 4px; }
+.dialog-textbox { margin-left: 0; width: 100%; }
+.k-editor-toolbar-wrap ul { border: 1px solid transparent; }

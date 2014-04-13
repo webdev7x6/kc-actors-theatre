@@ -63,7 +63,7 @@ namespace KCActorsTheatre.Data.Repositories
             return CatchError<RepositoryResponse<IEnumerable<Article>>>(() =>
             {
                 var items = All(null, enableTracking: false)
-                    .Where(p => p.StartDate >= DateTime.UtcNow)
+                    .Where(p => p.IsPublished == true)
                 ;
                 if (searchTerm.Length > 0)
                 {
@@ -71,7 +71,7 @@ namespace KCActorsTheatre.Data.Repositories
                 }
                 var response = new RepositoryResponse<IEnumerable<Article>>();
                 response.Succeed(string.Format("{0} item(s) found.", items.Count()));
-                response.Entity = items.OrderBy(a => a.StartDate.Value).ThenBy(a => a.DateCreated);
+                response.Entity = items.OrderByDescending(a => a.ArticleDate.Value);
                 return response;
             });
         }
@@ -90,11 +90,12 @@ namespace KCActorsTheatre.Data.Repositories
 
         public RepositoryResponse<IEnumerable<Article>> GetForWebsite(int? howMany = null, int? skip = null)
         {
-            //return CatchError<RepositoryResponse<IEnumerable<Article>>>(() =>
-            //{
+            return CatchError<RepositoryResponse<IEnumerable<Article>>>(() =>
+            {
                 var events = All()
+                    .Where(p => p.IsPublished == true)
                     //.Where(p => p.StartDate.HasValue && p.EndDate.HasValue && p.StartDate.Value >= DateTime.UtcNow)
-                    .OrderBy(p => p.StartDate.Value)
+                    .OrderBy(p => p.ArticleDate.Value)
                     .ThenBy(p => p.DateCreated)
                     .ToList()
                 ;
@@ -106,7 +107,7 @@ namespace KCActorsTheatre.Data.Repositories
                 response.Succeed(string.Format("{0} item(s) found.", events.Count()));
                 response.Entity = events;
                 return response;
-            //});
+            });
         }
 
 
