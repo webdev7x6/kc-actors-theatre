@@ -8,7 +8,7 @@ using Clickfarm.Cms.Admin.Mvc.Areas.Admin;
 using Clickfarm.Cms.Admin.Mvc.Areas.Admin.ViewModels;
 using Clickfarm.Cms.Core;
 using Clickfarm.Cms.Mvc;
-using KCActorsTheatre.News;
+using KCActorsTheatre.Contract;
 using KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.News;
 
 namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
