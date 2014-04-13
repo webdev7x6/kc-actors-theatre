@@ -37,6 +37,13 @@ namespace KCActorsTheatre.Web.Controllers
             return View(model);
         }
 
+        public ActionResult Contact()
+        {
+            var model = new InnerViewModel();
+            InitializeViewModel(model);
+            return View(model);
+        }
+
         public ActionResult CommunityDashboard()
         {
             var model = new InnerViewModel();

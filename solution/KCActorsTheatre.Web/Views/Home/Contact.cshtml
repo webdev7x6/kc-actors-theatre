@@ -1,0 +1,14 @@
+﻿@using Clickfarm.Cms.Mvc
+@using KCActorsTheatre
+@using KCActorsTheatre.Cms
+@model KCActorsTheatre.Web.ViewModels.InnerViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";    
+    var req = Model.RequestContent;
+    var page = req.Page as Clickfarm.Cms.Core.WebPage;
+}
+<div class="container inner-container">
+	<div class="row-fluid">
+		contact form goes here
+	</div>
+</div>
