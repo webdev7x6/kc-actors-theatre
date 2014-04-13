@@ -27,8 +27,8 @@ namespace KCActorsTheatre.Web.Controllers
             this.session = httpContext.Session;
 
             // set session objects
-            if (RecentPosts == null)
-                RecentPosts = repository.Posts.GetPostedAndPublished(3, 0).Entity.ToList();
+            //if (RecentPosts == null)
+                //RecentPosts = repository.Posts.GetPostedAndPublished(3, 0).Entity.ToList();
         }
 
         protected void InitializeViewModel(KCActorsTheatreViewModel model)
