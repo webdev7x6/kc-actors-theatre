@@ -29,7 +29,7 @@ namespace KCActorsTheatre.Web.Controllers
             return View(model);
         }
 
-        public ActionResult Detail(int id)
+        public ActionResult Article(int id)
         {
             var model = new NewsViewModel();
             InitializeViewModel(model);
