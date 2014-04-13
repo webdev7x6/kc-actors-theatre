@@ -6173,6 +6173,32 @@ footer#footer {
 .inner-page-with-image {
   margin-top: 50px;
 }
+.inner-page label {
+    display: block;
+    margin-top: 20px;
+}
+.inner-page label.error {
+    display: inline;
+    margin-top: 0px;
+    margin-left: 20px;
+    color: red;
+}
+.inner-page input[type=text],
+.inner-page input[type=email] {
+    min-width: 300px;
+}
+.inner-page textarea {
+    min-width: 300px;
+    min-height: 100px;
+    margin-bottom: 20px;
+}
+.inner-page input.error,
+.inner-page textarea.error {
+    border: solid 1px red;
+}
+.inner-page .required span {
+    color: red;
+}
 .navbar-inverse {
   background-color: #383739;
   border: none;
