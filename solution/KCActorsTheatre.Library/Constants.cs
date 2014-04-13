@@ -7,6 +7,8 @@ namespace KCActorsTheatre
         public const string CmsRole_BlogManager = "Blog Manager";
         public const string CmsRole_CalendarManager = "Calendar Manager";
 
+        //todo: add show manager?
+
         #region Machine names
 
         public const string MachineName_DevWeb = "135262-15";

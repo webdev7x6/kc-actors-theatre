@@ -216,10 +216,13 @@
   <ItemGroup>
     <Compile Include="App_Start\CmsConfig.cs" />
     <Compile Include="Areas\CustomAdmin\AdminCustomAreaRegistration.cs" />
+    <Compile Include="Areas\CustomAdmin\Controllers\ShowController.cs" />
     <Compile Include="Areas\CustomAdmin\Controllers\NewsController.cs" />
     <Compile Include="Areas\CustomAdmin\HealthyNevadaAdminControllerBase.cs" />
     <Compile Include="Areas\CustomAdmin\ViewModels\News\EditArticleViewModel.cs" />
     <Compile Include="Areas\CustomAdmin\ViewModels\News\NewsViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Show\EditShowViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Show\ShowViewModel.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\KCActorsTheatreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -262,6 +265,7 @@
     <Content Include="Areas\CustomAdmin\common\js\hn-item-create.js" />
     <Content Include="Areas\CustomAdmin\common\js\hn-item-index.js" />
     <Content Include="Areas\CustomAdmin\common\js\hn-item.js" />
+    <Content Include="Areas\CustomAdmin\common\js\show\show.js" />
     <Content Include="common\css\add2home.css" />
     <Content Include="common\css\app.css" />
     <Content Include="common\css\bootstrap-responsive.css" />
@@ -412,6 +416,8 @@
     <Content Include="Areas\Admin\Views\Shared\_KCActorsTheatreAppEdit.cshtml" />
     <Content Include="Areas\Admin\Views\Content\RotatorVideoContent.cshtml" />
     <Content Include="Areas\CustomAdmin\Views\News\EditArticleAjax.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Show\EditShowAjax.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Show\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Production_Deploy.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -439,9 +445,7 @@
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\Calendar\Event.cshtml" />
     <Content Include="Views\Home\Inner.cshtml" />
-    <Content Include="Views\Shared\_NewsletterSignUp.cshtml" />
-    <Content Include="Views\Shared\_RotatorCaptions.cshtml" />
-    <Content Include="Views\Shared\_RotatorSlides.cshtml" />
+    <Content Include="Views\Shared\_RotatorImages.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Shared\_HeaderScripts.cshtml" />
     <Content Include="Views\Shared\_FooterScripts.cshtml" />
