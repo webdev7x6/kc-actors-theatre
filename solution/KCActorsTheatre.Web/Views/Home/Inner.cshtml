@@ -7,12 +7,15 @@
     var req = Model.RequestContent;
     var page = req.Page as Clickfarm.Cms.Core.WebPage;
 }
-
 <div class="container inner-page">
-    <div class="row">
+    <div class="row header-row">
         <div class="col-xs-12">
-            <h2>@page.Title</h2>
-            <p>@Html.Content(page, "Body Copy")</p>
+            <h1>@page.Title</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12" id="main-content">
+            @Html.Content(page, "Body Copy")
         </div>
     </div>
 </div>
