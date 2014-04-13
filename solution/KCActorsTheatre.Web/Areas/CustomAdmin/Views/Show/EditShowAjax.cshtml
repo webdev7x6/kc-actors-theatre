@@ -7,6 +7,12 @@
 }
 @if (Model.HasShow)
 {
+    string peopleList = Model.GetPeopleAsList();
+    if (string.IsNullOrWhiteSpace(peopleList))
+    {
+        peopleList = "Click to edit";
+    }
+    
     <div class="editable-parent item-index-tab model-display" data-tab-type="edit-item" data-item-id="@Model.Show.ShowId">
         <div class="ui-toolbar-cms">
             <a href="#" class="refresh-item-link" data-item-id="@Model.Show.ShowId" title="Refresh @entityDescription">Refresh @entityDescription</a>
@@ -21,6 +27,8 @@
             <div class="display-field editable-format editable-html" data-property-name="Body">@Html.Raw(Model.Show.Body)</div>
             <label>Reviews:</label>
             <div class="display-field editable-format editable-html" data-property-name="Reviews">@Html.Raw(Model.Show.Reviews)</div>
+            <label>People:</label>
+            <div class="display-field editable-format edit-associated-people pointer">@Html.Raw(peopleList)</div>
             <label>Start Date:</label>
             <div class="display-field editable-format editable-datepicker" data-property-name="StartDate">@(Model.Show.StartDate.HasValue ? Model.DateConverter.Convert(Model.Show.StartDate.Value).ToUtc().ForCmsUser().ToShortDateString() : string.Empty)</div>
             <label>End Date:</label>

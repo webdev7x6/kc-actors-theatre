@@ -128,8 +128,7 @@
 							    );
 						    })
 
-                        //$tradersCont = $editableParent.find('.edit-assoc-traders').on('click', function () { hn.items.index.userClick(this, $editableParent, 'Trader') }),
-                        //$managersCont = $editableParent.find('.edit-assoc-managers').on('click', function () { hn.items.index.userClick(this, $editableParent, 'Senior Manager') })
+                        $customAction = hn.items.index.tabInit($editableParent)
                     ;
 
                     var editableManager = new EditableManager(

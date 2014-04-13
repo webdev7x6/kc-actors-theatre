@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace KCActorsTheatre.Contract
@@ -17,5 +18,8 @@ namespace KCActorsTheatre.Contract
         public DateTime? EndDate { get; set; }
         public bool IsPublished { get; set; }
         public DateTime DateCreated { get; set; }
+
+        private HashSet<Person> _people = new HashSet<Person>();
+        public ICollection<Person> People { get { return _people; } }
     }
 }

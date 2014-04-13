@@ -226,7 +226,6 @@
     <Compile Include="Areas\CustomAdmin\ViewModels\PersonModel\PersonViewModel.cs" />
     <Compile Include="Areas\CustomAdmin\ViewModels\Show\EditShowViewModel.cs" />
     <Compile Include="Areas\CustomAdmin\ViewModels\Show\ShowViewModel.cs" />
-    <Compile Include="Controllers\ShowController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\KCActorsTheatreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -244,7 +243,6 @@
     <Compile Include="Mvc\HealthyNevadaHandleErrorAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CalendarViewModel.cs" />
-    <Compile Include="ViewModels\ShowViewModel.cs" />
     <Compile Include="ViewModels\NewsViewModel.cs" />
     <Compile Include="ViewModels\NewsletterSignUpViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
@@ -265,6 +263,7 @@
     <Content Include="apple-touch-icon-precomposed.png" />
     <Content Include="apple-touch-icon.png" />
     <Content Include="app_not_offline.htm" />
+    <Content Include="Areas\CustomAdmin\common\css\admin.css" />
     <Content Include="Areas\CustomAdmin\common\css\news.css" />
     <Content Include="Areas\CustomAdmin\common\js\news\news.js" />
     <Content Include="Areas\CustomAdmin\common\js\hn-item-create.js" />
@@ -272,6 +271,7 @@
     <Content Include="Areas\CustomAdmin\common\js\hn-item.js" />
     <Content Include="Areas\CustomAdmin\common\js\person\person.js" />
     <Content Include="Areas\CustomAdmin\common\js\show\show.js" />
+    <Content Include="Areas\CustomAdmin\common\js\show\person-manager.js" />
     <Content Include="common\css\add2home.css" />
     <Content Include="common\css\app.css" />
     <Content Include="common\css\bootstrap-responsive.css" />
@@ -433,6 +433,7 @@
     <Content Include="Scripts\jquery-ui-1.10.3.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.cookie.min.js" />
+    <Content Include="Scripts\jquery.jscroll.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -462,8 +463,7 @@
     <Content Include="Views\News\NewsArticleSummary.cshtml" />
     <Content Include="Views\News\Article.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Show\Index.cshtml" />
-    <Content Include="Views\Show\Item.cshtml" />
+    <Content Include="Views\News\NextSet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="common\cms\files\" />

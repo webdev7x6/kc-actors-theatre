@@ -8,7 +8,7 @@
 }
 @section styles
 {
-    <link href="/common/css/KCActorsTheatre.css" rel="stylesheet" type="text/css" />
+<link href="/areas/customadmin/common/css/admin.css" rel="stylesheet" type="text/css" />
 }
 @section scripts
 {
@@ -51,18 +51,16 @@
                         <table class="items-table table-layout" data-bind="visible: !retrievingItems() && anyItems()">
                             <thead>
                                 <tr>
-                                    <th>Title</th>
+                                    <th>Name</th>
                                     <th>Date Created</th>
-                                    <th>Article Date</th>
                                 </tr>
                             </thead>
                             <tbody data-bind="foreach: items">
                                 <tr data-bind="attr: { 'data-item-id': ID }">
                                     <td>
-                                        <a href="#" data-bind="click: function () { $parent.showEditItem($data); }, text: Title, attr: { 'data-item-id': ID }"></a>
+                                        <a href="#" data-bind="click: function () { $parent.showEditItem($data); }, text: Name, attr: { 'data-item-id': ID }"></a>
                                     </td>
                                     <td data-bind="text: DateCreated"></td>
-                                    <td data-bind="text: Name"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -73,7 +71,7 @@
                     @Html.TitleBar("Recent " + entityDescriptionPlural)
                     <div class="wrapper">
                         <ul data-bind="foreach: recentItems">
-                            <li><a href="#" data-bind="click: function () { $parent.showEditItem($data); }, text: Title, attr: { 'data-item-id': ID }"></a></li>
+                            <li><a href="#" data-bind="click: function () { $parent.showEditItem($data); }, text: Name, attr: { 'data-item-id': ID }"></a></li>
                         </ul>
                     </div>
                 </div>

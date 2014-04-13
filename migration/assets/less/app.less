@@ -269,7 +269,7 @@ footer#footer {
     margin-bottom:20px;
     &:nth-child(even) {
       text-align:right;
-      border-right: 5px solid #eee;
+      border-right: 5px solid @red;
       border-left:0;
     }
   }
@@ -291,6 +291,11 @@ footer#footer {
   .article-title {
     li {
       margin-bottom:32px;
+      a {
+        //.brandon-bold;
+        color:@red;
+        text-transform:uppercase;
+      }
     }
   }
   .mp3-links {
@@ -302,7 +307,17 @@ footer#footer {
 
 .show-sidebar-item {
   margin-bottom:20px;
-  .show-dates {
+  .other-show-list {
+    h5 {
+      a {
+        color:@black;
+        &:hover {
+          color: @red;
+        }
+      }
+    }
+  }
+  .show-dates, .other-show-list {
     list-style:none;
     padding-left:0;
     h5 {
@@ -316,6 +331,10 @@ footer#footer {
     }
     li {
       margin-bottom:20px;
+      &:first-child {
+        border-top: 1px solid @red;
+        padding-top:15px;
+      }
     }
   }
 }

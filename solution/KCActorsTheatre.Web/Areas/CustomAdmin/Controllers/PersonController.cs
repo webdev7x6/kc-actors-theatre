@@ -190,9 +190,7 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
                 DateCreated = CmsContext.DateConverter.Convert(item.DateCreated).FromUtc().ForCmsUser().ToString("g"),
 
                 // specific to this object
-                Title = item.Title,
                 Name = item.Name,
-                Body = item.BioDetail
             };
         }
     }

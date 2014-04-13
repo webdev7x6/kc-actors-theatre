@@ -10,5 +10,6 @@ namespace KCActorsTheatre.Web.ViewModels
     {
         public IEnumerable<Article> NewsArticles { get; set; }
         public Article Article { get; set; }
+        public int Page { get; set; }
     }
 }

@@ -19,14 +19,19 @@ namespace KCActorsTheatre.Web.Controllers
         {
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
             var model = new NewsViewModel();
             InitializeViewModel(model);
 
-            model.NewsArticles = repository.NewsArticles.GetForWebsite(9, 0).Entity;
-
-            return View(model);
+            if (!id.HasValue)
+            {
+                model.NewsArticles = repository.NewsArticles.GetForWebsite(5, 0).Entity;
+                return View(model);
+            }
+            model.Page = id.Value + 1;
+            model.NewsArticles = repository.NewsArticles.GetForWebsite(5, 5 * id.Value).Entity;
+            return View("NextSet", model);
         }
 
         public ActionResult Article(int id)
