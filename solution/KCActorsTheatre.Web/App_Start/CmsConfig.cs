@@ -245,7 +245,7 @@ namespace KCActorsTheatre.Web
                 .SingleUse()
                 ;
 
-            app.HasController<Controllers.NewsController>("News Detail Page", "Detail")
+            app.HasController<Controllers.NewsController>("News Detail Page", "Article")
                 .ForPageType("Web Page")
                 .SingleUse()
                 ;
