@@ -37,6 +37,13 @@ namespace KCActorsTheatre.Web.Controllers
             return View(model);
         }
 
+        public ActionResult Contact()
+        {
+            var model = new InnerViewModel();
+            InitializeViewModel(model);
+            return View(model);
+        }
+
         public ActionResult CommunityDashboard()
         {
             var model = new InnerViewModel();
@@ -46,35 +53,38 @@ namespace KCActorsTheatre.Web.Controllers
 
         private void SetRotatorImages(HomeViewModel vm)
         {
-            Page page = vm.RequestContent.Page;
-            ContentGroup cg = null;
-            IEnumerable<ContentGroupMember> cgMembers = null;
-
-            cg = page != null ? page.ContentGroups.FirstOrDefault(p => p.Name == "Rotator Images") : null;
-
-            if (cg != null)
-                cgMembers = cg.Members
-                    .Where(p => p.ContentGroupMemberConfigName == "Rotator Image")
-                    ;
-
-            var contentCollection = new List<ImageContent>();
-
-            if (cgMembers != null && cgMembers.Count() > 0)
+            if(vm.RequestContent != null)
             {
-                foreach (var cgMember in cgMembers)
-                {
-                    if (cgMember.Content != null)
-                    {
-                        var content = (ImageContent)cgMember.Content;
-                        if (content != null)
-                            contentCollection.Add(content);
-                    }
-                }
+                Page page = vm.RequestContent.Page;
+                ContentGroup cg = null;
+                IEnumerable<ContentGroupMember> cgMembers = null;
 
-                if (contentCollection.Count > 0)
-                    vm.RotatorImages = contentCollection
+                cg = page != null ? page.ContentGroups.FirstOrDefault(p => p.Name == "Rotator Images") : null;
+
+                if (cg != null)
+                    cgMembers = cg.Members
+                        .Where(p => p.ContentGroupMemberConfigName == "Rotator Image")
                         ;
-            }
+
+                var contentCollection = new List<ImageContent>();
+
+                if (cgMembers != null && cgMembers.Count() > 0)
+                {
+                    foreach (var cgMember in cgMembers)
+                    {
+                        if (cgMember.Content != null)
+                        {
+                            var content = (ImageContent)cgMember.Content;
+                            if (content != null)
+                                contentCollection.Add(content);
+                        }
+                    }
+
+                    if (contentCollection.Count > 0)
+                        vm.RotatorImages = contentCollection
+                            ;
+                }
+            }            
         }
     }
 }

@@ -236,6 +236,11 @@ namespace KCActorsTheatre.Web
                 .SingleUse()
                 ;
 
+            app.HasController<Controllers.HomeController>("Contact Form", "Contact")
+                .ForPageType("Web Page")
+                .SingleUse()
+                ;
+
             app.HasController<Controllers.HomeController>("Commmunity Dashboard", "CommunityDashboard")
                 .ForPageType("Web Page")
                 .HasContentGroup("Body Copy")
@@ -254,7 +259,7 @@ namespace KCActorsTheatre.Web
                 .SingleUse()
                 ;
 
-            app.HasController<Controllers.NewsController>("News Detail Page", "Detail")
+            app.HasController<Controllers.NewsController>("News Detail Page", "Article")
                 .ForPageType("Web Page")
                 .SingleUse()
                 ;
