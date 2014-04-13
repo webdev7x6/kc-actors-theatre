@@ -68,7 +68,7 @@ namespace KCActorsTheatre.Web
             #region Global
             //global
             configBuilder.Global()
-                .HasProjectName("Healthy Nevada CMS")
+                .HasProjectName("KC Actors Theatre CMS")
                 .HasMenuItems(new AdminMenuItem[]
                 {
                     new AdminMenuItem
@@ -222,7 +222,7 @@ namespace KCActorsTheatre.Web
 
             #region KCActorsTheatre Website
 
-            AppConfiguration app = configBuilder.App("Healthy Nevada Website")
+            AppConfiguration app = configBuilder.App("KC Actors Theatre Website")
                 .HasPageType("Web Page")
                 .UsesEditView("_KCActorsTheatreAppEdit")
                 ;
