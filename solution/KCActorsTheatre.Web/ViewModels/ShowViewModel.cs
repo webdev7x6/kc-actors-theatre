@@ -10,5 +10,7 @@ namespace KCActorsTheatre.Web.ViewModels
     {
         public IEnumerable<ShowInfo> Shows { get; set; }
         public ShowInfo Show { get; set; }
+
+        public List<int> VideoIds { get; set; }
     }
 }

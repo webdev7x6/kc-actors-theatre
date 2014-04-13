@@ -6328,3 +6328,8 @@ footer#footer {
     display: none;
   }
 }
+
+.show-videos div {
+    display: inline-block;
+    padding-right: 20px;
+}

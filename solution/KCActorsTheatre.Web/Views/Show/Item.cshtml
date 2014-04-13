@@ -3,6 +3,56 @@
     Layout = "~/Views/Shared/_Layout.cshtml"; 
 }
 
+@section scripts
+{
+    <script type="text/javascript">
+        $(function() {
+            var videoIds = '@string.Join(",", Model.VideoIds.Select(n => n.ToString()).ToArray())';
+            videoIds.split(',').forEach(function (id) {
+                $.ajax({
+                    url: 'http://vimeo.com/api/v2/video/' + id + '.json',
+                    success: function(data) {
+                        console.log(data[0]);
+
+                        $('.show-videos').append('<div><a href="#" data-id="77508455"><img src="' + data[0].thumbnail_medium + '" class="show-thumbnails" style="background:black;"></a></div>');
+
+                    }
+                });
+            });
+
+
+            $('.show-videos').on('click', 'a', function(e) {
+                e.preventDefault();
+                var id = $(this).attr('data-id');
+                $('body').append($('#VideoModalTemplate').html().split('{{video-id}}').join(id));
+                $('#VideoModal').modal();
+                $('#VideoModal').on('hidden.bs.modal', function(e) {
+                    $('#VideoModal').remove();
+                });
+            });
+        });
+    </script>
+    
+    <script id="VideoModalTemplate" type="text/html-template">
+        <div id="VideoModal" class="modal fade">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Modal title</h4>
+              </div>
+              <div class="modal-body" style="text-align:center;">
+                <iframe src="//player.vimeo.com/video/{{video-id}}?byline=0&amp;portrait=0&amp;badge=0&amp;color=f00004&amp;autoplay=1" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </script>
+}
+
 <div class="inner-page-img">
     <img src="http://placehold.it/1200x500" alt="">
 </div>
@@ -34,10 +84,10 @@
 	    <div class="row show-detail-item">
 	      <div class="col-sm-12">
 	        <h2>Videos</h2>
-    		  <div class="slider responsive">
-  					<div><a href="#"><img src="../common/img/video_placeholder.png" class="show-thumbnails" style="background:black;"></a></div>
-  					<div><a href="#"><img src="../common/img/video_placeholder.png" class="show-thumbnails" style="background:black;"></a></div>
-  					<div><a href="#"><img src="../common/img/video_placeholder.png" class="show-thumbnails" style="background:black;"></a></div>
+    		  <div class="slider responsive show-videos">
+  					@*<div><a href="#" data-id="77508455"><img src="http://i.vimeocdn.com/video/453056675_200x150.jpg" class="show-thumbnails" style="background:black;"></a></div>
+  					<div><a href="#" data-id="20834820"><img src="http://i.vimeocdn.com/video/133522364_200x150.jpg" class="show-thumbnails" style="background:black;"></a></div>
+  					<div><a href="#" data-id="78497306"><img src="http://i.vimeocdn.com/video/453911534_200x150.jpg" class="show-thumbnails" style="background:black;"></a></div>*@
   				</div>
 	      </div>
 	    </div>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using Clickfarm.Cms.Core;
@@ -17,9 +18,7 @@ namespace KCActorsTheatre.Web.Controllers
         {
             var model = new ShowViewModel();
             InitializeViewModel(model);
-
             model.Shows = repository.Shows.GetForWebsite(9, 0).Entity;
-
             return View(model);
         }
 
@@ -33,6 +32,8 @@ namespace KCActorsTheatre.Web.Controllers
                 var repoReponse = repository.Shows.GetSingle(id);
                 if (repoReponse.Succeeded && repoReponse.Entity != null)
                     model.Show = repoReponse.Entity;
+
+                model.VideoIds = new List<int> { 77508455, 20834820, 78497306 };
             }
             catch (Exception ex)
             {
