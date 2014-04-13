@@ -18,12 +18,12 @@
     <!--  <span class="glyphicon glyphicon-chevron-down"></span> -->
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
-        @Html.Content(new ContentSettings
+        @foreach (var image in Model.RotatorImages)
         {
-            RequestContent = req,
-            ContentGroupName = "Rotator Images",
-            PartialViewName = "_RotatorImages"
-        })
+            <div class="item active">
+                <img src="@image.ImageUrl" alt="@image.Title">
+            </div>
+        }
     </div>
 </div>
 
