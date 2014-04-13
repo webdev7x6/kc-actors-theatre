@@ -439,9 +439,7 @@
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\Calendar\Event.cshtml" />
     <Content Include="Views\Home\Inner.cshtml" />
-    <Content Include="Views\Shared\_NewsletterSignUp.cshtml" />
-    <Content Include="Views\Shared\_RotatorCaptions.cshtml" />
-    <Content Include="Views\Shared\_RotatorSlides.cshtml" />
+    <Content Include="Views\Shared\_RotatorImages.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Shared\_HeaderScripts.cshtml" />
     <Content Include="Views\Shared\_FooterScripts.cshtml" />
