@@ -21,11 +21,10 @@ namespace KCActorsTheatre.Web.Controllers
 
         public ActionResult Index()
         {
-            var model = new CalendarViewModel();
+            var model = new NewsViewModel();
             InitializeViewModel(model);
 
             model.NewsArticles = repository.NewsArticles.GetForWebsite(9, 0).Entity;
-            model.JsonEvents = ConvertArticles(model.NewsArticles);
 
             return View(model);
         }
