@@ -100,7 +100,7 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public JsonResult EditEventAjax(string id, string property, string newValue)
+        public JsonResult EditArticleAjax(string id, string property, string newValue)
         {
             int ID = 0;
             if (int.TryParse(id, out ID))
@@ -124,7 +124,7 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
 
         [HttpPost]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public JsonResult DeleteEventAjax(int id)
+        public JsonResult DeleteArticleAjax(int id)
         {
             RepositoryResponse repoResponse = Repository.NewsArticles.Delete(id);
             JsonResponse response = new JsonResponse();
@@ -140,7 +140,7 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
         }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public JsonResult FindEventsAjax(string term)
+        public JsonResult FindArticlesAjax(string term)
         {
             JsonResponse response = new JsonResponse();
             var repoResponse = Repository.NewsArticles.FindForDisplay(term.Split(new char[0], StringSplitOptions.RemoveEmptyEntries));
