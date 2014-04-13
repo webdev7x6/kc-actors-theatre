@@ -11,14 +11,14 @@ namespace KCActorsTheatre.Show
     {
         public int ShowId { get; set; }
         public DateTime DateCreated { get; set; }
-        public string ImageUrl { get; set; }
 
         [Required(ErrorMessage = "Title is required.")]
         public string Title { get; set; }
-
+        public string Body { get; set; }
+        public DateTime? ShowDate { get; set; }
         public string Summary { get; set; }
-        public string Description { get; set; }
-        public DateTime? StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
+        public string Author { get; set; }
+        public bool IsPublished { get; set; }
+        //public DateTime? EndDate { get; set; }
     }
 }
