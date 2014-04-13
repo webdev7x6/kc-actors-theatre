@@ -9,6 +9,7 @@ namespace KCActorsTheatre.Show
 {
     public class ShowInfo
     {
+        [Key]
         public int ShowId { get; set; }
         public DateTime DateCreated { get; set; }
 
