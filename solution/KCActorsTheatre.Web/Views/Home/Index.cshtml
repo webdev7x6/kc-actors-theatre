@@ -3,7 +3,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";    
     var req = Model.RequestContent;
-    //var page = req.Page as Clickfarm.Cms.Core.WebPage;
+    var page = req.Page as Clickfarm.Cms.Core.WebPage;
 }
 @section scripts
 {
@@ -32,8 +32,8 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="homepage-update-text">
-                    <h2>A headline</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa q <a href="#">link. 300 char.</a></p>
+                    <h2>@Html.Content(page, "Home Callout", 0, 1)</h2>
+                    <p>@Html.Content(page, "Home Callout", 1, 1)</p>
                 </div>
             </div>
         </div> <!--End row-->
