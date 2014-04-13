@@ -268,17 +268,6 @@ namespace KCActorsTheatre.Web
                 .SingleUse()
                 ;
 
-            app.HasController<Controllers.BlogController>("Blog Landing Page", "Index")
-                .ForPageType("Web Page")
-                .HasContentGroup("Hero")
-                .SingleUse()
-                ;
-
-            app.HasController<Controllers.BlogController>("Blog Detail Page", "Post")
-                .ForPageType("Web Page")
-                .SingleUse()
-                ;
-
             app.HasController<Controllers.HomeController>("Inner Page", "Inner")
                 .IsDefault()
                 .ForPageType("Web Page")

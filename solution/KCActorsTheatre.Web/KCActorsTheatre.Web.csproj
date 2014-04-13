@@ -227,7 +227,6 @@
     <Compile Include="Areas\CustomAdmin\HealthyNevadaAdminControllerBase.cs" />
     <Compile Include="Areas\CustomAdmin\ViewModels\Calendar\EditEventViewModel.cs" />
     <Compile Include="Areas\CustomAdmin\ViewModels\Calendar\EventsViewModel.cs" />
-    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\KCActorsTheatreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -244,8 +243,8 @@
     </Compile>
     <Compile Include="Mvc\HealthyNevadaHandleErrorAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\BlogViewModel.cs" />
-    <Compile Include="ViewModels\BlogPostViewModel.cs" />
+    <Compile Include="ViewModels\NewsViewModel.cs" />
+    <Compile Include="ViewModels\NewsArticleViewModel.cs" />
     <Compile Include="ViewModels\CalendarViewModel.cs" />
     <Compile Include="ViewModels\CalendarEventViewModel.cs" />
     <Compile Include="ViewModels\NewsletterSignUpViewModel.cs" />
@@ -457,6 +456,8 @@
     <Content Include="Views\Shared\_FooterScripts.cshtml" />
     <Content Include="Views\Home\SiteMap.cshtml" />
     <Content Include="Views\Home\CommunityDashboard.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\NewsArticle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="common\cms\files\" />

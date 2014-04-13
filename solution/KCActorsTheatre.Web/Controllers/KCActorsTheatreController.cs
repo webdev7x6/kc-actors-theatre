@@ -35,7 +35,7 @@ namespace KCActorsTheatre.Web.Controllers
         {
             // initialize common viewmodel objects
             model.RequestContent = this.CmsRequestContent;
-            model.RecentPosts = this.RecentPosts;
+            //model.RecentPosts = this.RecentPosts;
         }
 
         public IEnumerable<Post> RecentPosts

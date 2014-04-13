@@ -10,6 +10,6 @@ namespace KCActorsTheatre.Web.ViewModels
 {
     public class KCActorsTheatreViewModel : BaseViewModel
     {
-        public IEnumerable<Post> RecentPosts { get; set; }
+
     }
 }
