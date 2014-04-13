@@ -4,6 +4,8 @@ using Clickfarm.AppFramework.Web;
 using Clickfarm.Cms.Core;
 using KCActorsTheatre.Web.ViewModels;
 using System;
+using System.Linq;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 
@@ -17,6 +19,7 @@ namespace KCActorsTheatre.Web.Controllers
         {
             var model = new HomeViewModel();
             InitializeViewModel(model);
+            SetRotatorImages(model);
             return View(model);
         }
 
@@ -41,35 +44,37 @@ namespace KCActorsTheatre.Web.Controllers
             return View(model);
         }
 
-        //[AjaxOnly]
-        //public JsonResult NewSignUp(NewsletterSignUp newsletterSignUp)
-        //{
-        //    JsonResponse jsonResponse = new JsonResponse();
-        //    newsletterSignUp.DateCreated = DateTime.UtcNow;
+        private void SetRotatorImages(HomeViewModel vm)
+        {
+            Page page = vm.RequestContent.Page;
+            ContentGroup cg = null;
+            IEnumerable<ContentGroupMember> cgMembers = null;
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            var repoReponse = repository.NewsletterSignUps.New(newsletterSignUp);
+            cg = page != null ? page.ContentGroups.FirstOrDefault(p => p.Name == "Rotator Images") : null;
 
-        //            if (repoReponse.Succeeded)
-        //                jsonResponse.Succeeded = true;
-        //            else
-        //                jsonResponse.Fail(repoReponse.Message);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            jsonResponse.Succeeded = false;
-        //            jsonResponse.Message = ex.GetInnermostException().Message;
-        //        }
+            if (cg != null)
+                cgMembers = cg.Members
+                    .Where(p => p.ContentGroupMemberConfigName == "Rotator Image")
+                    ;
 
-        //    }
-        //    else
-        //    {
-        //        jsonResponse.Fail("Validation failed.");
-        //    }
-        //    return Json(jsonResponse);
-        //}
+            var contentCollection = new List<ImageContent>();
+
+            if (cgMembers != null && cgMembers.Count() > 0)
+            {
+                foreach (var cgMember in cgMembers)
+                {
+                    if (cgMember.Content != null)
+                    {
+                        var content = (ImageContent)cgMember.Content;
+                        if (content != null)
+                            contentCollection.Add(content);
+                    }
+                }
+
+                if (contentCollection.Count > 0)
+                    vm.RotatorImages = contentCollection
+                        ;
+            }
+        }
     }
 }

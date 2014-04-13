@@ -37,14 +37,6 @@ namespace KCActorsTheatre.Web.Controllers
             //model.RecentPosts = this.RecentPosts;
         }
 
-        //public IEnumerable<Post> RecentPosts
-        //{
-        //    get { return (IEnumerable<Post>)session["RecentPosts"]; }
-        //    private set
-        //    {
-        //        session["RecentPosts"] = value;
-        //    }
-        //}
 
         private JsonResult CatchError(Func<JsonResult> action)
         {
