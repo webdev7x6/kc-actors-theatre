@@ -5999,6 +5999,7 @@ body {
   font-family: "museo-sans", sans-serif;
   font-style: normal;
   font-weight: 100;
+  font-size: 18px;
 }
 h2,
 h4 {
@@ -6064,8 +6065,22 @@ p {
   color: #383739;
   line-height: 1.7;
 }
+p a {
+  color: #ef433b;
+  font-family: "museo-sans", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+}
+p a:hover {
+  color: #f3706a;
+}
 a:hover {
   text-decoration: none;
+}
+blockquote p {
+  font-family: "museo-sans", sans-serif;
+  font-style: normal;
+  font-weight: 500;
 }
 html,
 body {
@@ -6082,6 +6097,25 @@ footer#footer {
   border-radius: 0;
   color: white;
   text-transform: uppercase;
+}
+.btn-default:hover,
+.btn-default:active,
+.btn-default:focus {
+  background: #525053;
+  color: white;
+}
+.btn-primary {
+  background: #ef433b;
+  border: none;
+  border-radius: 0;
+  color: white;
+  text-transform: uppercase;
+}
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+  background: #f3706a;
+  color: white;
 }
 .btn-lg {
   font-size: 14px;
@@ -6144,7 +6178,8 @@ footer#footer {
   border: none;
 }
 .news h6,
-.person h6 {
+.person h6,
+.show-preview h6 {
   color: #ef433b;
 }
 .news {
@@ -6166,15 +6201,70 @@ footer#footer {
   border-bottom: 1px solid #383739;
   text-align: right;
 }
+.panel-group .panel-default .panel-heading:hover h3,
+.panel-group .panel-default .panel-heading:hover h4 {
+  color: #ef433b;
+}
 .panel-default > .panel-heading + .panel-collapse .panel-body {
   border: none;
+}
+.panel-title {
+  font-size: 30px;
 }
 .person {
   margin-top: 32px;
 }
 .person img {
   width: 100%;
+  max-width: 200px;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
   margin-top: 20px;
+}
+.show-preview {
+  margin-top: 90px;
+}
+.show-preview:first-child {
+  margin-top: 32px;
+}
+.show-preview img {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  margin-top: 20px;
+}
+.show-preview .show-body {
+  margin-top: 32px;
+}
+.show-preview .show-header {
+  text-align: right;
+  min-height: 120px;
+}
+.show-preview .show-header .header-img {
+  position: absolute;
+  top: -20px;
+  z-index: 1;
+}
+.show-preview .show-header .header-overlay {
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, #ffffff));
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+  background: -o-linear-gradient(left, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+  background: -ms-linear-gradient(left, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#ffffff', GradientType=1);
+  height: 120px;
+  width: 100%;
+}
+.show-preview .show-header h3,
+.show-preview .show-header h4 {
+  position: relative;
+  z-index: 3;
 }
 #homepage-current-season {
   padding-top: 64px;
