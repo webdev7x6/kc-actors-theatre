@@ -31,3 +31,13 @@ $('.responsive').slick({
   ]
 });
 
+//Handle animation with CSS
+// ADD SLIDEDOWN ANIMATION TO DROPDOWN //
+$('.dropdown').on('show.bs.dropdown', function(e){
+  var screenWidth = $(window).width();
+  var offset = $(this).offset().left;
+  var navItemWidth = $(this).outerWidth();
+  var right = screenWidth - offset - navItemWidth;
+  $(this).find('.dropdown-menu li').css('padding-right', right);
+  //$(this).find('.dropdown-menu').addClass('magictime slideDown');
+});
