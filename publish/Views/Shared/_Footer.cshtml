@@ -1,0 +1,15 @@
+﻿@using Clickfarm.Cms.Mvc
+@using Clickfarm.Cms.Core
+@model KCActorsTheatre.Web.ViewModels.KCActorsTheatreViewModel
+@{
+    var footerNav = Model.RequestContent.Menus.Where(m => m.Name.Equals("Footer Navigation")).FirstOrDefault();
+    var app = (KCActorsTheatre.Library.AppTypes.KCActorsTheatreApp)Model.RequestContent.App;
+}
+
+<footer id="footer">
+    <div class="container">
+        <div class="row main-footer">
+            <p>This is the footer.</p>
+        </div>
+    </div>
+</footer>

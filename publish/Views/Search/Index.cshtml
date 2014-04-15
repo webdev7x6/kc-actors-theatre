@@ -1,0 +1,35 @@
+﻿@using Clickfarm.Cms.Mvc
+@using KCActorsTheatre
+@using KCActorsTheatre.Cms
+@model KCActorsTheatre.Web.ViewModels.SearchViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var req = Model.RequestContent;
+    var page = req.Page as Clickfarm.Cms.Core.WebPage;
+}
+@section scripts
+{
+}
+
+<br />
+<div class="container">
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="row-fluid first-block">
+				<div class="span12" id="secondary">
+					<div>
+						<h2>@page.Title</h2>
+						<p>@Html.Content(page, "Body Copy")</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="row-fluid">
+        @foreach (var result in Model.SearchResults)
+        {
+            <a href="@result.Link">@result.Title</a><br />
+            @result.Snippet <br /><br />
+        }
+    </div>
+</div>

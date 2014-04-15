@@ -1,0 +1,61 @@
+﻿@using Clickfarm.Cms.Mvc
+@using KCActorsTheatre
+@using KCActorsTheatre.Cms
+@model KCActorsTheatre.Web.ViewModels.CalendarViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";    
+    var req = Model.RequestContent;
+    var page = req.Page as Clickfarm.Cms.Core.WebPage;
+}
+@section scripts
+{
+    <script type="text/javascript" src="@Url.CdnResource("/common/js/knockout/2.2.0/knockout-2.2.0.js")"></script>
+    <script type="text/javascript" src="@Url.CdnResource("/common/js/knockout-plugins/mapping/2.3.5/knockout.mapping-2.3.5.js")"></script>
+    <script type="text/javascript">
+        var hn = window.hn = window.hn || {};
+        hn.jsonItems = @Html.Raw(Json.Encode(Model.JsonEvents))
+    </script>
+    <script src="/common/js/calendar/calendar-index.js" type="text/javascript"></script>
+    <script src="/common/js/knockout-vm.js" type="text/javascript"></script>
+}
+
+<div class="row-fluid">
+    <div class="span12" id="events-intro">
+        <h2>Let's make healthy happen.</h2>
+        <h4>Check here to see what&rsquo;s coming up for Healthy Nevada. Be sure to join us for our next event; it&rsquo;s your chance to see what all the excitement is about and to meet up with others who are interested in taking healthy steps for our community.</h4>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span4 search-filter">
+        <h4>Search events by keyword</h4>
+        <form>
+            <div class="input-append">
+                <input class="span9 text-search-filter" type="text" placeholder="Keyword">
+                <button class="btn btn-search-filter">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="items-container">
+    @*<pre data-bind="text: JSON.stringify(ko.toJS($data), null, 2)"></pre>*@
+    <div class="row-fluid" data-bind="foreach: rows">
+        <div data-bind="foreach:$data">
+            <div class="span4 event-container event-1 img-rounded">
+                <div class="span4 date-box img-rounded">
+                    <h6 data-bind="text:StartDate"></h6>
+                    <h5 data-bind="text:StartMonth">Oct</h5>
+                </div>
+                <div class="span8">
+                    <div class="vevent">
+                        <span class="summary"><a data-bind="attr: { 'href': '/calendar/event/' + ID() }, text: Title"></a></span>
+                        <div class="description" data-bind="html: Summary"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid" id="get-more-items-container">
+        <br />
+	    <a href="#" data-bind="click: getMoreItems">Get more events</a>
+    </div>
+</div>
