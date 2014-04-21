@@ -46,3 +46,13 @@ $('.dropdown').on('show.bs.dropdown', function(e){
 $(document).on('click', '.yamm .dropdown-menu', function(e) {
   e.stopPropagation()
 })
+
+
+$(document).ready(function(){
+    $('.slider a').nivoLightbox({
+      effect: 'fadeScale',
+      theme: 'default',
+      keyboardNav: true,
+      clickOverlayToClose:true
+    });
+});
