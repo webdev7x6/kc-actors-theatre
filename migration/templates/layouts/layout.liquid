@@ -6,8 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {{ "slick.css" | asset_url | stylesheet_tag }}
         {{ "app.css" | asset_url | stylesheet_tag }}
-        {{ "magic.min.css" | asset_url | stylesheet_tag }}
-        <!-- TODO: Remove magic and files if can't get nav slideDown to work -->
+        <!-- Script block allowing child pages to inject their own style sheets -->
+        {% block style %}{% endblock %}
         <script type="text/javascript" src="//use.typekit.net/ynt0rwm.js"></script>
         <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
     </head>
@@ -23,6 +23,10 @@
       {{ "bootstrap-hover-dropdown.min.js" | asset_url | script_tag }}
       {{ "respond.min.js" | asset_url | script_tag }}
       {{ "slick.min.js" | asset_url | script_tag }}
+      {{ "placeholder.min.js" | asset_url | script_tag }}
+      {{ "modernizr.custom.81402.js" | asset_url | script_tag }}
+      <!-- Script block allowing child pages to inject their own scripts -->
+      {% block scripts %}{% endblock %}
       {{ "app.min.js" | asset_url | script_tag }}
     </body>
 </html>

@@ -1,3 +1,7 @@
+{% block style %}
+{{ "nivo-lightbox.css" | asset_url | stylesheet_tag }}
+{{ "themes/default/default.css" | asset_url | stylesheet_tag }}
+{% endblock %}
 {% block content %}
 <div class="inner-page-img">
   <img src="http://placehold.it/1200x500" alt="">
@@ -20,10 +24,13 @@
 	      <div class="col-sm-12">
 	        <h2>Photos</h2>
     		  <div class="slider responsive">
-  					<div><a href="#"><img src="../common/img/show-img.jpg" class="show-thumbnails"></a></div>
-  					<div><a href="#"><img src="../common/img/show-img-2.jpg" class="show-thumbnails"></a></div>
-  					<div><a href="#"><img src="../common/img/show-img.jpg" class="show-thumbnails"></a></div>
-  					<div><a href="#"><img src="../common/img/show-img-2.jpg" class="show-thumbnails"></a></div>
+  					<div><a href="../common/img/KCAT8.jpg" data-lightbox-gallery="gallery1"><img src="../common/img/KCAT8.jpg" class="show-thumbnails" /></a></div>
+  					<div><a href="../common/img/KCAT12.jpg" data-lightbox-gallery="gallery1"><img src="../common/img/KCAT8.jpg" class="show-thumbnails" /></a></div>
+  					<div><a href="../common/img/KCAT13.jpg" data-lightbox-gallery="gallery1"><img src="../common/img/Photo3.jpg" class="show-thumbnails" /></a></div>
+  					<div><a href="../common/img/KCAT14.jpg" data-lightbox-gallery="gallery1"><img src="../common/img/Photo4.jpg" class="show-thumbnails" /></a></div>
+  					<div><a href="../common/img/KCAT14.jpg" data-lightbox-gallery="gallery1"><img src="../common/img/Photo5.jpg" class="show-thumbnails" /></a></div>
+  					<div><a href="../common/img/KCAT14.jpg" data-lightbox-gallery="gallery1"><img src="../common/img/Photo6.jpg" class="show-thumbnails" /></a></div>
+  					<div><a href="../common/img/KCAT14.jpg" data-lightbox-gallery="gallery1"><img src="../common/img/Photo7.jpg" class="show-thumbnails" /></a></div>
   				</div>
 	      </div>
 	    </div>
@@ -31,9 +38,10 @@
 	      <div class="col-sm-12">
 	        <h2>Videos</h2>
     		  <div class="slider responsive">
-  					<div><a href="#"><img src="../common/img/video_placeholder.png" class="show-thumbnails" style="background:black;"></a></div>
-  					<div><a href="#"><img src="../common/img/video_placeholder.png" class="show-thumbnails" style="background:black;"></a></div>
-  					<div><a href="#"><img src="../common/img/video_placeholder.png" class="show-thumbnails" style="background:black;"></a></div>
+  					<div><a href="https://www.youtube.com/watch?v=irvlm6xrQWY" data-lightbox-gallery="gallery2"><img src="../common/img/Photo8.jpg" class="show-thumbnails"></a></div>
+  					<div><a href="http://vimeo.com/58150375" data-lightbox-gallery="gallery2"><img src="../common/img/Photo9.jpg" class="show-thumbnails"></a></div>
+  					<div><a href="https://www.youtube.com/watch?v=irvlm6xrQWY" data-lightbox-gallery="gallery2"><img src="../common/img/Photo8.jpg" class="show-thumbnails"></a></div>
+  					<div><a href="https://www.youtube.com/watch?v=wwEe-tbqx34" data-lightbox-gallery="gallery2"><img src="../common/img/Photo9.jpg" class="show-thumbnails"></a></div>
   				</div>
 	      </div>
 	    </div>
@@ -143,3 +151,4 @@
 	</div> <!-- Close row -->
 </div> <!-- Close container -->
 {% endblock %}
+{% block scripts %}{{ "nivo-lightbox.min.js" | asset_url | script_tag }}{% endblock %}

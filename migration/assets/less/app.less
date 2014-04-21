@@ -86,9 +86,9 @@ footer#footer {
       color:white;
       font-size:24px;
     }
-  }
-  &.active {
-    background-color:transparent;
+    &.active {
+      background-color:transparent;
+    }
   }
 }
 
@@ -110,13 +110,6 @@ footer#footer {
         background-color:white;
       }
     }
-  }
-  &.open {
-    overflow-y:hidden;
-    //max-height:500px;
-    transition-property: all;
-    transition-duration: .5s;
-    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
   }
 }
 
@@ -208,9 +201,19 @@ footer#footer {
   }
 }
 
+.navContainer {
+  padding-right:40px;
+  padding-left:40px;
+}
+
 .navbar-inverse {
-  background-color: @black;
-  background: @black url('../common/img/black-pattern.png') repeat-x left top;
+  background-color: transparent;
+  background:-moz-linear-gradient(left,  rgba(56,55,57,0) 0%, rgba(56,55,57,0.72) 54%, rgba(56,55,57,0.8) 60%, rgba(56,55,57,0.9) 100%), url("../../common/img/black-pattern.png") center right repeat;
+  background:-webkit-gradient(linear, left top, right top, color-stop(0%,rgba(56,55,57,0)), color-stop(54%,rgba(56,55,57,0.72)), color-stop(60%,rgba(56,55,57,0.8)), color-stop(100%,rgba(56,55,57,0.9))), url("../../common/img/black-pattern.png") center right repeat;
+  background:-webkit-linear-gradient(left,  rgba(56,55,57,0) 0%,rgba(56,55,57,0.72) 54%,rgba(56,55,57,0.8) 60%,rgba(56,55,57,0.9) 100%), url("../../common/img/black-pattern.png") center right repeat;
+  background:-o-linear-gradient(left,  rgba(56,55,57,0) 0%,rgba(56,55,57,0.72) 54%,rgba(56,55,57,0.8) 60%,rgba(56,55,57,0.9) 100%), url("../../common/img/black-pattern.png") center right repeat;
+  background:-ms-linear-gradient(left,  rgba(56,55,57,0) 0%,rgba(56,55,57,0.72) 54%,rgba(56,55,57,0.8) 60%,rgba(56,55,57,0.9) 100%), url("../../common/img/black-pattern.png") center right repeat;
+  background:linear-gradient(to right,  rgba(56,55,57,0) 0%,rgba(56,55,57,0.72) 54%,rgba(56,55,57,0.8) 60%,rgba(56,55,57,0.9) 100%), url("../../common/img/black-pattern.png") center right repeat;
   border:none;
   .navbar-nav>li>a {
     color:white;
@@ -220,6 +223,10 @@ footer#footer {
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
   background-color: white;
   color: @black;
+}
+
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+  outline:none;
 }
 
 .navbar-nav {
@@ -476,6 +483,32 @@ footer#footer {
   right: 0;
   padding: 30px 0;
   margin-top:-35px;
+  z-index:999999999;
+}
+
+.open > .dropdown-menu {
+  -webkit-transform: scale(1, 1);
+  transform: scale(1, 1);   
+}
+.dropdown-menu {
+  -webkit-transform-origin: top;
+  transform-origin: top;
+  -webkit-animation-fill-mode: forwards;  
+  animation-fill-mode: forwards; 
+  -webkit-transform: scale(1, 0);
+  display: block;
+  -moz-transition: all 0.3s ease-in;
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+.yamm .dropdown.yamm-fw .dropdown-menu .yamm-content {
+  opacity: 0;
+  -moz-transition: all 0.45s ease-in;
+  -webkit-transition: all 0.45s ease-in;
+  transition: all 0.45s ease-in;
+}
+.yamm .dropdown.yamm-fw.open .dropdown-menu .yamm-content {
+  opacity: 1;
 }
 
 #gmap_canvas {
