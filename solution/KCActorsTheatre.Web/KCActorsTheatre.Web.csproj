@@ -284,9 +284,6 @@
     <Content Include="common\css\bootstrap.css" />
     <Content Include="common\css\bootstrap.min.css" />
     <Content Include="common\css\flexslider.css" />
-    <Content Include="common\css\icons\icons.css" />
-    <Content Include="common\css\icons\nav-icons-black.css" />
-    <Content Include="common\css\icons\nav-icons.css" />
     <Content Include="common\css\jquery.mobile.1.0.1.min.css" />
     <Content Include="common\css\jquery.mobile.structure-1.0.1.min.css" />
     <Content Include="common\css\main.css" />
@@ -294,7 +291,6 @@
     <Content Include="common\css\photoswipe.css" />
     <Content Include="common\css\reset.css" />
     <Content Include="common\css\style-mobile.css" />
-    <Content Include="common\css\style.css" />
     <Content Include="common\img\add-to-calendar-icon-2.png" />
     <Content Include="common\img\apple-touch-icon-114-precomposed.png" />
     <Content Include="common\img\apple-touch-icon-144-precomposed.png" />
@@ -478,6 +474,7 @@
     <Folder Include="common\cms\images\blog\post\" />
     <Folder Include="common\cms\images\hero\" />
     <Folder Include="common\cms\images\rotator\" />
+    <Folder Include="common\css\icons\" />
     <Folder Include="common\keys\" />
     <Folder Include="common\logs\" />
   </ItemGroup>
