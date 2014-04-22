@@ -6253,7 +6253,7 @@ footer#footer {
   padding-bottom: 15px;
 }
 .navbar .navbar-right {
-  margin-top: 12px;
+  margin-top: 20px;
 }
 .nav li {
   font-size: 14px;
@@ -6459,11 +6459,14 @@ footer#footer {
 .show-preview .show-header {
   text-align: right;
   min-height: 120px;
+  overflow: hidden;
 }
 .show-preview .show-header .header-img {
   position: absolute;
   top: -20px;
   z-index: 1;
+  min-height: 120px;
+  width: auto;
 }
 .show-preview .show-header .header-overlay {
   position: absolute;
@@ -6502,6 +6505,9 @@ footer#footer {
 .yamm .dropdown-menu {
   left: auto;
 }
+.yamm .dropdown-menu li a {
+  white-space: normal;
+}
 .yamm .nav.navbar-right .dropdown-menu {
   left: auto;
   right: 0;
@@ -6513,7 +6519,7 @@ footer#footer {
   left: 0;
   right: 0;
   padding: 30px 0;
-  margin-top: -35px;
+  margin-top: -22px;
   z-index: 999999999;
 }
 .open > .dropdown-menu {
@@ -6527,18 +6533,9 @@ footer#footer {
   animation-fill-mode: forwards;
   -webkit-transform: scale(1, 0);
   display: block;
-  -moz-transition: all 0.3s ease-in;
-  -webkit-transition: all 0.3s ease-in;
-  transition: all 0.3s ease-in;
-}
-.yamm .dropdown.yamm-fw .dropdown-menu .yamm-content {
-  opacity: 0;
-  -moz-transition: all 0.45s ease-in;
-  -webkit-transition: all 0.45s ease-in;
-  transition: all 0.45s ease-in;
-}
-.yamm .dropdown.yamm-fw.open .dropdown-menu .yamm-content {
-  opacity: 1;
+  -moz-transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
 }
 #gmap_canvas {
   width: 100%;
@@ -6595,15 +6592,18 @@ footer#footer {
     padding-bottom: 20px;
   }
   .navbar .navbar-right {
-    margin-top: 20px;
+    margin-top: 41px;
   }
   .yamm .dropdown.yamm-fw .dropdown-menu {
-    margin-top: -54px;
+    margin-top: -23px;
   }
 }
 @media (max-width: 992px) {
+  .navbar-brand {
+    padding-left: 0;
+  }
   .yamm .dropdown.yamm-fw .dropdown-menu {
-    margin-top: -39px;
+    margin-top: -20px;
   }
 }
 @media (max-width: 767px) {
@@ -6637,8 +6637,11 @@ footer#footer {
   .date-callout {
     display: none;
   }
+  .inner-page {
+    margin-top: 100px;
+  }
   .inner-page-img {
-    margin-top: 7  0px;
+    margin-top: 70px;
   }
   #homepage-current-season {
     padding-top: 20px;
@@ -6651,6 +6654,10 @@ footer#footer {
   .navContainer {
     padding-right: 10px;
     padding-left: 10px;
+  }
+  .show-preview .show-header h3,
+  .show-preview .show-header h4 {
+    top: 20px;
   }
   .yamm .dropdown.yamm-fw .dropdown-menu {
     margin-top: 0;

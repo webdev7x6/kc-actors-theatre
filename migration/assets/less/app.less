@@ -187,7 +187,7 @@ footer#footer {
   padding-top:15px;
   padding-bottom:15px;
   .navbar-right {
-    margin-top:12px;
+    margin-top:20px;
   }
 }
 
@@ -205,6 +205,7 @@ footer#footer {
   padding-right:40px;
   padding-left:40px;
 }
+
 
 .navbar-inverse {
   background-color: transparent;
@@ -426,10 +427,13 @@ footer#footer {
   .show-header {
     text-align:right;
     min-height:120px;
+    overflow:hidden;
     .header-img {
       position:absolute;
       top:-20px;
       z-index:1;
+      min-height:120px;
+      width:auto;
     }
     .header-overlay {
       position:absolute;
@@ -470,6 +474,11 @@ footer#footer {
 }
 .yamm .dropdown-menu {
   left: auto;
+  li {
+    a {
+      white-space:normal;
+    }
+  }
 }
 .yamm .nav.navbar-right .dropdown-menu {
   left: auto;
@@ -482,7 +491,7 @@ footer#footer {
   left: 0;
   right: 0;
   padding: 30px 0;
-  margin-top:-35px;
+  margin-top:-22px;
   z-index:999999999;
 }
 
@@ -497,18 +506,9 @@ footer#footer {
   animation-fill-mode: forwards; 
   -webkit-transform: scale(1, 0);
   display: block;
-  -moz-transition: all 0.3s ease-in;
-  -webkit-transition: all 0.3s ease-in;
-  transition: all 0.3s ease-in;
-}
-.yamm .dropdown.yamm-fw .dropdown-menu .yamm-content {
-  opacity: 0;
-  -moz-transition: all 0.45s ease-in;
-  -webkit-transition: all 0.45s ease-in;
-  transition: all 0.45s ease-in;
-}
-.yamm .dropdown.yamm-fw.open .dropdown-menu .yamm-content {
-  opacity: 1;
+  -moz-transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
 }
 
 #gmap_canvas {
