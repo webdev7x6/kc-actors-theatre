@@ -31,7 +31,6 @@ $('.responsive').slick({
   ]
 });
 
-//Handle animation with CSS
 // ADD SLIDEDOWN ANIMATION TO DROPDOWN //
 $('.dropdown').on('show.bs.dropdown', function(e){
   var screenWidth = $(window).width();
@@ -40,4 +39,20 @@ $('.dropdown').on('show.bs.dropdown', function(e){
   var right = screenWidth - offset - navItemWidth;
   $(this).find('.dropdown-menu li').css('padding-right', right);
   //$(this).find('.dropdown-menu').addClass('magictime slideDown');
+});
+
+
+//Prevents unexpected menu close when using accordions
+$(document).on('click', '.yamm .dropdown-menu', function(e) {
+  e.stopPropagation()
+})
+
+
+$(document).ready(function(){
+    $('.slider a').nivoLightbox({
+      effect: 'fadeScale',
+      theme: 'default',
+      keyboardNav: true,
+      clickOverlayToClose:true
+    });
 });

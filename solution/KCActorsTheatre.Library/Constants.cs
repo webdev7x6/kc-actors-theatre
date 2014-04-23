@@ -11,8 +11,8 @@ namespace KCActorsTheatre
 
         #region Machine names
 
-        public const string MachineName_DevWeb = "135262-15";
-        public const string MachineName_ProdWeb = "135262-14";
+        public const string MachineName_Dev = "DEV";
+        public const string MachineName_Prod = "PROD";
 
         #endregion
     }

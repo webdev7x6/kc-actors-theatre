@@ -6173,7 +6173,7 @@ footer#footer {
   color: white;
   font-size: 24px;
 }
-.carousel-indicators.active {
+.carousel-indicators li.active {
   background-color: transparent;
 }
 .date-callout h5 {
@@ -6186,12 +6186,6 @@ footer#footer {
 }
 .dropdown-menu li a:hover {
   background-color: white;
-}
-.dropdown-menu.open {
-  overflow-y: hidden;
-  transition-property: all;
-  transition-duration: .5s;
-  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
 .form-control {
   height: 45px;
@@ -6259,7 +6253,7 @@ footer#footer {
   padding-bottom: 15px;
 }
 .navbar .navbar-right {
-  margin-top: 12px;
+  margin-top: 20px;
 }
 .nav li {
   font-size: 14px;
@@ -6268,9 +6262,18 @@ footer#footer {
   padding-left: 8px;
   padding-right: 8px;
 }
+.navContainer {
+  padding-right: 40px;
+  padding-left: 40px;
+}
 .navbar-inverse {
-  background-color: #383739;
-  background: #383739 url('../common/img/black-pattern.png') repeat-x left top;
+  background-color: transparent;
+  background: -moz-linear-gradient(left, rgba(56, 55, 57, 0) 0%, rgba(56, 55, 57, 0.72) 54%, rgba(56, 55, 57, 0.8) 60%, rgba(56, 55, 57, 0.9) 100%), url("../../common/img/black-pattern.png") center right repeat;
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(56, 55, 57, 0)), color-stop(54%, rgba(56, 55, 57, 0.72)), color-stop(60%, rgba(56, 55, 57, 0.8)), color-stop(100%, rgba(56, 55, 57, 0.9))), url("../../common/img/black-pattern.png") center right repeat;
+  background: -webkit-linear-gradient(left, rgba(56, 55, 57, 0) 0%, rgba(56, 55, 57, 0.72) 54%, rgba(56, 55, 57, 0.8) 60%, rgba(56, 55, 57, 0.9) 100%), url("../../common/img/black-pattern.png") center right repeat;
+  background: -o-linear-gradient(left, rgba(56, 55, 57, 0) 0%, rgba(56, 55, 57, 0.72) 54%, rgba(56, 55, 57, 0.8) 60%, rgba(56, 55, 57, 0.9) 100%), url("../../common/img/black-pattern.png") center right repeat;
+  background: -ms-linear-gradient(left, rgba(56, 55, 57, 0) 0%, rgba(56, 55, 57, 0.72) 54%, rgba(56, 55, 57, 0.8) 60%, rgba(56, 55, 57, 0.9) 100%), url("../../common/img/black-pattern.png") center right repeat;
+  background: linear-gradient(to right, rgba(56, 55, 57, 0) 0%, rgba(56, 55, 57, 0.72) 54%, rgba(56, 55, 57, 0.8) 60%, rgba(56, 55, 57, 0.9) 100%), url("../../common/img/black-pattern.png") center right repeat;
   border: none;
 }
 .navbar-inverse .navbar-nav > li > a {
@@ -6281,6 +6284,10 @@ footer#footer {
 .navbar-inverse .navbar-nav > .open > a:hover {
   background-color: white;
   color: #383739;
+}
+.navbar-inverse .navbar-toggle:focus,
+.navbar-inverse .navbar-toggle:hover {
+  outline: none;
 }
 .navbar-nav > li {
   text-transform: uppercase;
@@ -6452,11 +6459,14 @@ footer#footer {
 .show-preview .show-header {
   text-align: right;
   min-height: 120px;
+  overflow: hidden;
 }
 .show-preview .show-header .header-img {
   position: absolute;
   top: -20px;
   z-index: 1;
+  min-height: 120px;
+  width: auto;
 }
 .show-preview .show-header .header-overlay {
   position: absolute;
@@ -6495,6 +6505,9 @@ footer#footer {
 .yamm .dropdown-menu {
   left: auto;
 }
+.yamm .dropdown-menu li a {
+  white-space: normal;
+}
 .yamm .nav.navbar-right .dropdown-menu {
   left: auto;
   right: 0;
@@ -6506,7 +6519,23 @@ footer#footer {
   left: 0;
   right: 0;
   padding: 30px 0;
-  margin-top: -35px;
+  margin-top: -22px;
+  z-index: 999999999;
+}
+.open > .dropdown-menu {
+  -webkit-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
+.dropdown-menu {
+  -webkit-transform-origin: top;
+  transform-origin: top;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-transform: scale(1, 0);
+  display: block;
+  -moz-transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
 }
 #gmap_canvas {
   width: 100%;
@@ -6563,7 +6592,18 @@ footer#footer {
     padding-bottom: 20px;
   }
   .navbar .navbar-right {
-    margin-top: 20px;
+    margin-top: 41px;
+  }
+  .yamm .dropdown.yamm-fw .dropdown-menu {
+    margin-top: -23px;
+  }
+}
+@media (max-width: 992px) {
+  .navbar-brand {
+    padding-left: 0;
+  }
+  .yamm .dropdown.yamm-fw .dropdown-menu {
+    margin-top: -20px;
   }
 }
 @media (max-width: 767px) {
@@ -6588,27 +6628,41 @@ footer#footer {
   #footer p {
     font-size: 14px;
   }
+  .carousel {
+    margin-top: 60px;
+  }
+  .carousel-indicators {
+    display: none;
+  }
   .date-callout {
     display: none;
   }
+  .inner-page {
+    margin-top: 100px;
+  }
+  .inner-page-img {
+    margin-top: 70px;
+  }
+  #homepage-current-season {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .navbar {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .navContainer {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .show-preview .show-header h3,
+  .show-preview .show-header h4 {
+    top: 20px;
+  }
   .yamm .dropdown.yamm-fw .dropdown-menu {
-    left: 0;
-    right: 0;
-    padding: 20px 0;
+    margin-top: 0;
   }
-  .yamm .dropdown.yamm-fw .dropdown-menu#drop-1 {
-    padding-right: 0;
-  }
-  .yamm .dropdown.yamm-fw .dropdown-menu#drop-2 {
-    padding-right: 0;
-  }
-  .yamm .dropdown.yamm-fw .dropdown-menu#drop-3 {
-    padding-right: 0;
-  }
-  .yamm .dropdown.yamm-fw .dropdown-menu#drop-4 {
-    padding-right: 0;
-  }
-  .yamm .dropdown.yamm-fw .dropdown-menu#drop-5 {
-    padding-right: 0;
+  #navbar-wrapper {
+    margin-top: 0;
   }
 }

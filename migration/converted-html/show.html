@@ -6,8 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="assets/css/slick.min.css" rel="stylesheet" type="text/css" media="all"/>
         <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" media="all"/>
-        <link href="assets/css/magic.min.css" rel="stylesheet" type="text/css" media="all"/>
-        <!-- TODO: Remove magic and files if can't get nav slideDown to work -->
+        <!-- Script block allowing child pages to inject their own style sheets -->
+        
+<link href="assets/css/nivo-lightbox.min.css" rel="stylesheet" type="text/css" media="all"/>
+<link href="assets/css/themes/default/default.min.css" rel="stylesheet" type="text/css" media="all"/>
+
         <script type="text/javascript" src="//use.typekit.net/ynt0rwm.js"></script>
         <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
     </head>
@@ -93,7 +96,12 @@
 	  </div>
 	</div>
 	<div class="row">
-	  <div class="col-sm-9" id="main-content">
+	  <div class="col-md-9 col-sm-12" id="main-content">
+	    <div class="row show-detail-item visible-xs">
+	      <div class="col-sm-12">
+	        <button class="btn btn-default btn-block btn-buy">Buy Tickets</button>
+	      </div>
+	    </div>
 	    <div class="row show-detail-item">
 	      <div class="col-sm-12">
 	        <h2>Synopsis</h2>
@@ -104,10 +112,13 @@
 	      <div class="col-sm-12">
 	        <h2>Photos</h2>
     		  <div class="slider responsive">
-  					<div><a href="#"><img src="../common/img/show-img.jpg" class="show-thumbnails"></a></div>
-  					<div><a href="#"><img src="../common/img/show-img-2.jpg" class="show-thumbnails"></a></div>
-  					<div><a href="#"><img src="../common/img/show-img.jpg" class="show-thumbnails"></a></div>
-  					<div><a href="#"><img src="../common/img/show-img-2.jpg" class="show-thumbnails"></a></div>
+  					<div><a href="../common/img/KCAT8.jpg" data-lightbox-gallery="gallery1"><img src="../common/img/KCAT8.jpg" class="show-thumbnails" /></a></div>
+  					<div><a href="../common/img/KCAT12.jpg" data-lightbox-gallery="gallery1"><img src="../common/img/KCAT8.jpg" class="show-thumbnails" /></a></div>
+  					<div><a href="../common/img/KCAT13.jpg" data-lightbox-gallery="gallery1"><img src="../common/img/Photo3.jpg" class="show-thumbnails" /></a></div>
+  					<div><a href="../common/img/KCAT14.jpg" data-lightbox-gallery="gallery1"><img src="../common/img/Photo4.jpg" class="show-thumbnails" /></a></div>
+  					<div><a href="../common/img/KCAT14.jpg" data-lightbox-gallery="gallery1"><img src="../common/img/Photo5.jpg" class="show-thumbnails" /></a></div>
+  					<div><a href="../common/img/KCAT14.jpg" data-lightbox-gallery="gallery1"><img src="../common/img/Photo6.jpg" class="show-thumbnails" /></a></div>
+  					<div><a href="../common/img/KCAT14.jpg" data-lightbox-gallery="gallery1"><img src="../common/img/Photo7.jpg" class="show-thumbnails" /></a></div>
   				</div>
 	      </div>
 	    </div>
@@ -115,9 +126,10 @@
 	      <div class="col-sm-12">
 	        <h2>Videos</h2>
     		  <div class="slider responsive">
-  					<div><a href="#"><img src="../common/img/video_placeholder.png" class="show-thumbnails" style="background:black;"></a></div>
-  					<div><a href="#"><img src="../common/img/video_placeholder.png" class="show-thumbnails" style="background:black;"></a></div>
-  					<div><a href="#"><img src="../common/img/video_placeholder.png" class="show-thumbnails" style="background:black;"></a></div>
+  					<div><a href="https://www.youtube.com/watch?v=irvlm6xrQWY" data-lightbox-gallery="gallery2"><img src="../common/img/Photo8.jpg" class="show-thumbnails"></a></div>
+  					<div><a href="http://vimeo.com/58150375" data-lightbox-gallery="gallery2"><img src="../common/img/Photo9.jpg" class="show-thumbnails"></a></div>
+  					<div><a href="https://www.youtube.com/watch?v=irvlm6xrQWY" data-lightbox-gallery="gallery2"><img src="../common/img/Photo8.jpg" class="show-thumbnails"></a></div>
+  					<div><a href="https://www.youtube.com/watch?v=wwEe-tbqx34" data-lightbox-gallery="gallery2"><img src="../common/img/Photo9.jpg" class="show-thumbnails"></a></div>
   				</div>
 	      </div>
 	    </div>
@@ -172,8 +184,8 @@
 	      </div>
 	    </div>
 	  </div> <!-- Close main-content -->
-	  <div class="col-sm-3" id="sidebar">
-	    <div class="row show-sidebar-item">
+	  <div class="col-md-3 col-sm-12" id="sidebar">
+	    <div class="row show-sidebar-item hidden-xs">
 	      <div class="col-sm-12">
 	        <button class="btn btn-default btn-block btn-buy">Buy Tickets</button>
 	      </div>
@@ -249,6 +261,10 @@
       <script src="assets/js/bootstrap-hover-dropdown.min.js"></script>
       <script src="assets/js/respond.min.js"></script>
       <script src="assets/js/slick.min.js"></script>
+      <script src="assets/js/placeholder.min.js"></script>
+      <script src="assets/js/modernizr.custom.81402.min.js"></script>
+      <!-- Script block allowing child pages to inject their own scripts -->
+      <script src="assets/js/nivo-lightbox.min.js"></script>
       <script src="assets/js/app.min.js"></script>
     </body>
 </html>

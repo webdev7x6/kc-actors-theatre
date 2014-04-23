@@ -21,8 +21,8 @@
             <div class="display-field editable-format editable" data-property-name="BioSummary">@Model.Person.BioSummary</div>
             <label>Bio Detail:</label>
             <div class="display-field editable-format editable-html" data-property-name="BioDetail">@Html.Raw(Model.Person.BioDetail)</div>
-            <label>Article Date:</label>
-            <div class="display-field editable-format editable-datepicker" data-property-name="ImageUrl">@Html.Raw(Model.Person.ImageUrl)</div>
+            <label>Image URL:</label>
+            <div class="display-field editable-format editable" data-property-name="ImageUrl">@Html.Raw(Model.Person.ImageUrl)</div>
             <label>Date Created:</label>
             <div class="display-field">@(Model.DateConverter.Convert(Model.Person.DateCreated).FromUtc().ForCmsUser().ToString("g"))</div>
         </div>
