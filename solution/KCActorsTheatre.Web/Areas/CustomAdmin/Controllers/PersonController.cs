@@ -62,7 +62,7 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
         }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public ViewResult EditShowAjax(int id)
+        public ViewResult EditPersonAjax(int id)
         {
             var vm = new EditPersonViewModel
             {
@@ -107,7 +107,7 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
             {
                 try
                 {
-                    var entity = Repository.Shows.GetSingle(ID).Entity;
+                    var entity = Repository.People.GetSingle(ID).Entity;
                     EditInPlaceJsonResponse response = EditProperty(editID => entity, id, property, newValue, null, null, null);
                     return Json(response);
                 }
@@ -186,11 +186,15 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
             {
                 // generic and required by reusable JavaScript
                 ID = item.PersonID,
-                TabTitleString = item.Title,
+                TabTitleString = item.Name,
                 DateCreated = CmsContext.DateConverter.Convert(item.DateCreated).FromUtc().ForCmsUser().ToString("g"),
 
                 // specific to this object
                 Name = item.Name,
+                Title = item.Title,
+                Body = item.BioDetail,
+                BioSummary = item.BioSummary,
+                ImageUrl = item.ImageUrl
             };
         }
     }

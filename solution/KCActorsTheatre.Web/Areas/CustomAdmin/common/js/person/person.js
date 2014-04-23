@@ -18,6 +18,11 @@
         hn.items.index.pageInit = function () {
 
         };
+        
+        // custom logic goes here to run during new item tab init
+        hn.items.index.tabInit = function () {
+            
+        };
 
     })();
 })(jQuery);

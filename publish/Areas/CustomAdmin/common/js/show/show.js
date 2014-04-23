@@ -27,7 +27,7 @@
 
         // custom logic goes here to run during new item tab init
         hn.items.index.tabInit = function ($editableParent) {
-            $editableParent.find('.edit-associated-people').on('click', function () { hn.items.index.personClick(this, $editableParent) })
+            $editableParent.find('.edit-associated-people').on('click', function () { hn.items.index.personClick(this, $editableParent) });
         };
 
     })();
