@@ -21,14 +21,26 @@
         <div class="ui-widget-content ui-corner-all ui-widget-cms">
             <label>Title:</label>
             <div class="display-field editable-format editable" data-property-name="Title">@Model.Show.Title</div>
+            <label>Summary Image:</label>
+            <div class="display-field editable-format editable" data-property-name="SummaryImageUrl">@Model.Show.SummaryImageUrl</div>
             <label>Summary:</label>
             <div class="display-field editable-format editable" data-property-name="Summary">@Model.Show.Summary</div>
+            <label>Main Image:</label>
+            <div class="display-field editable-format editable" data-property-name="MainImageUrl">@Model.Show.MainImageUrl</div>
             <label>Body:</label>
             <div class="display-field editable-format editable-html" data-property-name="Body">@Html.Raw(Model.Show.Body)</div>
             <label>Reviews:</label>
             <div class="display-field editable-format editable-html" data-property-name="Reviews">@Html.Raw(Model.Show.Reviews)</div>
+            <label>Quote:</label>
+            <div class="display-field editable-format editable" data-property-name="Quote">@Html.Raw(Model.Show.Quote)</div>
             <label>People:</label>
             <div class="display-field editable-format edit-associated-people pointer">@Html.Raw(peopleList)</div>
+            <label>Education:</label>
+            <div class="display-field editable-format editable-html" data-property-name="Education">@Html.Raw(Model.Show.Education)</div>
+            <label>Dates &amp; Times:</label>
+            <div class="display-field editable-format editable-html" data-property-name="DatesAndTimes">@Html.Raw(Model.Show.DatesAndTimes)</div>
+            <label>Venue:</label>
+            <div class="display-field editable-format editable-html" data-property-name="Venue">@Html.Raw(Model.Show.Venue)</div>
             <label>Start Date:</label>
             <div class="display-field editable-format editable-datepicker" data-property-name="StartDate">@(Model.Show.StartDate.HasValue ? Model.DateConverter.Convert(Model.Show.StartDate.Value).ToUtc().ForCmsUser().ToShortDateString() : string.Empty)</div>
             <label>End Date:</label>
