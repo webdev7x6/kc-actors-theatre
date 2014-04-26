@@ -17,6 +17,8 @@
             <div class="display-field editable-format editable" data-property-name="Title">@Model.Season.Title</div>
             <label>Main Image:</label>
             <div class="display-field editable-format editable-image" data-property-name="MainImageUrl">@Model.Season.MainImageUrl</div>
+            <label>Is Current Season?</label>
+            <div class="display-field editable-format editable-yes-no-boolean" data-property-name="IsCurrent">@(Model.Season.IsCurrent ? "Yes" : "No")</div>
             <label>Date Created:</label>
             <div class="display-field">@(Model.DateConverter.Convert(Model.Season.DateCreated).FromUtc().ForCmsUser().ToString("g"))</div>
         </div>

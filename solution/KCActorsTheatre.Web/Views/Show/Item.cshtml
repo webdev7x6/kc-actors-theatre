@@ -1,6 +1,14 @@
 ﻿@model KCActorsTheatre.Web.ViewModels.ShowViewModel
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml"; 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var mainImageUrl = string.IsNullOrEmpty(Model.Show.MainImageUrl) ? "http://placehold.it/1200x500" : Model.Show.MainImageUrl;
+}
+
+@section styles
+{
+    <link href="/common/css/nivo-lightbox.min.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/common/css/themes/default/default.min.css" rel="stylesheet" type="text/css" media="all"/>
 }
 
 @section scripts
@@ -14,26 +22,26 @@
                     success: function(data) {
                         console.log(data[0]);
 
-                        $('.show-videos').append('<div><a href="#" data-id="77508455"><img src="' + data[0].thumbnail_medium + '" class="show-thumbnails" style="background:black;"></a></div>');
+                        $('.show-videos').append('<div><a href="http://vimeo.com/' + id + '" data-lightbox-gallery="gallery2"><img src="' + data[0].thumbnail_medium + '" class="show-thumbnails"></a></div>');
 
                     }
                 });
             });
 
 
-            $('.show-videos').on('click', 'a', function(e) {
-                e.preventDefault();
-                var id = $(this).attr('data-id');
-                $('body').append($('#VideoModalTemplate').html().split('{{video-id}}').join(id));
-                $('#VideoModal').modal();
-                $('#VideoModal').on('hidden.bs.modal', function(e) {
-                    $('#VideoModal').remove();
-                });
-            });
+            //$('.show-videos').on('click', 'a', function(e) {
+            //    e.preventDefault();
+            //    var id = $(this).attr('data-id');
+            //    $('body').append($('#VideoModalTemplate').html().split('{{video-id}}').join(id));
+            //    $('#VideoModal').modal();
+            //    $('#VideoModal').on('hidden.bs.modal', function(e) {
+            //        $('#VideoModal').remove();
+            //    });
+            //});
         });
     </script>
     
-    <script id="VideoModalTemplate" type="text/html-template">
+    @*<script id="VideoModalTemplate" type="text/html-template">
         <div id="VideoModal" class="modal fade">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -50,11 +58,11 @@
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-    </script>
+    </script>*@
 }
 
 <div class="inner-page-img">
-    <img src="http://placehold.it/1200x500" alt="">
+    <img src="@mainImageUrl" alt="">
 </div>
 <div class="container inner-page-with-image">
   <div class="row header-row">
@@ -63,8 +71,13 @@
 	  </div>
 	</div>
 	<div class="row">
-	  <div class="col-sm-9" id="main-content">
-	    <div class="row show-detail-item">
+	  <div class="col-md-9 col-sm-12" id="main-content">
+	      <div class="row show-detail-item visible-xs">
+	      <div class="col-sm-12">
+	        <button class="btn btn-default btn-block btn-buy">Buy Tickets</button>
+	      </div>
+	      </div>
+          <div class="row show-detail-item">
 	      <div class="col-sm-12">
 	        <h2>Synopsis</h2>
     		  @Html.Raw(Model.Show.Body)
@@ -95,10 +108,10 @@
 	      <div class="col-sm-12">
 	        <h2>Cast</h2>
     		  <ul id="cast">
-		          @*@foreach (var person in @Model.Show.People)
+		          @foreach (var person in @Model.Show.People)
 		          {
                     <li><span class="role">@person.Title:</span> <a href="#">@person.Name</a></li>
-		          }*@
+		          }
     		  </ul>
 	      </div>
 	    </div>
@@ -106,21 +119,12 @@
 	      <div class="col-sm-12">
 	        <h2>Reviews</h2>
     		@Html.Raw(Model.Show.Reviews)
-          @*<blockquote>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-            <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
-          </blockquote>*@
 	      </div>
 	    </div>
 	    <div class="row show-detail-item">
 	      <div class="col-sm-12">
 	        <h2>Education</h2>
-	        <ul class="article-title">
-	          <li><h6><a href="#"><span class="glyphicon glyphicon-circle-arrow-right"></span>A title of an article limited to 150 char. Ipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis.</a></h6></li>
-	          <li><h6><a href="#"><span class="glyphicon glyphicon-circle-arrow-right"></span>A title of an article limited to 150 char. Ipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis.</a></h6></li>
-	          <li><h6><a href="#"><span class="glyphicon glyphicon-circle-arrow-right"></span>A title of an article limited to 150 char. Ipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis.</a></h6></li>
-	          <li><h6><a href="#"><span class="glyphicon glyphicon-circle-arrow-right"></span>A title of an article limited to 150 char. Ipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis.</a></h6></li>
-	        </ul>
+	        @Html.Raw(Model.Show.Education)
 	      </div>
 	    </div>
 	    <div class="row show-detail-item">
@@ -136,8 +140,8 @@
 	      </div>
 	    </div>
 	  </div> <!-- Close main-content -->
-	  <div class="col-sm-3" id="sidebar">
-	    <div class="row show-sidebar-item">
+	  <div class="col-md-3 col-sm-12" id="sidebar">
+	    <div class="row show-sidebar-item hidden-xs">
 	      <div class="col-sm-12">
 	        <button class="btn btn-default btn-block btn-buy">Buy Tickets</button>
 	      </div>
@@ -145,42 +149,23 @@
 	    <div class="row show-sidebar-item">
 	      <div class="col-sm-12">
 	        <h2>Dates &amp; Times</h2>
-    		  <ul class="show-dates">
-    		    <li>
-      		    <h5>TUES | 04.14.14 | <a href="#">7:30PM</a></h5>
-    		    </li>
-    		    <li>
-      		    <h5>WED | 04.14.14 | <a href="#">6:30PM</a></h5>
-    		    </li>
-    		    <li>
-      		    <h5>SAT | 04.14.14 | <a href="#">2:00PM</a></h5>
-    		    </li>
-    		    <li>
-      		    <h5>SAT | 04.14.14 | <a href="#">7:30PM</a></h5>
-    		    </li>
-    		    <li>
-      		    <h5>TUES | 04.14.14 | <a href="#">7:30PM</a></h5>
-    		    </li>
-    		  </ul>
+    		  @Html.Raw(Model.Show.DatesAndTimes)
 	      </div>
 	    </div>
-	    <div class="row show-sidebar-item">
-	      <div class="col-sm-12">
-	        <h2>Venue</h2>
-    		  <h5>Union Station</h5>
-    		  <address>
-    		    12345 Road Street<br />
-    		    Kansas City, MO 64444<br />
-    		  </address>
-    		 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3096.930578248813!2d-94.58602499999999!3d39.08527899999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87c0f03f9cb6bbc5%3A0x1746a6418d59c7dd!2sUnion+Station+Kansas+City%2C+Inc.!5e0!3m2!1sen!2sus!4v1397379380001" width="100%" height="200" frameborder="0" style="border:0"></iframe>
-    		  <p>Some brief parking information.</a></p>
+	      <div class="row show-sidebar-item">
+	          <div class="col-sm-12">
+	              <h2>Venue</h2>
+	              @Html.Raw(Model.Show.Venue)
+	          </div>
 	      </div>
-	    </div>
-	    <div class="row show-sidebar-item">
-	      <div class="col-sm-12">
-	        <h2>More From 2013-2014 Season</h2>
-	      </div>
-	    </div>
+          @if (Model.Show.Season != null)
+          {
+              <div class="row show-sidebar-item">
+                  <div class="col-sm-12">
+                      <h2>More From @Model.Show.Season.Title</h2>
+                  </div>
+              </div>
+          }
 	  </div>
 	</div>
 </div>

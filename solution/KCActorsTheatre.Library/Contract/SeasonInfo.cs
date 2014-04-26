@@ -12,6 +12,7 @@ namespace KCActorsTheatre.Contract
         [Required(ErrorMessage = "Title is required.")]
         public string Title { get; set; }
         public string MainImageUrl { get; set; }
+        public bool IsCurrent { get; set; }
         public DateTime DateCreated { get; set; }
 
         private HashSet<ShowInfo> _shows = new HashSet<ShowInfo>();
