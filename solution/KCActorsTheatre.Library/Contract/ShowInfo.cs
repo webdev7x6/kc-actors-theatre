@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace KCActorsTheatre.Contract
@@ -27,5 +28,22 @@ namespace KCActorsTheatre.Contract
 
         private HashSet<Person> _people = new HashSet<Person>();
         public ICollection<Person> People { get { return _people; } }
+
+        private HashSet<ShowMedia> _showMedia = new HashSet<ShowMedia>();
+        public ICollection<ShowMedia> ShowMedia { get { return _showMedia; } }
+    }
+
+    public class ShowMedia
+    {
+        public int ShowMediaID { get; set; }
+        public MediaType MediaType { get; set; }
+    }
+
+    public enum MediaType
+    {
+        [Description("Image")]
+        Image,
+        [Description("Video")]
+        Video
     }
 }

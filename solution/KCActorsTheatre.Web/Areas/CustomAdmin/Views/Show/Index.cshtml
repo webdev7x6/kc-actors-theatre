@@ -13,10 +13,12 @@
 @section scripts
 {
     <script type="text/javascript" src="@Url.CdnResource("/common/js/knockout-plugins/mapping/2.3.5/knockout.mapping-2.3.5.js")"></script>
-    <script type="text/javascript" src="/areas/customadmin/common/js/hn-item.js"></script>
-    <script type="text/javascript" src="/areas/customadmin/common/js/hn-item-create.js"></script>
-    <script type="text/javascript" src="/areas/customadmin/common/js/hn-item-index.js"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/admin-item.js"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/admin-item-create.js"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/admin-item-index.js"></script>
     <script type="text/javascript" src="/areas/customadmin/common/js/show/person-manager.js"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/show/show-images.js"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/show/show-images-create.js"></script>
     <script type="text/javascript" src="/areas/customadmin/common/js/show/show.js"></script>
 }
 <div id="items" class="items-container">
@@ -85,6 +87,66 @@
         </div>
     </div>
 </div>
+
+<div id="manage-images-form" title="Manage Slideshow Images">
+    <div class="ui-toolbar-cms">
+        <a id="create-image" href="#">New Image</a>
+    </div>
+    <div class="ui-widget-content ui-corner-all ui-widget-cms">
+        <div class="ui-dialog-titlebar ui-titlebar-cms ui-widget-header ui-corner-all tags-header">
+            Images:
+        </div>
+        <table class="table-layout images-table" data-bind="visible: anyImages()" style="width:100%;">
+            <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>Image</th>
+                    <th style="width:20px;">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: images" id="images-tbody">
+                <tr data-bind="attr: { 'id': showImageID, 'data-image-id': showImageID, 'data-image-url': imageURL }">
+                    <td><div class="sort-order"><span class="ui-icon ui-icon-carat-2-n-s"></span></div></td>
+                    <td><div class="display-field editable-format editable-image" data-bind="text: imageURL" data-property-name="ImageURL"></div></td>
+                    <td>
+                        <a href="#" class="delete-image-link" data-bind="click: $parent.removeImage">Delete Image</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br class="clear" />
+    </div>
+</div>
+
+@*<div id="manage-videos-form" title="Manage Slideshow Videos">
+    <div class="ui-toolbar-cms">
+        <a id="create-video" href="#">New Video</a>
+    </div>
+    <div class="ui-widget-content ui-corner-all ui-widget-cms">
+        <div class="ui-dialog-titlebar ui-titlebar-cms ui-widget-header ui-corner-all tags-header">
+            Videos:
+        </div>
+        <table class="table-layout videos-table" data-bind="visible: anyVideos()" style="width:100%;">
+            <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>Vimeo ID</th>
+                    <th style="width:20px;">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: videos" id="videos-tbody">
+                <tr data-bind="attr: { 'id': showVideoID, 'data-video-id': showVideoID, 'data-video-id': videoID }">
+                    <td><div class="sort-order"><span class="ui-icon ui-icon-carat-2-n-s"></span></div></td>
+                    <td><div class="display-field editable-format editable-image" data-bind="text: videoID" data-property-name="VideoID"></div></td>
+                    <td>
+                        <a href="#" class="delete-video-link" data-bind="click: $parent.removeVideo">Delete Video</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br class="clear" />
+    </div>
+</div>*@
 
 <div id="manage-people-form" title="Manage People">
     <div class="sortable-block ui-widget-content ui-corner-all ui-widget-cms">

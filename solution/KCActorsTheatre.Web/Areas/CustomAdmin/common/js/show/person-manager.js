@@ -3,9 +3,9 @@
 /// <reference path="http://clickfarmcdn.localhost/common/js/kendo/2012.2.710/kendo.all-vsdoc.js" />
 
 (function ($, undefined) {
-    var hn = window.hn = window.hn || {};
+    var admin = window.admin = window.admin || {};
     (function () {
-        hn.items.index.personClick = function (container, parent) {
+        admin.items.index.personClick = function (container, parent) {
             var
                 $container = $(container),
                 people = [],
@@ -18,7 +18,7 @@
                     name: $el.text()
                 });
             });
-            hn.people.show(people, parent.attr('data-item-id'), function _people_onClose(people) {
+            admin.people.show(people, parent.attr('data-item-id'), function _people_onClose(people) {
                 $container.empty();
                 if (people && people.length) {
                     if (!$people || !$people.length) {
@@ -35,7 +35,7 @@
             });
         }
 
-        hn.people = (function () {
+        admin.people = (function () {
             var $dlg = null,
                 closeCallback = null,
                 ITEM_ID = null,
@@ -84,7 +84,7 @@
                     ko.applyBindings(associatedPeopleViewModel, $associatedPeople[0]);
 
                     var $dom = $('#available-people-container');
-                    var personManager = new hn.people.PersonManager({
+                    var personManager = new admin.people.PersonManager({
                         domContainer: $dom,
                         find_succeeded: function () { },
                         find_failed: function () { },
@@ -99,8 +99,8 @@
                         $availablePeople.empty();
                     };
                     $availablePeopleFindName = $('#find-people-name');
-                    hn.people.initFindPersonInput($availablePeopleFindName, availablePeopleViewModel, $dom);
-                    hn.people.initShowAllPeopleLink('#show-all-people', availablePeopleViewModel, $dom);
+                    admin.people.initFindPersonInput($availablePeopleFindName, availablePeopleViewModel, $dom);
+                    admin.people.initShowAllPeopleLink('#show-all-people', availablePeopleViewModel, $dom);
                     availablePeopleViewModel.people.subscribe(function _people_subscribe(newValue) {
                         var badIxs = [];
                         $.each(newValue, function _newPeople_onEach(avIx, avItem) {
@@ -148,9 +148,9 @@
                     function updateServer(elem) {
                         var personID = elem.attr('data-person-id');
                         if (elem.parent().is('[id*="available"]')) {
-                            hn.people.removePerson(personID, ITEM_ID, elem.sender);
+                            admin.people.removePerson(personID, ITEM_ID, elem.sender);
                         } else {
-                            hn.people.addPerson(personID, ITEM_ID, elem.sender);
+                            admin.people.addPerson(personID, ITEM_ID, elem.sender);
                         }
                     }
                 },
@@ -169,7 +169,7 @@
                     $dlg.dialog('open');
                 },
                 addPerson: function _addPerson(personID, id, sortableList) {
-                    ajaxHelper.ajax(hn.AddPersonURL, {
+                    ajaxHelper.ajax(admin.AddPersonURL, {
                         type: 'POST',
                         data: {
                             id: id,
@@ -185,7 +185,7 @@
                     });
                 },
                 removePerson: function _removePerson(personID, id, sortableList) {
-                    ajaxHelper.ajax(hn.RemovePersonURL, {
+                    ajaxHelper.ajax(admin.RemovePersonURL, {
                         type: 'POST',
                         data: {
                             id: id,
@@ -229,7 +229,7 @@
                 initFindPersonInput: function (input, viewModel, domContainer) {
                     $(input).keyup($.debounce(350, function () {
                         if (input.val().length > 1) {
-                            ajaxHelper.ajax(hn.FindPeopleURL, {
+                            ajaxHelper.ajax(admin.FindPeopleURL, {
                                 data: {
                                     term: input.val()
                                 },
@@ -239,7 +239,7 @@
                                     if (data.Succeeded && data.Properties.People.length > 0) {
                                         $.each(data.Properties.People, function (index, item) {
                                             //push results into view model's observable collection of views
-                                            viewModel.addPerson(new hn.people.Person(item.Name, item.PersonID));
+                                            viewModel.addPerson(new admin.people.Person(item.Name, item.PersonID));
                                         });
                                         viewModel.anyPeople(true);
                                     }
@@ -269,14 +269,14 @@
                         }
                     }).on('click', function (event) {
                         event.preventDefault();
-                        ajaxHelper.ajax(hn.AllPeopleURL, {
+                        ajaxHelper.ajax(admin.AllPeopleURL, {
                             type: 'POST',
                             success: function (data, textStatus, jqXHR) {
                                 viewModel.clearPeople();
                                 if (data.Succeeded && data.Properties.People.length > 0) {
                                     $.each(data.Properties.People, function (index, item) {
                                         //push results into view model's observable collection of views
-                                        viewModel.addPerson(new hn.people.Person(item.Name, item.PersonID));
+                                        viewModel.addPerson(new admin.people.Person(item.Name, item.PersonID));
                                     });
                                     viewModel.anyPeople(true);
                                 }
@@ -309,18 +309,18 @@
             };
         })();
 
-        hn.people.PersonManager = function (options) {
+        admin.people.PersonManager = function (options) {
             this.options = options;
             this.domContainer = $(options.domContainer);
-            hn.people.setPersonManager(this.domContainer, this);
+            admin.people.setPersonManager(this.domContainer, this);
             this.ajaxUrl = options.ajaxUrl;
             this.ajaxData = options.ajaxData;
         };
 
-        hn.people.PersonManager.prototype = function () {
+        admin.people.PersonManager.prototype = function () {
             var
                 init = function () {
-                    var viewModel = new hn.people.PersonViewModel(this);
+                    var viewModel = new admin.people.PersonViewModel(this);
                     this.setViewModel.call(this, viewModel);
                     cms.doCallback(this.options.applying_bindings);
                     ko.applyBindings(viewModel, this.domContainer.get(0));
@@ -343,12 +343,12 @@
 
         }();
 
-        hn.people.PersonViewModel = function (personMgr, person_removed) {
+        admin.people.PersonViewModel = function (personMgr, person_removed) {
             this.personMgr = personMgr;
             this.person_removed = person_removed;
         };
 
-        hn.people.PersonViewModel.prototype = function () {
+        admin.people.PersonViewModel.prototype = function () {
             var
                 people = ko.observableArray([]),
                 addPerson = function (person) {
@@ -390,12 +390,12 @@
             };
         }();
 
-        hn.people.Person = function (name, personID) {
+        admin.people.Person = function (name, personID) {
             this.name = name;
             this.personID = personID;
             this.viewModel = {};
         };
-        hn.people.Person.prototype = function () {
+        admin.people.Person.prototype = function () {
             var
                 setViewModel = function (viewModel) {
                     this.viewModel = viewModel;
