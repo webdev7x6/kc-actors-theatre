@@ -247,12 +247,6 @@ namespace KCActorsTheatre.Web
                 .SingleUse()
                 ;
 
-            app.HasController<Controllers.HomeController>("Commmunity Dashboard", "CommunityDashboard")
-                .ForPageType("Web Page")
-                .HasContentGroup("Body Copy")
-                .SingleUse()
-                ;
-
             app.HasController<Controllers.HomeController>("Home Page", "Index")
                 .ForPageType("Web Page")
                 .HasContentGroup("Home Callout")
