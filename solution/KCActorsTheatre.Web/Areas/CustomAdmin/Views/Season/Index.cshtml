@@ -1,0 +1,107 @@
+﻿@using Clickfarm.Cms.Mvc
+@model KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.Season.SeasonViewModel
+@{
+    var entityDescriptionSingular = "Season";
+    var entityDescriptionPlural = "Seasons";
+    ViewBag.HtmlTitle = @entityDescriptionPlural;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@section styles
+{
+    <link href="/areas/customadmin/common/css/admin.css" rel="stylesheet" type="text/css" />
+}
+@section scripts
+{
+    <script type="text/javascript" src="@Url.CdnResource("/common/js/knockout-plugins/mapping/2.3.5/knockout.mapping-2.3.5.js")"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/hn-item.js"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/hn-item-create.js"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/hn-item-index.js"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/season/season.js"></script>
+}
+<div id="items" class="items-container">
+    <div id="tabs">
+        <a href="#" id="close-tabs-link" data-bind="visible: tabMgr.tabs().length > 1, click: tabMgr.closeAllTabs" title="Close all">Close all</a>
+        <ul>
+            <li class="tab-notclosable"><a href="#primary-tab">@entityDescriptionPlural</a></li>
+        </ul>
+        <div id="primary-tab">
+            <div class="ui-toolbar-cms">
+                <a id="create-item" href="#">@entityDescriptionSingular</a>
+            </div>
+            <div class="tab-options-wrapper">
+                <div id="start-options" class="tab-options">
+                    <h3><a>@entityDescriptionPlural</a></h3>
+                    <div>
+                        <div>
+                            <label for="find-items-name">Find By Title:</label><br />
+                            <input type="text" id="find-items-name" />
+                            <a id="show-all-items" style="margin-top: 10px" href="#">Show All</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-display">
+                <div id="find-items-results" data-bind="visible: findResultsVisible" class="tab-display-panel ui-dialog ui-widget ui-widget-cms ui-widget-content ui-corner-all ui-state-highlight">
+                    @Html.TitleBar(entityDescriptionPlural + " Found", true, "close-find-items-results", "click: closeFindResults")
+                    <div class="wrapper">
+                        <div data-bind="visible: retrievingItems">
+                            <img src="@Url.AjaxLoader()" alt="Looking..." />
+                            Looking...
+                        </div>
+                        <table class="items-table table-layout" data-bind="visible: !retrievingItems() && anyItems()">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Date Created</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: items">
+                                <tr data-bind="attr: { 'data-item-id': ID }">
+                                    <td>
+                                        <a href="#" data-bind="click: function () { $parent.showEditItem($data); }, text: Title, attr: { 'data-item-id': ID }"></a>
+                                    </td>
+                                    <td data-bind="text: DateCreated"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div data-bind="visible: !retrievingItems() && !anyItems()">No @entityDescriptionPlural were found.</div>
+                    </div>
+                </div>
+                <div id="recent-items" data-bind="visible: recentItems().length > 0" class="tab-display-panel ui-dialog ui-widget ui-widget-cms ui-widget-content ui-corner-all ui-state-highlight">
+                    @Html.TitleBar("Recent " + entityDescriptionPlural)
+                    <div class="wrapper">
+                        <ul data-bind="foreach: recentItems">
+                            <li><a href="#" data-bind="click: function () { $parent.showEditItem($data); }, text: Title, attr: { 'data-item-id': ID }"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <br class="clear" />
+        </div>
+    </div>
+</div>
+
+<div id="create-item-form" class="modal-display edit-not-in-place hidden" title="New @entityDescriptionSingular">
+    <div class="ui-widget-content ui-corner-all ui-widget-cms">
+        @using (Ajax.BeginForm("CreateSeasonAjax", "Season",
+            new AjaxOptions
+            {
+                HttpMethod = "Post",
+                LoadingElementId = "create-item-loading",
+                OnFailure = "createItemManager.ajaxFailure",
+                OnSuccess = "createItemManager.ajaxSuccess"
+            }
+        ))
+        {
+            @Html.LabelFor(m => m.Season.Title)
+            <div class="display-field">
+                @Html.TextBoxFor(m => m.Season.Title, new { @class = "dialog-textbox", @id = "create-item-name" })<br />
+                @Html.ValidationMessageFor(m => m.Season.Title)
+            </div>
+        }
+    </div>
+    <div>
+        @Html.Partial("~/Areas/Admin/Views/Shared/AjaxLoader.cshtml", new ViewDataDictionary { { "LoaderID", "create-item-loading" } })
+    </div>
+    <div id="create-item-error" class="ajax-error"></div>
+</div>

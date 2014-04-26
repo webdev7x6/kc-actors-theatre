@@ -10,6 +10,7 @@ namespace KCActorsTheatre.Data
         private NewsArticleRepository newsArticleRepository = null;
         private ShowRepository showRepository = null;
         private PersonRepository personRepository = null;
+        private SeasonRepository seasonRepository = null;
         
 
         public KCActorsTheatreRepository(KCActorsTheatreDbContext entityFrameworkCmsDbContext)
@@ -54,12 +55,25 @@ namespace KCActorsTheatre.Data
             }
         }
 
+        public SeasonRepository Seasons
+        {
+            get
+            {
+                if (seasonRepository == null)
+                {
+                    seasonRepository = new SeasonRepository(context, this);
+                }
+                return seasonRepository;
+            }
+        }
+
         public override void RefreshAll()
         {
             base.RefreshAll();
             context.Refresh(RefreshMode.StoreWins, context.NewsArticles);
             context.Refresh(RefreshMode.StoreWins, context.Shows);
             context.Refresh(RefreshMode.StoreWins, context.People);
+            context.Refresh(RefreshMode.StoreWins, context.Seasons);
         }
     }
 }

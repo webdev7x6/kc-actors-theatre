@@ -8,6 +8,7 @@ namespace KCActorsTheatre.Contract
     {
         [Key]
         public int ShowId { get; set; }
+        public int? SeasonID { get; set; }
 
         [Required(ErrorMessage = "Title is required.")]
         public string Title { get; set; }
@@ -27,5 +28,7 @@ namespace KCActorsTheatre.Contract
 
         private HashSet<Person> _people = new HashSet<Person>();
         public ICollection<Person> People { get { return _people; } }
+
+        public SeasonInfo Season { get; set; }
     }
 }

@@ -75,8 +75,7 @@ namespace KCActorsTheatre.Web
                         Href = "/CustomAdmin/News",
                         RolesWithVisibility = new[]
                         {
-                            Constants.CmsRole_SystemAdministrator,
-                            Constants.CmsRole_CalendarManager,
+                            Constants.CmsRole_SystemAdministrator
                         }
                     },
                      new AdminMenuItem
@@ -92,6 +91,15 @@ namespace KCActorsTheatre.Web
                     {
                         Title = "People",
                         Href = "/CustomAdmin/Person",
+                        RolesWithVisibility = new[]
+                        {
+                            Constants.CmsRole_SystemAdministrator
+                        }
+                    },
+                    new AdminMenuItem
+                    {
+                        Title = "Seasons",
+                        Href = "/CustomAdmin/Season",
                         RolesWithVisibility = new[]
                         {
                             Constants.CmsRole_SystemAdministrator
@@ -244,12 +252,6 @@ namespace KCActorsTheatre.Web
 
             app.HasController<Controllers.HomeController>("Contact Form", "Contact")
                 .ForPageType("Web Page")
-                .SingleUse()
-                ;
-
-            app.HasController<Controllers.HomeController>("Commmunity Dashboard", "CommunityDashboard")
-                .ForPageType("Web Page")
-                .HasContentGroup("Body Copy")
                 .SingleUse()
                 ;
 

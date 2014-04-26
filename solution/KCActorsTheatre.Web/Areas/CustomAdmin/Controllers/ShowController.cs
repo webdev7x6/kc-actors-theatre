@@ -223,6 +223,16 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
 
         #endregion
 
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        public JsonResult GetSeasons()
+        {
+            var dict = Repository.Seasons.All()
+                .ToList()
+                .ToDictionary(item => item.SeasonID.ToString(), item => item.Title);
+
+            return Json(dict, JsonRequestBehavior.AllowGet);
+        }
+
 
         private IEnumerable<object> ConvertShows(IEnumerable<ShowInfo> items)
         {
