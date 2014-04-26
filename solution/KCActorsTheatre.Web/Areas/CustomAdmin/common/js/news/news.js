@@ -18,6 +18,10 @@
         hn.items.index.pageInit = function () {
 
         };
+        
+        hn.items.index.tabInit = function () {
+
+        };
 
     })();
 })(jQuery);
