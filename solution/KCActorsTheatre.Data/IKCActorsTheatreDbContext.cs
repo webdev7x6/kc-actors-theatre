@@ -9,5 +9,6 @@ namespace KCActorsTheatre.Data
         DbSet<Article> NewsArticles { get; }
         DbSet<ShowInfo> Shows { get; }
         DbSet<Person> People { get; }
+        DbSet<SeasonInfo> Seasons { get; }
     }
 }

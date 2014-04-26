@@ -19,6 +19,12 @@
             <a href="#" class="delete-item-link" data-item-id="@Model.Show.ShowId" title="Delete @entityDescription">Delete @entityDescription</a>
         </div>
         <div class="ui-widget-content ui-corner-all ui-widget-cms">
+            <label>Season:</label>
+            <div class="display-field editable-format editable-select editable-select-season" 
+	             data-editable-select-model="season" 
+	             data-editable-select-load-url="/CustomAdmin/Shows/GetSeasons"
+	             data-property-name="SeasonID">@(Model.Show.Season != null ? @Model.Show.Season.Title : string.Empty)
+            </div>
             <label>Title:</label>
             <div class="display-field editable-format editable" data-property-name="Title">@Model.Show.Title</div>
             <label>Summary Image:</label>

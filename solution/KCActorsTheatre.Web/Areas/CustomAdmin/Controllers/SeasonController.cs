@@ -9,40 +9,39 @@ using Clickfarm.Cms.Admin.Mvc.Areas.Admin.ViewModels;
 using Clickfarm.Cms.Core;
 using Clickfarm.Cms.Mvc;
 using KCActorsTheatre.Contract;
-using KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.News;
+using KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.Season;
 using KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.Show;
 
 namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
 {
-    [RequiresCmsUserAuthorization(Constants.CmsRole_CalendarManager)]
-    public class ShowController : KCActorsTheatreAdminControllerBase
+    public class SeasonController : KCActorsTheatreAdminControllerBase
     {
-        public ShowController(ICmsContext context) : base(context) { }
+        public SeasonController(ICmsContext context) : base(context) { }
 
         public ViewResult Index()
         {
-            var model = new ShowViewModel();
+            var model = new SeasonViewModel();
             model.Init(CmsContext);
             return View(model);
         }
 
         [HttpPost]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public JsonResult CreateShowAjax(ShowInfo show)
+        public JsonResult CreateSeasonAjax(SeasonInfo season)
         {
             JsonResponse jsonResponse = new JsonResponse();
 
-            show.DateCreated = DateTime.UtcNow;
+            season.DateCreated = DateTime.UtcNow;
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var repoResponse = Repository.Shows.New(show);
+                    var repoResponse = Repository.Seasons.New(season);
 
                     if (repoResponse.Succeeded && repoResponse.Entity != null)
                     {
-                        jsonResponse.Properties.Add("Item", ConvertShow(repoResponse.Entity));
+                        jsonResponse.Properties.Add("Item", ConvertSeason(repoResponse.Entity));
                         jsonResponse.Succeeded = true;
                     }
                         
@@ -63,16 +62,16 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
         }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public ViewResult EditShowAjax(int id)
+        public ViewResult EditSeasonAjax(int id)
         {
-            var vm = new EditShowViewModel
+            var vm = new EditSeasonViewModel
             {
                 DateConverter = CmsContext.DateConverter,
                 ContentProperties_Body_Html = new HtmlContentProperties(),
                 ContentProperties_Body_ImageFile = new FileContentProperties
                 {
                     RootFolder = "/Common/Cms/Images",
-                    DefaultSubfolder = "ShowImages",
+                    DefaultSubfolder = "SeasonImages",
                     MediaTypes = new string[] { "image/" }
                 },
                 ContentProperties_Body_DocumentFile = new FileContentProperties
@@ -87,28 +86,28 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
                 ContentProperties_ImageFile = new FileContentProperties
                 {
                     RootFolder = "/Common/Cms/Images",
-                    DefaultSubfolder = "ShowImages",
+                    DefaultSubfolder = "SeasonImages",
                     MediaTypes = new string[] { "image/" }
                 }
             };
-            var repoResponse = Repository.Shows.GetSingle(id);
+            var repoResponse = Repository.Seasons.GetSingle(id);
             if (repoResponse.Succeeded)
             {
-                vm.Show = repoResponse.Entity;
+                vm.Season = repoResponse.Entity;
             }
             return View(vm);
         }
 
         [HttpPost]
         [ValidateInput(false)]
-        public JsonResult EditShowAjax(string id, string property, string newValue)
+        public JsonResult EditSeasonAjax(string id, string property, string newValue)
         {
             int ID = 0;
             if (int.TryParse(id, out ID))
             {
                 try
                 {
-                    var entity = Repository.Shows.GetSingle(ID).Entity;
+                    var entity = Repository.Seasons.GetSingle(ID).Entity;
                     EditInPlaceJsonResponse response = EditProperty(editID => entity, id, property, newValue, null, null, null);
                     return Json(response);
                 }
@@ -125,9 +124,9 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
 
         [HttpPost]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public JsonResult DeleteShowAjax(int id)
+        public JsonResult DeleteSeasonAjax(int id)
         {
-            RepositoryResponse repoResponse = Repository.Shows.Delete(id);
+            RepositoryResponse repoResponse = Repository.Seasons.Delete(id);
             JsonResponse response = new JsonResponse();
             if (repoResponse.Succeeded)
             {
@@ -141,13 +140,13 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
         }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public JsonResult FindShowsAjax(string term)
+        public JsonResult FindSeasonsAjax(string term)
         {
             JsonResponse response = new JsonResponse();
-            var repoResponse = Repository.Shows.FindForDisplay(term.Split(new char[0], StringSplitOptions.RemoveEmptyEntries));
+            var repoResponse = Repository.Seasons.FindForDisplay(term.Split(new char[0], StringSplitOptions.RemoveEmptyEntries));
             if (repoResponse.Succeeded)
             {
-                var items = ConvertShows(repoResponse.Entity);
+                var items = ConvertSeasons(repoResponse.Entity);
                 response.Properties.Add("Items", items);
                 response.Succeed(string.Format("{0} item(s) found.", items.Count()));
             }
@@ -159,13 +158,13 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
         }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public JsonResult AllShowsAjax()
+        public JsonResult AllSeasonsAjax()
         {
             JsonResponse response = new JsonResponse();
-            var repoResponse = Repository.Shows.GetAll();
+            var repoResponse = Repository.Seasons.GetAll();
             if (repoResponse.Succeeded)
             {
-                var items = ConvertShows(repoResponse.Entity);
+                var items = ConvertSeasons(repoResponse.Entity);
                 response.Properties.Add("Items", items);
                 response.Succeed(string.Format("{0} items(s) found.", items.Count()));
             }
@@ -176,83 +175,22 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
             return Json(response);
         }
 
-        #region People
-
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public JsonResult FindPeople(string term)
+        private IEnumerable<object> ConvertSeasons(IEnumerable<SeasonInfo> items)
         {
-            var termsSplit = term.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
-            var people = Repository.People.Find(termsSplit);
-            return Json(People(people.Entity));
+            return items.Select(ConvertSeason);
         }
 
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public JsonResult AllPeople()
-        {
-            var people = Repository.People.All();
-            return Json(People(people));
-        }
-
-        public JsonResult AddPerson(int id, int personID)
-        {
-            var repoResp = Repository.Shows.AddPerson(id, personID);
-            return Json(new JsonResponse
-            {
-                Succeeded = repoResp.Succeeded,
-                Message = repoResp.Message
-            });
-        }
-
-        public JsonResult RemovePerson(int id, int personID)
-        {
-            var repoResp = Repository.Shows.RemovePerson(id, personID);
-            return Json(new JsonResponse
-            {
-                Succeeded = repoResp.Succeeded,
-                Message = repoResp.Message
-            });
-        }
-
-        private JsonResponse People(IEnumerable<Person> people)
-        {
-            var resp = new JsonResponse();
-            resp.Properties.Add("People", people);
-            resp.Succeed(string.Format("{0} people found.", people.Count()));
-            return resp;
-        }
-
-        #endregion
-
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public JsonResult GetSeasons()
-        {
-            var dict = Repository.Seasons.All()
-                .ToList()
-                .ToDictionary(item => item.SeasonID.ToString(), item => item.Title);
-
-            return Json(dict, JsonRequestBehavior.AllowGet);
-        }
-
-
-        private IEnumerable<object> ConvertShows(IEnumerable<ShowInfo> items)
-        {
-            return items.Select(ConvertShow);
-        }
-
-        private object ConvertShow(ShowInfo item)
+        private object ConvertSeason(SeasonInfo item)
         {
             return new
             {
                 // generic and required by reusable JavaScript
-                ID = item.ShowId,
+                ID = item.SeasonID,
                 TabTitleString = item.Title,
                 DateCreated = CmsContext.DateConverter.Convert(item.DateCreated).FromUtc().ForCmsUser().ToString("g"),
 
                 // specific to this object
-                Title = item.Title,
-                Body = item.Body,
-                StartDate = item.StartDate.HasValue ? CmsContext.DateConverter.Convert(item.StartDate.Value).FromUtc().ForCmsUser().ToShortDateString() : string.Empty,
-                EndDate = item.EndDate.HasValue ? CmsContext.DateConverter.Convert(item.EndDate.Value).FromUtc().ForCmsUser().ToShortDateString() : string.Empty,
+                Title = item.Title
             };
         }
     }

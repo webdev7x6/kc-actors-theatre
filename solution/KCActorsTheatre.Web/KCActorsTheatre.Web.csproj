@@ -216,6 +216,7 @@
   <ItemGroup>
     <Compile Include="App_Start\CmsConfig.cs" />
     <Compile Include="Areas\CustomAdmin\AdminCustomAreaRegistration.cs" />
+    <Compile Include="Areas\CustomAdmin\Controllers\SeasonController.cs" />
     <Compile Include="Areas\CustomAdmin\Controllers\PersonController.cs" />
     <Compile Include="Areas\CustomAdmin\Controllers\ShowController.cs" />
     <Compile Include="Areas\CustomAdmin\Controllers\NewsController.cs" />
@@ -224,6 +225,8 @@
     <Compile Include="Areas\CustomAdmin\ViewModels\News\NewsViewModel.cs" />
     <Compile Include="Areas\CustomAdmin\ViewModels\PersonModel\EditPersonViewModel.cs" />
     <Compile Include="Areas\CustomAdmin\ViewModels\PersonModel\PersonViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Season\EditSeasonViewModel.cs" />
+    <Compile Include="Areas\CustomAdmin\ViewModels\Season\SeasonViewModel.cs" />
     <Compile Include="Areas\CustomAdmin\ViewModels\Show\EditShowViewModel.cs" />
     <Compile Include="Areas\CustomAdmin\ViewModels\Show\ShowViewModel.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -275,6 +278,7 @@
     <Content Include="Areas\CustomAdmin\common\js\hn-item-index.js" />
     <Content Include="Areas\CustomAdmin\common\js\hn-item.js" />
     <Content Include="Areas\CustomAdmin\common\js\person\person.js" />
+    <Content Include="Areas\CustomAdmin\common\js\season\season.js" />
     <Content Include="Areas\CustomAdmin\common\js\show\show.js" />
     <Content Include="Areas\CustomAdmin\common\js\show\person-manager.js" />
     <Content Include="common\css\app.css" />
@@ -459,6 +463,8 @@
     <Content Include="Areas\CustomAdmin\Views\Show\Index.cshtml" />
     <Content Include="Areas\CustomAdmin\Views\Person\EditPersonAjax.cshtml" />
     <Content Include="Areas\CustomAdmin\Views\Person\Index.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Season\EditSeasonAjax.cshtml" />
+    <Content Include="Areas\CustomAdmin\Views\Season\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Production_Deploy.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
