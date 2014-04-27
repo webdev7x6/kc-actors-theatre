@@ -26,24 +26,10 @@ namespace KCActorsTheatre.Contract
         public bool IsPublished { get; set; }
         public DateTime DateCreated { get; set; }
 
+        public int? SeasonID { get; set; }
+        public SeasonInfo Season { get; set; }
+
         private HashSet<Person> _people = new HashSet<Person>();
         public ICollection<Person> People { get { return _people; } }
-
-        private HashSet<ShowMedia> _showMedia = new HashSet<ShowMedia>();
-        public ICollection<ShowMedia> ShowMedia { get { return _showMedia; } }
-    }
-
-    public class ShowMedia
-    {
-        public int ShowMediaID { get; set; }
-        public MediaType MediaType { get; set; }
-    }
-
-    public enum MediaType
-    {
-        [Description("Image")]
-        Image,
-        [Description("Video")]
-        Video
     }
 }

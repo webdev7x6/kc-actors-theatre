@@ -26,6 +26,11 @@ namespace KCActorsTheatre.Data
             get { return Set<Person>(); }
         }
 
+        public DbSet<SeasonInfo> Seasons
+        {
+            get { return Set<SeasonInfo>(); }
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -49,6 +54,7 @@ namespace KCActorsTheatre.Data
                 ;
 
             modelBuilder.Entity<Person>().Map(m => m.ToTable("Person", "KCAT"));
+            modelBuilder.Entity<SeasonInfo>().Map(m => m.ToTable("Season", "KCAT"));
 
             //custom content types
             modelBuilder.Entity<CalloutTextContent>().Map(m => m.Requires("ContentType").HasValue("CalloutText"));
