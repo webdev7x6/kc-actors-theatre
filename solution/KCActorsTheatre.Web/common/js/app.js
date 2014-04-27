@@ -44,8 +44,8 @@ $('.dropdown').on('show.bs.dropdown', function(e){
 
 //Prevents unexpected menu close when using accordions
 $(document).on('click', '.yamm .dropdown-menu', function(e) {
-  e.stopPropagation()
-})
+    e.stopPropagation();
+});
 
 
 $(document).ready(function(){
