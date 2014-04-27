@@ -13,10 +13,22 @@
         peopleList = "Click to edit";
     }
     
-    <div class="editable-parent item-index-tab model-display" data-tab-type="edit-item" data-item-id="@Model.Show.ShowId">
+    string imageList = Model.GetImagesAsList();
+    if (string.IsNullOrWhiteSpace(imageList))
+    {
+        imageList = "Click to edit";
+    }
+    
+    string videoList = Model.GetVideosAsList();
+    if (string.IsNullOrWhiteSpace(videoList))
+    {
+        videoList = "Click to edit";
+    }
+  
+    <div class="editable-parent item-index-tab model-display" data-tab-type="edit-item" data-item-id="@Model.Show.ShowID">
         <div class="ui-toolbar-cms">
-            <a href="#" class="refresh-item-link" data-item-id="@Model.Show.ShowId" title="Refresh @entityDescription">Refresh @entityDescription</a>
-            <a href="#" class="delete-item-link" data-item-id="@Model.Show.ShowId" title="Delete @entityDescription">Delete @entityDescription</a>
+            <a href="#" class="refresh-item-link" data-item-id="@Model.Show.ShowID" title="Refresh @entityDescription">Refresh @entityDescription</a>
+            <a href="#" class="delete-item-link" data-item-id="@Model.Show.ShowID" title="Delete @entityDescription">Delete @entityDescription</a>
         </div>
         <div class="ui-widget-content ui-corner-all ui-widget-cms">
             <label>Season:</label>
@@ -38,9 +50,9 @@
                 <img src="@(!string.IsNullOrWhiteSpace(Model.Show.MainImageUrl) ? Model.Show.MainImageUrl : Url.CmsVersionedCdnResource("/images/no-image.png"))" alt="" />
             </div>
             <label>Slideshow Images:</label>
-            <div class="display-field editable-format edit-associated-images pointer">Click to Manage</div>
+            <div class="display-field editable-format edit-associated-images pointer">@Html.Raw(imageList)</div>
             <label>Slideshow Videos:</label>
-            <div class="display-field editable-format edit-associated-videos pointer">Click to Manage</div>
+            <div class="display-field editable-format edit-associated-videos pointer">@Html.Raw(videoList)</div>
             <label>Body:</label>
             <div class="display-field editable-format editable-html" data-property-name="Body">@Html.Raw(Model.Show.Body)</div>
             <label>Reviews:</label>

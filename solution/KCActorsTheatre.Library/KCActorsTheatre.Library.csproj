@@ -128,6 +128,8 @@
     <Compile Include="Contract\Article.cs" />
     <Compile Include="Contract\SeasonInfo.cs" />
     <Compile Include="Contract\Person.cs" />
+    <Compile Include="Contract\ShowImage.cs" />
+    <Compile Include="Contract\ShowVideo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchResult.cs" />
     <Compile Include="Contract\ShowInfo.cs" />

@@ -6,29 +6,29 @@
     var admin = window.admin = window.admin || {};
     admin.shows = admin.shows = admin.shows || {};
     (function () {
-        admin.shows.images = (function () {
+        admin.shows.videos = (function () {
             var $dlg = null,
                 closeCallback = null,
-                $associatedImages = null
+                $associatedVideos = null
             ;
 
-            window.associatedImagesViewModel = {
-                images: ko.observableArray([]),
-                removeImage: function (image, event) {
+            window.associatedVideosViewModel = {
+                videos: ko.observableArray([]),
+                removeVideo: function (video, event) {
                     event.preventDefault();
                     dialogHelper.confirm(
-                        'Are you sure you want to remove this image?',
-                        'Remove Image',
+                        'Are you sure you want to remove this video?',
+                        'Remove Video',
                         function () {
-                            ajaxHelper.ajax(admin.RemoveImageURL, {
+                            ajaxHelper.ajax(admin.RemoveVideoURL, {
                                 type: 'POST',
                                 data: {
-                                    id: image.imageID
+                                    id: video.videoID
                                 },
                                 success: function (data, textStatus, jqXHR) {
-                                    window.associatedImagesViewModel.images.remove(image);
+                                    window.associatedVideosViewModel.videos.remove(video);
                                 },
-                                failureMessageFormat: 'An error occurred trying to remove the image: [[errorThrown]]'
+                                failureMessageFormat: 'An error occurred trying to remove the video: [[errorThrown]]'
                             });
 
                             
@@ -41,7 +41,7 @@
 
             return {
                 init: function _init($modal) {
-                    $associatedImages = $('#images-tbody');
+                    $associatedVideos = $('#videos-tbody');
                     $dlg = $modal.dialog({
                         autoOpen: false,
                         modal: true,
@@ -54,27 +54,27 @@
                         },
                         close: function _dlg_onClose() {
 
-                            var $list = $('.editable-parent[data-item-id="' + window.SHOW_ID + '"] .edit-associated-images ul');
+                            var $list = $('.editable-parent[data-item-id="' + window.SHOW_ID + '"] .edit-associated-videos ul');
                             $list.html('');
 
-                            $associatedImages.find('tr').each(function _images_onEach(ix, el) {
+                            $associatedVideos.find('tr').each(function _videos_onEach(ix, el) {
                                 var $el = $(el);
                                 if ($el.css('display') != 'none') // only add if not hidden
                                 {
-                                    var id = $el.attr('data-image-id'),
-                                        imageURL = $el.find('td [data-property-name="ImageURL"]').text()
+                                    var id = $el.attr('data-video-id'),
+                                        vimeoID = $el.find('td [data-property-name="VimeoID"]').text()
                                     ;
 
-                                    $list.append('<li data-image-id="' + id + '">' + imageURL + '</li>');
+                                    $list.append('<li data-video-id="' + id + '">' + vimeoID + '</li>');
 
                                 }
                             });
                         }
                     });
-                    ko.applyBindings(window.associatedImagesViewModel, $associatedImages[0]);
+                    ko.applyBindings(window.associatedVideosViewModel, $associatedVideos[0]);
                 },
                 initButtons: function _initButtons() {
-                    $('.delete-image-link').each(function (index, link) {
+                    $('.delete-video-link').each(function (index, link) {
                         var lnk = $(link);
                         lnk.button({
                             icons: {
@@ -85,64 +85,64 @@
                     });
                 },
 
-                initEditInPlace: function (imageTableRow) {
-                    var imageEditMgr = new EditableManager($(imageTableRow), { imageID: $(imageTableRow).attr('data-image-id') }, '/CustomAdmin/Show/EditImageInPlace');
-                    imageEditMgr.initAllTypes();
+                initEditInPlace: function (videoTableRow) {
+                    var videoEditMgr = new EditableManager($(videoTableRow), { videoID: $(videoTableRow).attr('data-video-id') }, '/CustomAdmin/Show/EditVideoInPlace');
+                    videoEditMgr.initAllTypes();
                 },
 
-                imageClick: function (container, parent) {
+                videoClick: function (container, parent) {
                     var
                         $container = $(container),
-                        images = [],
-                        $images = $container.find('ul')
+                        videos = [],
+                        $videos = $container.find('ul')
                     ;
 
-                    $images.find('li').each(function _images_onEach(ix, el) {
+                    $videos.find('li').each(function _videos_onEach(ix, el) {
                         var $el = $(el);
-                        images.push({
-                            imageID: $el.attr('data-image-id'),
-                            imageURL: $el.text(),
+                        videos.push({
+                            videoID: $el.attr('data-video-id'),
+                            vimeoID: $el.text(),
                         });
                     });
 
-                    admin.shows.images.show(images, parent.attr('data-item-id'));
+                    admin.shows.videos.show(videos, parent.attr('data-item-id'));
                 },
 
-                // displays image edit modal
-                show: function _show(images, showID, onClose) {
-                    associatedImagesViewModel.images([]);
-                    $associatedImages.empty();
+                // displays video edit modal
+                show: function _show(videos, showID, onClose) {
+                    associatedVideosViewModel.videos([]);
+                    $associatedVideos.empty();
 
                     // push each item to table
-                    $.each(images, function _images_onEach(ix, item) {
-                        associatedImagesViewModel.images.push(item);
+                    $.each(videos, function _videos_onEach(ix, item) {
+                        associatedVideosViewModel.videos.push(item);
                     });
 
                     // make each row editable
-                    $('.images-table tbody tr').each(function (index, item) {
-                        admin.shows.images.initEditInPlace(item);
+                    $('.videos-table tbody tr').each(function (index, item) {
+                        admin.shows.videos.initEditInPlace(item);
                     });
 
                     // make rows sortable
-                    $('.images-table tbody').sortable({
+                    $('.videos-table tbody').sortable({
                         handle: '.sort-order',
                         update: function (event, ui) {
-                            var imageIDs = $(this).sortable('toArray');
-                            admin.shows.images.updateImageDisplayOrder(imageIDs);
+                            var videoIDs = $(this).sortable('toArray');
+                            admin.shows.videos.updateVideoDisplayOrder(videoIDs);
                         }
                     });
 
-                    admin.shows.images.initButtons();
+                    admin.shows.videos.initButtons();
                     window.SHOW_ID = showID;
                     closeCallback = onClose;
                     $dlg.dialog('open');
                 },
-                updateImageDisplayOrder: function (imageIDs) {
-                    ajaxHelper.ajax(admin.UpdateImageDisplayOrderURL, {
-                        data: { imageIDs: imageIDs },
+                updateVideoDisplayOrder: function (videoIDs) {
+                    ajaxHelper.ajax(admin.UpdateVideoDisplayOrderURL, {
+                        data: { videoIDs: videoIDs },
                         type: 'POST',
                         traditional: true,
-                        failureMessageFormat: 'An error occurred trying to set the images display order: [[errorThrown]]'
+                        failureMessageFormat: 'An error occurred trying to set the videos display order: [[errorThrown]]'
                     });
                 }
             };

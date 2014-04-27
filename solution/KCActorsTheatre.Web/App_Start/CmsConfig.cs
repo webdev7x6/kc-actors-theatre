@@ -232,11 +232,11 @@ namespace KCActorsTheatre.Web
                 ;
 
             app.OnDefaultMachine()
-                .HasHost<PreviewRequestContentHandler>("localhost", "Live")
+                .HasHost<PreviewRequestContentHandler>("localhost", "Live", isPrimary: true)
                 ;
 
             app.OnMachine(Constants.MachineName_Dev)
-                .HasHost<PreviewRequestContentHandler>("kcat.agathoskc.com", "Live")
+                .HasHost<PreviewRequestContentHandler>("kcat.agathoskc.com", "Live", isPrimary: true)
                 .HasHost<CachedRequestContentHandler>("216.243.153.209", "IP")
                 ;
 

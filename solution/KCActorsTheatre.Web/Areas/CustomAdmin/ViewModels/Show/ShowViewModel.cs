@@ -6,5 +6,6 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.Show
     public class ShowViewModel : AdminViewModel
     {
         public ShowInfo Show { get; set; }
+        public ShowVideo ShowVideo { get; set; }
     }
 }

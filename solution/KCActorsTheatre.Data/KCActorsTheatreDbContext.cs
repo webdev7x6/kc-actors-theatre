@@ -26,6 +26,16 @@ namespace KCActorsTheatre.Data
             get { return Set<Person>(); }
         }
 
+        public DbSet<ShowImage> Images
+        {
+            get { return Set<ShowImage>(); }
+        }
+
+        public DbSet<ShowVideo> Videos
+        {
+            get { return Set<ShowVideo>(); }
+        }
+        
         public DbSet<SeasonInfo> Seasons
         {
             get { return Set<SeasonInfo>(); }
@@ -48,12 +58,15 @@ namespace KCActorsTheatre.Data
                 .Map(m =>
                 {
                     m.ToTable("ShowPerson", "KCAT");
-                    m.MapLeftKey("ShowId");
+                    m.MapLeftKey("ShowID");
                     m.MapRightKey("PersonID");
                 })
                 ;
 
             modelBuilder.Entity<Person>().Map(m => m.ToTable("Person", "KCAT"));
+            modelBuilder.Entity<ShowImage>().Map(m => m.ToTable("ShowImage", "KCAT"));
+            modelBuilder.Entity<ShowVideo>().Map(m => m.ToTable("ShowVideo", "KCAT"));
+
             modelBuilder.Entity<SeasonInfo>().Map(m => m.ToTable("Season", "KCAT"));
 
             //custom content types

@@ -8,8 +8,7 @@ namespace KCActorsTheatre.Contract
     public class ShowInfo
     {
         [Key]
-        public int ShowId { get; set; }
-
+        public int ShowID { get; set; }
         [Required(ErrorMessage = "Title is required.")]
         public string Title { get; set; }
         public string Body { get; set; }
@@ -31,5 +30,11 @@ namespace KCActorsTheatre.Contract
 
         private HashSet<Person> _people = new HashSet<Person>();
         public ICollection<Person> People { get { return _people; } }
+
+        private HashSet<ShowImage> _images = new HashSet<ShowImage>();
+        public ICollection<ShowImage> Images { get { return _images; } }
+
+        private HashSet<ShowVideo> _videos = new HashSet<ShowVideo>();
+        public ICollection<ShowVideo> Videos{ get { return _videos; } }
     }
 }

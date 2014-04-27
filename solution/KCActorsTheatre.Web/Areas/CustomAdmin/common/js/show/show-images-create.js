@@ -40,10 +40,34 @@ function createImageManager() {
     });
 
     self.showCreateImageForm = function () {
-        self.resetCreateImageForm();
-        hiddenShowID.val(window.SHOW_ID);
-        formEl.dialog('open');
-        nameEl.select();
+        //self.resetCreateImageForm();
+        //hiddenShowID.val(window.SHOW_ID);
+        //formEl.dialog('open');
+        //imageUrlEl.select();
+
+        console.log('show id: ', window.SHOW_ID);
+
+        var dialogOpts = {
+            enableSelection: true,
+            dialogTitle: 'Image Manager',
+            selectCallback: function (fileSystemObject) {
+                ajaxHelper.ajax(admin.AddImageURL, {
+                    type: 'POST',
+                    data: {
+                        'ShowImage.ShowID': window.SHOW_ID,
+                        'ShowImage.ImageURL': fileSystemObject.Uri
+                    },
+                    success: function (data, textStatus, jqXHR) {
+                        self.ajaxSuccess(data);
+                    },
+                    failureMessageFormat: 'An error occurred trying to add the image: [[errorThrown]]'
+                });
+                skipCloseCallback = true;
+            }
+        };
+
+
+        fileManager.showDialog(dialogOpts);
     };
 
     self.hideCreateImageForm = function () {
@@ -65,7 +89,7 @@ function createImageManager() {
 
     self.ajaxSuccess = ajaxHelper.success(
         function (result, textStatus, jqXHR) {
-            self.hideCreateImageForm();
+            //self.hideCreateImageForm();
 
             var newShowImage = result.Properties.ShowImage;
 
