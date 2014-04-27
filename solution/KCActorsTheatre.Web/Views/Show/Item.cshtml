@@ -15,6 +15,7 @@
 {
     <script type="text/javascript">
         $(function() {
+
             var videoIds = '@string.Join(",", Model.VideoIds.Select(n => n.ToString()).ToArray())';
             videoIds.split(',').forEach(function (id) {
                 $.ajax({
@@ -27,38 +28,52 @@
                     }
                 });
             });
+            
+            var slickOptions = {
+                dots: true,
+                infinite: false,
+                speed: 300,
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                responsive: [
+                  {
+                      breakpoint: 1024,
+                      settings: {
+                          slidesToShow: 2,
+                          slidesToScroll: 2,
+                          infinite: true,
+                          dots: true
+                      }
+                  },
+                  {
+                      breakpoint: 600,
+                      settings: {
+                          slidesToShow: 2,
+                          slidesToScroll: 2
+                      }
+                  },
+                  {
+                      breakpoint: 480,
+                      settings: {
+                          slidesToShow: 1,
+                          slidesToScroll: 1
+                      }
+                  }
+                ]
+            };
 
-
-            //$('.show-videos').on('click', 'a', function(e) {
-            //    e.preventDefault();
-            //    var id = $(this).attr('data-id');
-            //    $('body').append($('#VideoModalTemplate').html().split('{{video-id}}').join(id));
-            //    $('#VideoModal').modal();
-            //    $('#VideoModal').on('hidden.bs.modal', function(e) {
-            //        $('#VideoModal').remove();
-            //    });
-            //});
+            setTimeout(function() {
+                $('.responsive-show').slick(slickOptions);
+                $('.responsive-show a')
+                    .nivoLightbox({
+                        effect: 'fadeScale',
+                        theme: 'default',
+                        keyboardNav: true,
+                        clickOverlayToClose: true
+                    });
+            }, 500);
         });
     </script>
-    
-    @*<script id="VideoModalTemplate" type="text/html-template">
-        <div id="VideoModal" class="modal fade">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Modal title</h4>
-              </div>
-              <div class="modal-body" style="text-align:center;">
-                <iframe src="//player.vimeo.com/video/{{video-id}}?byline=0&amp;portrait=0&amp;badge=0&amp;color=f00004&amp;autoplay=1" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-    </script>*@
 }
 
 <div class="inner-page-img">
@@ -97,11 +112,11 @@
 	    <div class="row show-detail-item">
 	      <div class="col-sm-12">
 	        <h2>Videos</h2>
-    		  <div class="slider responsive show-videos">
-  					@*<div><a href="#" data-id="77508455"><img src="http://i.vimeocdn.com/video/453056675_200x150.jpg" class="show-thumbnails" style="background:black;"></a></div>
-  					<div><a href="#" data-id="20834820"><img src="http://i.vimeocdn.com/video/133522364_200x150.jpg" class="show-thumbnails" style="background:black;"></a></div>
-  					<div><a href="#" data-id="78497306"><img src="http://i.vimeocdn.com/video/453911534_200x150.jpg" class="show-thumbnails" style="background:black;"></a></div>*@
-  				</div>
+    		    <div class="slider responsive-show show-videos">
+                    @*<div><a href="http://vimeo.com/77508455" data-lightbox-gallery="gallery2"><img src="http://i.vimeocdn.com/video/453056675_200x150.jpg" class="show-thumbnails"></a></div>
+                    <div><a href="http://vimeo.com/20834820" data-lightbox-gallery="gallery2"><img src="http://i.vimeocdn.com/video/133522364_200x150.jpg" class="show-thumbnails"></a></div>
+                    <div><a href="http://vimeo.com/78497306" data-lightbox-gallery="gallery2"><img src="http://i.vimeocdn.com/video/453911534_200x150.jpg" class="show-thumbnails"></a></div>*@
+                </div>
 	      </div>
 	    </div>
 	    <div class="row show-detail-item">
