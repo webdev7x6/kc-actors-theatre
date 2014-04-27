@@ -281,6 +281,10 @@
     <Content Include="Areas\CustomAdmin\common\js\season\season.js" />
     <Content Include="Areas\CustomAdmin\common\js\show\show.js" />
     <Content Include="Areas\CustomAdmin\common\js\show\person-manager.js" />
+    <Content Include="common\cms\main rotator images\_KCAT1%281%29.jpg" />
+    <Content Include="common\cms\main rotator images\_KCAT16.jpg" />
+    <Content Include="common\cms\main rotator images\_KCATS-25.jpg" />
+    <Content Include="common\css\ajax-loader.gif" />
     <Content Include="common\css\app.css" />
     <Content Include="common\css\app.min.css" />
     <Content Include="common\css\bootstrap.css" />
@@ -301,6 +305,10 @@
     <Content Include="common\css\themes\default\next.png" />
     <Content Include="common\css\themes\default\prev%402x.png" />
     <Content Include="common\css\themes\default\prev.png" />
+    <Content Include="common\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="common\fonts\slick.svg" />
+    <Content Include="common\fonts\Slide-icons.dev.svg" />
+    <Content Include="common\fonts\Slide-icons.svg" />
     <Content Include="common\img\21.jpg" />
     <Content Include="common\img\25.jpg" />
     <Content Include="common\img\36.jpg" />
@@ -465,6 +473,15 @@
     <Content Include="Areas\CustomAdmin\Views\Person\Index.cshtml" />
     <Content Include="Areas\CustomAdmin\Views\Season\EditSeasonAjax.cshtml" />
     <Content Include="Areas\CustomAdmin\Views\Season\Index.cshtml" />
+    <Content Include="common\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="common\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="common\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="common\fonts\slick.eot" />
+    <Content Include="common\fonts\slick.ttf" />
+    <Content Include="common\fonts\slick.woff" />
+    <Content Include="common\fonts\Slide-icons.eot" />
+    <Content Include="common\fonts\Slide-icons.ttf" />
+    <Content Include="common\fonts\Slide-icons.woff" />
     <None Include="Properties\PublishProfiles\Production_Deploy.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -512,6 +529,7 @@
     <Folder Include="common\cms\images\blog\post\" />
     <Folder Include="common\cms\images\hero\" />
     <Folder Include="common\cms\images\rotator\" />
+    <Folder Include="common\css\icons\" />
     <Folder Include="common\keys\" />
     <Folder Include="common\logs\" />
   </ItemGroup>
