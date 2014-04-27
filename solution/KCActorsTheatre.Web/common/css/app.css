@@ -6524,17 +6524,32 @@ footer#footer {
 }
 .open > .dropdown-menu {
   -webkit-transform: scale(1, 1);
+  -moz-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  -o-transform: scale(1, 1);
   transform: scale(1, 1);
 }
 .dropdown-menu {
   -webkit-transform-origin: top;
+  -moz-transform-origin: top;
+  -ms-transform-origin: top;
+  -o-transform-origin: top;
   transform-origin: top;
   -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  -ms-animation-fill-mode: forwards;
+  -o-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
   -webkit-transform: scale(1, 0);
-  /*display: block;*/
-  -moz-transition: all 0.2s ease-in;
+  -moz-transform: scale(1, 0);
+  -ms-transform: scale(1, 0);
+  -o-transform: scale(1, 0);
+  transform: scale(1, 0);
+  display: block;
   -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -ms-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
 }
 #gmap_canvas {
