@@ -10,6 +10,7 @@ using KCActorsTheatre.Web.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using KCActorsTheatre.Contract;
 
 namespace KCActorsTheatre.Web.Controllers
 {
@@ -34,7 +35,18 @@ namespace KCActorsTheatre.Web.Controllers
         {
             // initialize common viewmodel objects
             model.RequestContent = this.CmsRequestContent;
-            //model.RecentPosts = this.RecentPosts;
+            model.Seasons = GetSeasons();
+            model.CurrentShows = GetCurrentShows();
+        }
+
+        private IEnumerable<SeasonInfo> GetSeasons()
+        {
+            return repository.Seasons.All();
+        }
+
+        private IEnumerable<ShowInfo> GetCurrentShows()
+        {
+            return repository.Shows.All();
         }
 
 

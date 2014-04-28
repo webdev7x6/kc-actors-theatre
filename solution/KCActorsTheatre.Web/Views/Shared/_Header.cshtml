@@ -33,12 +33,19 @@
                         {
                             <li class="dropdown yamm-fw">
                                 <a href="@topLevelItem.Url.Page.Alias" class="dropdown-toggle" data-hover="dropdown">@topLevelItem.Title</a>
-                                <ul class="dropdown-menu" id="drop-@counter">
-                                    @foreach (var secondLevelItem in topLevelItem.Children.Where(p => p.IsEnabled).OrderBy(p => p.DisplayOrder))
-                                    {
-                                        <li><a href="@secondLevelItem.Url.Page.Alias">@secondLevelItem.Title</a></li>
-                                    }
-                                </ul>
+                                @if (true)
+                                {
+
+                                }
+                                else
+                                {
+                                    <ul class="dropdown-menu" id="drop-@counter">
+                                        @foreach (var secondLevelItem in topLevelItem.Children.Where(p => p.IsEnabled).OrderBy(p => p.DisplayOrder))
+                                        {
+                                            <li><a href="@secondLevelItem.Url.Page.Alias">@secondLevelItem.Title</a></li>
+                                        }
+                                    </ul>
+                                }
                             </li>
                         }
 
