@@ -33,7 +33,8 @@ namespace KCActorsTheatre.Web.Controllers
                 if (repoReponse.Succeeded && repoReponse.Entity != null)
                     model.Show = repoReponse.Entity;
 
-                //model.VideoIds = new List<int> { 77508455, 20834820, 78497306 };
+                model.OtherShowsInSeason = repository.Seasons.GetSingle(model.Show.Season.SeasonID).Entity.Shows;
+                //new List<int> { 77508455, 20834820, 78497306 };
             }
             catch (Exception ex)
             {

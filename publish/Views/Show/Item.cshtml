@@ -202,8 +202,8 @@
               <div class="row show-sidebar-item">
                   <div class="col-sm-12">
                       <h2>More From @Model.Show.Season.Title</h2>
-                      <ul>
-                          @foreach (var show in Model.Show.Season.Shows)
+                      <ul class="other-show-list">
+                          @foreach (var show in Model.OtherShowsInSeason)
                           {
                               <li><h5><a href="/show/item/@show.ShowID">@show.Title</a></h5></li>
                           }
