@@ -15,6 +15,7 @@ namespace KCActorsTheatre.Contract
         public string MainImageUrl { get; set; }
         public string Summary { get; set; }
         public string SummaryImageUrl { get; set; }
+        public string PreviewImageUrl { get; set; }
         public string Reviews { get; set; }
         public string Venue { get; set; }
         public string DatesAndTimes { get; set; }

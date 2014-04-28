@@ -431,6 +431,7 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
                 // specific to this object
                 Title = item.Title,
                 Body = item.Body,
+                PreviewImageUrl = item.PreviewImageUrl,
                 StartDate = item.StartDate.HasValue ? CmsContext.DateConverter.Convert(item.StartDate.Value).FromUtc().ForCmsUser().ToShortDateString() : string.Empty,
                 EndDate = item.EndDate.HasValue ? CmsContext.DateConverter.Convert(item.EndDate.Value).FromUtc().ForCmsUser().ToShortDateString() : string.Empty,
             };
