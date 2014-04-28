@@ -22,6 +22,9 @@ namespace KCActorsTheatre.Web.Controllers
             var model = new HomeViewModel();
             InitializeViewModel(model);
             SetRotatorImages(model);
+
+            model.Season = repository.Seasons.GetCurrent().Entity;
+
             return View(model);
         }
 

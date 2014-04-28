@@ -125,6 +125,54 @@ namespace KCActorsTheatre.Data.Repositories
             });
         }
 
+        public RepositoryResponse<IEnumerable<SeasonInfo>> GetPastSeasons()
+        {
+            return CatchError(() =>
+            {
+                var item = DbSet
+                    .AsNoTracking()
+                    .Where(p => !p.IsCurrent)
+                    .OrderByDescending(p => p.DateCreated)
+                    ;
+
+                var response = new RepositoryResponse<IEnumerable<SeasonInfo>>();
+                if (item != null)
+                {
+                    response.Succeed("Successfully retrieved past seasons");
+                    response.Entity = item;
+                }
+                else
+                {
+                    response.Fail("No current season found.");
+                }
+                return response;
+            });
+        }
+
+        public RepositoryResponse<SeasonInfo> GetCurrent()
+        {
+            return CatchError(() =>
+            {
+                var item = DbSet
+                    .AsNoTracking()
+                    .Include(p => p.Shows)
+                    .FirstOrDefault(p => p.IsCurrent)
+                    ;
+
+                var response = new RepositoryResponse<SeasonInfo>();
+                if (item != null)
+                {
+                    response.Succeed(string.Format("Current Season with ID {0} found.", item.SeasonID));
+                    response.Entity = item;
+                }
+                else
+                {
+                    response.Fail("No current season found.");
+                }
+                return response;
+            });
+        }
+
         public RepositoryResponse Delete(int id)
         {
             return CatchError<RepositoryResponse>(() =>
