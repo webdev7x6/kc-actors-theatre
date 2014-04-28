@@ -1,0 +1,61 @@
+﻿@model KCActorsTheatre.Web.ViewModels.SeasonViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var mainImageUrl = string.IsNullOrEmpty(Model.Season.MainImageUrl) ? "http://placehold.it/1200x500" : Model.Season.MainImageUrl;
+}
+
+
+<div class="inner-page-img">
+    <img src="@mainImageUrl" alt="@Model.Season.Title">
+</div>
+<div class="container inner-page-with-image">
+    <div class="row header-row">
+        <div class="col-xs-12">
+            <h1>@Model.Season.Title</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12" id="main-content">
+            @if (Model.Season.Shows != null && Model.Season.Shows.Any())
+            {
+                foreach (var show in Model.Season.Shows)
+                {
+                    <div class="row show-preview">
+                        <div class="col-sm-12">
+                            <div class="row show-header">
+                                <div class="col-sm-12">
+                                    <h3>@show.Title</h3>
+                                    @if (show.StartDate.HasValue && show.EndDate.HasValue)
+                                    {
+                                        <h4>@show.StartDate.GetValueOrDefault().ToShortDateString() - @show.EndDate.GetValueOrDefault().ToShortDateString()</h4>
+                                    }
+                                    else
+                                    {
+                                        <h4>Dates to be determined</h4>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(show.SummaryImageUrl))
+                                    {
+                                        <img src="@show.SummaryImageUrl" class="header-img" alt="@show.Title" />
+                                        <div class="header-overlay"></div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="row show-body">
+                                <div class="col-sm-12">
+                                    @if (!string.IsNullOrWhiteSpace(show.Quote))
+                                    {
+                                        <blockquote>@show.Quote</blockquote>
+                                    }
+                                    <p>@show.Summary</p>
+                                    <a href="/show/item/@show.ShowID" class="btn btn-primary btn-lg pull-right">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+

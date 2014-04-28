@@ -110,7 +110,7 @@ namespace KCActorsTheatre.Data.Repositories
         {
             return CatchError<RepositoryResponse<SeasonInfo>>(() =>
             {
-                var item = Single(a => a.SeasonID == id, null, enableTracking:true);
+                var item = DbSet.Include(s => s.Shows).FirstOrDefault(a => a.SeasonID == id);
                 var response = new RepositoryResponse<SeasonInfo>();
                 if (item != null)
                 {
@@ -120,6 +120,55 @@ namespace KCActorsTheatre.Data.Repositories
                 else
                 {
                     response.Fail(string.Format("Item with ID {0} not found.", id));
+                }
+                return response;
+            });
+        }
+
+        public RepositoryResponse<IEnumerable<SeasonInfo>> GetPastSeasons()
+        {
+            return CatchError(() =>
+            {
+                var item = DbSet
+                    .AsNoTracking()
+                    .Where(p => !p.IsCurrent)
+                    .OrderByDescending(p => p.DateCreated)
+                    .ToList()
+                    ;
+
+                var response = new RepositoryResponse<IEnumerable<SeasonInfo>>();
+                if (item != null)
+                {
+                    response.Succeed("Successfully retrieved past seasons");
+                    response.Entity = item;
+                }
+                else
+                {
+                    response.Fail("No current season found.");
+                }
+                return response;
+            });
+        }
+
+        public RepositoryResponse<SeasonInfo> GetCurrent()
+        {
+            return CatchError(() =>
+            {
+                var item = DbSet
+                    .AsNoTracking()
+                    .Include(p => p.Shows)
+                    .FirstOrDefault(p => p.IsCurrent)
+                    ;
+
+                var response = new RepositoryResponse<SeasonInfo>();
+                if (item != null)
+                {
+                    response.Succeed(string.Format("Current Season with ID {0} found.", item.SeasonID));
+                    response.Entity = item;
+                }
+                else
+                {
+                    response.Fail("No current season found.");
                 }
                 return response;
             });

@@ -10,6 +10,8 @@ namespace KCActorsTheatre.Data
         private NewsArticleRepository newsArticleRepository = null;
         private ShowRepository showRepository = null;
         private PersonRepository personRepository = null;
+        private ShowImageRepository showImageRepository = null;
+        private ShowVideoRepository showVideoRepository = null;
         private SeasonRepository seasonRepository = null;
         
 
@@ -55,6 +57,30 @@ namespace KCActorsTheatre.Data
             }
         }
 
+        public ShowImageRepository Images
+        {
+            get
+            {
+                if (showImageRepository== null)
+                {
+                    showImageRepository = new ShowImageRepository(context, this);
+                }
+                return showImageRepository;
+            }
+        }
+
+        public ShowVideoRepository Videos
+        {
+            get
+            {
+                if (showVideoRepository == null)
+                {
+                    showVideoRepository = new ShowVideoRepository(context, this);
+                }
+                return showVideoRepository;
+            }
+        }
+        
         public SeasonRepository Seasons
         {
             get

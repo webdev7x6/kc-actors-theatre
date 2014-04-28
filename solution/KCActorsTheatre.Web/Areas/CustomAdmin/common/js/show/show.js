@@ -1,33 +1,45 @@
 ﻿(function ($, undefined) {
-    var hn = window.hn = window.hn || {};
+    var admin = window.admin = window.admin || {};
     (function () {
 
         // entity descriptions
-        hn.itemDescription = 'Shows';
-        hn.itemDeleteDescription = 'Are you sure you want to delete this show?';
+        admin.itemDescription = 'Shows';
+        admin.itemDeleteDescription = 'Are you sure you want to delete this show?';
 
         // entity CRUD uperation URLs
-        hn.getAllItemsURL = '/CustomAdmin/Show/AllShowsAjax';
-        hn.findItemsURL = '/CustomAdmin/Show/FindShowsAjax';
-        hn.editItemURL = '/CustomAdmin/Show/EditShowAjax';
-        hn.deleteItemURL = '/CustomAdmin/Show/DeleteShowAjax';
-        hn.editInPlaceURL = '/CustomAdmin/Show/EditShowAjax';
+        admin.getAllItemsURL = '/CustomAdmin/Show/AllShowsAjax';
+        admin.findItemsURL = '/CustomAdmin/Show/FindShowsAjax';
+        admin.editItemURL = '/CustomAdmin/Show/EditShowAjax';
+        admin.deleteItemURL = '/CustomAdmin/Show/DeleteShowAjax';
+        admin.editInPlaceURL = '/CustomAdmin/Show/EditShowAjax';
 
         // custom operation URLs
-        hn.AddPersonURL = '/CustomAdmin/Show/AddPerson';
-        hn.RemovePersonURL = '/CustomAdmin/Show/RemovePerson';
-        hn.FindPeopleURL = '/CustomAdmin/Show/FindPeople';
-        hn.AllPeopleURL = '/CustomAdmin/Show/AllPeople';
+        admin.AddPersonURL = '/CustomAdmin/Show/AddPerson';
+        admin.RemovePersonURL = '/CustomAdmin/Show/RemovePerson';
+        admin.FindPeopleURL = '/CustomAdmin/Show/FindPeople';
+        admin.AllPeopleURL = '/CustomAdmin/Show/AllPeople';
+
+        admin.AddImageURL = '/CustomAdmin/Show/AddImage';
+        admin.RemoveImageURL = '/CustomAdmin/Show/RemoveImage';
+        admin.UpdateImageDisplayOrderURL = '/CustomAdmin/Show/UpdateImageDisplayOrder';
+
+        admin.AddVideoURL = '/CustomAdmin/Show/AddVideo';
+        admin.RemoveVideoURL = '/CustomAdmin/Show/RemoveVideo';
+        admin.UpdateVideoDisplayOrderURL = '/CustomAdmin/Show/UpdateVideoDisplayOrder';
 
         // this is the init function called at the end of the hn-item-index.js page ready function
         // put all your custom methods here
-        hn.items.index.pageInit = function () {
-            hn.people.init($('#manage-people-form'));
+        admin.items.index.pageInit = function () {
+            admin.people.init($('#manage-people-form'));
+            admin.shows.images.init($('#manage-images-form'));
+            admin.shows.videos.init($('#manage-videos-form'));
         };
 
         // custom logic goes here to run during new item tab init
-        hn.items.index.tabInit = function ($editableParent) {
-            $editableParent.find('.edit-associated-people').on('click', function () { hn.items.index.personClick(this, $editableParent) });
+        admin.items.index.tabInit = function ($editableParent) {    
+            $editableParent.find('.edit-associated-people').on('click', function () { admin.items.index.personClick(this, $editableParent) });
+            $editableParent.find('.edit-associated-images').on('click', function () { admin.shows.images.imageClick(this, $editableParent) });
+            $editableParent.find('.edit-associated-videos').on('click', function () { admin.shows.videos.videoClick(this, $editableParent) });
         };
 
     })();

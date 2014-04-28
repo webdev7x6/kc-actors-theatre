@@ -22,6 +22,7 @@ namespace KCActorsTheatre.Web.Controllers
             var model = new HomeViewModel();
             InitializeViewModel(model);
             SetRotatorImages(model);
+
             return View(model);
         }
 

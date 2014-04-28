@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using Clickfarm.AppFramework.Extensions;
+﻿using Clickfarm.AppFramework.Extensions;
 using Clickfarm.AppFramework.Responses;
 using Clickfarm.Cms.Admin.Mvc.Areas.Admin;
 using Clickfarm.Cms.Admin.Mvc.Areas.Admin.ViewModels;
 using Clickfarm.Cms.Core;
 using Clickfarm.Cms.Mvc;
 using KCActorsTheatre.Contract;
-using KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.News;
 using KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.Show;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
 {
@@ -223,6 +222,188 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
 
         #endregion
 
+        #region Images
+
+        [HttpPost]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        public JsonResult AddImage(ShowImage showImage)
+        {
+            // set defaults
+            showImage.DateCreated = DateTime.UtcNow;
+
+            if (ModelState.IsValid)
+            {
+                RepositoryResponse<ShowImage> repoResponse = Repository.Images.New(showImage);
+                if (repoResponse.Succeeded)
+                {
+                    var jsonResponse = new JsonResponse
+                    {
+                        Succeeded = true,
+                        Message = "New image added.",
+
+                    };
+                    jsonResponse.Properties.Add("ShowImage", repoResponse.Entity);
+                    return Json(jsonResponse);
+                }
+                else
+                {
+                    return Json(new JsonResponse
+                    {
+                        Succeeded = false,
+                        Message = repoResponse.Message
+                    });
+                }
+            }
+            else
+            {
+                return Json(new JsonResponse
+                {
+                    Succeeded = false,
+                    Message = string.Join("Error", ModelState.ErrorMessages())
+                });
+            }
+        }
+
+        [HttpPost]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        public JsonResult RemoveImage(int id)
+        {
+            RepositoryResponse repoResponse = Repository.Images.Delete(id);
+            JsonResponse response = new JsonResponse();
+            if (repoResponse.Succeeded)
+            {
+                response.Succeed(string.Format("image with ID {0} removed.", id));
+            }
+            else
+            {
+                response.Fail(repoResponse.Message);
+            }
+            return Json(response);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public JsonResult EditImageInPlace(string imageID, string property, string newValue)
+        {
+            int ID = 0;
+            if (int.TryParse(imageID, out ID))
+            {
+                try
+                {
+                    var entity = Repository.Images.Single(p => p.ShowImageID == ID);
+                    EditInPlaceJsonResponse response = EditProperty(editID => entity, imageID, property, newValue, null, null, null);
+                    return Json(response);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new JsonResponse { Succeeded = false, Message = string.Format("An exception occurred: {0}", ex.Message) });
+                }
+            }
+            else
+            {
+                return Json(new JsonResponse { Succeeded = false, Message = string.Format("image {0} was not regognized.", imageID) });
+            }
+        }
+
+
+        [HttpPost]
+        public JsonResult UpdateImageDisplayOrder(int[] imageIDs)
+        {
+            var response = new JsonResponse();
+            var repoResponse = Repository.Images.UpdateImageDisplayOrder(imageIDs);
+            if (repoResponse.Succeeded)
+            {
+                response.Succeed(repoResponse.Message);
+            }
+            else
+            {
+                response.Fail(repoResponse.Message);
+            }
+
+            return Json(response);
+        }
+
+        #endregion
+
+        #region Videos
+
+        [HttpPost]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        public JsonResult AddVideo(ShowVideo showVideo)
+        {
+            // set defaults
+            showVideo.DateCreated = DateTime.UtcNow;
+
+            if (ModelState.IsValid)
+            {
+                RepositoryResponse<ShowVideo> repoResponse = Repository.Videos.New(showVideo);
+                if (repoResponse.Succeeded)
+                {
+                    var jsonResponse = new JsonResponse
+                    {
+                        Succeeded = true,
+                        Message = "New video added.",
+
+                    };
+                    jsonResponse.Properties.Add("ShowVideo", repoResponse.Entity);
+                    return Json(jsonResponse);
+                }
+                else
+                {
+                    return Json(new JsonResponse
+                    {
+                        Succeeded = false,
+                        Message = repoResponse.Message
+                    });
+                }
+            }
+            else
+            {
+                return Json(new JsonResponse
+                {
+                    Succeeded = false,
+                    Message = string.Join("Error", ModelState.ErrorMessages())
+                });
+            }
+        }
+
+
+        [HttpPost]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        public JsonResult RemoveVideo(int id)
+        {
+            RepositoryResponse repoResponse = Repository.Videos.Delete(id);
+            JsonResponse response = new JsonResponse();
+            if (repoResponse.Succeeded)
+            {
+                response.Succeed(string.Format("video with ID {0} removed.", id));
+            }
+            else
+            {
+                response.Fail(repoResponse.Message);
+            }
+            return Json(response);
+        }
+
+        [HttpPost]
+        public JsonResult UpdateVideoDisplayOrder(int[] videoIDs)
+        {
+            var response = new JsonResponse();
+            var repoResponse = Repository.Videos.UpdateVideoDisplayOrder(videoIDs);
+            if (repoResponse.Succeeded)
+            {
+                response.Succeed(repoResponse.Message);
+            }
+            else
+            {
+                response.Fail(repoResponse.Message);
+            }
+
+            return Json(response);
+        }
+
+        #endregion
+
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public JsonResult GetSeasons()
         {
@@ -232,7 +413,6 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
 
             return Json(dict, JsonRequestBehavior.AllowGet);
         }
-
 
         private IEnumerable<object> ConvertShows(IEnumerable<ShowInfo> items)
         {
@@ -244,7 +424,7 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
             return new
             {
                 // generic and required by reusable JavaScript
-                ID = item.ShowId,
+                ID = item.ShowID,
                 TabTitleString = item.Title,
                 DateCreated = CmsContext.DateConverter.Convert(item.DateCreated).FromUtc().ForCmsUser().ToString("g"),
 

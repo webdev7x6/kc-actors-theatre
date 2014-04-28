@@ -9,14 +9,25 @@
 @section styles
 {
     <link href="/areas/customadmin/common/css/admin.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .image-container img {
+            border: 1px dashed #20B34F;
+            max-height: 100px;
+            max-width: 100px;
+        }
+    </style>
 }
 @section scripts
 {
     <script type="text/javascript" src="@Url.CdnResource("/common/js/knockout-plugins/mapping/2.3.5/knockout.mapping-2.3.5.js")"></script>
-    <script type="text/javascript" src="/areas/customadmin/common/js/hn-item.js"></script>
-    <script type="text/javascript" src="/areas/customadmin/common/js/hn-item-create.js"></script>
-    <script type="text/javascript" src="/areas/customadmin/common/js/hn-item-index.js"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/admin-item.js"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/admin-item-create.js"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/admin-item-index.js"></script>
     <script type="text/javascript" src="/areas/customadmin/common/js/show/person-manager.js"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/show/show-images.js"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/show/show-images-create.js"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/show/show-videos.js"></script>
+    <script type="text/javascript" src="/areas/customadmin/common/js/show/show-videos-create.js"></script>
     <script type="text/javascript" src="/areas/customadmin/common/js/show/show.js"></script>
 }
 <div id="items" class="items-container">
@@ -84,6 +95,99 @@
             <br class="clear" />
         </div>
     </div>
+</div>
+
+<div id="manage-images-form" title="Manage Slideshow Images">
+    <div class="ui-toolbar-cms">
+        <a id="create-image" href="#">New Image</a>
+    </div>
+    <div class="ui-widget-content ui-corner-all ui-widget-cms">
+        <div class="ui-dialog-titlebar ui-titlebar-cms ui-widget-header ui-corner-all tags-header">
+            Images:
+        </div>
+        <table class="table-layout images-table" data-bind="visible: anyImages()" style="width:100%;">
+            <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>Image</th>
+                    <th style="width:20px;">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: images" id="images-tbody">
+                <tr data-bind="attr: { 'id': imageID, 'data-image-id': imageID, 'data-image-url': imageURL }">
+                    <td><div class="sort-order"><span class="ui-icon ui-icon-carat-2-n-s"></span></div></td>
+                    <td class="image-container">
+                        <div class="display-field editable-format editable-image" data-bind="attr: { 'data-image-url': imageURL }" data-property-name="ImageURL">
+                            <img data-bind="attr: { src: imageURL }" alt="" />
+                        </div>
+                    </td>
+                    <td>
+                        <a href="#" class="delete-image-link" data-bind="click: $parent.removeImage">Delete Image</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br class="clear" />
+    </div>
+</div>
+
+<div id="manage-videos-form" title="Manage Slideshow Videos">
+    <div class="ui-toolbar-cms">
+        <a id="create-video" href="#">New Video</a>
+    </div>
+    <div class="ui-widget-content ui-corner-all ui-widget-cms">
+        <div class="ui-dialog-titlebar ui-titlebar-cms ui-widget-header ui-corner-all tags-header">
+            Videos:
+        </div>
+        <table class="table-layout videos-table" data-bind="visible: anyVideos()" style="width:100%;">
+            <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>Video</th>
+                    <th style="width:20px;">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: videos" id="videos-tbody">
+                <tr data-bind="attr: { 'id': videoID, 'data-video-id': videoID, 'data-vimeo-id': vimeoID }">
+                    <td><div class="sort-order"><span class="ui-icon ui-icon-carat-2-n-s"></span></div></td>
+                    <td><div class="display-field" data-bind="text: vimeoID" data-property-name="VimeoID"></div></td>
+                    <td>
+                        <a href="#" class="delete-video-link" data-bind="click: $parent.removeVideo">Delete Video</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br class="clear" />
+    </div>
+</div>
+
+<div id="create-video-form" class="model-display edit-not-in-place hidden" title="New Show Video">
+    <div class="ui-widget-content ui-corner-all ui-widget-cms">
+        @using (Ajax.BeginForm("AddVideo", "Show",
+            new AjaxOptions
+            {
+                HttpMethod = "Post",
+                LoadingElementId = "create-video-loading",
+                OnFailure = "createVideoManager.ajaxFailure",
+                OnSuccess = "createVideoManager.ajaxSuccess"
+            }
+        ))
+        {
+            <div class="display-field">
+                @Html.LabelFor(m => m.ShowVideo.VimeoID)
+                @Html.TextBoxFor(m => m.ShowVideo.VimeoID, new { @class = "dialog-textbox required", @id = "create-vimeo-id" })<br />
+                @Html.ValidationMessageFor(m => m.ShowVideo.VimeoID)
+                @* hidden input populated by show-videos-create.js *@
+                <input type="hidden" name="ShowVideo.ShowID" id="create-video-show-id" value="" />
+            </div>
+        }
+    </div>
+    <div id="create-video-loading">
+        <div class="throbber">
+            @* loading animation*@
+        </div>
+    </div>
+    <div id="create-video-error" class="ajax-error"></div>
 </div>
 
 <div id="manage-people-form" title="Manage People">

@@ -48,5 +48,32 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.Show
             return sb.ToString();
         }
 
+        public string GetImagesAsList()
+        {
+            var sb = new StringBuilder();
+            var items = Show.Images.OrderBy(p => p.DisplayOrder).ToList();
+            if (items.Any())
+            {
+                foreach (var item in items)
+                    sb.AppendFormat("<img data-image-id=\"{0}\" src=\"{1}\" />&nbsp;&nbsp;&nbsp;&nbsp;", item.ShowImageID, item.ImageURL);
+            }
+            return sb.ToString();
+        }
+
+        public string GetVideosAsList()
+        {
+            var sb = new StringBuilder();
+            var items = Show.Videos.OrderBy(p => p.DisplayOrder).ToList();
+            if (items.Any())
+            {
+                foreach (var item in items)
+                    sb.AppendFormat("<li data-video-id=\"{0}\">{1}</li>", item.ShowVideoID, item.VimeoID);
+
+                sb.Insert(0, "<ul>")
+                    .Append("</ul>");
+            }
+            return sb.ToString();
+        }
+
     }
 }
