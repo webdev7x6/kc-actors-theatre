@@ -49,8 +49,10 @@
             <div class="display-field editable-format editable-image" data-property-name="MainImageUrl">
                 <img src="@(!string.IsNullOrWhiteSpace(Model.Show.MainImageUrl) ? Model.Show.MainImageUrl : Url.CmsVersionedCdnResource("/images/no-image.png"))" alt="" />
             </div>
-            <label>Slideshow Images:</label>
-            <div class="display-field editable-format edit-associated-images pointer">@Html.Raw(imageList)</div>
+            <div class="image-container">
+                <label>Slideshow Images:</label>
+                <div class="display-field editable-format edit-associated-images pointer">@Html.Raw(imageList)</div>
+            </div>
             <label>Slideshow Videos:</label>
             <div class="display-field editable-format edit-associated-videos pointer">@Html.Raw(videoList)</div>
             <label>Body:</label>

@@ -28,11 +28,11 @@ namespace KCActorsTheatre.Web.Controllers
             this.session = httpContext.Session;
             this.application = httpContext.Application;
 
-            //if (PastSeasons == null)
-                //PastSeasons = repository.Seasons.GetPastSeasons().Entity;
+            if (CurrentSeason == null)
+                CurrentSeason = repository.Seasons.GetCurrent().Entity;
 
-            //if (CurrentShows == null)
-                //CurrentShows = repository.Seasons.GetCurrent().Entity.Shows;
+            if (PastSeasons == null)
+                PastSeasons = repository.Seasons.GetPastSeasons().Entity;
         }
 
         protected void InitializeViewModel(KCActorsTheatreViewModel model)
@@ -41,9 +41,22 @@ namespace KCActorsTheatre.Web.Controllers
             model.RequestContent = this.CmsRequestContent;
 
             // application objects for the nav
-            model.PastSeasons = repository.Seasons.GetPastSeasons().Entity; //PastSeasons;
-            model.CurrentSeason = repository.Seasons.GetCurrent().Entity;
-            model.CurrentShows = model.CurrentSeason.Shows; //CurrentShows;
+            model.PastSeasons = PastSeasons;
+            model.CurrentSeason = CurrentSeason;
+            model.CurrentShows = CurrentSeason.Shows;
+        }
+
+        public SeasonInfo CurrentSeason
+        {
+            get
+            {
+                SeasonInfo season = (SeasonInfo)application["CurrentSeason"];
+                return season;
+            }
+            private set
+            {
+                application["CurrentSeason"] = value;
+            }
         }
 
         public IEnumerable<SeasonInfo> PastSeasons
@@ -56,19 +69,6 @@ namespace KCActorsTheatre.Web.Controllers
             private set
             {
                 application["PastSeasons"] = value;
-            }
-        }
-
-        public IEnumerable<ShowInfo> CurrentShows
-        {
-            get
-            {
-                IEnumerable<ShowInfo> shows = (IEnumerable<ShowInfo>)application["CurrentShows"];
-                return shows;
-            }
-            private set
-            {
-                application["CurrentShows"] = value;
             }
         }
 

@@ -55,10 +55,7 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.Show
             if (items.Any())
             {
                 foreach (var item in items)
-                    sb.AppendFormat("<li data-image-id=\"{0}\">{1}</li>", item.ShowImageID, item.ImageURL);
-                
-                sb.Insert(0, "<ul>")
-                    .Append("</ul>");
+                    sb.AppendFormat("<img data-image-id=\"{0}\" src=\"{1}\" />&nbsp;&nbsp;&nbsp;&nbsp;", item.ShowImageID, item.ImageURL);
             }
             return sb.ToString();
         }

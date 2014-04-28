@@ -133,6 +133,7 @@ namespace KCActorsTheatre.Data.Repositories
                     .AsNoTracking()
                     .Where(p => !p.IsCurrent)
                     .OrderByDescending(p => p.DateCreated)
+                    .ToList()
                     ;
 
                 var response = new RepositoryResponse<IEnumerable<SeasonInfo>>();

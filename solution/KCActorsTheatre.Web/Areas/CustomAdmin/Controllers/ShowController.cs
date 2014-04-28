@@ -282,6 +282,31 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
+        public JsonResult EditImageInPlace(string imageID, string property, string newValue)
+        {
+            int ID = 0;
+            if (int.TryParse(imageID, out ID))
+            {
+                try
+                {
+                    var entity = Repository.Images.Single(p => p.ShowImageID == ID);
+                    EditInPlaceJsonResponse response = EditProperty(editID => entity, imageID, property, newValue, null, null, null);
+                    return Json(response);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new JsonResponse { Succeeded = false, Message = string.Format("An exception occurred: {0}", ex.Message) });
+                }
+            }
+            else
+            {
+                return Json(new JsonResponse { Succeeded = false, Message = string.Format("image {0} was not regognized.", imageID) });
+            }
+        }
+
+
+        [HttpPost]
         public JsonResult UpdateImageDisplayOrder(int[] imageIDs)
         {
             var response = new JsonResponse();

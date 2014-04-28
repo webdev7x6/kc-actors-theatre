@@ -9,6 +9,13 @@
 @section styles
 {
     <link href="/areas/customadmin/common/css/admin.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .image-container img {
+            border: 1px dashed #20B34F;
+            max-height: 100px;
+            max-width: 100px;
+        }
+    </style>
 }
 @section scripts
 {
@@ -109,7 +116,11 @@
             <tbody data-bind="foreach: images" id="images-tbody">
                 <tr data-bind="attr: { 'id': imageID, 'data-image-id': imageID, 'data-image-url': imageURL }">
                     <td><div class="sort-order"><span class="ui-icon ui-icon-carat-2-n-s"></span></div></td>
-                    <td><div class="display-field" data-bind="text: imageURL" data-property-name="ImageURL"></div></td>
+                    <td class="image-container">
+                        <div class="display-field editable-format editable-image" data-bind="attr: { 'data-image-url': imageURL }" data-property-name="ImageURL">
+                            <img data-bind="attr: { src: imageURL }" alt="" />
+                        </div>
+                    </td>
                     <td>
                         <a href="#" class="delete-image-link" data-bind="click: $parent.removeImage">Delete Image</a>
                     </td>

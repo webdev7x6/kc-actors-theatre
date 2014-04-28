@@ -13,67 +13,70 @@
 
 @section scripts
 {
-    <script type="text/javascript">
-        $(function() {
+    @if (Model.Show.Videos != null && Model.Show.Videos.Any())
+    {
+        <script type="text/javascript">
+            $(function() {
 
-            var videoIds = '@string.Join(",", Model.VideoIds.Select(n => n.ToString()).ToArray())';
-            videoIds.split(',').forEach(function (id) {
-                $.ajax({
-                    url: 'http://vimeo.com/api/v2/video/' + id + '.json',
-                    success: function(data) {
-                        console.log(data[0]);
+                var videoIds = '@string.Join(",", Model.Show.Videos.Select(n => n.VimeoID.ToString()).ToArray())';
+                videoIds.split(',').forEach(function(id) {
+                    $.ajax({
+                        url: 'http://vimeo.com/api/v2/video/' + id + '.json',
+                        success: function(data) {
+                            console.log(data[0]);
 
-                        $('.show-videos').append('<div><a href="http://vimeo.com/' + id + '" data-lightbox-gallery="gallery2"><img src="' + data[0].thumbnail_medium + '" class="show-thumbnails"></a></div>');
+                            $('.show-videos').append('<div><a href="http://vimeo.com/' + id + '" data-lightbox-gallery="gallery2"><img src="' + data[0].thumbnail_medium + '" class="show-thumbnails"></a></div>');
 
-                    }
-                });
-            });
-            
-            var slickOptions = {
-                dots: true,
-                infinite: false,
-                speed: 300,
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                responsive: [
-                  {
-                      breakpoint: 1024,
-                      settings: {
-                          slidesToShow: 2,
-                          slidesToScroll: 2,
-                          infinite: true,
-                          dots: true
-                      }
-                  },
-                  {
-                      breakpoint: 600,
-                      settings: {
-                          slidesToShow: 2,
-                          slidesToScroll: 2
-                      }
-                  },
-                  {
-                      breakpoint: 480,
-                      settings: {
-                          slidesToShow: 1,
-                          slidesToScroll: 1
-                      }
-                  }
-                ]
-            };
-
-            setTimeout(function() {
-                $('.responsive-show').slick(slickOptions);
-                $('.responsive-show a')
-                    .nivoLightbox({
-                        effect: 'fadeScale',
-                        theme: 'default',
-                        keyboardNav: true,
-                        clickOverlayToClose: true
+                        }
                     });
-            }, 500);
-        });
-    </script>
+                });
+
+                var slickOptions = {
+                    dots: true,
+                    infinite: false,
+                    speed: 300,
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    responsive: [
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 2,
+                                infinite: true,
+                                dots: true
+                            }
+                        },
+                        {
+                            breakpoint: 600,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 2
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+                            }
+                        }
+                    ]
+                };
+
+                setTimeout(function() {
+                    $('.responsive-show').slick(slickOptions);
+                    $('.responsive-show a')
+                        .nivoLightbox({
+                            effect: 'fadeScale',
+                            theme: 'default',
+                            keyboardNav: true,
+                            clickOverlayToClose: true
+                        });
+                }, 500);
+            });
+        </script>
+    }
 }
 
 <div class="inner-page-img">
@@ -92,57 +95,72 @@
 	        <button class="btn btn-default btn-block btn-buy">Buy Tickets</button>
 	      </div>
 	      </div>
-          <div class="row show-detail-item">
-	      <div class="col-sm-12">
-	        <h2>Synopsis</h2>
-    		  @Html.Raw(Model.Show.Body)
+	      <div class="row show-detail-item">
+	          <div class="col-sm-12">
+	              <h2>Synopsis</h2>
+	              @Html.Raw(Model.Show.Body)
+	          </div>
 	      </div>
-	    </div>
-	    @*<div class="row show-detail-item">
-	      <div class="col-sm-12">
-	        <h2>Photos</h2>
-    		  <div class="slider responsive">
-  					<div><a href="#"><img src="../common/img/show-img.jpg" class="show-thumbnails"></a></div>
-  					<div><a href="#"><img src="../common/img/show-img-2.jpg" class="show-thumbnails"></a></div>
-  					<div><a href="#"><img src="../common/img/show-img.jpg" class="show-thumbnails"></a></div>
-  					<div><a href="#"><img src="../common/img/show-img-2.jpg" class="show-thumbnails"></a></div>
-  				</div>
-	      </div>
-	    </div>*@
-	    <div class="row show-detail-item">
-	      <div class="col-sm-12">
-	        <h2>Videos</h2>
-    		    <div class="slider responsive-show show-videos">
-                    @*<div><a href="http://vimeo.com/77508455" data-lightbox-gallery="gallery2"><img src="http://i.vimeocdn.com/video/453056675_200x150.jpg" class="show-thumbnails"></a></div>
+          @if (Model.Show.Images != null && Model.Show.Images.Any())
+          {
+              <div class="row show-detail-item">
+                  <div class="col-sm-12">
+                      <h2>Photos</h2>
+                      <div class="slider responsive">
+                          @foreach (var image in Model.Show.Images)
+                          {
+                              <div><a href="#"><img src="@image.ImageURL" alt="@Model.Show.Title photo" class="show-thumbnails"></a></div>
+                          }
+                      </div>
+                  </div>
+              </div>
+          }
+          @if (Model.Show.Videos != null && Model.Show.Videos.Any())
+          {
+              <div class="row show-detail-item">
+                  <div class="col-sm-12">
+                      <h2>Videos</h2>
+                      <div class="slider responsive-show show-videos">
+                          @*<div><a href="http://vimeo.com/77508455" data-lightbox-gallery="gallery2"><img src="http://i.vimeocdn.com/video/453056675_200x150.jpg" class="show-thumbnails"></a></div>
                     <div><a href="http://vimeo.com/20834820" data-lightbox-gallery="gallery2"><img src="http://i.vimeocdn.com/video/133522364_200x150.jpg" class="show-thumbnails"></a></div>
                     <div><a href="http://vimeo.com/78497306" data-lightbox-gallery="gallery2"><img src="http://i.vimeocdn.com/video/453911534_200x150.jpg" class="show-thumbnails"></a></div>*@
-                </div>
-	      </div>
-	    </div>
-	    <div class="row show-detail-item">
-	      <div class="col-sm-12">
-	        <h2>Cast</h2>
-    		  <ul id="cast">
-		          @foreach (var person in @Model.Show.People)
-		          {
-                    <li><span class="role">@person.Title:</span> <a href="#">@person.Name</a></li>
-		          }
-    		  </ul>
-	      </div>
-	    </div>
-	    <div class="row show-detail-item">
-	      <div class="col-sm-12">
-	        <h2>Reviews</h2>
-    		@Html.Raw(Model.Show.Reviews)
-	      </div>
-	    </div>
-	    <div class="row show-detail-item">
-	      <div class="col-sm-12">
-	        <h2>Education</h2>
-	        @Html.Raw(Model.Show.Education)
-	      </div>
-	    </div>
-	    <div class="row show-detail-item">
+                      </div>
+                  </div>
+              </div>
+          }
+          @if (Model.Show.People != null && Model.Show.People.Any())
+          {
+              <div class="row show-detail-item">
+                  <div class="col-sm-12">
+                      <h2>Cast</h2>
+                      <ul id="cast">
+                          @foreach (var person in @Model.Show.People)
+                          {
+                              <li><span class="role">@person.Title:</span> <a href="#">@person.Name</a></li>
+                          }
+                      </ul>
+                  </div>
+              </div>
+          }
+          @if (!string.IsNullOrWhiteSpace(Model.Show.Reviews))
+          {
+              <div class="row show-detail-item">
+                  <div class="col-sm-12">
+                      <h2>Reviews</h2>
+                      @Html.Raw(Model.Show.Reviews)
+                  </div>
+              </div>
+          }
+          @if (!string.IsNullOrWhiteSpace(Model.Show.Education))
+          {
+              <div class="row show-detail-item">
+                  <div class="col-sm-12">
+                      <h2>Education</h2>
+                      @Html.Raw(Model.Show.Education)
+                  </div>
+              </div>
+          }
+	    @*<div class="row show-detail-item">
 	      <div class="col-sm-12">
 	        <h2>Music</h2>
 	        <ul class="mp3-links">
@@ -153,31 +171,43 @@
                 <li><a href="#"><span class="glyphicon glyphicon-music"></span>Name of the Song</a></li>
 	        </ul>
 	      </div>
-	    </div>
+	    </div>*@
 	  </div> <!-- Close main-content -->
 	  <div class="col-md-3 col-sm-12" id="sidebar">
-	    <div class="row show-sidebar-item hidden-xs">
-	      <div class="col-sm-12">
-	        <button class="btn btn-default btn-block btn-buy">Buy Tickets</button>
-	      </div>
-	    </div>
-	    <div class="row show-sidebar-item">
-	      <div class="col-sm-12">
-	        <h2>Dates &amp; Times</h2>
-    		  @Html.Raw(Model.Show.DatesAndTimes)
-	      </div>
-	    </div>
-	      <div class="row show-sidebar-item">
+	      <div class="row show-sidebar-item hidden-xs">
 	          <div class="col-sm-12">
-	              <h2>Venue</h2>
-	              @Html.Raw(Model.Show.Venue)
+	              <button class="btn btn-default btn-block btn-buy">Buy Tickets</button>
 	          </div>
 	      </div>
-          @if (Model.Show.Season != null)
+          @if (!string.IsNullOrWhiteSpace(Model.Show.DatesAndTimes))
+          {
+              <div class="row show-sidebar-item">
+                  <div class="col-sm-12">
+                      <h2>Dates &amp; Times</h2>
+                      @Html.Raw(Model.Show.DatesAndTimes)
+                  </div>
+              </div>
+          }
+          @if (!string.IsNullOrWhiteSpace(Model.Show.Venue))
+          {
+              <div class="row show-sidebar-item">
+                  <div class="col-sm-12">
+                      <h2>Venue</h2>
+                      @Html.Raw(Model.Show.Venue)
+                  </div>
+              </div>
+          }
+          @if (Model.Show.Season != null && Model.Show.Season.Shows.Any())
           {
               <div class="row show-sidebar-item">
                   <div class="col-sm-12">
                       <h2>More From @Model.Show.Season.Title</h2>
+                      <ul>
+                          @foreach (var show in Model.Show.Season.Shows)
+                          {
+                              <li><h5><a href="/show/item/@show.ShowID">@show.Title</a></h5></li>
+                          }
+                      </ul>
                   </div>
               </div>
           }
