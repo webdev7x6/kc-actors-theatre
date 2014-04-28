@@ -2,8 +2,8 @@
 /// <reference path="http://clickfarmcdn.localhost/common/js/kendo/2012.2.710/kendo.all-vsdoc.js" />
 
 (function ($, undefined) {
-    var hn = window.hn = window.hn || {};
-    hn.items = hn.items = hn.items || {};
+    var admin = window.admin = window.admin || {};
+    admin.items = admin.items = admin.items || {};
     (function () {
 
         // disable click on anchor tags if !ko.enable
@@ -42,7 +42,7 @@
             };
         }
 
-        hn.items = (function () {
+        admin.items = (function () {
             return {
                 setItemsManager: function (domContainer, dataManager) {
                     $(domContainer).data('itemsManager', dataManager);
@@ -66,12 +66,12 @@
                         }
                     }).on('click', function (event) {
                         event.preventDefault();
-                        ajaxHelper.ajax(hn.getAllItemsURL, {
+                        ajaxHelper.ajax(admin.getAllItemsURL, {
                             data: {},
                             type: 'POST',
                             success: function (data, textStatus, jqXHR) {
-                                hn.items.processItems(domContainer, viewModel, data.Succeeded, data.Properties.Items);
-                                hn.items.index.findItemsSucceeded(data);
+                                admin.items.processItems(domContainer, viewModel, data.Succeeded, data.Properties.Items);
+                                admin.items.index.findItemsSucceeded(data);
                                 cms.doCallback(successCallback);
                             },
                             beforeSend: function (jqXHR, settings) {
@@ -87,14 +87,14 @@
                 initFindItemInput: function (input, viewModel, domContainer, successCallback) {
                     $(input).keyup($.debounce(350, function () {
                         if (input.val().length > 2) {
-                            ajaxHelper.ajax(hn.findItemsURL, {
+                            ajaxHelper.ajax(admin.findItemsURL, {
                                 data: {
                                     term: input.val()
                                 },
                                 type: 'POST',
                                 success: function (data, textStatus, jqXHR) {
-                                    hn.items.processItems(domContainer, viewModel, data.Succeeded, data.Properties.Items);
-                                    hn.items.index.findItemsSucceeded(data);
+                                    admin.items.processItems(domContainer, viewModel, data.Succeeded, data.Properties.Items);
+                                    admin.items.index.findItemsSucceeded(data);
                                     cms.doCallback(successCallback);
                                 },
                                 beforeSend: function (jqXHR, settings) {
@@ -111,7 +111,7 @@
                     viewModel.clearItems();
                     if (succeeded && items.length > 0) {
                         $.each(items, function (index, item) {
-                            viewModel.addItem(new hn.items.Item(item));
+                            viewModel.addItem(new admin.items.Item(item));
 
                         });
                         viewModel.anyItems(true);
@@ -124,18 +124,18 @@
             }
         })();
 
-        hn.items.ItemsManager = function (options) {
+        admin.items.ItemsManager = function (options) {
             this.options = options;
             this.domContainer = $(options.domContainer);
-            hn.items.setItemsManager(this.domContainer, this);
+            admin.items.setItemsManager(this.domContainer, this);
             this.ajaxUrl = options.ajaxUrl;
             this.ajaxData = options.ajaxData;
         };
 
-        hn.items.ItemsManager.prototype = function () {
+        admin.items.ItemsManager.prototype = function () {
             var
                 init = function () {
-                    var viewModel = new hn.items.ItemsViewModel(this);
+                    var viewModel = new admin.items.ItemsViewModel(this);
                     this.setViewModel.call(this, viewModel);
                     cms.doCallback(this.options.applying_bindings);
                     ko.applyBindings(viewModel, this.domContainer.get(0));
@@ -157,7 +157,7 @@
             };
         }();
 
-        hn.items.ItemsViewModel = function (dataManager, item_removed) {
+        admin.items.ItemsViewModel = function (dataManager, item_removed) {
             this.dataManager = dataManager;
             this.item_removed = item_removed; // callback
             this.items = ko.observableArray([]);
@@ -166,7 +166,7 @@
             this.findResultsVisible = ko.observable(false);
         };
 
-        hn.items.ItemsViewModel.prototype = function () {
+        admin.items.ItemsViewModel.prototype = function () {
             var
                 addItem = function (item) {
                     item.setViewModel(this);
@@ -192,10 +192,10 @@
                 showEditItem = function (item) {
                     addRecentItem.call(this, item);
                     item.viewModel.tabMgr.addTab(new TabInfo(
-                        hn.editItemURL + '/' + item.ID(),
+                        admin.editItemURL + '/' + item.ID(),
                         cms.truncateStr(item.TabTitleString(), 20),
                         'edit-item',
-                        hn.items.uniqueIDForTab(item.ID())
+                        admin.items.uniqueIDForTab(item.ID())
                     ));
                 },
                 addRecentItem = function (item) {
@@ -242,12 +242,12 @@
             };
         }();
 
-        hn.items.Item = function (data) {
+        admin.items.Item = function (data) {
             var self = this;
             ko.mapping.fromJS(data, {}, self);
             this.viewModel = {}; //a reference to the Knockout viewModel within which this object is contained
         };
-        hn.items.Item.prototype = function () {
+        admin.items.Item.prototype = function () {
             var setViewModel = function _setViewModel(viewModel) {
                 this.viewModel = viewModel;
             }
