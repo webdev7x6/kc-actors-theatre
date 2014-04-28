@@ -54,7 +54,7 @@
                         },
                         close: function _dlg_onClose() {
 
-                            var $list = $('.editable-parent[data-item-id="' + window.SHOW_ID + '"] .edit-associated-images ul');
+                            var $list = $('.editable-parent[data-item-id="' + window.SHOW_ID + '"] .edit-associated-images');
                             $list.html('');
 
                             $associatedImages.find('tr').each(function _images_onEach(ix, el) {
@@ -62,10 +62,10 @@
                                 if ($el.css('display') != 'none') // only add if not hidden
                                 {
                                     var id = $el.attr('data-image-id'),
-                                        imageURL = $el.find('td [data-property-name="ImageURL"]').text()
+                                        imageURL = $el.find('td [data-property-name="ImageURL"]').attr('data-image-url')
                                     ;
 
-                                    $list.append('<li data-image-id="' + id + '">' + imageURL + '</li>');
+                                    $list.append('<img data-image-id="' + id + '" src="' + imageURL + '" />&nbsp;&nbsp;&nbsp;&nbsp;');
 
                                 }
                             });
@@ -93,15 +93,15 @@
                 imageClick: function (container, parent) {
                     var
                         $container = $(container),
-                        images = [],
-                        $images = $container.find('ul')
+                        images = []
+                        //$images = $container.find('ul')
                     ;
 
-                    $images.find('li').each(function _images_onEach(ix, el) {
+                    $container.find('img').each(function _images_onEach(ix, el) {
                         var $el = $(el);
                         images.push({
                             imageID: $el.attr('data-image-id'),
-                            imageURL: $el.text(),
+                            imageURL: $el.attr('src'),
                         });
                     });
 
