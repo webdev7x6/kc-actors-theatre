@@ -125,6 +125,25 @@ namespace KCActorsTheatre.Data.Repositories
             });
         }
 
+        public RepositoryResponse<SeasonInfo> GetCurrent()
+        {
+            return CatchError(() =>
+            {
+                var item = Single(a => a.IsCurrent, null);
+                var response = new RepositoryResponse<SeasonInfo>();
+                if (item != null)
+                {
+                    response.Succeed(string.Format("Current Season with ID {0} found.", item.SeasonID));
+                    response.Entity = item;
+                }
+                else
+                {
+                    response.Fail("No current season found.");
+                }
+                return response;
+            });
+        }
+
         public RepositoryResponse Delete(int id)
         {
             return CatchError<RepositoryResponse>(() =>
