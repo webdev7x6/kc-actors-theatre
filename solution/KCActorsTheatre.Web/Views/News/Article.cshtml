@@ -27,7 +27,7 @@
 	<div class="row">
 	  <div class="col-sm-12" id="main-content">
 		  <h6>@Model.Article.AuthorOrDefault - @Model.Article.ExtendedDate</h6>
-	      <p>@Model.Article.Body</p>
+	      <p>@Html.Raw(Model.Article.Body)</p>
           <button id="BackButton" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-chevron-left"></span>Back</button>
   	</div> <!-- Close main-content -->
 	</div> <!-- Close row -->

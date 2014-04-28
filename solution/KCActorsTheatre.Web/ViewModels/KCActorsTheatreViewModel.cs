@@ -12,5 +12,6 @@ namespace KCActorsTheatre.Web.ViewModels
     {
         public IEnumerable<SeasonInfo> PastSeasons { get; set; }
         public IEnumerable<ShowInfo> CurrentShows { get; set; }
+        public SeasonInfo CurrentSeason { get; set; }
     }
 }
