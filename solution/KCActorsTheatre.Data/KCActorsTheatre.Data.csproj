@@ -125,11 +125,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\SeasonRepository.cs" />
     <Compile Include="Repositories\PersonRepository.cs" />
+    <Compile Include="Repositories\ShowImageRepository.cs" />
     <Compile Include="Repositories\ShowRepository.cs" />
     <Compile Include="Repositories\NewsArticleRepository.cs" />
     <Compile Include="Repositories\KCActorsTheatreRepositoryBase.cs" />
     <Compile Include="KCActorsTheatreDbContext.cs" />
     <Compile Include="KCActorsTheatreRepository.cs" />
+    <Compile Include="Repositories\ShowVideoRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

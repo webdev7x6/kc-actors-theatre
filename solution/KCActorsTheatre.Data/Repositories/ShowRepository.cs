@@ -114,11 +114,18 @@ namespace KCActorsTheatre.Data.Repositories
         {
             return CatchError<RepositoryResponse<ShowInfo>>(() =>
             {
-                var item = Single(a => a.ShowId == id, null, enableTracking:true);
+                var item = DbSet
+                    .Include(p => p.Season)
+                    .Include(p => p.People)
+                    .Include(p => p.Images)
+                    .Include(p => p.Videos)
+                    .FirstOrDefault(p => p.ShowID == id)
+                    ;
+                    
                 var response = new RepositoryResponse<ShowInfo>();
                 if (item != null)
                 {
-                    response.Succeed(string.Format("Item with ID {0} found.", item.ShowId));
+                    response.Succeed(string.Format("Item with ID {0} found.", item.ShowID));
                     response.Entity = item;
                 }
                 else
@@ -157,7 +164,7 @@ namespace KCActorsTheatre.Data.Repositories
                 var person = _context.People
                     .Single(p => p.PersonID == personID);
 
-                var item = this.Single(p => p.ShowId == id, new string[] { "People" }, true);
+                var item = this.Single(p => p.ShowID == id, new string[] { "People" }, true);
 
                 if (person != null && item != null)
                 {
@@ -186,7 +193,7 @@ namespace KCActorsTheatre.Data.Repositories
                 var person = _context.People
                     .Single(p => p.PersonID == personID);
 
-                var item = this.Single(p => p.ShowId == id, new string[] { "People" }, true);
+                var item = this.Single(p => p.ShowID == id, new string[] { "People" }, true);
 
                 if (person != null && item != null)
                 {

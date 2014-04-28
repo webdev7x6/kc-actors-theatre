@@ -216,8 +216,8 @@
   <ItemGroup>
     <Compile Include="App_Start\CmsConfig.cs" />
     <Compile Include="Areas\CustomAdmin\AdminCustomAreaRegistration.cs" />
-    <Compile Include="Areas\CustomAdmin\Controllers\SeasonController.cs" />
     <Compile Include="Areas\CustomAdmin\Controllers\PersonController.cs" />
+    <Compile Include="Areas\CustomAdmin\Controllers\SeasonController.cs" />
     <Compile Include="Areas\CustomAdmin\Controllers\ShowController.cs" />
     <Compile Include="Areas\CustomAdmin\Controllers\NewsController.cs" />
     <Compile Include="Areas\CustomAdmin\HealthyNevadaAdminControllerBase.cs" />
@@ -251,7 +251,6 @@
     <Compile Include="ViewModels\ContactViewModel.cs" />
     <Compile Include="ViewModels\NewsArticleViewModel.cs" />
     <Compile Include="ViewModels\NewsViewModel.cs" />
-    <Compile Include="ViewModels\NewsletterSignUpViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\InnerViewModel.cs" />
     <Compile Include="ViewModels\ErrorViewModel.cs" />
@@ -274,11 +273,15 @@
     <Content Include="Areas\CustomAdmin\common\css\admin.css" />
     <Content Include="Areas\CustomAdmin\common\css\news.css" />
     <Content Include="Areas\CustomAdmin\common\js\news\news.js" />
-    <Content Include="Areas\CustomAdmin\common\js\hn-item-create.js" />
-    <Content Include="Areas\CustomAdmin\common\js\hn-item-index.js" />
-    <Content Include="Areas\CustomAdmin\common\js\hn-item.js" />
+    <Content Include="Areas\CustomAdmin\common\js\admin-item-create.js" />
+    <Content Include="Areas\CustomAdmin\common\js\admin-item-index.js" />
+    <Content Include="Areas\CustomAdmin\common\js\admin-item.js" />
     <Content Include="Areas\CustomAdmin\common\js\person\person.js" />
     <Content Include="Areas\CustomAdmin\common\js\season\season.js" />
+    <Content Include="Areas\CustomAdmin\common\js\show\show-videos.js" />
+    <Content Include="Areas\CustomAdmin\common\js\show\show-videos-create.js" />
+    <Content Include="Areas\CustomAdmin\common\js\show\show-images-create.js" />
+    <Content Include="Areas\CustomAdmin\common\js\show\show-images.js" />
     <Content Include="Areas\CustomAdmin\common\js\show\show.js" />
     <Content Include="Areas\CustomAdmin\common\js\show\person-manager.js" />
     <Content Include="common\cms\main rotator images\_KCAT1%281%29.jpg" />

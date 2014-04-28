@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace KCActorsTheatre.Contract
@@ -7,9 +8,7 @@ namespace KCActorsTheatre.Contract
     public class ShowInfo
     {
         [Key]
-        public int ShowId { get; set; }
-        public int? SeasonID { get; set; }
-
+        public int ShowID { get; set; }
         [Required(ErrorMessage = "Title is required.")]
         public string Title { get; set; }
         public string Body { get; set; }
@@ -26,9 +25,16 @@ namespace KCActorsTheatre.Contract
         public bool IsPublished { get; set; }
         public DateTime DateCreated { get; set; }
 
+        public int? SeasonID { get; set; }
+        public SeasonInfo Season { get; set; }
+
         private HashSet<Person> _people = new HashSet<Person>();
         public ICollection<Person> People { get { return _people; } }
 
-        public SeasonInfo Season { get; set; }
+        private HashSet<ShowImage> _images = new HashSet<ShowImage>();
+        public ICollection<ShowImage> Images { get { return _images; } }
+
+        private HashSet<ShowVideo> _videos = new HashSet<ShowVideo>();
+        public ICollection<ShowVideo> Videos{ get { return _videos; } }
     }
 }
