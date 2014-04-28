@@ -1,7 +1,7 @@
 ﻿@using Clickfarm.Cms.Mvc
 @model KCActorsTheatre.Web.ViewModels.KCActorsTheatreViewModel
 @{
-    var app = (KCActorsTheatre.Library.AppTypes.KCActorsTheatreApp)Model.RequestContent.App;
+    //var app = (KCActorsTheatre.Library.AppTypes.KCActorsTheatreApp)Model.RequestContent.App;
     var rq = Model.RequestContent;
     var page = (Clickfarm.Cms.Core.WebPage)rq.Page;
     var pageTitle = (page != null && page.HtmlTitle != string.Empty) ? page.HtmlTitle : "Kansas City Actors Theatre";
