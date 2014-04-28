@@ -49,6 +49,10 @@
             <div class="display-field editable-format editable-image" data-property-name="MainImageUrl">
                 <img src="@(!string.IsNullOrWhiteSpace(Model.Show.MainImageUrl) ? Model.Show.MainImageUrl : Url.CmsVersionedCdnResource("/images/no-image.png"))" alt="" />
             </div>
+            <label>Preview Image <em>(Season Landing Page)</em>:</label>
+            <div class="display-field editable-format editable-image" data-property-name="PreviewImageUrl">
+                <img src="@(!string.IsNullOrWhiteSpace(Model.Show.PreviewImageUrl) ? Model.Show.PreviewImageUrl : Url.CmsVersionedCdnResource("/images/no-image.png"))" alt="" />
+            </div>
             <div class="image-container">
                 <label>Slideshow Images:</label>
                 <div class="display-field editable-format edit-associated-images pointer">@Html.Raw(imageList)</div>
