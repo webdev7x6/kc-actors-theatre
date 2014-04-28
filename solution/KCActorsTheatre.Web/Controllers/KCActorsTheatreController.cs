@@ -26,13 +26,13 @@ namespace KCActorsTheatre.Web.Controllers
             this.context = this.context;
             this.repository = context.Repository as IKCActorsTheatreRepository;
             this.session = httpContext.Session;
-            application = httpContext.Application;
+            this.application = httpContext.Application;
 
-            if (PastSeasons == null)
-                PastSeasons = repository.Seasons.GetPastSeasons().Entity;
+            //if (PastSeasons == null)
+                //PastSeasons = repository.Seasons.GetPastSeasons().Entity;
 
-            if (CurrentShows == null)
-                CurrentShows = repository.Seasons.GetCurrent().Entity.Shows;
+            //if (CurrentShows == null)
+                //CurrentShows = repository.Seasons.GetCurrent().Entity.Shows;
         }
 
         protected void InitializeViewModel(KCActorsTheatreViewModel model)
@@ -41,8 +41,8 @@ namespace KCActorsTheatre.Web.Controllers
             model.RequestContent = this.CmsRequestContent;
 
             // application objects for the nav
-            model.PastSeasons = PastSeasons;
-            model.CurrentShows = CurrentShows;
+            model.PastSeasons = repository.Seasons.GetPastSeasons().Entity; //PastSeasons;
+            model.CurrentShows = repository.Seasons.GetCurrent().Entity.Shows; //CurrentShows;
         }
 
         public IEnumerable<SeasonInfo> PastSeasons
