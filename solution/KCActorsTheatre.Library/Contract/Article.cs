@@ -24,6 +24,11 @@ namespace KCActorsTheatre.Contract
             get { return ArticleDate.HasValue ? ArticleDate.Value.ToShortDateString() : ""; }
         }
 
+        public string MonthDate
+        {
+            get { return ArticleDate.HasValue ? ArticleDate.Value.ToString("dd") : ""; }
+        }
+
         public string ExtendedDate
         {
             get { return ArticleDate.HasValue ? ArticleDate.Value.ToString("MMMM dd, yyyy") : ""; }
