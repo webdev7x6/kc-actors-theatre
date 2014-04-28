@@ -277,6 +277,11 @@ namespace KCActorsTheatre.Web
                 .SingleUse()
                 ;
 
+            app.HasController<Controllers.SeasonController>("Season Detail Page", "Item")
+                .ForPageType("Web Page")
+                .SingleUse()
+                ;
+
             app.HasController<Controllers.HomeController>("Inner Page", "Inner")
                 .IsDefault()
                 .ForPageType("Web Page")
