@@ -4,18 +4,18 @@
 var createItemManager;
 
 (function ($, undefined) {
-    var hn = window.hn = window.hn || {};
-    hn.items = hn.items = hn.items || {};
+    var admin = window.admin = window.admin || {};
+    admin.items = admin.items = admin.items || {};
 
     (function () {
-        hn.items.NewItemManager = function (formSelector) {
+        admin.items.NewItemManager = function (formSelector) {
             this.form = $(formSelector);
             this.errorElement = this.form.find('#create-item-error');
             this.loader = this.form.find('#create-item-loading');
             this.nameInput = this.form.find('#create-item-name');
         };
 
-        hn.items.NewItemManager.prototype = function () {
+        admin.items.NewItemManager.prototype = function () {
             var
                 init = function () {
                     var theForm = this.form;
@@ -43,10 +43,10 @@ var createItemManager;
 				ajaxSuccess = ajaxHelper.success(
 					function (data, textStatus, jqXHR) {
 					    createItemManager.resetCreateItemForm();
-					    var itemMgr = hn.items.getItemsManager('#items'),
+					    var itemMgr = admin.items.getItemsManager('#items'),
                             viewModel = itemMgr.getViewModel();
 
-					    var item = new hn.items.Item(data.Properties.Item);
+					    var item = new admin.items.Item(data.Properties.Item);
 					    viewModel.addItem(item);
 					    viewModel.showEditItem(item);
 					},
