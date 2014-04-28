@@ -42,7 +42,8 @@ namespace KCActorsTheatre.Web.Controllers
 
             // application objects for the nav
             model.PastSeasons = repository.Seasons.GetPastSeasons().Entity; //PastSeasons;
-            model.CurrentShows = repository.Seasons.GetCurrent().Entity.Shows; //CurrentShows;
+            model.CurrentSeason = repository.Seasons.GetCurrent().Entity;
+            model.CurrentShows = model.CurrentSeason.Shows; //CurrentShows;
         }
 
         public IEnumerable<SeasonInfo> PastSeasons

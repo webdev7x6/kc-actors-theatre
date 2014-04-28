@@ -55,7 +55,7 @@
                             if (topLevelItem.Url.Page.CmsKey == "CurrentSeason" && Model.CurrentShows != null && Model.CurrentShows.Count() > 0)
                             {
                                 <li class="dropdown yamm-fw">
-                                    <a href="@topLevelItem.Url.Page.Alias" class="dropdown-toggle" data-hover="dropdown">@topLevelItem.Title</a>
+                                    <a href="/season/item/@Model.CurrentSeason.SeasonID" class="dropdown-toggle" data-hover="dropdown">@topLevelItem.Title</a>
                                     <ul class="dropdown-menu" id="drop-@counter">
                                         @foreach (var show in Model.CurrentShows)
 	                                    {
