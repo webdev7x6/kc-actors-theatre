@@ -110,7 +110,7 @@ namespace KCActorsTheatre.Data.Repositories
         {
             return CatchError<RepositoryResponse<SeasonInfo>>(() =>
             {
-                var item = Single(a => a.SeasonID == id, null, enableTracking:true);
+                var item = DbSet.Include(s => s.Shows).FirstOrDefault(a => a.SeasonID == id);
                 var response = new RepositoryResponse<SeasonInfo>();
                 if (item != null)
                 {

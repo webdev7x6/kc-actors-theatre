@@ -1,7 +1,7 @@
 ﻿@using Clickfarm.Cms.Mvc
 @model KCActorsTheatre.Web.ViewModels.HomeViewModel
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";    
+    Layout = "~/Views/Shared/_Layout.cshtml";
     var req = Model.RequestContent;
     var page = req.Page as Clickfarm.Cms.Core.WebPage;
 }
@@ -39,7 +39,8 @@
                     <p>@Html.Content(page, "Home Callout", 1, 1)</p>
                 </div>
             </div>
-        </div> <!--End row-->
+        </div>
+        <!--End row-->
     </div>
 </div>
 
@@ -48,9 +49,9 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel-group" id="accordion">
-                    @if (Model.Season != null)
+                    @if (Model.CurrentShows != null && Model.CurrentShows.Any())
                     {
-                        foreach (var show in Model.Season.Shows)
+                        foreach (var show in Model.CurrentShows)
                         {
                             <div class="panel panel-default">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse-@show.ShowID">
@@ -79,7 +80,7 @@
                                             @if (!string.IsNullOrWhiteSpace(show.SummaryImageUrl))
                                             {
                                                 <div class="col-sm-6">
-                                                    <img src="@show.SummaryImageUrl" class="homepage-show-img" alt="@show.Title">
+                                                    <img src="@show.SummaryImageUrl" class="homepage-show-img" alt="@show.Title" />
                                                 </div>
                                             }
                                         </div>
@@ -94,4 +95,5 @@
     </div>
 </div>
 
-<div id="push"></div> <!-- Assisting with sticky footer for shorter pages -->
+<div id="push"></div>
+<!-- Assisting with sticky footer for shorter pages -->
