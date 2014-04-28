@@ -19,36 +19,57 @@ namespace KCActorsTheatre.Web.Controllers
         protected ICmsContext context { get; private set; }
         protected IKCActorsTheatreRepository repository { get; private set; }
         private HttpSessionStateBase session = null;
+        private HttpApplicationStateBase application = null;
 
         public KCActorsTheatreController(ICmsContext context, HttpContextBase httpContext)
         {
             this.context = this.context;
             this.repository = context.Repository as IKCActorsTheatreRepository;
             this.session = httpContext.Session;
+            application = httpContext.Application;
 
-            // set session objects
-            //if (RecentPosts == null)
-            //    RecentPosts = repository.Posts.GetPostedAndPublished(3, 0).Entity.ToList();
+            if (PastSeasons == null)
+                PastSeasons = repository.Seasons.GetPastSeasons().Entity;
+
+            if (CurrentShows == null)
+                CurrentShows = repository.Seasons.GetCurrent().Entity.Shows;
         }
 
         protected void InitializeViewModel(KCActorsTheatreViewModel model)
         {
             // initialize common viewmodel objects
             model.RequestContent = this.CmsRequestContent;
-            model.Seasons = GetSeasons();
-            model.CurrentShows = GetCurrentShows();
+
+            // application objects for the nav
+            model.PastSeasons = PastSeasons;
+            model.CurrentShows = CurrentShows;
         }
 
-        private IEnumerable<SeasonInfo> GetSeasons()
+        public IEnumerable<SeasonInfo> PastSeasons
         {
-            return repository.Seasons.All();
+            get
+            {
+                IEnumerable<SeasonInfo> seasons = (IEnumerable<SeasonInfo>)application["PastSeasons"];
+                return seasons;
+            }
+            private set
+            {
+                application["PastSeasons"] = value;
+            }
         }
 
-        private IEnumerable<ShowInfo> GetCurrentShows()
+        public IEnumerable<ShowInfo> CurrentShows
         {
-            return repository.Shows.All();
+            get
+            {
+                IEnumerable<ShowInfo> shows = (IEnumerable<ShowInfo>)application["CurrentShows"];
+                return shows;
+            }
+            private set
+            {
+                application["CurrentShows"] = value;
+            }
         }
-
 
         private JsonResult CatchError(Func<JsonResult> action)
         {

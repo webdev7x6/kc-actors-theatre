@@ -33,26 +33,41 @@
                         {
                             <li class="dropdown yamm-fw">
                                 <a href="@topLevelItem.Url.Page.Alias" class="dropdown-toggle" data-hover="dropdown">@topLevelItem.Title</a>
-                                @if (true)
-                                {
-
-                                }
-                                else
-                                {
-                                    <ul class="dropdown-menu" id="drop-@counter">
-                                        @foreach (var secondLevelItem in topLevelItem.Children.Where(p => p.IsEnabled).OrderBy(p => p.DisplayOrder))
+                                <ul class="dropdown-menu" id="drop-@counter">
+                                    @if (topLevelItem.Url.Page.CmsKey == "PastSeasons" && Model.PastSeasons != null && Model.PastSeasons.Count() > 0)
+                                    {
+                                        foreach (var season in Model.PastSeasons)
                                         {
-                                            <li><a href="@secondLevelItem.Url.Page.Alias">@secondLevelItem.Title</a></li>
+                                            <li><a href="/season/item/@season.SeasonID">@season.Title</a></li>
                                         }
-                                    </ul>
-                                }
+                                    }
+                                    @foreach (var secondLevelItem in topLevelItem.Children.Where(p => p.IsEnabled).OrderBy(p => p.DisplayOrder))
+                                    {
+                                        <li><a href="@secondLevelItem.Url.Page.Alias">@secondLevelItem.Title</a></li>
+                                    }
+                                </ul>
                             </li>
                         }
 
                         @* top level item, no children *@
                         else
                         {
-                            <li><a href="@topLevelItem.Url.Page.Alias">@topLevelItem.Title</a></li>
+                            if (topLevelItem.Url.Page.CmsKey == "CurrentSeason" && Model.CurrentShows != null && Model.CurrentShows.Count() > 0)
+                            {
+                                <li class="dropdown yamm-fw">
+                                    <a href="@topLevelItem.Url.Page.Alias" class="dropdown-toggle" data-hover="dropdown">@topLevelItem.Title</a>
+                                    <ul class="dropdown-menu" id="drop-@counter">
+                                        @foreach (var show in Model.CurrentShows)
+	                                    {
+                                            <li><a href="/show/item/@show.ShowID">@show.Title</a></li>
+	                                    }
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                                <li><a href="@topLevelItem.Url.Page.Alias">@topLevelItem.Title</a></li>
+                            }
                         }
                         counter++;
                     }

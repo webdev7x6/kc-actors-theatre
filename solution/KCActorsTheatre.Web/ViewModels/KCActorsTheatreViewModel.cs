@@ -10,7 +10,7 @@ namespace KCActorsTheatre.Web.ViewModels
 {
     public class KCActorsTheatreViewModel : BaseViewModel
     {
-        public IEnumerable<SeasonInfo> Seasons { get; set; }
+        public IEnumerable<SeasonInfo> PastSeasons { get; set; }
         public IEnumerable<ShowInfo> CurrentShows { get; set; }
     }
 }
