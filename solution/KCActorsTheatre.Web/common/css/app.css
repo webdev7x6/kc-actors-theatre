@@ -6545,7 +6545,6 @@ footer#footer {
   -ms-transform: scale(1, 0);
   -o-transform: scale(1, 0);
   transform: scale(1, 0);
-  display: block;
   -webkit-transition: all 0.2s ease-in;
   -moz-transition: all 0.2s ease-in;
   -ms-transition: all 0.2s ease-in;
