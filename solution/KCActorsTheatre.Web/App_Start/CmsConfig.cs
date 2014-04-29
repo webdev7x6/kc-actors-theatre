@@ -288,6 +288,12 @@ namespace KCActorsTheatre.Web
                 .HasContentGroup("Body Copy")
                 ;
 
+            app.HasController<Controllers.HomeController>("Inner Page With Hero", "InnerHero")
+                .ForPageType("Web Page")
+                .HasContentGroup("Hero")
+                .HasContentGroup("Body Copy")
+                ;
+
             app.HasController<Controllers.SearchController>("Search", "Index")
                 .ForPageType("Web Page")
                 .HasContentGroup("Body Copy")
