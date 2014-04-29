@@ -58,18 +58,18 @@ function createRoleManager() {
         function (result, textStatus, jqXHR) {
             self.hideCreateRoleForm();
 
-            // get new congregation contact
-            var newMemberRole = result.Properties.RoleDefinition;
+            // get role
+            var newPersonRole = result.Properties.RoleDefinition;
 
             // add to table
-            var $parent = $('div.editable-parent[data-item-id="' + window.MEMBER_ID + '"]');
-            var $tbody = $parent.find('table[data-role-type="' + window.ROLE_TYPE + '"] tbody');
+            var $parent = $('div.editable-parent[data-item-id="' + window.PERSON_ID + '"]');
+            var $tbody = $parent.find('table tbody');
 
             // create new TR and append to TBODY
-            $tbody.append('<tr data-role-definition-id="' + newMemberRole.RoleDefinitionID + '">' +
-                '<td>' + newMemberRole.Name + '</td>' +
-                '<td>' + newMemberRole.Title + '</td>' +
-                '<td><a href="#" class="delete-role-link" data-role-type="' + window.ROLE_TYPE + '" data-member-id="' + newMemberRole.StaffMemberID + '" data-role-id="' + newMemberRole.RoleDefinitionID + '">Delete</a></td>' +
+            $tbody.append('<tr data-role-definition-id="' + newPersonRole.RoleDefinitionID + '">' +
+                '<td>' + newPersonRole.Name + '</td>' +
+                '<td>' + newPersonRole.Title + '</td>' +
+                '<td><a href="#" class="delete-role-link" data-person-id="' + newPersonRole.PersonID + '" data-role-id="' + newPersonRole.RoleDefinitionID + '">Delete</a></td>' +
                 '</tr>'
             );
 
