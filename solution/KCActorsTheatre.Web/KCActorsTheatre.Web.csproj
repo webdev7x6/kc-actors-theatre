@@ -530,6 +530,7 @@
     <Content Include="Views\Show\Index.cshtml" />
     <Content Include="Views\Show\Item.cshtml" />
     <Content Include="Views\Season\Item.cshtml" />
+    <Content Include="Views\Home\InnerHero.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="common\cms\files\" />
