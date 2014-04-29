@@ -107,3 +107,39 @@
     </div>
     <div id="create-item-error" class="ajax-error"></div>
 </div>
+
+<div id="create-role-form" class="model-display edit-not-in-place hidden" title="New Role">
+    <div class="ui-widget-content ui-corner-all ui-widget-cms">
+        @using (Ajax.BeginForm("AddRole", "Person",
+            new AjaxOptions
+            {
+                HttpMethod = "Post",
+                LoadingElementId = "create-role-loading",
+                OnFailure = "createRoleManager.ajaxFailure",
+                OnSuccess = "createRoleManager.ajaxSuccess"
+            }
+        ))
+        {
+            <div class="display-field">
+
+                @Html.LabelFor(m => m.RoleDefinition.Title)
+                @Html.TextBoxFor(m => m.RoleDefinition.Title, new { @class = "dialog-textbox required", @id = "create-role-title" })<br />
+                @Html.ValidationMessageFor(m => m.RoleDefinition.Title)
+
+                <div id="create-show-container">
+                    <label for="RoleDefinition.Show">Show</label>
+                    @Html.DropDownListFor(m => m.RoleDefinition.Show, Model.ShowList, new { Name = "RoleDefinition.ShowID", @class = "dialog-textbox required,", @id = "create-role-show" })<br />
+                </div>
+
+                <input type="hidden" name="RoleDefinition.PersonID" id="create-role-person-id" value="" />
+
+            </div>
+        }
+    </div>
+    <div id="create-role-loading">
+        <div class="throbber">
+            @* loading animation*@
+        </div>
+    </div>
+    <div id="create-role-error" class="ajax-error"></div>
+</div>

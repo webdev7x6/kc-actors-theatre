@@ -117,6 +117,7 @@ namespace KCActorsTheatre.Data.Repositories
                 var item = DbSet
                     .Include(p => p.Season)
                     .Include(p => p.RoleDefinitions)
+                    .Include("RoleDefinitions.Person")
                     .Include(p => p.Images)
                     .Include(p => p.Videos)
                     .FirstOrDefault(p => p.ShowID == id)

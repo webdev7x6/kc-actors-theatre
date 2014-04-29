@@ -132,7 +132,12 @@ namespace KCActorsTheatre.Data.Repositories
         {
             return CatchError<RepositoryResponse<Person>>(() =>
             {
-                var item = Single(a => a.PersonID == id, null, enableTracking:true);
+                var item = DbSet
+                    .Include("RoleDefinitions")
+                    .Include("RoleDefinitions.Show")
+                    .FirstOrDefault(p => p.PersonID == id)
+                    ;
+
                 var response = new RepositoryResponse<Person>();
                 if (item != null)
                 {

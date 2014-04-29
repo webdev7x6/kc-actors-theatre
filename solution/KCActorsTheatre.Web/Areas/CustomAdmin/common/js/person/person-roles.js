@@ -18,6 +18,7 @@
                             }
                         }).on('click', function (e) {
                             e.preventDefault();
+                            console.log(link);
                             var
                                 personID = link.attr('data-person-id');
                                 admin.people.roles.addRole(personID);
@@ -63,7 +64,7 @@
                 },
                 addRole: function (personID) {
                     window.PERSON_ID = personID;
-                    createRoleManager.showCreateRoleForm(type, personID);
+                    createRoleManager.showCreateRoleForm(personID);
                 }
             };
         })();

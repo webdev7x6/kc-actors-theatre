@@ -67,7 +67,7 @@ function createRoleManager() {
 
             // create new TR and append to TBODY
             $tbody.append('<tr data-role-definition-id="' + newPersonRole.RoleDefinitionID + '">' +
-                '<td>' + newPersonRole.Name + '</td>' +
+                '<td>' + newPersonRole.Show + '</td>' +
                 '<td>' + newPersonRole.Title + '</td>' +
                 '<td><a href="#" class="delete-role-link" data-person-id="' + newPersonRole.PersonID + '" data-role-id="' + newPersonRole.RoleDefinitionID + '">Delete</a></td>' +
                 '</tr>'
