@@ -56,29 +56,27 @@ namespace KCActorsTheatre.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Contact(ContactViewModel model)
+        public void Contact(ContactViewModel model)
         {
-            //var app = (KCActorsTheatre.Library.AppTypes.KCActorsTheatreApp)model.RequestContent.App;
+            if (ModelState.IsValid)
+            {
+                model.RequestContent = this.CmsRequestContent;
+                var app = (KCActorsTheatre.Library.AppTypes.KCActorsTheatreApp)model.RequestContent.App;
 
-            var message = new StringBuilder("The following was submitted on the Contact Us page of tht KCAT website.<br /><br />");
-            message.AppendFormat("Name: {0}<br />", model.Name);
-            message.AppendFormat("Email: {0}<br />", model.Email);
-            message.AppendFormat("Phone Number: {0}<br />", model.PhoneNumber);
+                var message = new StringBuilder("The following was submitted on the Contact Us page of the KCAT website.<br /><br />");
+                message.AppendFormat("Name: {0}<br />", model.Name);
+                message.AppendFormat("Email: {0}<br />", model.Email);
+                message.AppendFormat("Phone Number: {0}<br />", model.PhoneNumber);
+                message.AppendFormat("Comments: {0}", model.Comments);
 
-            if (!string.IsNullOrEmpty(model.MailingAddress))
-                message.AppendFormat("Mailing Address: {0}<br />", model.MailingAddress);
+                var email = new Emailer();
+                email.To = app.ContactUsEmail; ;
+                email.Subject = "KCAT Website Contact Us Submission";
+                email.Message = message.ToString();
+                //email.Send();
 
-            message.AppendFormat("Comments: {0}", model.Comments);
-
-
-            var email = new Emailer();
-            email.To = "pete.aaron.davis@gmail.com"; // app.ContactUsEmail; ;
-            email.Subject = "KCAT Website Contact Us Submission";
-            email.Message = message.ToString();
-            email.Send();
-            
-
-            return Contact();
+                Response.Redirect("/contact-thank-you");
+            }
         }
 
         private void SetRotatorImages(HomeViewModel vm)

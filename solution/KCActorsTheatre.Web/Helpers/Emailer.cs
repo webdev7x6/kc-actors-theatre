@@ -8,9 +8,9 @@ namespace KCActorsTheatre.Web.Helpers
     public class Emailer
     {
         //TODO: specify correct mail server values
-        private const String MailServer = "mail.kcactors.org";
+        private const String MailServer = "localhost";
         private const String MailServerAddress = "noreply@kcactors.org";
-        private const String MailServerPassword = "PK0m9iEadjPdKDRfK0Dz";
+        //private const String MailServerPassword = "PK0m9iEadjPdKDRfK0Dz";
         private const String MailServerDisplayTitle = "KCAT Website";
 
         public String From { get; set; }
@@ -48,7 +48,7 @@ namespace KCActorsTheatre.Web.Helpers
                 var smtp = new SmtpClient(MailServer);
                 smtp.Port = 26;
                 smtp.EnableSsl = false;
-                smtp.Credentials = new NetworkCredential(this.From, MailServerPassword);
+                //smtp.Credentials = new NetworkCredential(this.From, MailServerPassword);
                 smtp.Send(mailmessage);
             }
             else
