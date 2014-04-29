@@ -279,6 +279,8 @@
     <Content Include="Areas\CustomAdmin\common\js\admin-item-index.js" />
     <Content Include="Areas\CustomAdmin\common\js\admin-item.js" />
     <Content Include="Areas\CustomAdmin\common\js\person\person.js" />
+    <Content Include="Areas\CustomAdmin\common\js\person\person-roles-create.js" />
+    <Content Include="Areas\CustomAdmin\common\js\person\person-roles.js" />
     <Content Include="Areas\CustomAdmin\common\js\season\season.js" />
     <Content Include="Areas\CustomAdmin\common\js\show\show-videos.js" />
     <Content Include="Areas\CustomAdmin\common\js\show\show-videos-create.js" />

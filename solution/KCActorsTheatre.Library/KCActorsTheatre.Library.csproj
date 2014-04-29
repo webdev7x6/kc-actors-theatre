@@ -126,6 +126,7 @@
     <Compile Include="Cms\ContentTypes\RotatorContent.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Contract\Article.cs" />
+    <Compile Include="Contract\RoleDefinition.cs" />
     <Compile Include="Contract\SeasonInfo.cs" />
     <Compile Include="Contract\Person.cs" />
     <Compile Include="Contract\ShowImage.cs" />

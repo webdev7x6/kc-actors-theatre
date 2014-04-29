@@ -21,7 +21,8 @@
         
         // custom logic goes here to run during new item tab init
         admin.items.index.tabInit = function () {
-            
+            $('.person-items-tabs').tabs();
+            admin.people.roles.initButtons();
         };
 
     })();

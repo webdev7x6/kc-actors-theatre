@@ -177,48 +177,48 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
 
         #region People
 
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public JsonResult FindPeople(string term)
-        {
-            var termsSplit = term.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
-            var people = Repository.People.Find(termsSplit);
-            return Json(People(people.Entity));
-        }
+        //[OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        //public JsonResult FindPeople(string term)
+        //{
+        //    var termsSplit = term.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
+        //    var people = Repository.People.Find(termsSplit);
+        //    return Json(People(people.Entity));
+        //}
 
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public JsonResult AllPeople()
-        {
-            var people = Repository.People.All();
-            return Json(People(people));
-        }
+        //[OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        //public JsonResult AllPeople()
+        //{
+        //    var people = Repository.People.All();
+        //    return Json(People(people));
+        //}
 
-        public JsonResult AddPerson(int id, int personID)
-        {
-            var repoResp = Repository.Shows.AddPerson(id, personID);
-            return Json(new JsonResponse
-            {
-                Succeeded = repoResp.Succeeded,
-                Message = repoResp.Message
-            });
-        }
+        //public JsonResult AddPerson(int id, int personID)
+        //{
+        //    var repoResp = Repository.Shows.AddPerson(id, personID);
+        //    return Json(new JsonResponse
+        //    {
+        //        Succeeded = repoResp.Succeeded,
+        //        Message = repoResp.Message
+        //    });
+        //}
 
-        public JsonResult RemovePerson(int id, int personID)
-        {
-            var repoResp = Repository.Shows.RemovePerson(id, personID);
-            return Json(new JsonResponse
-            {
-                Succeeded = repoResp.Succeeded,
-                Message = repoResp.Message
-            });
-        }
+        //public JsonResult RemovePerson(int id, int personID)
+        //{
+        //    var repoResp = Repository.Shows.RemovePerson(id, personID);
+        //    return Json(new JsonResponse
+        //    {
+        //        Succeeded = repoResp.Succeeded,
+        //        Message = repoResp.Message
+        //    });
+        //}
 
-        private JsonResponse People(IEnumerable<Person> people)
-        {
-            var resp = new JsonResponse();
-            resp.Properties.Add("People", people);
-            resp.Succeed(string.Format("{0} people found.", people.Count()));
-            return resp;
-        }
+        //private JsonResponse People(IEnumerable<Person> people)
+        //{
+        //    var resp = new JsonResponse();
+        //    resp.Properties.Add("People", people);
+        //    resp.Succeed(string.Format("{0} people found.", people.Count()));
+        //    return resp;
+        //}
 
         #endregion
 

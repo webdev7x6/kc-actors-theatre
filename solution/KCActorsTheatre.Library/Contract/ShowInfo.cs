@@ -29,8 +29,11 @@ namespace KCActorsTheatre.Contract
         public int? SeasonID { get; set; }
         public SeasonInfo Season { get; set; }
 
-        private HashSet<Person> _people = new HashSet<Person>();
-        public ICollection<Person> People { get { return _people; } }
+        //private HashSet<Person> _people = new HashSet<Person>();
+        //public ICollection<Person> People { get { return _people; } }
+
+        private HashSet<RoleDefinition> _roleDefinitions = new HashSet<RoleDefinition>();
+        public ICollection<RoleDefinition> RoleDefinitions { get { return _roleDefinitions; } }
 
         private HashSet<ShowImage> _images = new HashSet<ShowImage>();
         public ICollection<ShowImage> Images { get { return _images; } }

@@ -12,21 +12,61 @@
             <a href="#" class="refresh-item-link" data-item-id="@Model.Person.PersonID" title="Refresh @entityDescription">Refresh @entityDescription</a>
             <a href="#" class="delete-item-link" data-item-id="@Model.Person.PersonID" title="Delete @entityDescription">Delete @entityDescription</a>
         </div>
-        <div class="ui-widget-content ui-corner-all ui-widget-cms">
-            <label>Name:</label>
-            <div class="display-field editable-format editable" data-property-name="Name">@Model.Person.Name</div>
-            <label>Title:</label>
-            <div class="display-field editable-format editable" data-property-name="Title">@Model.Person.Title</div>
-            <label>Bio Summary:</label>
-            <div class="display-field editable-format editable" data-property-name="BioSummary">@Model.Person.BioSummary</div>
-            <label>Bio Detail:</label>
-            <div class="display-field editable-format editable-html" data-property-name="BioDetail">@Html.Raw(Model.Person.BioDetail)</div>
-            <label>Image URL:</label>
-            <div class="display-field editable-format editable" data-property-name="ImageUrl">@Html.Raw(Model.Person.ImageUrl)</div>
-            <label>Date Created:</label>
-            <div class="display-field">@(Model.DateConverter.Convert(Model.Person.DateCreated).FromUtc().ForCmsUser().ToString("g"))</div>
+        <div class="person-items-tabs">
+            <ul>
+                <li><a href="#tabs-1">General</a></li>
+                <li><a href="#tabs-2">Roles</a></li>
+            </ul>
+            <div id="tabs-1">
+                <div class="ui-widget-content ui-corner-all ui-widget-cms">
+                    <label>Name:</label>
+                    <div class="display-field editable-format editable" data-property-name="Name">@Model.Person.Name</div>
+                    <label>Title:</label>
+                    <div class="display-field editable-format editable" data-property-name="Title">@Model.Person.Title</div>
+                    <label>Bio Summary:</label>
+                    <div class="display-field editable-format editable" data-property-name="BioSummary">@Model.Person.BioSummary</div>
+                    <label>Bio Detail:</label>
+                    <div class="display-field editable-format editable-html" data-property-name="BioDetail">@Html.Raw(Model.Person.BioDetail)</div>
+                    <label>Image URL:</label>
+                    <div class="display-field editable-format editable" data-property-name="ImageUrl">@Html.Raw(Model.Person.ImageUrl)</div>
+                </div>
+            </div>
+            <div id="tabs-2">
+                <div class="ui-widget-content ui-corner-all ui-widget-cms">
+                    <div class="ui-toolbar-cms">
+                        <a class="create-role" href="#" data-member-id="@Model.Person.PersonID">Role</a>
+                    </div>
+                    <table class="table-layout">
+                        <thead>
+                            <tr>
+                                <th width="300">Show</th>
+                                <th width="500">Role</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Person.RoleDefinitions)
+                            {
+                                <tr data-role-definition-id="@item.RoleDefinitionID">
+                                    <td>@item.Show.Title</td>
+                                    <td>@item.Role</td>
+                                    <td><a href="#" class="delete-role-link" data-person-id="@Model.Person.PersonID" data-role-id="@item.RoleDefinitionID">Delete</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    <br style="clear:both;" />
+
+                </div>
+            </div>
         </div>
-    </div>
+
+        <br />
+
+        <label>Date Created:</label>
+        <div class="display-field">@(Model.DateConverter.Convert(Model.Person.DateCreated).FromUtc().ForCmsUser().ToString("g"))</div>
+    </div>    
 }
 else
 {
