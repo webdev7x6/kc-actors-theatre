@@ -264,6 +264,7 @@ namespace KCActorsTheatre.Web
 
             app.HasController<Controllers.NewsController>("News Landing Page", "Index")
                 .ForPageType("Web Page")
+                .HasContentGroup("Body Copy")
                 .SingleUse()
                 ;
 
