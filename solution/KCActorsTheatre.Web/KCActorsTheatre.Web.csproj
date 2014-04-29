@@ -229,6 +229,7 @@
     <Compile Include="Areas\CustomAdmin\ViewModels\Season\SeasonViewModel.cs" />
     <Compile Include="Areas\CustomAdmin\ViewModels\Show\EditShowViewModel.cs" />
     <Compile Include="Areas\CustomAdmin\ViewModels\Show\ShowViewModel.cs" />
+    <Compile Include="Controllers\PeopleController.cs" />
     <Compile Include="Controllers\SeasonController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\KCActorsTheatreController.cs" />
@@ -250,6 +251,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CalendarViewModel.cs" />
     <Compile Include="ViewModels\ContactViewModel.cs" />
+    <Compile Include="ViewModels\PeopleViewModel.cs" />
+    <Compile Include="ViewModels\PersonViewModel.cs" />
     <Compile Include="ViewModels\SeasonViewModel.cs" />
     <Compile Include="ViewModels\NewsArticleViewModel.cs" />
     <Compile Include="ViewModels\NewsViewModel.cs" />
@@ -531,6 +534,8 @@
     <Content Include="Views\Show\Item.cshtml" />
     <Content Include="Views\Season\Item.cshtml" />
     <Content Include="Views\Home\InnerHero.cshtml" />
+    <Content Include="Views\People\Index.cshtml" />
+    <Content Include="Views\People\Item.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="common\cms\files\" />
