@@ -7,10 +7,7 @@ namespace KCActorsTheatre.Web.Helpers
 {
     public class Emailer
     {
-        //TODO: specify correct mail server values
-        private const String MailServer = "localhost";
         private const String MailServerAddress = "noreply@kcactors.org";
-        //private const String MailServerPassword = "PK0m9iEadjPdKDRfK0Dz";
         private const String MailServerDisplayTitle = "KCAT Website";
 
         public String From { get; set; }
@@ -39,17 +36,20 @@ namespace KCActorsTheatre.Web.Helpers
                 //Converts message to html format:
                 var html = AlternateView.CreateAlternateViewFromString(this.Message, null, "text/html");
 
-                var mailmessage = new MailMessage();
-                mailmessage.From = new MailAddress(this.From, MailServerDisplayTitle);
-                mailmessage.To.Add(this.To);
-                mailmessage.Subject = this.Subject;
-                mailmessage.AlternateViews.Add(html);
+                using(var mailmessage = new MailMessage())
+	            {
+                    mailmessage.From = new MailAddress(this.From, MailServerDisplayTitle);
+                    mailmessage.To.Add(this.To);
+                    mailmessage.Subject = this.Subject;
+                    mailmessage.AlternateViews.Add(html);
 
-                var smtp = new SmtpClient(MailServer);
-                //smtp.Port = 26;
-                //smtp.EnableSsl = false;
-                //smtp.Credentials = new NetworkCredential(this.From, MailServerPassword);
-                smtp.Send(mailmessage);
+                    using (var client = new SmtpClient())
+                    {
+                        client.Port = 25;
+                        client.UseDefaultCredentials = false;
+                        client.Send(mailmessage);	 
+                    }
+	            }
             }
             else
             {
