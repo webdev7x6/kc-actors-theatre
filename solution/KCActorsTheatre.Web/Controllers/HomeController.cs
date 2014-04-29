@@ -33,6 +33,13 @@ namespace KCActorsTheatre.Web.Controllers
             return View(model);
         }
 
+        public ActionResult InnerHero()
+        {
+            var model = new KCActorsTheatreViewModel();
+            InitializeViewModel(model);
+            return View(model);
+        }
+
         public ActionResult SiteMap()
         {
             var model = new HomeViewModel();
