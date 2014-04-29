@@ -6,13 +6,7 @@
     var entityDescription = "Show";
 }
 @if (Model.HasShow)
-{
-    string peopleList = Model.GetPeopleAsList();
-    if (string.IsNullOrWhiteSpace(peopleList))
-    {
-        peopleList = "Click to edit";
-    }
-    
+{    
     string imageList = Model.GetImagesAsList();
     if (string.IsNullOrWhiteSpace(imageList))
     {
@@ -66,7 +60,21 @@
             <label>Quote:</label>
             <div class="display-field editable-format editable" data-property-name="Quote">@Html.Raw(Model.Show.Quote)</div>
             <label>People:</label>
-            <div class="display-field editable-format edit-associated-people pointer">@Html.Raw(peopleList)</div>
+            <div class="display-field">
+                @if (Model.Show.RoleDefinitions != null && Model.Show.RoleDefinitions.Count > 0)
+	            {
+                    <ul>
+                        @foreach (var role in Model.Show.RoleDefinitions.OrderBy(p => p.Title).ThenBy(p => p.Person.Name))
+                        {
+                            <li>@role.Title - @role.Person.Name</li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <text>No people assigned to this show</text>
+                }
+            </div>
             <label>Education:</label>
             <div class="display-field editable-format editable-html" data-property-name="Education">@Html.Raw(Model.Show.Education)</div>
             <label>Dates &amp; Times:</label>
