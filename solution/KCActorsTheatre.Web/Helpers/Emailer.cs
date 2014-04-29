@@ -46,8 +46,8 @@ namespace KCActorsTheatre.Web.Helpers
                 mailmessage.AlternateViews.Add(html);
 
                 var smtp = new SmtpClient(MailServer);
-                smtp.Port = 26;
-                smtp.EnableSsl = false;
+                //smtp.Port = 26;
+                //smtp.EnableSsl = false;
                 //smtp.Credentials = new NetworkCredential(this.From, MailServerPassword);
                 smtp.Send(mailmessage);
             }
