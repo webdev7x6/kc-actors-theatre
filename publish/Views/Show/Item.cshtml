@@ -109,7 +109,7 @@
                       <div class="slider responsive">
                           @foreach (var image in Model.Show.Images)
                           {
-                              <div><a href="#"><img src="@image.ImageURL" alt="@Model.Show.Title photo" class="show-thumbnails"></a></div>
+                              <div><a href="@image.ImageURL" data-lightbox-gallery="gallery1"><img src="@image.ImageURL" alt="@Model.Show.Title photo" class="show-thumbnails"></a></div>
                           }
                       </div>
                   </div>
