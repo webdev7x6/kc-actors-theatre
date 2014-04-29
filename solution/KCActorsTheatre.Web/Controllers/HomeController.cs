@@ -81,13 +81,6 @@ namespace KCActorsTheatre.Web.Controllers
             return Contact();
         }
 
-        public ActionResult CommunityDashboard()
-        {
-            var model = new InnerViewModel();
-            InitializeViewModel(model);
-            return View(model);
-        }
-
         private void SetRotatorImages(HomeViewModel vm)
         {
             if(vm.RequestContent != null)

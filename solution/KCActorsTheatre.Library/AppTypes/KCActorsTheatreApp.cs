@@ -12,7 +12,6 @@ namespace KCActorsTheatre.Library.AppTypes
         public string ContactUsEmail { get; set; }
         public string VolunteerEmail { get; set; }
         public string FacebookURL { get; set; }
-        public string PinterestURL { get; set; }
-        public string YouTubeURL { get; set; }
+        public string TwitterURL { get; set; }
     }
 }

@@ -9,7 +9,10 @@ namespace KCActorsTheatre.Data
         DbSet<Article> NewsArticles { get; }
 
         DbSet<ShowInfo> Shows { get; }
+
         DbSet<Person> People { get; }
+        DbSet<RoleDefinition> RoleDefinitions { get; }
+
         DbSet<ShowImage> Images { get; }
         DbSet<ShowVideo> Videos { get; }
 

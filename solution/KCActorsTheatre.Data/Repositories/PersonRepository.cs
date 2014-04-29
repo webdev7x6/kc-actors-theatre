@@ -132,7 +132,12 @@ namespace KCActorsTheatre.Data.Repositories
         {
             return CatchError<RepositoryResponse<Person>>(() =>
             {
-                var item = Single(a => a.PersonID == id, null, enableTracking:true);
+                var item = DbSet
+                    .Include("RoleDefinitions")
+                    .Include("RoleDefinitions.Show")
+                    .FirstOrDefault(p => p.PersonID == id)
+                    ;
+
                 var response = new RepositoryResponse<Person>();
                 if (item != null)
                 {
@@ -166,5 +171,53 @@ namespace KCActorsTheatre.Data.Repositories
                 return response;
             });
         }
+
+        #region Roles
+
+        public RepositoryResponse<RoleDefinition> AddRole(RoleDefinition roleDefinition)
+        {
+            return CatchError<RepositoryResponse<RoleDefinition>>(() =>
+            {
+                var response = new RepositoryResponse<RoleDefinition>();
+                CmsDbContext.ChangeState<RoleDefinition>(EntityState.Added, roleDefinition);
+                CmsDbContext.Save();
+                response.Succeed("The new role definition was created successfully.");
+                response.Entity = roleDefinition;
+                return response;
+            });
+        }
+
+        public RepositoryResponse DeleteRole(int personID, int roleID)
+        {
+            return CatchError<RepositoryResponse>(() =>
+            {
+                var response = new RepositoryResponse();
+
+                var item = DbSet
+                    .Include("RoleDefinitions")
+                    .Include("RoleDefinitions.Show")
+                    .SingleOrDefault(p => p.PersonID == personID);
+
+                if (item != null)
+                {
+                    var role = item.RoleDefinitions.SingleOrDefault(p => p.RoleDefinitionID == roleID);
+
+                    if (role != null)
+                    {
+                        CmsDbContext.ChangeState<RoleDefinition>(EntityState.Deleted, role);
+                        CmsDbContext.Save();
+                    }
+
+                    response.Succeed(string.Format("Role definition with ID {0} deleted.", roleID));
+                }
+                else
+                {
+                    response.Fail(string.Format("Role definition with ID {0} not found.", roleID));
+                }
+                return response;
+            });
+        }
+
+        #endregion
     }
 }

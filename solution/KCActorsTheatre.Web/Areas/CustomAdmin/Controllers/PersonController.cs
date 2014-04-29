@@ -22,6 +22,15 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
         {
             var model = new PersonViewModel();
             model.Init(CmsContext);
+            model.ShowList = Repository.Shows.GetAll().Entity.OrderBy(p => p.Title).ToList().ConvertAll<SelectListItem>(c =>
+            {
+                SelectListItem item = new SelectListItem
+                {
+                    Text = c.Title,
+                    Value = c.ShowID.ToString(),
+                };
+                return item;
+            });
             return View(model);
         }
 
@@ -174,6 +183,83 @@ namespace KCActorsTheatre.Web.Areas.CustomAdmin.Controllers
             }
             return Json(response);
         }
+
+        #region Roles
+
+        [HttpPost]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        public JsonResult AddRole(RoleDefinition roleDefinition)
+        {
+            // set defaults
+            roleDefinition.DateCreated = DateTime.UtcNow;
+
+            if (ModelState.IsValid)
+            {
+                RepositoryResponse<RoleDefinition> repoResponse = Repository.People.AddRole(roleDefinition);
+                if (repoResponse.Succeeded)
+                {
+                    var jsonResponse = new JsonResponse
+                    {
+                        Succeeded = true,
+                        Message = "New role definition created.",
+
+                    };
+
+                    // get the role definition with all the includes
+                    var returnRoleDefinition = Repository.People
+                        .GetSingle(repoResponse.Entity.PersonID).Entity.RoleDefinitions
+                            .FirstOrDefault(p => p.RoleDefinitionID == repoResponse.Entity.RoleDefinitionID)
+                            ;
+
+                    var returnData = new
+                    {
+                        Show = returnRoleDefinition.Show.Title,
+                        Title = returnRoleDefinition.Title,
+                        RoleDefinitionID = returnRoleDefinition.RoleDefinitionID,
+                        PersonID = returnRoleDefinition.PersonID,
+                    };
+
+                    jsonResponse.Properties.Add("RoleDefinition", returnData);
+                    return Json(jsonResponse);
+                }
+                else
+                {
+                    return Json(new JsonResponse
+                    {
+                        Succeeded = false,
+                        Message = repoResponse.Message
+                    });
+                }
+            }
+            else
+            {
+                return Json(new JsonResponse
+                {
+                    Succeeded = false,
+                    Message = string.Join("Error", ModelState.ErrorMessages())
+                });
+            }
+        }
+
+        [HttpPost]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        public JsonResult DeleteRole(int personID, int roleID)
+        {
+            RepositoryResponse repoResponse = Repository.People.DeleteRole(personID, roleID);
+            JsonResponse response = new JsonResponse();
+            if (repoResponse.Succeeded)
+            {
+                response.Succeed(string.Format("Role Definition with ID {0} deleted.", roleID));
+            }
+            else
+            {
+                response.Fail(repoResponse.Message);
+            }
+            return Json(response);
+        }
+
+        #endregion
+
 
         private IEnumerable<object> ConvertPeople(IEnumerable<Person> items)
         {

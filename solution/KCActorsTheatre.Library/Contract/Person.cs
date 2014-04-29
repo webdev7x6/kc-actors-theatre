@@ -18,7 +18,10 @@ namespace KCActorsTheatre.Contract
         public string BioSummary { get; set; }
         public DateTime DateCreated { get; set; }
 
-        private HashSet<ShowInfo> _shows = new HashSet<ShowInfo>();
-        public ICollection<ShowInfo> Shows { get { return _shows; } }
+        //private HashSet<ShowInfo> _shows = new HashSet<ShowInfo>();
+        //public ICollection<ShowInfo> Shows { get { return _shows; } }
+
+        private HashSet<RoleDefinition> _roleDefinitions = new HashSet<RoleDefinition>();
+        public ICollection<RoleDefinition> RoleDefinitions { get { return _roleDefinitions; } }
     }
 }

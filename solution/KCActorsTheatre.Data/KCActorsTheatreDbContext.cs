@@ -26,6 +26,11 @@ namespace KCActorsTheatre.Data
             get { return Set<Person>(); }
         }
 
+        public DbSet<RoleDefinition> RoleDefinitions
+        {
+            get { return Set<RoleDefinition>(); }
+        }
+
         public DbSet<ShowImage> Images
         {
             get { return Set<ShowImage>(); }
@@ -53,17 +58,26 @@ namespace KCActorsTheatre.Data
 
             modelBuilder.Entity<ShowInfo>()
                 .Map(m => m.ToTable("Show", "KCAT"))
-                .HasMany(p => p.People)
-                .WithMany(p => p.Shows)
-                .Map(m =>
-                {
-                    m.ToTable("ShowPerson", "KCAT");
-                    m.MapLeftKey("ShowID");
-                    m.MapRightKey("PersonID");
-                })
+                //.HasMany(p => p.People)
+                //.WithMany(p => p.Shows)
+                //.Map(m =>
+                //{
+                //    m.ToTable("ShowPerson", "KCAT");
+                //    m.MapLeftKey("ShowID");
+                //    m.MapRightKey("PersonID");
+                //})
                 ;
 
             modelBuilder.Entity<Person>().Map(m => m.ToTable("Person", "KCAT"));
+
+            modelBuilder.Entity<RoleDefinition>().Map(m => m.ToTable("RoleDefinition", "KCAT"));
+
+            modelBuilder.Entity<RoleDefinition>()
+                .HasRequired(m => m.Person)
+                .WithMany(p => p.RoleDefinitions)
+                .HasForeignKey(p => p.PersonID)
+                ;
+
             modelBuilder.Entity<ShowImage>().Map(m => m.ToTable("ShowImage", "KCAT"));
             modelBuilder.Entity<ShowVideo>().Map(m => m.ToTable("ShowVideo", "KCAT"));
 
