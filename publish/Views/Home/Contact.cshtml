@@ -22,43 +22,43 @@
 }
 
 <div class="container inner-page">
-	<div class="row-fluid">
-
-        <h3>@page.Title</h3>
-        <p>For more information about The Actors Theatre, including events, volunteer opportunities, or audition schedules, please fill out the form below.</p>
-
-        @using (Html.BeginForm())
-        {
-            <p>
-                @Html.LabelFor(model => model.Name, new { @class = "required" })
-                @Html.TextBoxFor(model => model.Name, new { @minlength = "2", @required = "" })
-            </p>
-
-            <p>
-                @Html.LabelFor(model => model.Email, new { @class = "required" })
-                @Html.TextBoxFor(model => model.Email, new { @type = "email", @required = "" })
-            </p>
-
-            <p>
-                @Html.LabelFor(model => model.PhoneNumber, "Phone Number", new { @class = "required" })
-                @Html.TextBoxFor(model => model.PhoneNumber, new { @required = "" })
-            </p>
-
-            <p>
-                @Html.LabelFor(model => model.MailingAddress, "Mailing Address")
-                @Html.TextBoxFor(model => model.MailingAddress)
-            </p>
-		    
-            <p>
-                @Html.LabelFor(model => model.Comments, new { @class = "required" })
-                @Html.TextAreaFor(model => model.Comments, new { @required = "" })
-            </p>
-
-            <p>
-                <input type="submit" />
-            </p>
-        }
-	</div>
+    <div class="row header-row">
+        <div class="col-xs-12">
+            <h1>Contact // Let&rsquo;s Get in Touch</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12" id="main-content">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <p>For more information about The Actors Theatre, including events, volunteer opportunities, or audition schedules, please fill out the form below.<br /><br /></p>
+                </div>
+            </div>
+            <form role="form" method="post">
+                <div class="row">
+                    <div class="col-sm-5 col-sm-offset-1">
+                        <div class="form-group">
+                            <label for="name1" class="sr-only">Name</label>
+                            <input type="text" class="form-control" id="name1" name="Name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="sr-only">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" name="Email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone1" class="sr-only">Phone Number</label>
+                            <input type="phone" class="form-control" id="phone1" name="PhoneNumber" placeholder="(123) 456-7890" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <label for="comment1" class="sr-only">Comments</label>
+                            <textarea class="form-control" id="comment1" name="Comments" placeholder="Let's Hear It: The Good, The Bad" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-default btn-block btn-lg">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
-
-
