@@ -4,6 +4,7 @@
 
     var mainImageUrl = string.IsNullOrEmpty(Model.Show.MainImageUrl) ? "http://placehold.it/1200x500" : Model.Show.MainImageUrl;
     var mainContentClassString = Model.Show.Season.IsCurrent ? "col-md-9 col-sm-12" : "col-sm-12";
+    var orderedRoles = Model.Show.RoleDefinitions.OrderBy(r => r.Title).ThenBy(r => r.Person.Name);
 }
 
 @section styles
@@ -130,15 +131,15 @@
                     </div>
                 </div>
             }
-            @if (Model.Show.People != null && Model.Show.People.Any())
+            @if (@orderedRoles.Any())
             {
                 <div class="row show-detail-item">
                     <div class="col-sm-12">
                         <h2>Cast</h2>
                         <ul id="cast">
-                            @foreach (var person in @Model.Show.People)
+                            @foreach (var role in @orderedRoles)
                             {
-                                <li><span class="role">@person.Title:</span> <a href="#">@person.Name</a></li>
+                                <li><span class="role">@role.Title:</span> <a href="#">@role.Person.Name</a></li>
                             }
                         </ul>
                     </div>
