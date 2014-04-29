@@ -157,7 +157,7 @@ namespace KCActorsTheatre.Web
             configBuilder.Content<HeroImageContent>("Hero Image")
                 .UsesView("ImageContent")
                 .HasIconCssClass("ui-icon-image")
-                .HasDataEntryHint("Hero images are 870px wide with a max height of 400px.")
+                .HasDataEntryHint("Hero images are 1200px wide with a height of 500px.")
                 .WithProperties(new FileContentProperties
                 {
 
@@ -167,8 +167,8 @@ namespace KCActorsTheatre.Web
                 })
                 .WithProperties(new ImageContentProperties
                 {
-                    ExactWidth = 870,
-                    MaxHeight = 400
+                    ExactWidth = 1200,
+                    MaxHeight = 500
                 })
             ;
 
