@@ -273,6 +273,17 @@ namespace KCActorsTheatre.Web
                 .SingleUse()
                 ;
 
+            app.HasController<Controllers.PeopleController>("People Landing Page", "Index")
+                .ForPageType("Web Page")
+                .HasContentGroup("Body Copy")
+                .SingleUse()
+                ;
+
+            app.HasController<Controllers.PeopleController>("Person Detail Page", "Person")
+                .ForPageType("Web Page")
+                .SingleUse()
+                ;
+
             app.HasController<Controllers.ShowController>("Show Detail Page", "Item")
                 .ForPageType("Web Page")
                 .SingleUse()

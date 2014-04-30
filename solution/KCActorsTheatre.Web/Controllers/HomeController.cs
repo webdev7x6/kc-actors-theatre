@@ -73,7 +73,7 @@ namespace KCActorsTheatre.Web.Controllers
                 email.To = app.ContactUsEmail; ;
                 email.Subject = "KCAT Website Contact Us Submission";
                 email.Message = message.ToString();
-                //email.Send();
+                email.Send();
 
                 Response.Redirect("/contact-thank-you");
             }
