@@ -41,5 +41,29 @@ namespace KCActorsTheatre.Web.Controllers
             }
             return View("Item", model);
         }
+
+        public ActionResult Founders()
+        {
+            var model = new PeopleViewModel();
+            InitializeViewModel(model);
+            model.People = repository.People.GetByTitle("founder").Entity;
+            return View(model);
+        }
+
+        public ActionResult Board()
+        {
+            var model = new PeopleViewModel();
+            InitializeViewModel(model);
+            model.People = repository.People.GetByTitle("board").Entity;
+            return View(model);
+        }
+
+        public ActionResult Artists()
+        {
+            var model = new PeopleViewModel();
+            InitializeViewModel(model);
+            model.People = repository.People.GetByTitle("artist").Entity;
+            return View(model);
+        }
     }
 }
