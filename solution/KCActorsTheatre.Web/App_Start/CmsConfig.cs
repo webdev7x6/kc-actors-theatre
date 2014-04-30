@@ -276,6 +276,23 @@ namespace KCActorsTheatre.Web
             app.HasController<Controllers.PeopleController>("People Landing Page", "Index")
                 .ForPageType("Web Page")
                 .HasContentGroup("Body Copy")
+                ;
+
+            app.HasController<Controllers.PeopleController>("Founders Page", "Founders")
+                .ForPageType("Web Page")
+                .HasContentGroup("Body Copy")
+                .SingleUse()
+                ;
+
+            app.HasController<Controllers.PeopleController>("Board Page", "Board")
+                .ForPageType("Web Page")
+                .HasContentGroup("Body Copy")
+                .SingleUse()
+                ;
+
+            app.HasController<Controllers.PeopleController>("Artists Page", "Artist")
+                .ForPageType("Web Page")
+                .HasContentGroup("Body Copy")
                 .SingleUse()
                 ;
 

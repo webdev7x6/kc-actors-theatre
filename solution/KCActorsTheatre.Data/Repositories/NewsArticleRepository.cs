@@ -94,8 +94,8 @@ namespace KCActorsTheatre.Data.Repositories
             {
                 var events = All()
                     .Where(p => p.IsPublished == true)
-                    .OrderBy(p => p.ArticleDate.Value)
-                    .ThenBy(p => p.DateCreated)
+                    .OrderByDescending(p => p.ArticleDate.Value)
+                    .ThenBy(p => p.Title)
                     .ToList()
                 ;
                 if (skip.HasValue)

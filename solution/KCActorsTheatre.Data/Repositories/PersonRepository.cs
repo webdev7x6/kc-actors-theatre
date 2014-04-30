@@ -127,6 +127,23 @@ namespace KCActorsTheatre.Data.Repositories
             });
         }
 
+        public RepositoryResponse<IEnumerable<Person>> GetByTitle(string title)
+        {
+            return CatchError<RepositoryResponse<IEnumerable<Person>>>(() =>
+            {
+                var people = DbSet
+                    .Where(p => string.Equals(title, p.Title, StringComparison.OrdinalIgnoreCase))
+                    .OrderBy(p => p.Name)
+                    .ThenBy(p => p.DateCreated)
+                    .ToList()
+                ;
+                var response = new RepositoryResponse<IEnumerable<Person>>();
+                response.Succeed(string.Format("{0} item(s) found.", people.Count()));
+                response.Entity = people;
+                return response;
+            });
+        }
+
 
         public RepositoryResponse<Person> GetSingle(int id)
         {

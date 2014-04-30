@@ -1,0 +1,31 @@
+﻿@model KCActorsTheatre.Web.ViewModels.PeopleViewModel
+
+<div class="row">
+    <div class="col-sm-12" id="main-content">
+        @if (Model.People != null && Model.People.Any())
+        {
+            foreach (var person in Model.People)
+            {
+                <div class="row person">
+                    <div class="col-sm-3">
+                        <img src="@person.ImageUrl" alt="@person.Name">
+                    </div>
+                    <div class="col-sm-9">
+                        <h3>@person.Name</h3>
+                        <h6>@person.Title</h6>
+                        @Html.Raw(person.BioDetail)
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="row person">
+                <div class="col-sm-12">
+                    <h3>We are working on adding more information about our people.</h3>
+                    <p>Please check back soon.</p>
+                </div>
+            </div>
+        }
+    </div>
+</div>

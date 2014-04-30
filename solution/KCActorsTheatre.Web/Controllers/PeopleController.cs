@@ -14,11 +14,13 @@ namespace KCActorsTheatre.Web.Controllers
         {
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string title)
         {
             var model = new PeopleViewModel();
             InitializeViewModel(model);
-            model.People = repository.People.GetForWebsite(9, 0).Entity;
+            model.People = string.IsNullOrWhiteSpace(title) 
+                ? repository.People.GetAll().Entity 
+                : repository.People.GetByTitle(title).Entity;
             return View(model);
         }
 
@@ -38,6 +40,30 @@ namespace KCActorsTheatre.Web.Controllers
                 throw ex;
             }
             return View("Item", model);
+        }
+
+        public ActionResult Founders()
+        {
+            var model = new PeopleViewModel();
+            InitializeViewModel(model);
+            model.People = repository.People.GetByTitle("founder").Entity;
+            return View(model);
+        }
+
+        public ActionResult Board()
+        {
+            var model = new PeopleViewModel();
+            InitializeViewModel(model);
+            model.People = repository.People.GetByTitle("board").Entity;
+            return View(model);
+        }
+
+        public ActionResult Artists()
+        {
+            var model = new PeopleViewModel();
+            InitializeViewModel(model);
+            model.People = repository.People.GetByTitle("artist").Entity;
+            return View(model);
         }
     }
 }

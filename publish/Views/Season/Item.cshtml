@@ -19,7 +19,7 @@
         <div class="col-sm-12" id="main-content">
             @if (Model.Season.Shows != null && Model.Season.Shows.Any())
             {
-                foreach (var show in Model.Season.Shows)
+                foreach (var show in Model.Season.Shows.OrderByDescending(p => p.StartDate))
                 {
                     <div class="row show-preview">
                         <div class="col-sm-12">
