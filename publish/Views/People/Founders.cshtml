@@ -1,0 +1,14 @@
+﻿@model KCActorsTheatre.Web.ViewModels.PeopleViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+
+<div class="container inner-page">
+    <div class="row header-row">
+        <div class="col-xs-12">
+            <h1>Our People</h1>
+            <p>Brief descriptor text about our people in general [need copy].</p>
+        </div>
+    </div>
+    @Html.Partial("_People", Model)
+</div>
