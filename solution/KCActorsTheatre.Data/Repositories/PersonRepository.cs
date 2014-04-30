@@ -132,7 +132,7 @@ namespace KCActorsTheatre.Data.Repositories
             return CatchError<RepositoryResponse<IEnumerable<Person>>>(() =>
             {
                 var people = DbSet
-                    .Where(p => string.Equals(title, p.Title, StringComparison.OrdinalIgnoreCase))
+                    .Where(p => p.Title == title)
                     .OrderBy(p => p.Name)
                     .ThenBy(p => p.DateCreated)
                     .ToList()

@@ -46,7 +46,7 @@ namespace KCActorsTheatre.Web.Controllers
         {
             var model = new PeopleViewModel();
             InitializeViewModel(model);
-            model.People = repository.People.GetByTitle("founder").Entity;
+            model.People = repository.People.GetByTitle("Founder").Entity;
             return View(model);
         }
 
@@ -54,7 +54,7 @@ namespace KCActorsTheatre.Web.Controllers
         {
             var model = new PeopleViewModel();
             InitializeViewModel(model);
-            model.People = repository.People.GetByTitle("board").Entity;
+            model.People = repository.People.GetByTitle("Board").Entity;
             return View(model);
         }
 
@@ -62,7 +62,7 @@ namespace KCActorsTheatre.Web.Controllers
         {
             var model = new PeopleViewModel();
             InitializeViewModel(model);
-            model.People = repository.People.GetByTitle("artist").Entity;
+            model.People = repository.People.GetByTitle("Artist").Entity;
             return View(model);
         }
     }
