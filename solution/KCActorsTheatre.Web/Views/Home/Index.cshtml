@@ -48,10 +48,11 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
+                <h1 style="text-align:center; color:#ef433b;">Season 10</h1>
                 <div class="panel-group" id="accordion">
                     @if (Model.CurrentShows != null && Model.CurrentShows.Any())
                     {
-                        foreach (var show in Model.CurrentShows)
+                        foreach (var show in Model.CurrentShows.OrderByDescending(p => p.StartDate))
                         {
                             <div class="panel panel-default">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse-@show.ShowID">
@@ -84,6 +85,7 @@
                                                 </div>
                                             }
                                         </div>
+                                        <div class="row"><a href="/show/item/@show.ShowID" class="btn btn-lg btn-default">Learn More</a> <a href="https://tickets.cto.umkc.edu/public/load_screen.asp" target="_blank" class="btn btn-lg btn-primary">Buy Tickets</a></div>
                                     </div>
                                 </div>
                             </div>
