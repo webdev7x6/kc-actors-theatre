@@ -52,7 +52,7 @@
                 <div class="panel-group" id="accordion">
                     @if (Model.CurrentShows != null && Model.CurrentShows.Any())
                     {
-                        foreach (var show in Model.CurrentShows.OrderByDescending(p => p.StartDate))
+                        foreach (var show in Model.CurrentShows.OrderBy(p => p.StartDate))
                         {
                             <div class="panel panel-default">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse-@show.ShowID">
@@ -77,6 +77,7 @@
                                                     <blockquote>@show.Quote</blockquote>
                                                 }
                                                 <p>@show.Summary</p>
+                                                <a href="/show/item/@show.ShowID" class="btn btn-lg btn-default">Learn More</a> <a href="https://tickets.cto.umkc.edu/public/load_screen.asp" target="_blank" class="btn btn-lg btn-primary">Buy Tickets</a>
                                             </div>
                                             @if (!string.IsNullOrWhiteSpace(show.SummaryImageUrl))
                                             {
@@ -85,7 +86,6 @@
                                                 </div>
                                             }
                                         </div>
-                                        <div class="row"><a href="/show/item/@show.ShowID" class="btn btn-lg btn-default">Learn More</a> <a href="https://tickets.cto.umkc.edu/public/load_screen.asp" target="_blank" class="btn btn-lg btn-primary">Buy Tickets</a></div>
                                     </div>
                                 </div>
                             </div>
