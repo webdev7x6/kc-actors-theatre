@@ -1,0 +1,33 @@
+﻿@model KCActorsTheatre.Web.ViewModels.PersonViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var classString = string.IsNullOrWhiteSpace(Model.Person.ImageUrl) ? "col-sm-12" : "col-sm-9";
+}
+
+<div class="container inner-page">
+    <div class="row header-row">
+        <div class="col-xs-12">
+            <h1>Our People</h1>
+            <p>Brief descriptor text about our people in general [need copy].</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12" id="main-content">
+            <div class="row person">
+                @if (!string.IsNullOrWhiteSpace(@Model.Person.ImageUrl))
+                {
+                    <div class="col-sm-3">
+                        <img src="@Model.Person.ImageUrl" alt="@Model.Person.Name">
+                    </div>
+                }
+                <div class="@classString">
+                    <h3>@Model.Person.Name</h3>
+                    <h6>@Model.Person.Title</h6>
+                    @Html.Raw(Model.Person.BioDetail)
+                </div>
+            </div>
+        </div>
+        <!-- Close main-content -->
+    </div>
+    <!-- Close row -->
+</div>

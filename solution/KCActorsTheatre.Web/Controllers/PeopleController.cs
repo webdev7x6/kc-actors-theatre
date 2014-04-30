@@ -39,7 +39,7 @@ namespace KCActorsTheatre.Web.Controllers
             {
                 throw ex;
             }
-            return View("Item", model);
+            return View(model);
         }
 
         public ActionResult Founders()
