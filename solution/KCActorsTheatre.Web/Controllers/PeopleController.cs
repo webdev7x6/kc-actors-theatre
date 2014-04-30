@@ -14,11 +14,13 @@ namespace KCActorsTheatre.Web.Controllers
         {
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string title)
         {
             var model = new PeopleViewModel();
             InitializeViewModel(model);
-            model.People = repository.People.GetForWebsite(9, 0).Entity;
+            model.People = string.IsNullOrWhiteSpace(title) 
+                ? repository.People.GetAll().Entity 
+                : repository.People.GetByTitle(title).Entity;
             return View(model);
         }
 
