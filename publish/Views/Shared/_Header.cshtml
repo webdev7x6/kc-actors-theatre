@@ -32,7 +32,7 @@
                         if (topLevelItem.HasChildren)
                         {
                             <li class="dropdown yamm-fw">
-                                <a href="@topLevelItem.Url.Page.Alias" class="dropdown-toggle" data-hover="dropdown">@topLevelItem.Title</a>
+                                <a href="@topLevelItem.Url.Path" class="dropdown-toggle" data-hover="dropdown">@topLevelItem.Title</a>
                                 <ul class="dropdown-menu" id="drop-@counter">
                                     @if (topLevelItem.Url.Page.CmsKey == "PastSeasons" && Model.PastSeasons != null && Model.PastSeasons.Count() > 0)
                                     {
@@ -43,7 +43,7 @@
                                     }
                                     @foreach (var secondLevelItem in topLevelItem.Children.Where(p => p.IsEnabled).OrderBy(p => p.DisplayOrder))
                                     {
-                                        <li><a href="@secondLevelItem.Url.Page.Alias">@secondLevelItem.Title</a></li>
+                                        <li><a href="@secondLevelItem.Url.Path">@secondLevelItem.Title</a></li>
                                     }
                                 </ul>
                             </li>
@@ -66,7 +66,7 @@
                             }
                             else
                             {
-                                <li><a href="@topLevelItem.Url.Page.Alias">@topLevelItem.Title</a></li>
+                                <li><a href="@topLevelItem.Url.Path">@topLevelItem.Title</a></li>
                             }
                         }
                         counter++;

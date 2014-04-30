@@ -1,0 +1,15 @@
+﻿@using Clickfarm.AppFramework.Extensions;
+@using Clickfarm.Cms.Configuration
+@using Clickfarm.Cms.Core
+@using Clickfarm.Cms.Mvc
+@using KCActorsTheatre.Cms.ContentTypes
+@model Clickfarm.Cms.Admin.Mvc.Areas.Admin.ViewModels.ContentGroupMemberViewModel
+@{
+    RotatorImageContent content = (RotatorImageContent)Model.Content;
+    ContentTypeConfigData config = Model.ContentTypeConfigData;
+}
+<label>Title:</label>
+<div class="display-field editable-format editable nullable" data-property-name="SlideTitle">@content.SlideTitle</div>
+<label>Caption:</label>
+<div class="display-field editable-format editable-textarea nullable" data-property-name="SlideCaption">@content.SlideCaption</div>
+@Html.Partial("/Areas/Admin/Views/Content/HyperlinkContent.cshtml", Model)

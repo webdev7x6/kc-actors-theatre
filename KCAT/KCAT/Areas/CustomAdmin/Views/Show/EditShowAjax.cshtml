@@ -1,0 +1,86 @@
+@model KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.Show.EditShowViewModel
+@using Clickfarm.AppFramework.Extensions
+@using Clickfarm.Cms.Mvc
+@{
+    Layout = null;
+    var entityDescription = "Show";
+}
+@if (Model.HasShow)
+{
+    string peopleList = Model.GetPeopleAsList();
+    if (string.IsNullOrWhiteSpace(peopleList))
+    {
+        peopleList = "Click to edit";
+    }
+    
+    string imageList = Model.GetImagesAsList();
+    if (string.IsNullOrWhiteSpace(imageList))
+    {
+        imageList = "Click to edit";
+    }
+    
+    string videoList = Model.GetVideosAsList();
+    if (string.IsNullOrWhiteSpace(videoList))
+    {
+        videoList = "Click to edit";
+    }
+  
+    <div class="editable-parent item-index-tab model-display" data-tab-type="edit-item" data-item-id="@Model.Show.ShowID">
+        <div class="ui-toolbar-cms">
+            <a href="#" class="refresh-item-link" data-item-id="@Model.Show.ShowID" title="Refresh @entityDescription">Refresh @entityDescription</a>
+            <a href="#" class="delete-item-link" data-item-id="@Model.Show.ShowID" title="Delete @entityDescription">Delete @entityDescription</a>
+        </div>
+        <div class="ui-widget-content ui-corner-all ui-widget-cms">
+            <label>Season:</label>
+            <div class="display-field editable-format editable-select editable-select-season" 
+	             data-editable-select-model="season" 
+	             data-editable-select-load-url="/CustomAdmin/Show/GetSeasons"
+	             data-property-name="SeasonID">@(Model.Show.Season != null ? @Model.Show.Season.Title : string.Empty)
+            </div>
+            <label>Title:</label>
+            <div class="display-field editable-format editable" data-property-name="Title">@Model.Show.Title</div>
+            <label>Summary Image:</label>
+            <div class="display-field editable-format editable-image" data-property-name="SummaryImageUrl">
+                <img src="@(!string.IsNullOrWhiteSpace(Model.Show.SummaryImageUrl) ? Model.Show.SummaryImageUrl : Url.CmsVersionedCdnResource("/images/no-image.png"))" alt="" />
+            </div>
+            <label>Summary:</label>
+            <div class="display-field editable-format editable" data-property-name="Summary">@Model.Show.Summary</div>
+            <label>Main Image:</label>
+            <div class="display-field editable-format editable-image" data-property-name="MainImageUrl">
+                <img src="@(!string.IsNullOrWhiteSpace(Model.Show.MainImageUrl) ? Model.Show.MainImageUrl : Url.CmsVersionedCdnResource("/images/no-image.png"))" alt="" />
+            </div>
+            <label>Slideshow Images:</label>
+            <div class="display-field editable-format edit-associated-images pointer">@Html.Raw(imageList)</div>
+            <label>Slideshow Videos:</label>
+            <div class="display-field editable-format edit-associated-videos pointer">@Html.Raw(videoList)</div>
+            <label>Body:</label>
+            <div class="display-field editable-format editable-html" data-property-name="Body">@Html.Raw(Model.Show.Body)</div>
+            <label>Reviews:</label>
+            <div class="display-field editable-format editable-html" data-property-name="Reviews">@Html.Raw(Model.Show.Reviews)</div>
+            <label>Quote:</label>
+            <div class="display-field editable-format editable" data-property-name="Quote">@Html.Raw(Model.Show.Quote)</div>
+            <label>People:</label>
+            <div class="display-field editable-format edit-associated-people pointer">@Html.Raw(peopleList)</div>
+            <label>Education:</label>
+            <div class="display-field editable-format editable-html" data-property-name="Education">@Html.Raw(Model.Show.Education)</div>
+            <label>Dates &amp; Times:</label>
+            <div class="display-field editable-format editable-html" data-property-name="DatesAndTimes">@Html.Raw(Model.Show.DatesAndTimes)</div>
+            <label>Venue:</label>
+            <div class="display-field editable-format editable-html" data-property-name="Venue">@Html.Raw(Model.Show.Venue)</div>
+            <label>Start Date:</label>
+            <div class="display-field editable-format editable-datepicker" data-property-name="StartDate">@(Model.Show.StartDate.HasValue ? Model.DateConverter.Convert(Model.Show.StartDate.Value).ToUtc().ForCmsUser().ToShortDateString() : string.Empty)</div>
+            <label>End Date:</label>
+            <div class="display-field editable-format editable-datepicker" data-property-name="EndDate">@(Model.Show.EndDate.HasValue ? Model.DateConverter.Convert(Model.Show.EndDate.Value).ToUtc().ForCmsUser().ToShortDateString() : string.Empty)</div>
+            <label>Is Published?</label>
+            <div class="display-field editable-format editable-yes-no-boolean" data-property-name="IsPublished">@(Model.Show.IsPublished ? "Yes" : "No")</div>
+            <label>Date Created:</label>
+            <div class="display-field">@(Model.DateConverter.Convert(Model.Show.DateCreated).FromUtc().ForCmsUser().ToString("g"))</div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="message">
+        @entityDescription not found.
+    </div>
+}

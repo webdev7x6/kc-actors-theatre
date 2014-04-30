@@ -1,0 +1,32 @@
+@model KCActorsTheatre.Web.Areas.CustomAdmin.ViewModels.Season.EditSeasonViewModel
+@using Clickfarm.AppFramework.Extensions
+@using Clickfarm.Cms.Mvc
+@{
+    Layout = null;
+    var entityDescription = "Season";
+}
+@if (Model.HasSeason)
+{
+    <div class="editable-parent item-index-tab model-display" data-tab-type="edit-item" data-item-id="@Model.Season.SeasonID">
+        <div class="ui-toolbar-cms">
+            <a href="#" class="refresh-item-link" data-item-id="@Model.Season.SeasonID" title="Refresh @entityDescription">Refresh @entityDescription</a>
+            <a href="#" class="delete-item-link" data-item-id="@Model.Season.SeasonID" title="Delete @entityDescription">Delete @entityDescription</a>
+        </div>
+        <div class="ui-widget-content ui-corner-all ui-widget-cms">
+            <label>Title:</label>
+            <div class="display-field editable-format editable" data-property-name="Title">@Model.Season.Title</div>
+            <label>Main Image:</label>
+            <div class="display-field editable-format editable-image" data-property-name="MainImageUrl">@Model.Season.MainImageUrl</div>
+            <label>Is Current Season?</label>
+            <div class="display-field editable-format editable-yes-no-boolean" data-property-name="IsCurrent">@(Model.Season.IsCurrent ? "Yes" : "No")</div>
+            <label>Date Created:</label>
+            <div class="display-field">@(Model.DateConverter.Convert(Model.Season.DateCreated).FromUtc().ForCmsUser().ToString("g"))</div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="message">
+        @entityDescription not found.
+    </div>
+}

@@ -1,0 +1,27 @@
+﻿@using Clickfarm.Cms.Mvc
+@model KCActorsTheatre.Web.ViewModels.KCActorsTheatreViewModel
+@{
+    var app = (KCActorsTheatre.Library.AppTypes.KCActorsTheatreApp)Model.RequestContent.App;
+    var rq = Model.RequestContent;
+    var page = (Clickfarm.Cms.Core.WebPage)rq.Page;
+    var pageTitle = (page != null && page.HtmlTitle != string.Empty) ? page.HtmlTitle : "Kansas City Actors Theatre";
+    var keywords = (page != null && page.MetaKeywords != string.Empty) ? page.MetaKeywords : "";
+    var description = (page != null && page.MetaDescription != string.Empty) ? page.MetaDescription : "";
+}
+<!doctype html>
+<html lang="en">
+    <head>
+        @Html.Partial("_HeaderScripts", Model)
+        @RenderSection("styles", required: false)
+    </head>
+    <body>
+        @Html.Partial("_Header", Model)
+        <div id="wrap">
+            @RenderBody()
+            <div id="push"></div>
+        </div>
+        @Html.Partial("_Footer", Model)
+        @Html.Partial("_FooterScripts", Model)
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

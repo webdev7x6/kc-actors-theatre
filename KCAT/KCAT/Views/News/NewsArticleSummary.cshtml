@@ -1,0 +1,17 @@
+﻿@using Clickfarm.Cms.Mvc
+@using KCActorsTheatre
+@using KCActorsTheatre.Cms
+@model KCActorsTheatre.Contract.Article
+<div class="row news">
+    <div class="col-sm-1">
+        <div class="date-callout">
+            <h5>@Model.ShortDate</h5>
+        </div>
+    </div>
+    <div class="col-sm-11">
+        <h3>@Model.Title</h3>
+        <h6>@Model.ExtendedDate &ndash; @Model.AuthorOrDefault</h6>
+        <p>@Model.Summary</p>
+        <button class="read-more" data-article-id="@Model.ArticleID" class="btn btn-default btn-lg">Read More</button>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+﻿@using Clickfarm.Cms.Mvc
+@using Clickfarm.Cms.Core
+@model KCActorsTheatre.Web.ViewModels.KCActorsTheatreViewModel
+@{
+    var footerNav = Model.RequestContent.Menus.Where(m => m.Name.Equals("Footer Navigation")).FirstOrDefault();
+    var app = (KCActorsTheatre.Library.AppTypes.KCActorsTheatreApp)Model.RequestContent.App;
+}
+
+<footer id="footer">
+    <div class="container">
+        <div class="row main-footer">
+            <div class="col-xs-6">
+                <p>
+                    <a href="#">Facebook</a>
+                </p>
+                <p>
+                    <a href="#">Twitter</a>
+                </p>
+            </div>
+            <div class="col-xs-6">
+                <p class="text-right">
+                    <a href="/contact-us">Contact</a>
+                </p>
+                <p class="text-right">
+                    <a href="#">Press</a>
+                </p>
+                <p class="text-right">
+                    <a href="#">Affiliations</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
