@@ -117,15 +117,21 @@ namespace KCActorsTheatre.Web
 
             configBuilder.DefaultMachine()
                 .UsesLocalCdnPath("common/Cdn")
-                .UsesConnectionString("Workstation")
+                .UsesConnectionString(Constants.MachineName_Prod)
+                .IsProduction();
             ;
-            configBuilder.Machine(Constants.MachineName_Dev)
-                .UsesLocalCdnPath("common/Cdn")
-            ;
-            configBuilder.Machine(Constants.MachineName_Prod)
-                .UsesLocalCdnPath("common/Cdn")
-                .IsProduction()
-            ;
+
+            //configBuilder.DefaultMachine()
+            //    .UsesLocalCdnPath("common/Cdn")
+            //    .UsesConnectionString("Workstation")
+            //;
+            //configBuilder.Machine(Constants.MachineName_Dev)
+            //    .UsesLocalCdnPath("common/Cdn")
+            //;
+            //configBuilder.Machine(Constants.MachineName_Prod)
+            //    .UsesLocalCdnPath("common/Cdn")
+            //    .IsProduction()
+            //;
 
             #endregion
 
