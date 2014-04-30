@@ -16,14 +16,16 @@
             {
                 foreach (var person in Model.People)
                 {
+                    var classString = string.IsNullOrWhiteSpace(person.ImageUrl) ? "col-sm-12" : "col-sm-9";
+
                     <div class="row person">
-                        <div class="col-sm-3">
-                            @if (!string.IsNullOrWhiteSpace(person.ImageUrl))
-                            {
+                        @if (!string.IsNullOrWhiteSpace(person.ImageUrl))
+                        {
+                            <div class="col-sm-3">
                                 <img src="@person.ImageUrl" alt="@person.Name" />
-                            }
-                        </div>
-                        <div class="col-sm-9">
+                            </div>
+                        }
+                        <div class="@classString">
                             <h3>@person.Name</h3>
                             <h6>@person.Title</h6>
                             @Html.Raw(person.BioDetail)
