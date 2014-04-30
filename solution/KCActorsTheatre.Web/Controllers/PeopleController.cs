@@ -22,7 +22,7 @@ namespace KCActorsTheatre.Web.Controllers
             return View(model);
         }
 
-        public ActionResult Item(int id)
+        public ActionResult Person(int id)
         {
             var model = new PersonViewModel();
             InitializeViewModel(model);
