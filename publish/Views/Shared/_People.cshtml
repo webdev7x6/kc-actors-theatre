@@ -11,9 +11,9 @@
                         <img src="@person.ImageUrl" alt="@person.Name">
                     </div>
                     <div class="col-sm-9">
-                        <h3>@person.Name</h3>
+                        <h3><a href="/people/person?id=@person.PersonID">@person.Name</a></h3>
                         <h6>@person.Title</h6>
-                        @Html.Raw(person.BioDetail)
+                        <p>person.BioSummary</p>
                     </div>
                 </div>
             }

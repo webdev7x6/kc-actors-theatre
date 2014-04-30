@@ -136,7 +136,7 @@
                         <ul id="cast">
                             @foreach (var role in @orderedRoles)
                             {
-                                <li><span class="role">@role.Title:</span> <a href="#">@role.Person.Name</a></li>
+                                <li><span class="role">@role.Title:</span> <a href="/people/person?id=@role.Person.PersonID">@role.Person.Name</a></li>
                             }
                         </ul>
                     </div>
@@ -179,7 +179,7 @@
             <div class="col-md-3 col-sm-12" id="sidebar">
                 <div class="row show-sidebar-item hidden-xs">
                     <div class="col-sm-12">
-                        <button class="btn btn-default btn-block btn-buy">Buy Tickets</button>
+                        <a href="https://tickets.cto.umkc.edu/public/load_screen.asp" target="_blank" class="btn btn-default btn-block btn-buy">Buy Tickets</a>
                     </div>
                 </div>
                 @if (!string.IsNullOrWhiteSpace(Model.Show.DatesAndTimes))

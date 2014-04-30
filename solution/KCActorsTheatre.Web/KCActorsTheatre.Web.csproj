@@ -535,7 +535,7 @@
     <Content Include="Views\Season\Item.cshtml" />
     <Content Include="Views\Home\InnerHero.cshtml" />
     <Content Include="Views\People\Index.cshtml" />
-    <Content Include="Views\People\Item.cshtml" />
+    <Content Include="Views\People\Person.cshtml" />
     <Content Include="Views\People\Founders.cshtml" />
     <Content Include="Views\People\Artists.cshtml" />
     <Content Include="Views\People\Board.cshtml" />

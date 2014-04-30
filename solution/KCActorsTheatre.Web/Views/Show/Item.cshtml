@@ -136,7 +136,7 @@
                         <ul id="cast">
                             @foreach (var role in @orderedRoles)
                             {
-                                <li><span class="role">@role.Title:</span> <a href="#">@role.Person.Name</a></li>
+                                <li><span class="role">@role.Title:</span> <a href="/people/person?id=@role.Person.PersonID">@role.Person.Name</a></li>
                             }
                         </ul>
                     </div>
