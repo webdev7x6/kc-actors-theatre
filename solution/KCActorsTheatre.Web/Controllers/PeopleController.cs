@@ -62,7 +62,7 @@ namespace KCActorsTheatre.Web.Controllers
         {
             var model = new PeopleViewModel();
             InitializeViewModel(model);
-            model.People = repository.People.GetByTitle("Artist").Entity;
+            model.People = repository.People.GetByTitle("Core Artistic Company").Entity;
             return View(model);
         }
     }
