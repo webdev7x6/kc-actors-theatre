@@ -290,7 +290,7 @@ namespace KCActorsTheatre.Web
                 .SingleUse()
                 ;
 
-            app.HasController<Controllers.PeopleController>("Artists Page", "Artist")
+            app.HasController<Controllers.PeopleController>("Artists Page", "Artists")
                 .ForPageType("Web Page")
                 .HasContentGroup("Body Copy")
                 .SingleUse()
