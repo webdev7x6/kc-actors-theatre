@@ -1,13 +1,16 @@
-﻿@model KCActorsTheatre.Web.ViewModels.PeopleViewModel
+﻿@using Clickfarm.Cms.Mvc
+@model KCActorsTheatre.Web.ViewModels.PeopleViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml"; 
+    var req = Model.RequestContent;
+    var page = req.Page as Clickfarm.Cms.Core.WebPage;
 }
 
 <div class="container inner-page">
     <div class="row header-row">
         <div class="col-xs-12">
             <h1>Our People</h1>
-            <p>Brief descriptor text about our people in general [need copy].</p>
+            <p>@Html.Content(page, "Body Copy")</p>
         </div>
     </div>
     <div class="row">

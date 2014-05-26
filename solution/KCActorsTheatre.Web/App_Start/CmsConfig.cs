@@ -117,16 +117,19 @@ namespace KCActorsTheatre.Web
 
             configBuilder.DefaultMachine()
                 .UsesLocalCdnPath("common/Cdn")
-                .UsesConnectionString(Constants.MachineName_Prod)
+                .UsesConnectionString("Workstation")
+                //.UsesConnectionString(Constants.MachineName_Prod)
                 .IsProduction();
+            ;
+
+            configBuilder.Machine(Constants.MachineName_Dev)
+                .UsesLocalCdnPath("common/Cdn")
+                .UsesConnectionString(Constants.MachineName_Dev)
             ;
 
             //configBuilder.DefaultMachine()
             //    .UsesLocalCdnPath("common/Cdn")
             //    .UsesConnectionString("Workstation")
-            //;
-            //configBuilder.Machine(Constants.MachineName_Dev)
-            //    .UsesLocalCdnPath("common/Cdn")
             //;
             //configBuilder.Machine(Constants.MachineName_Prod)
             //    .UsesLocalCdnPath("common/Cdn")
@@ -237,24 +240,18 @@ namespace KCActorsTheatre.Web
                 .UsesEditView("_KCActorsTheatreAppEdit")
                 ;
 
-            app.OnDefaultMachine()
-                .HasHost<CachedRequestContentHandler>("www.kcactors.org", "Live", isPrimary: true)
-                .HasHost<CachedRequestContentHandler>("209.240.84.33", "IP")
+            // DEV
+            app.OnMachine(Constants.MachineName_Dev)
+                .HasHost<PreviewRequestContentHandler>("kcat.agathoskc.com", "Live", isPrimary: true)
+                .HasHost<CachedRequestContentHandler>("216.243.153.209", "IP")
                 ;
 
-            //app.OnDefaultMachine()
-            //    .HasHost<PreviewRequestContentHandler>("localhost", "Live", isPrimary: true)
-            //    ;
-
-            //app.OnMachine(Constants.MachineName_Dev)
-            //    .HasHost<PreviewRequestContentHandler>("kcat.agathoskc.com", "Live", isPrimary: true)
-            //    .HasHost<CachedRequestContentHandler>("216.243.153.209", "IP")
-            //    ;
-
-            //app.OnMachine(Constants.MachineName_Prod)
-            //    .HasHost<CachedRequestContentHandler>("www.kcactors.org", "Live", isPrimary: true)
-            //    .HasHost<CachedRequestContentHandler>("209.240.84.33", "IP")
-            //    ;
+            // PRODUCTION
+            app.OnDefaultMachine()
+                .HasHost<PreviewRequestContentHandler>("localhost", "Local")
+                .HasHost<CachedRequestContentHandler>("www.kcactors.org", "Live", isPrimary: true)
+                .HasHost<CachedRequestContentHandler>("209.240.84.34", "IP")
+                ;
 
             app.HasController<Controllers.HomeController>("Site Map", "SiteMap")
                 .ForPageType("Web Page")

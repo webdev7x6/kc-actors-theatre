@@ -1,0 +1,33 @@
+----------PRODUCTION----------
+
+FTP:
+Server: 		iishost.iphouse.com
+Username: 		kcactors
+Password: 		zxCn4hTq8
+
+DATABASE:
+Server: 		iisdb.iphouse.com
+Username: 		kcactors
+Password: 		zxCn4hTq8
+
+SHARED IP:		209.240.84.34
+
+
+----------DEVELOPMENT----------
+
+FTP--------
+Server: 		216.243.153.209
+User: 			ftpuser
+Password: 		UrHeramfowf1
+
+DATABASE---
+Server: 		216.243.153.209
+saUser: 		sa
+saPassword: 	UrHeramfowf1
+dbUser: 		kcatUser
+dbPassword: 	WC40hPu0B231:
+
+RDP--------
+Server: 		216.243.153.209
+User: 			Administrator
+Password: 		EtCussArlj3
