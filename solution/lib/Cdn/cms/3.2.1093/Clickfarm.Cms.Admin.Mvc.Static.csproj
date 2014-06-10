@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A8C39AC8-5120-4CCF-9727-22B63F368A4F}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Clickfarm.Cms.Admin.Mvc.Static</RootNamespace>
+    <AssemblyName>Clickfarm.Cms.Admin.Mvc.Static</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\admin.index.css" />
+    <Content Include="css\admin-global.css" />
+    <Content Include="css\app.index.css" />
+    <Content Include="css\cms.linkBuilder.css" />
+    <Content Include="css\file-manager.show-manager.css" />
+    <Content Include="css\jquery-ui\themes\clickfarm\images\ui-bg_diagonals-medium_15_b32320_40x40.png" />
+    <Content Include="css\jquery-ui\themes\clickfarm\images\ui-bg_diagonals-medium_35_a99a6f_40x40.png" />
+    <Content Include="css\jquery-ui\themes\clickfarm\images\ui-bg_diagonals-medium_35_fea640_40x40.png" />
+    <Content Include="css\jquery-ui\themes\clickfarm\images\ui-bg_flat_0_ffffff_40x100.png" />
+    <Content Include="css\jquery-ui\themes\clickfarm\images\ui-bg_glass_65_e8e3d3_1x400.png" />
+    <Content Include="css\jquery-ui\themes\clickfarm\jquery-ui-1.8.23.custom.css" />
+    <Content Include="css\kendo\styles\Black\editor.png" />
+    <Content Include="css\kendo\styles\Black\imagebrowser.png" />
+    <Content Include="css\kendo\styles\Black\loading-image.gif" />
+    <Content Include="css\kendo\styles\Black\loading.gif" />
+    <Content Include="css\kendo\styles\Black\slider-h.gif" />
+    <Content Include="css\kendo\styles\Black\slider-v.gif" />
+    <Content Include="css\kendo\styles\Black\sprite.png" />
+    <Content Include="css\kendo\styles\BlueOpal\editor.png" />
+    <Content Include="css\kendo\styles\BlueOpal\imagebrowser.png" />
+    <Content Include="css\kendo\styles\BlueOpal\loading-image.gif" />
+    <Content Include="css\kendo\styles\BlueOpal\loading.gif" />
+    <Content Include="css\kendo\styles\BlueOpal\slider-h.gif" />
+    <Content Include="css\kendo\styles\BlueOpal\slider-v.gif" />
+    <Content Include="css\kendo\styles\BlueOpal\sprite.png" />
+    <Content Include="css\kendo\styles\Default\editor.png" />
+    <Content Include="css\kendo\styles\Default\imagebrowser.png" />
+    <Content Include="css\kendo\styles\Default\loading-image.gif" />
+    <Content Include="css\kendo\styles\Default\loading.gif" />
+    <Content Include="css\kendo\styles\Default\slider-h.gif" />
+    <Content Include="css\kendo\styles\Default\slider-v.gif" />
+    <Content Include="css\kendo\styles\Default\sprite.png" />
+    <Content Include="css\kendo\styles\images\android-sprite.png" />
+    <Content Include="css\kendo\styles\images\iconmasks.svg" />
+    <Content Include="css\kendo\styles\images\ios-sprite.png" />
+    <Content Include="css\kendo\styles\kendo.black.min.css" />
+    <Content Include="css\kendo\styles\kendo.blueopal.min.css" />
+    <Content Include="css\kendo\styles\kendo.common.min.css" />
+    <Content Include="css\kendo\styles\kendo.dataviz.min.css" />
+    <Content Include="css\kendo\styles\kendo.default.min.css" />
+    <Content Include="css\kendo\styles\kendo.metro.min.css" />
+    <Content Include="css\kendo\styles\kendo.mobile.all.min.css" />
+    <Content Include="css\kendo\styles\kendo.mobile.android2.min.css" />
+    <Content Include="css\kendo\styles\kendo.mobile.android4.min.css" />
+    <Content Include="css\kendo\styles\kendo.mobile.blackberry.min.css" />
+    <Content Include="css\kendo\styles\kendo.mobile.ios.min.css" />
+    <Content Include="css\kendo\styles\kendo.mobile.meego.min.css" />
+    <Content Include="css\kendo\styles\kendo.silver.min.css" />
+    <Content Include="css\kendo\styles\Metro\editor.png" />
+    <Content Include="css\kendo\styles\Metro\imagebrowser.png" />
+    <Content Include="css\kendo\styles\Metro\loading-image.gif" />
+    <Content Include="css\kendo\styles\Metro\loading.gif" />
+    <Content Include="css\kendo\styles\Metro\slider-h.gif" />
+    <Content Include="css\kendo\styles\Metro\slider-v.gif" />
+    <Content Include="css\kendo\styles\Metro\sprite.png" />
+    <Content Include="css\kendo\styles\Silver\editor.png" />
+    <Content Include="css\kendo\styles\Silver\imagebrowser.png" />
+    <Content Include="css\kendo\styles\Silver\loading-image.gif" />
+    <Content Include="css\kendo\styles\Silver\loading.gif" />
+    <Content Include="css\kendo\styles\Silver\slider-h.gif" />
+    <Content Include="css\kendo\styles\Silver\slider-v.gif" />
+    <Content Include="css\kendo\styles\Silver\sprite.png" />
+    <Content Include="css\kendo\styles\textures\glass.png" />
+    <Content Include="css\kendo\styles\textures\highlight.png" />
+    <Content Include="css\megamenu\skins\images\bg_light_tan.png" />
+    <Content Include="css\megamenu\skins\light_tan.css" />
+    <Content Include="css\sign-in.index.css" />
+    <Content Include="css\jquery-ui\themes\clickfarm\images\ui-bg_diagonals-medium_50_e8e3d3_40x40.png" />
+    <Content Include="css\jquery-ui\themes\clickfarm\images\ui-bg_diagonals-medium_65_fea640_40x40.png" />
+    <Content Include="css\jquery-ui\themes\clickfarm\images\ui-bg_diagonals-small_100_a99a6f_40x40.png" />
+    <Content Include="css\jquery-ui\themes\clickfarm\images\ui-bg_flat_0_403916_40x100.png" />
+    <Content Include="css\jquery-ui\themes\clickfarm\images\ui-bg_flat_100_faf9f5_40x100.png" />
+    <Content Include="css\jquery-ui\themes\clickfarm\images\ui-bg_glass_0_e8e3d3_1x400.png" />
+    <Content Include="css\jquery-ui\themes\clickfarm\images\ui-bg_glass_0_faf9f5_1x400.png" />
+    <Content Include="css\jquery-ui\themes\clickfarm\images\ui-bg_glass_50_e8e3d3_1x400.png" />
+    <Content Include="css\jquery-ui\themes\clickfarm\images\ui-bg_loop_25_b32320_21x21.png" />
+    <Content Include="css\jquery-ui\themes\clickfarm\images\ui-icons_0076a3_256x240.png" />
+    <Content Include="css\jquery-ui\themes\clickfarm\images\ui-icons_64592f_256x240.png" />
+    <Content Include="css\jquery-ui\themes\clickfarm\images\ui-icons_b32320_256x240.png" />
+    <Content Include="css\jquery-ui\themes\clickfarm\images\ui-icons_faf9f5_256x240.png" />
+    <Content Include="css\jquery-ui\themes\clickfarm\jquery-ui-1.8.19.custom.css" />
+    <Content Include="css\jquery-ui\themes\pepper-grinder\images\ui-bg_diagonal-maze_20_6e4f1c_10x10.png" />
+    <Content Include="css\jquery-ui\themes\pepper-grinder\images\ui-bg_diagonal-maze_40_000000_10x10.png" />
+    <Content Include="css\jquery-ui\themes\pepper-grinder\images\ui-bg_fine-grain_10_eceadf_60x60.png" />
+    <Content Include="css\jquery-ui\themes\pepper-grinder\images\ui-bg_fine-grain_10_f8f7f6_60x60.png" />
+    <Content Include="css\jquery-ui\themes\pepper-grinder\images\ui-bg_fine-grain_15_eceadf_60x60.png" />
+    <Content Include="css\jquery-ui\themes\pepper-grinder\images\ui-bg_fine-grain_15_f7f3de_60x60.png" />
+    <Content Include="css\jquery-ui\themes\pepper-grinder\images\ui-bg_fine-grain_15_ffffff_60x60.png" />
+    <Content Include="css\jquery-ui\themes\pepper-grinder\images\ui-bg_fine-grain_65_654b24_60x60.png" />
+    <Content Include="css\jquery-ui\themes\pepper-grinder\images\ui-bg_fine-grain_68_b83400_60x60.png" />
+    <Content Include="css\jquery-ui\themes\pepper-grinder\images\ui-icons_222222_256x240.png" />
+    <Content Include="css\jquery-ui\themes\pepper-grinder\images\ui-icons_3572ac_256x240.png" />
+    <Content Include="css\jquery-ui\themes\pepper-grinder\images\ui-icons_8c291d_256x240.png" />
+    <Content Include="css\jquery-ui\themes\pepper-grinder\images\ui-icons_b83400_256x240.png" />
+    <Content Include="css\jquery-ui\themes\pepper-grinder\images\ui-icons_fbdb93_256x240.png" />
+    <Content Include="css\jquery-ui\themes\pepper-grinder\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="css\jquery-ui\themes\pepper-grinder\jquery-ui-1.8.16.custom.css" />
+    <Content Include="css\megamenu\megamenu.css" />
+    <Content Include="css\megamenu\skins\black.css" />
+    <Content Include="css\megamenu\skins\blue.css" />
+    <Content Include="css\megamenu\skins\green.css" />
+    <Content Include="css\megamenu\skins\grey.css" />
+    <Content Include="css\megamenu\skins\images\arrow.png" />
+    <Content Include="css\megamenu\skins\images\arrow_off.png" />
+    <Content Include="css\megamenu\skins\images\arrow_on.png" />
+    <Content Include="css\megamenu\skins\images\bg_black.png" />
+    <Content Include="css\megamenu\skins\images\bg_blue.png" />
+    <Content Include="css\megamenu\skins\images\bg_green.png" />
+    <Content Include="css\megamenu\skins\images\bg_grey.png" />
+    <Content Include="css\megamenu\skins\images\bg_light_blue.png" />
+    <Content Include="css\megamenu\skins\images\bg_mega_hdr.png" />
+    <Content Include="css\megamenu\skins\images\bg_mega_hdr_full.png" />
+    <Content Include="css\megamenu\skins\images\bg_mega_hdr_on.png" />
+    <Content Include="css\megamenu\skins\images\bg_orange.png" />
+    <Content Include="css\megamenu\skins\images\bg_red.png" />
+    <Content Include="css\megamenu\skins\images\bg_sub.png" />
+    <Content Include="css\megamenu\skins\images\bg_sub_left.png" />
+    <Content Include="css\megamenu\skins\images\bg_white.png" />
+    <Content Include="css\megamenu\skins\light_blue.css" />
+    <Content Include="css\megamenu\skins\orange.css" />
+    <Content Include="css\megamenu\skins\red.css" />
+    <Content Include="css\megamenu\skins\white.css" />
+    <Content Include="images\background-gradient-03.png" />
+    <Content Include="images\file-type-icons-16.png" />
+    <Content Include="images\file-type-icons-32.png" />
+    <Content Include="images\file-type-icons-48.png" />
+    <Content Include="js\cms.menuitem.js" />
+    <Content Include="js\cms.js" />
+    <Content Include="js\cms.membership.index.js" />
+    <Content Include="js\cms.membership.js" />
+    <Content Include="js\cms.url.js" />
+    <Content Include="js\cms.linkBuilder.js" />
+    <Content Include="js\exports.index.js" />
+    <Content Include="js\file-manager.show-manager.js" />
+    <Content Include="js\file-manager.index.js" />
+    <Content Include="js\sign-in.index.js" />
+    <Content Include="js\membership.index.js" />
+    <Content Include="js\admin.index.js" />
+    <Content Include="js\app.menuitem-mgr.js" />
+    <Content Include="js\app.contentgroup-mgr.js" />
+    <Content Include="js\admin-global.js" />
+    <Content Include="images\ajax-loader.gif" />
+    <Content Include="images\no-image.png" />
+    <Content Include="images\trash_16x16.png" />
+    <Content Include="js\app.find-page.js" />
+    <Content Include="js\app.index.js" />
+    <Content Include="js\app.new-page.js" />
+    <Content Include="js\apply-changes.js" />
+    <Content Include="js\cms-users.index.js" />
+    <Content Include="js\cms-users.create-user.js" />
+    <Content Include="js\admin-menu.js" />
+    <Content Include="js\cms-users.global.js" />
+    <Content Include="js\jquery.ui.dialog.js" />
+    <Content Include="js\jquery.ajax.js" />
+    <Content Include="js\jquery.jeditable.types.js" />
+    <Content Include="js\account.index.js" />
+    <Content Include="js\jquery.jeditable.utility.js" />
+    <Content Include="js\jquery.ui.tabs.utility.js" />
+    <Content Include="js\knockout.bindings.js" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>42345</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,6 +1,6 @@
-﻿using System.Data.Objects;
-using Clickfarm.Cms.Data.EntityFramework;
+﻿using Clickfarm.Cms.Data.EntityFramework;
 using KCActorsTheatre.Data.Repositories;
+using System.Data.Entity.Core.Objects;
 
 namespace KCActorsTheatre.Data
 {

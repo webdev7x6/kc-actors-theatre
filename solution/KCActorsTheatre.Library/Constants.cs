@@ -12,7 +12,7 @@ namespace KCActorsTheatre
         #region Machine names
 
         public const string MachineName_Dev = "DEV";
-        public const string MachineName_Prod = "FE01";
+        public const string MachineName_Prod = "PROD";
 
         #endregion
     }

@@ -26,7 +26,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     @{ var counter = 1; }
-                    @foreach (var topLevelItem in req.Menus.First(p => p.Name == "Main Navigation").TopLevelItems.Where(p => p.IsEnabled).OrderBy(p => p.DisplayOrder))
+                    @foreach (var topLevelItem in req.Menus.First(p => p.Name == "Main Navigation").TopLevelItems.Where(p => p.Enabled).OrderBy(p => p.DisplayOrder))
                     {
                         @* top level item, with children *@
                         if (topLevelItem.HasChildren)
@@ -41,7 +41,7 @@
                                             <li><a href="/season/item/@season.SeasonID">@season.Title</a></li>
                                         }
                                     }
-                                    @foreach (var secondLevelItem in topLevelItem.Children.Where(p => p.IsEnabled).OrderBy(p => p.DisplayOrder))
+                                    @foreach (var secondLevelItem in topLevelItem.Children.Where(p => p.Enabled).OrderBy(p => p.DisplayOrder))
                                     {
                                         <li><a href="@secondLevelItem.Url.Path">@secondLevelItem.Title</a></li>
                                     }
