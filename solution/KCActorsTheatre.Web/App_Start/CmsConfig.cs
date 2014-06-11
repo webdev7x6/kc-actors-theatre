@@ -250,7 +250,6 @@ namespace KCActorsTheatre.Web
             app.OnDefaultMachine()
                 .HasHost<PreviewRequestContentHandler>("localhost", "Local")
                 .HasHost<CachedRequestContentHandler>("www.kcactors.org", "Live", isPrimary: true)
-                .HasHost<CachedRequestContentHandler>("209.240.84.34", "IP")
                 ;
 
             app.HasController<Controllers.HomeController>("Site Map", "SiteMap")
